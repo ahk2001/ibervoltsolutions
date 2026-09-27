@@ -1,0 +1,3246 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IberVolt Solutions // Engenharia Elétrica de Alta Performance</title>
+  
+  <!-- SEO & Metatags -->
+  <meta name="description" content="Engenharia elétrica de alta performance em Valência e região. Manutenção preventiva, reformas elétricas e quadros sob encomenda com conformidade REBT, NR-10 e NR-35.">
+  <meta name="author" content="IberVolt Solutions">
+  <meta name="robots" content="index, follow">
+
+  <!-- Metatags de Segurança (Security Hardening) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Open Graph / Redes Sociais & Compartilhamento -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IberVolt Solutions">
+  <meta property="og:title" content="IberVolt Solutions // Engenharia Elétrica de Alta Performance">
+  <meta property="og:description" content="Engenharia elétrica de alta performance em Valência e região. Manutenção preventiva, reformas elétricas e quadros sob encomenda com conformidade REBT, NR-10 e NR-35.">
+  <meta property="og:image" content="./assets/images/hero-engenharia.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IberVolt Solutions // Engenharia Elétrica de Alta Performance">
+  <meta name="twitter:description" content="Engenharia elétrica de alta performance em Valência e região. Manutenção preventiva, reformas elétricas e quadros sob encomenda com conformidade REBT, NR-10 e NR-35.">
+  <meta name="twitter:image" content="./assets/images/hero-engenharia.jpg">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/images/favicon.png">
+
+  <!-- Fontes do Google: Syne + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN com Configuração Minimalista -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              obsidian: '#050505',
+              card: '#0c0c0e',
+              yellow: '#FFE600',
+              yellowHover: '#ECD500',
+              muted: '#8E8E93',
+              border: 'rgba(255, 255, 255, 0.07)',
+              borderSubtle: 'rgba(255, 255, 255, 0.04)'
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons (Versão Estável e Protegida contra Alterações Indesejadas) -->
+  <script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+
+
+
+  <style>
+    body {
+      background-color: #050505;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero-vignette {
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(255, 200, 0, 0.07) 0%, transparent 70%);
+    }
+
+    /* Animação de entrada escalonada */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .anim-in {
+      opacity: 0;
+      animation: fadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .anim-fade {
+      opacity: 0;
+      animation: fadeIn 1.4s ease forwards;
+    }
+    @keyframes slideFromRight {
+      from { opacity: 0; transform: translateX(28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .anim-right {
+      opacity: 0;
+      animation: slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.35s; }
+    .delay-3 { animation-delay: 0.55s; }
+    .delay-4 { animation-delay: 0.75s; }
+    .delay-5 { animation-delay: 0.95s; }
+    .delay-6 { animation-delay: 1.15s; }
+    .delay-7 { animation-delay: 1.40s; }
+
+    /* Glassmorphism de Alta Precisão (Graphite Glass) */
+    .card-glass {
+      background: rgba(13, 13, 14, 0.60);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-glass:hover {
+      border-color: rgba(255, 230, 0, 0.30);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 230, 0, 0.08);
+    }
+
+    /* Scroll Reveal Suave */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animação Lateral Bidirecional nos Cards de Certificação (Mobile) */
+    @media (max-width: 1023px) {
+      .cert-card-slide {
+        will-change: transform, opacity;
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .cert-card-slide.slide-from-left {
+        opacity: 0;
+        transform: translate3d(-70px, 0, 0);
+      }
+      .cert-card-slide.slide-from-right {
+        opacity: 0;
+        transform: translate3d(70px, 0, 0);
+      }
+      .cert-card-slide.is-in-view {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Transição suave do console de serviços */
+    .tab-content-enter {
+      animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Carrossel Infinito / Marquee */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Radar Pulse para Mapa Estilizado */
+    @keyframes radarPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(3.2); opacity: 0; }
+    }
+    .radar-beacon {
+      animation: radarPulse 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    .radar-beacon-delayed {
+      animation: radarPulse 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite 1.5s;
+    }
+
+    /* Inputs Personalizados Dark Luxury */
+    .input-luxury {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .input-luxury:focus {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #FFE600;
+      box-shadow: 0 0 25px rgba(255, 230, 0, 0.12);
+      outline: none;
+    }
+
+    /* Custom Luxury Dropdowns */
+    .custom-dropdown-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-dropdown-btn:hover {
+      background: rgba(255, 255, 255, 0.055);
+      border-color: rgba(255, 230, 0, 0.4);
+    }
+    .custom-dropdown.is-open .custom-dropdown-btn {
+      border-color: #FFE600;
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .custom-dropdown.is-open .chevron-icon {
+      transform: rotate(180deg);
+      color: #FFE600;
+    }
+    .custom-dropdown-menu {
+      background: rgba(12, 13, 16, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 230, 0, 0.08);
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-dropdown.is-open .custom-dropdown-menu {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .custom-dropdown-item {
+      transition: all 0.18s ease;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .custom-dropdown-item:hover {
+      background: rgba(255, 230, 0, 0.1);
+      color: #FFE600;
+      padding-left: 1.15rem;
+    }
+    .custom-dropdown-item.is-selected {
+      background: rgba(255, 230, 0, 0.14);
+      color: #FFE600;
+      font-weight: 500;
+    }
+
+    /* Validação e Campos Obrigatórios */
+    .input-error {
+      border-color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.06) !important;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.25) !important;
+      animation: ibv-shake 0.4s ease;
+    }
+    @keyframes ibv-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 1.5px solid #FFE600;
+      outline-offset: 3px;
+    }
+
+    /* Footer & Architectural Terminal Styles */
+    .back-to-top-btn {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .back-to-top-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.2);
+    }
+
+    /* Header & Minimalist Blurred Navigation */
+    #site-header {
+      background: rgba(5, 5, 5, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #site-header.header-scrolled {
+      background: rgba(5, 5, 5, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.09) !important;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
+    }
+    #site-header.header-scrolled #header-inner {
+      height: 4.25rem !important; /* 68px */
+    }
+    .nav-desktop-item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+    .nav-desktop-item .nav-num {
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .nav-desktop-item:hover .nav-num {
+      color: #FFE600;
+    }
+    .nav-desktop-item.is-active {
+      color: #FFFFFF !important;
+    }
+    .nav-desktop-item.is-active .nav-num {
+      color: #FFE600 !important;
+    }
+    .nav-desktop-item.is-active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: #FFE600;
+      border-radius: 9999px;
+      box-shadow: 0 0 8px rgba(255, 230, 0, 0.6);
+    }
+
+    /* Parallax Expressivo no Mapa de Cobertura */
+    .parallax-map-container {
+      position: relative;
+      overflow: hidden;
+      will-change: transform;
+    }
+    .parallax-map-img {
+      position: absolute;
+      top: -30%;
+      left: 0;
+      width: 100%;
+      height: 160%;
+      object-fit: cover;
+      object-position: center;
+      will-change: transform;
+      transform: translate3d(0, 0, 0) scale(1.08);
+      transition: filter 0.5s ease;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .parallax-map-img {
+        transform: none !important;
+        top: 0;
+        height: 100%;
+      }
+    }
+
+    /* Preloader High-End com Efeito Persiana */
+    #site-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background-color: #050505;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      transform-origin: top;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+      pointer-events: all;
+    }
+    .preloader-content {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      will-change: opacity, transform;
+    }
+    #site-preloader.preloader-closing .preloader-content,
+    #site-preloader.preloader-closing .preloader-bar-bg {
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+    }
+    #site-preloader.preloader-shutter-open {
+      transform: translateY(100%);
+      pointer-events: none;
+    }
+    .preloader-bar-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      transition: opacity 0.35s ease;
+    }
+    .preloader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #FFE600;
+      box-shadow: 0 0 12px rgba(255, 230, 0, 0.7), 0 0 24px rgba(255, 230, 0, 0.35);
+      transition: width 0.08s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-brand-obsidian text-white min-h-screen selection:bg-brand-yellow selection:text-black">
+
+  <!-- ==========================================
+       PRELOADER HIGH-END (Barra Inferior & Contador)
+       ========================================== -->
+  <aside id="site-preloader" aria-label="Carregando..." class="z-[99999]">
+    <div class="preloader-content max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pb-6 sm:pb-8 flex flex-col items-start select-none">
+      <div class="flex items-baseline">
+        <span id="preloader-counter" class="font-syne font-extrabold text-5xl sm:text-6xl md:text-7xl tracking-tighter text-white tabular-nums leading-none">0</span>
+        <span class="text-brand-yellow font-syne font-bold text-2xl sm:text-3xl ml-1 leading-none">%</span>
+      </div>
+      <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/50 mt-2">
+        ENGENHARIA ELÉTRICA DE ALTA PERFORMANCE
+      </span>
+    </div>
+    <div class="preloader-bar-bg">
+      <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       SEÇÃO 1: HEADER (MINIMALISTA & ARQUITETÔNICO)
+       ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="site-header">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex items-center justify-between h-20 transition-all duration-300" id="header-inner">
+        
+        <!-- Identidade IberVolt (Apenas Logo Oficial sem duplicação de texto) -->
+        <a href="#inicio" class="anim-in delay-1 flex items-center group shrink-0" aria-label="IberVolt Solutions">
+          <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 sm:h-11 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90">
+        </a>
+
+        <!-- Navegação Desktop Minimalista (Com numeração editorial 01 a 04) -->
+        <nav class="anim-in delay-2 hidden md:flex items-center gap-7 lg:gap-8 text-[13px] font-jakarta tracking-wide" aria-label="Menu Principal" id="desktop-nav">
+          <a href="#inicio" data-nav-target="inicio" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1 is-active">
+            <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">01.</span>
+            <span data-i18n="nav_home">Home</span>
+          </a>
+          <a href="#especialidades" data-nav-target="especialidades" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
+            <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">02.</span>
+            <span data-i18n="nav_esp">Especialidades</span>
+          </a>
+          <a href="#certificacoes" data-nav-target="certificacoes" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
+            <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">03.</span>
+            <span data-i18n="nav_cert">Certificações &amp; Normas</span>
+          </a>
+          <a href="#cobertura" data-nav-target="cobertura" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
+            <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">04.</span>
+            <span data-i18n="nav_cobertura">Atendimento</span>
+          </a>
+        </nav>
+
+        <!-- Controles & CTA (Desktop) -->
+        <div class="anim-in delay-3 hidden sm:flex items-center gap-4">
+          
+          <!-- Seletor de Idiomas Minimalista (PT / ES / EN) -->
+          <div class="lang-selector inline-flex items-center text-xs font-mono text-white/40 gap-1.5 px-2 py-1">
+            <button type="button" 
+                    onclick="switchLanguage('pt')" 
+                    data-lang-btn="pt"
+                    class="transition-colors hover:text-white text-brand-yellow font-bold"
+                    aria-label="Português">
+              PT
+            </button>
+            <span class="text-white/20 select-none">/</span>
+            <button type="button" 
+                    onclick="switchLanguage('es')" 
+                    data-lang-btn="es"
+                    class="transition-colors text-white/50 hover:text-white"
+                    aria-label="Español">
+              ES
+            </button>
+            <span class="text-white/20 select-none">/</span>
+            <button type="button" 
+                    onclick="switchLanguage('en')" 
+                    data-lang-btn="en"
+                    class="transition-colors text-white/50 hover:text-white"
+                    aria-label="English">
+              EN
+            </button>
+          </div>
+
+          <!-- Botão WhatsApp com Formatação Impecável -->
+          <a id="header-whatsapp-btn"
+             href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20atendimento%20t%C3%A9cnico." 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(255,230,0,0.22)] transition-all duration-200 hover:bg-brand-yellowHover hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(255,230,0,0.35)] shrink-0">
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Seletor Mobile & Botão Menu Mobile -->
+        <div class="flex md:hidden items-center gap-3">
+          <!-- Seletor Compacto no Mobile Header -->
+          <div class="lang-selector inline-flex sm:hidden items-center text-[11px] font-mono text-white/40 gap-1">
+            <button type="button" onclick="switchLanguage('pt')" data-lang-btn="pt" class="text-brand-yellow font-bold">PT</button>
+            <span class="text-white/20">/</span>
+            <button type="button" onclick="switchLanguage('es')" data-lang-btn="es" class="text-white/50 hover:text-white">ES</button>
+            <span class="text-white/20">/</span>
+            <button type="button" onclick="switchLanguage('en')" data-lang-btn="en" class="text-white/50 hover:text-white">EN</button>
+          </div>
+
+          <button id="mobile-menu-btn" 
+                  type="button" 
+                  aria-expanded="false" 
+                  aria-label="Abrir Menu Principal"
+                  class="p-2 text-white/80 hover:text-white transition-colors">
+            <i data-lucide="menu" id="menu-icon-open" class="w-5 h-5"></i>
+            <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 hidden"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Gaveta Mobile Minimalista -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-white/[0.08] bg-brand-obsidian/90 backdrop-blur-2xl px-6 py-6 space-y-4 animate-fade-in shadow-2xl">
+      <nav class="flex flex-col space-y-2.5 font-jakarta text-sm">
+        <a href="#inicio" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
+          <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">01.</span>
+          <span data-i18n="nav_home">Home</span>
+        </a>
+        <a href="#especialidades" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
+          <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">02.</span>
+          <span data-i18n="nav_esp">Especialidades</span>
+        </a>
+        <a href="#certificacoes" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
+          <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">03.</span>
+          <span data-i18n="nav_cert">Certificações &amp; Normas</span>
+        </a>
+        <a href="#cobertura" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
+          <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">04.</span>
+          <span data-i18n="nav_cobertura">Atendimento</span>
+        </a>
+      </nav>
+
+      <!-- Idioma e CTA no Mobile -->
+      <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between">
+        <div class="lang-selector inline-flex items-center text-xs font-mono text-white/40 gap-1.5">
+          <button type="button" onclick="switchLanguage('pt')" data-lang-btn="pt" class="transition-colors text-brand-yellow font-bold">PT</button>
+          <span class="text-white/20 select-none">/</span>
+          <button type="button" onclick="switchLanguage('es')" data-lang-btn="es" class="transition-colors text-white/50 hover:text-white">ES</button>
+          <span class="text-white/20 select-none">/</span>
+          <button type="button" onclick="switchLanguage('en')" data-lang-btn="en" class="transition-colors text-white/50 hover:text-white">EN</button>
+        </div>
+
+        <a id="mobile-whatsapp-btn" 
+           href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20atendimento%20t%C3%A9cnico." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs tracking-wide shadow-[0_0_15px_rgba(255,230,0,0.22)]">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==========================================
+       SEÇÃO 2: HERO SECTION (EDITORIAL & RESPIRADA)
+       ========================================== -->
+  <section id="inicio" class="relative min-h-screen pt-36 pb-24 md:pt-48 md:pb-36 flex items-center bg-brand-obsidian overflow-hidden">
+    
+    <!-- Vinheta de profundidade -->
+    <div class="anim-fade delay-7 hero-vignette absolute inset-0 pointer-events-none z-0"></div>
+
+    <!-- Canvas: Rede de pontos lentos e discretos -->
+    <canvas id="hero-canvas" class="anim-fade delay-7 absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+    
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Coluna de Impacto Tipográfico (7 Colunas) -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          
+          <!-- Badge Técnico Discreto -->
+          <div class="anim-in delay-1 inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-8 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+            <span data-i18n="hero_badge">Valência & Região // Certificado NR-10 & NR-35</span>
+          </div>
+
+          <!-- Título H1 Esculpido -->
+          <h1 data-i18n-html="hero_h1" class="anim-in delay-2 font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.06] tracking-[-0.03em] text-white mb-8">
+            Engenharia <span class="text-brand-yellow">Elétrica</span> <br>
+            de <span class="font-light italic text-white/90">Precisão.</span> <br>
+            <span class="text-brand-yellow">Segurança</span> Absoluta <br class="hidden sm:inline">
+            para o seu Imóvel.
+          </h1>
+
+          <!-- Subtítulo -->
+          <p data-i18n="hero_sub" class="anim-in delay-3 font-jakarta font-light text-base sm:text-lg text-brand-muted leading-relaxed max-w-xl mb-10">
+            Soluções elétricas de alta performance para residências exclusivas, redes hoteleiras e indústrias em Valência. Da manutenção crítica a painéis sob medida.
+          </p>
+
+          <!-- CTAs -->
+          <div class="anim-in delay-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            
+            <a id="hero-cta-whatsapp"
+               href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico." 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01]">
+              <span data-i18n="hero_cta_wa">Solicitar Orçamento</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+            </a>
+
+            <a href="#especialidades" 
+               class="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-white/80 font-jakarta text-xs font-medium tracking-wider transition-all duration-200 hover:text-white hover:bg-white/[0.04]">
+              <span data-i18n="hero_cta_services">Conhecer Nossos Serviços</span>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Coluna da Direita: Moldura Fotográfica de Engenharia com Glassmorphism Flutuante -->
+        <div class="anim-right delay-5 lg:col-span-5 relative">
+          
+          <div class="relative rounded-3xl overflow-hidden border border-white/[0.12] shadow-2xl group">
+            <!-- Imagem de Engenharia em Alta Definição -->
+            <img src="./assets/images/hero-engenharia.jpg" alt="IberVolt - Engenharia Elétrica de Alta Performance" class="w-full h-[440px] sm:h-[480px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-700">
+            
+            <!-- Vinheta Gradiente com profundidade escura -->
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian via-brand-obsidian/30 to-transparent"></div>
+
+            <!-- Badge Superior Flutuante -->
+            <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] tracking-wider uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+              <span data-i18n="hero_img_badge">Engenharia & Controle // Valência</span>
+            </div>
+
+            <!-- Card de Glassmorphism Flutuante com Especificações Cirúrgicas -->
+            <div class="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/[0.12] p-4 sm:p-5"
+                 style="background: rgba(13, 13, 14, 0.70); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
+              
+              <div class="flex items-center justify-between mb-2.5 text-[10px] font-mono text-brand-muted uppercase tracking-wider">
+                <span data-i18n="hero_card_normative">CONFORMIDADE NORMATIVA</span>
+                <span class="text-brand-yellow font-medium">REBT // NR-10 // NR-35</span>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2.5 text-center">
+                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
+                  <div class="font-syne font-bold text-xs sm:text-sm text-white">NR-10</div>
+                  <div data-i18n="hero_card_sec" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Segurança</div>
+                </div>
+                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
+                  <div class="font-syne font-bold text-xs sm:text-sm text-white">NR-35</div>
+                  <div data-i18n="hero_card_alt" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Altura</div>
+                </div>
+                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
+                  <div class="font-syne font-bold text-xs sm:text-sm text-brand-yellow">100%</div>
+                  <div data-i18n="hero_card_homol" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Homologado</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       SEÇÃO 2: ESPECIALIDADES & SERVIÇOS (CONSOLE DINÂMICO)
+       ========================================== -->
+  <section id="especialidades" class="relative py-24 md:py-32 bg-brand-obsidian border-t border-brand-border overflow-hidden">
+    
+    <!-- Luz ambiente sutil de profundidade -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-brand-yellow/[0.02] rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Cabeçalho Compacto & Editorial -->
+      <div class="max-w-2xl mb-10 md:mb-12">
+        
+        <!-- Tag de Seção Monospaçada -->
+        <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span data-i18n="esp_badge">02 // Pilares de Atuação Técnica</span>
+        </div>
+
+        <!-- Título H2 com Syne -->
+        <h2 data-i18n-html="esp_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white mb-4">
+          Engenharia Aplicada com <br>
+          <span class="font-light italic text-white/90">Rigor Normativo</span> e Precisão.
+        </h2>
+
+        <!-- Subtítulo Enxuto -->
+        <p data-i18n="esp_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed">
+          Selecione uma especialidade abaixo para visualizar o escopo técnico e aplicações na região de Valência.
+        </p>
+
+      </div>
+
+      <!-- Âncora de Navegação Direta para Painéis -->
+      <div id="paineis" class="scroll-mt-28"></div>
+
+      <!-- Navegador Dinâmico (Tabs Minimalistas Estilo Architectural Tech) -->
+      <div class="reveal-on-scroll grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" id="services-tabs" role="tablist" aria-label="Especialidades">
+        
+        <!-- Tab 01 -->
+        <button type="button" 
+                role="tab" 
+                aria-selected="true" 
+                data-tab-index="0"
+                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-white/[0.04] border-brand-yellow/50 shadow-[0_0_20px_rgba(255,230,0,0.08)]">
+          <div class="flex items-center justify-between w-full mb-3">
+            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-yellow font-medium">01</span>
+            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          </div>
+          <span data-i18n="esp_tab_1" class="tab-title font-syne font-bold text-xs sm:text-sm text-white tracking-tight">
+            Manutenção Preventiva
+          </span>
+        </button>
+
+        <!-- Tab 02 -->
+        <button type="button" 
+                role="tab" 
+                aria-selected="false" 
+                data-tab-index="1"
+                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
+          <div class="flex items-center justify-between w-full mb-3">
+            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">02</span>
+            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
+          </div>
+          <span data-i18n="esp_tab_2" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
+            Reforma & Retrofit
+          </span>
+        </button>
+
+        <!-- Tab 03 -->
+        <button type="button" 
+                role="tab" 
+                aria-selected="false" 
+                data-tab-index="2"
+                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
+          <div class="flex items-center justify-between w-full mb-3">
+            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">03</span>
+            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
+          </div>
+          <span data-i18n="esp_tab_3" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
+            Montagem de Painéis
+          </span>
+        </button>
+
+        <!-- Tab 04 -->
+        <button type="button" 
+                role="tab" 
+                aria-selected="false" 
+                data-tab-index="3"
+                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
+          <div class="flex items-center justify-between w-full mb-3">
+            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">04</span>
+            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
+          </div>
+          <span data-i18n="esp_tab_4" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
+            Painéis Sob Encomenda
+          </span>
+        </button>
+
+      </div>
+
+      <!-- Display Dinâmico de Alta Precisão (Graphite Glass) -->
+      <div id="service-display" class="reveal-on-scroll card-glass rounded-3xl p-7 sm:p-10 lg:p-12">
+        <div id="service-content-wrapper" class="tab-content-enter grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Coluna 1: Conteúdo Editorial, Setores & CTA (7 Colunas) -->
+          <div class="lg:col-span-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span id="display-tag" class="font-mono text-[11px] tracking-widest text-brand-yellow font-medium">
+                  PILAR 01 // PREVENÇÃO & DIAGNÓSTICO
+                </span>
+              </div>
+
+              <h3 id="display-title" class="font-syne font-bold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight mb-4">
+                Manutenção Preventiva & Corretiva
+              </h3>
+
+              <p id="display-desc" class="font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
+                Identificação antecipada de anomalias elétricas, eliminação de sobrecargas e diagnóstico preventivo contínuo para evitar paradas operacionais e incidentes elétricos.
+              </p>
+
+              <!-- Chips de Aplicações Principais -->
+              <div class="mb-8">
+                <span data-i18n="esp_app_label" class="font-mono text-[10px] tracking-wider text-brand-muted/70 uppercase block mb-2.5">
+                  Aplicações Principais:
+                </span>
+                <div id="display-sectors" class="flex flex-wrap gap-2">
+                  <!-- Injetado dinamicamente -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão de Ação Direta -->
+            <div>
+              <a id="display-cta" 
+                 href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20sobre%20o%20servi%C3%A7o%20de%20Manuten%C3%A7%C3%A3o%20Preventiva%20e%20Corretiva%20em%20Val%C3%AAncia." 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01]">
+                <span id="display-cta-text">Consultar Manutenção no WhatsApp</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Imagem Técnica Real & Destaques de Engenharia (5 Colunas) -->
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            
+            <!-- Moldura da Imagem com Glassmorphism e Vinheta -->
+            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-brand-card border border-white/10 group">
+              <img id="display-image" 
+                   src="./assets/images/projeto-termografia.jpg" 
+                   alt="Manutenção Preventiva" 
+                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              
+              <!-- Gradiente de profundidade -->
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian/90 via-transparent to-transparent"></div>
+              
+              <!-- Selo Flutuante sobre a Foto -->
+              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                <span id="display-image-tag" class="font-mono text-[10px] tracking-wider text-white/90 bg-brand-obsidian/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  Inspeção Termográfica // Fluke Ti480
+                </span>
+                <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+              </div>
+            </div>
+
+            <!-- Micro-especificações Técnicas -->
+            <div id="display-specs" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <!-- Injetado dinamicamente -->
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Faixa Discreta de Conformidade Técnica -->
+      <div class="reveal-on-scroll mt-8 rounded-2xl border border-white/[0.06] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+           style="background: rgba(13, 13, 14, 0.45); backdrop-filter: blur(16px);">
+        <div class="flex items-center gap-3.5">
+          <div class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-brand-yellow shrink-0">
+            <i data-lucide="shield-check" class="w-4 h-4 stroke-[2]"></i>
+          </div>
+          <span data-i18n-html="esp_banner_text" class="font-jakarta text-xs sm:text-sm text-brand-muted">
+            Em conformidade integral com o <strong class="text-white font-medium">REBT</strong> e certificações de segurança <strong class="text-white font-medium">NR-10 & NR-35</strong> em Valência.
+          </span>
+        </div>
+
+        <a id="esp-engineer-contact-btn"
+           href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20diretamente%20com%20um%20engenheiro%20da%20IberVolt."
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 font-mono text-xs text-brand-yellow hover:text-white transition-colors shrink-0">
+          <span data-i18n="esp_banner_btn">Contato com Engenheiro</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 stroke-[2.2]"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       SEÇÃO 3: RIGIDEZ TÉCNICA & CERTIFICAÇÕES
+       ========================================== -->
+  <section id="certificacoes" class="relative pt-24 pb-16 md:pt-32 md:pb-20 bg-brand-obsidian overflow-hidden border-t border-brand-border">
+    
+    <!-- Vinheta de profundidade idêntica à Hero -->
+    <div class="hero-vignette absolute inset-0 pointer-events-none z-0"></div>
+
+    <!-- Canvas: Rede de pontos lentos e discretos (mesmo da Hero) -->
+    <canvas id="cert-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="max-w-2xl">
+          <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+            <span data-i18n="cert_badge">03 // Rigidez Técnica & Normas Oficiais</span>
+          </div>
+
+          <h2 data-i18n-html="cert_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
+            Engenharia Certificada. <br>
+            <span class="font-light italic text-white/90">Segurança Absoluta</span> em Cada Obra.
+          </h2>
+        </div>
+
+        <p data-i18n="cert_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted max-w-md leading-relaxed">
+          Atuação pautada pelo cumprimento irrestrito das normas de segurança NR-10, NR-10 SEP, NR-35 e do regulamento REBT espanhol, assegurando risco zero a vidas e patrimônios.
+        </p>
+      </div>
+
+      <!-- Grid Principal: Os 3 Pilares Normativos Oficiais (Sem Imagens - Design de Engenharia & Console) -->
+      <div id="cert-cards-grid" class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Bloco 01: NR-10 (Mobile: desliza da esquerda para o meio) -->
+        <div class="card-glass cert-card-slide slide-from-left rounded-3xl p-7 sm:p-8 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/[0.03] rounded-bl-[80px] pointer-events-none transition-all duration-500 group-hover:bg-brand-yellow/[0.06]"></div>
+
+          <div>
+            <!-- Header do Card -->
+            <div class="flex items-center justify-between mb-8">
+              <span data-i18n="cert_nr10_badge" class="font-mono text-[11px] tracking-widest text-brand-yellow font-medium uppercase px-3 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20">
+                NORMA OFICIAL
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-brand-yellow group-hover:border-brand-yellow/40 transition-colors">
+                <i data-lucide="shield-check" class="w-5 h-5 stroke-[1.8]"></i>
+              </div>
+            </div>
+
+            <!-- Identificador Grande e Título -->
+            <div class="mb-4">
+              <span class="font-syne font-extrabold text-3xl sm:text-4xl tracking-tight text-white group-hover:text-brand-yellow transition-colors block mb-1">
+                NR-10
+              </span>
+              <h3 data-i18n="cert_nr10_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">
+                Segurança em Instalações e Serviços em Eletricidade
+              </h3>
+            </div>
+
+            <p data-i18n="cert_nr10_desc" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+              Protocolos integrais de desenergização controlada, bloqueio mecânico LOTO, isolação dielétrica e aterramento temporário para anular qualquer possibilidade de reenergização acidental.
+            </p>
+
+            <!-- Lista de Diretrizes Técnicas -->
+            <div class="space-y-2.5 mb-8">
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr10_item1">Procedimento LOTO (Lockout / Tagout) homologado</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr10_item2">Medição e laudo de resistência de isolamento</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr10_item3">Conformidade com o REBT (Baixa Tensão Espanha)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rodapé do Card com Parâmetro Técnico -->
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px]">
+            <span data-i18n="cert_nr10_footer_label" class="text-brand-muted/70">ESCOPO OPERACIONAL</span>
+            <span data-i18n="cert_nr10_footer_val" class="text-brand-yellow">BAIXA & MÉDIA TENSÃO</span>
+          </div>
+        </div>
+
+        <!-- Bloco 02: NR-10 SEP (Mobile: desliza da direita para o meio - inverso) -->
+        <div class="card-glass cert-card-slide slide-from-right rounded-3xl p-7 sm:p-8 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/[0.03] rounded-bl-[80px] pointer-events-none transition-all duration-500 group-hover:bg-brand-yellow/[0.06]"></div>
+
+          <div>
+            <!-- Header do Card -->
+            <div class="flex items-center justify-between mb-8">
+              <span data-i18n="cert_sep_badge" class="font-mono text-[11px] tracking-widest text-brand-yellow font-medium uppercase px-3 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20">
+                SISTEMAS DE POTÊNCIA
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-brand-yellow group-hover:border-brand-yellow/40 transition-colors">
+                <i data-lucide="zap" class="w-5 h-5 stroke-[1.8]"></i>
+              </div>
+            </div>
+
+            <!-- Identificador Grande e Título -->
+            <div class="mb-4">
+              <span class="font-syne font-extrabold text-3xl sm:text-4xl tracking-tight text-white group-hover:text-brand-yellow transition-colors block mb-1">
+                NR-10 SEP
+              </span>
+              <h3 data-i18n="cert_sep_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">
+                Sistema Elétrico de Potência (Alta Voltagem)
+              </h3>
+            </div>
+
+            <p data-i18n="cert_sep_desc" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+              Capacitação avançada para manobras de alto risco em cabines primárias, barramentos industriais de alta amperagem, subestações e proteção estrita contra arco elétrico (<em>Arc Flash</em>).
+            </p>
+
+            <!-- Lista de Diretrizes Técnicas -->
+            <div class="space-y-2.5 mb-8">
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_sep_item1">Varredura termográfica preventiva e preditiva</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_sep_item2">EPIs de proteção térmica até 40 cal/cm²</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_sep_item3">Ensaios de continuidade e análise de harmônicos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rodapé do Card com Parâmetro Técnico -->
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px]">
+            <span data-i18n="cert_sep_footer_label" class="text-brand-muted/70">NÍVEL DE CRITICIDADE</span>
+            <span data-i18n="cert_sep_footer_val" class="text-brand-yellow">ALTA VOLTAGEM / SUBESTAÇÃO</span>
+          </div>
+        </div>
+
+        <!-- Bloco 03: NR-35 (Mobile: desliza da esquerda para o meio - inverso do segundo) -->
+        <div class="card-glass cert-card-slide slide-from-left rounded-3xl p-7 sm:p-8 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/[0.03] rounded-bl-[80px] pointer-events-none transition-all duration-500 group-hover:bg-brand-yellow/[0.06]"></div>
+
+          <div>
+            <!-- Header do Card -->
+            <div class="flex items-center justify-between mb-8">
+              <span data-i18n="cert_nr35_badge" class="font-mono text-[11px] tracking-widest text-brand-yellow font-medium uppercase px-3 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20">
+                TRABALHO EM ALTURA
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-brand-yellow group-hover:border-brand-yellow/40 transition-colors">
+                <i data-lucide="hard-hat" class="w-5 h-5 stroke-[1.8]"></i>
+              </div>
+            </div>
+
+            <!-- Identificador Grande e Título -->
+            <div class="mb-4">
+              <span class="font-syne font-extrabold text-3xl sm:text-4xl tracking-tight text-white group-hover:text-brand-yellow transition-colors block mb-1">
+                NR-35
+              </span>
+              <h3 data-i18n="cert_nr35_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">
+                Capacitação para Trabalhos Técnicos em Altura
+              </h3>
+            </div>
+
+            <p data-i18n="cert_nr35_desc" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+              Planejamento, organização e execução de infraestrutura elétrica vertical, leitos aéreos de cabos, eletrocalhas suspensas em galpões industriais e coberturas prediais com ancoragem certificada.
+            </p>
+
+            <!-- Lista de Diretrizes Técnicas -->
+            <div class="space-y-2.5 mb-8">
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr35_item1">Linhas de vida e pontos de ancoragem certificados</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr35_item2">Cintos tipo paraquedista com absorvedor de energia</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-white/80 font-jakarta">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
+                <span data-i18n="cert_nr35_item3">Análise de Risco (APR) emitida antes de cada içamento</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rodapé do Card com Parâmetro Técnico -->
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px]">
+            <span data-i18n="cert_nr35_footer_label" class="text-brand-muted/70">ACESSO VERTICAL</span>
+            <span data-i18n="cert_nr35_footer_val" class="text-brand-yellow">EPIs CLASSE III / LINHA DE VIDA</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       SEÇÃO 4: SETORES DE ATUAÇÃO (FITA TIPOGRÁFICA MINIMALISTA)
+       ========================================== -->
+  <section id="setores" class="relative py-8 md:py-10 bg-brand-obsidian overflow-hidden border-y border-white/[0.06]">
+    
+    <!-- Pequeno Título Minimalista e Discreto -->
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-5 flex flex-col items-center text-center">
+      <span data-i18n="setores_badge" class="font-mono text-[10px] tracking-[0.25em] text-brand-yellow uppercase mb-1.5">
+        SETORES ATENDIDOS
+      </span>
+      <h3 data-i18n="setores_title" class="font-syne font-medium text-xs sm:text-sm text-white/70 tracking-widest uppercase">
+        Engenharia Elétrica Especializada em Valência
+      </h3>
+    </div>
+
+    <!-- Carrossel Marquee Horizontal Minimalista (Apenas Títulos) -->
+    <div class="relative w-full overflow-hidden">
+      
+      <!-- Degradês Sutis de Esmaecimento nas Bordas Laterais -->
+      <div class="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-brand-obsidian to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-brand-obsidian to-transparent z-10 pointer-events-none"></div>
+
+      <!-- Trilha Deslizante Contínua com Tipografia Expressiva -->
+      <div class="animate-marquee flex items-center gap-10 sm:gap-14 select-none">
+        
+        <!-- Título 01 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Residencial <span class="font-light italic text-white/60">&</span> Airbnb
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Título 02 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Redes Hoteleiras <span class="font-light italic text-white/60">&</span> Colégios
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Título 03 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Comércio <span class="font-light italic text-white/60">&</span> PMEs
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Título 04 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Pequena <span class="font-light italic text-white/60">&</span> Grande Indústria
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- ── CLONE PARA O LOOP INFINITO PERFEITO ── -->
+
+        <!-- Clone Título 01 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Residencial <span class="font-light italic text-white/60">&</span> Airbnb
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Clone Título 02 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Redes Hoteleiras <span class="font-light italic text-white/60">&</span> Colégios
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Clone Título 03 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Comércio <span class="font-light italic text-white/60">&</span> PMEs
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+        <!-- Clone Título 04 -->
+        <div class="flex items-center gap-10 sm:gap-14 shrink-0">
+          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-xl sm:text-2xl lg:text-3xl text-white/90 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
+            Pequena <span class="font-light italic text-white/60">&</span> Grande Indústria
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================
+       SEÇÃO 5 (2.7): CONTATO, COBERTURA & PRÉ-AVALIAÇÃO
+       ========================================== -->
+  <section id="cobertura" class="relative py-24 md:py-32 bg-brand-obsidian overflow-hidden border-t border-brand-border">
+    
+    <!-- Luz ambiente discreta -->
+    <div class="absolute top-1/3 right-1/4 w-[500px] h-[400px] bg-brand-yellow/[0.02] rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div class="max-w-2xl">
+          <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-4 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+            <span data-i18n="cob_badge">04 // Atendimento & Cobertura Geográfica</span>
+          </div>
+
+          <h2 data-i18n-html="cob_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
+            Atendimento Técnico em <br>
+            <span class="font-light italic text-white/90">Valência e Arredores</span>.
+          </h2>
+        </div>
+
+        <p data-i18n="cob_sub" class="reveal-on-scroll font-jakarta font-light text-xs sm:text-sm text-brand-muted max-w-md leading-relaxed">
+          Atendimento presencial focado na capital valenciana e análise prévia de viabilidade para cidades vizinhas com máximo custo-benefício de deslocamento.
+        </p>
+      </div>
+
+      <!-- Grid Principal: Coluna do Mapa Estilizado + Coluna do Formulário de Pré-Avaliação -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        
+        <!-- ========================================================
+             COLUNA 1: CONSOLE GEOGRÁFICO & MAPA REAL DARK (7 Colunas)
+             ======================================================== -->
+        <div class="reveal-on-scroll lg:col-span-7 flex flex-col justify-between card-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden group border border-white/10">
+          
+          <!-- Topo do Console: Status Operacional & Indicador em Tempo Real -->
+          <div class="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-white/[0.08]">
+            <div class="flex items-center gap-3">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-yellow"></span>
+              </span>
+              <div>
+                <span data-i18n="cob_status_h" class="font-mono text-xs text-white font-semibold tracking-wider block">
+                  VALÈNCIA &amp; COMUNIDADE VALENCIANA
+                </span>
+                <span data-i18n="cob_status_sub" class="font-mono text-[10px] text-brand-muted/70 tracking-widest uppercase">
+                  Logística Operacional // Prontidão Técnica
+                </span>
+              </div>
+            </div>
+
+            <!-- Badge de Base Fixa -->
+            <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 font-mono text-[10px] text-brand-muted">
+              <i data-lucide="map-pin" class="w-3 h-3 text-brand-yellow"></i>
+              <span data-i18n="cob_hub_badge">Hub Central: Ciutat de València</span>
+            </div>
+          </div>
+
+          <!-- Imagem Realista do Mapa de Valência com Efeito Parallax e Redirecionamento Google Maps -->
+          <div id="cob-map-wrapper" class="relative w-full rounded-2xl overflow-hidden border border-white/10 group shadow-[0_12px_40px_rgba(0,0,0,0.65)] bg-[#0d0e12]">
+            <a id="cob-map-link"
+               href="https://www.google.com/maps/place/Val%C3%A8ncia,+Espanha/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="parallax-map-container block relative w-full h-[380px] sm:h-[440px] overflow-hidden"
+               title="Clique para abrir o mapa de Valência no Google Maps">
+              <img id="cob-map-img"
+                   src="./assets/images/mapa-valencia.jpg" 
+                   alt="Mapa de Valência e Cobertura Geográfica - IberVolt Solutions" 
+                   class="parallax-map-img">
+              
+              <!-- Gradiente escuro sutil nas bordas para integração com o tema obsidian -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30 pointer-events-none z-[1]"></div>
+            </a>
+
+            <!-- Botão de redirecionamento no canto inferior para o Google Maps -->
+            <div class="absolute bottom-4 right-4 z-10 pointer-events-auto">
+              <a href="https://www.google.com/maps/place/Val%C3%A8ncia,+Espanha/" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-yellow text-black font-jakarta font-semibold text-xs uppercase tracking-wider hover:bg-brand-yellowHover shadow-[0_4px_24px_rgba(255,230,0,0.4)] transition-all duration-200 group/btn">
+                <i data-lucide="map-pin" class="w-4 h-4 stroke-[2.2] text-black"></i>
+                <span data-i18n="cob_maps_btn">Ver no Google Maps</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 stroke-[2.5] text-black transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Módulos de Zonas de Cobertura e Tempos de Deslocamento -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 mt-6 border-t border-white/[0.08]">
+            
+            <!-- Zona 01: Capital -->
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
+              <div class="flex items-center justify-between mb-1.5">
+                <span data-i18n="cob_z1_title" class="font-syne font-bold text-xs text-white">Valência Urbana</span>
+                <span data-i18n="cob_z1_tag" class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">DIRETO</span>
+              </div>
+              <p data-i18n="cob_z1_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
+                Ciutat Vella, Eixample, Ruzafa, Campanar, Poblats Marítims.
+              </p>
+              <span data-i18n="cob_z1_time" class="font-mono text-[10px] text-white/70 block">
+                Atendimento Rápido
+              </span>
+            </div>
+
+            <!-- Zona 02: Área Metropolitana -->
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
+              <div class="flex items-center justify-between mb-1.5">
+                <span data-i18n="cob_z2_title" class="font-syne font-bold text-xs text-white">Grande Valência</span>
+                <span data-i18n="cob_z2_tag" class="font-mono text-[9px] text-white/80 px-1.5 py-0.5 rounded bg-white/[0.06]">POLÍGONOS</span>
+              </div>
+              <p data-i18n="cob_z2_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
+                Paterna, Torrent, Manises, Burjassot, Sagunto, Alzira.
+              </p>
+              <span data-i18n="cob_z2_time" class="font-mono text-[10px] text-white/70 block">
+                Indústrias &amp; Parques
+              </span>
+            </div>
+
+            <!-- Zona 03: Província Vizinha -->
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
+              <div class="flex items-center justify-between mb-1.5">
+                <span data-i18n="cob_z3_title" class="font-syne font-bold text-xs text-white">Cidades Vizinhas</span>
+                <span data-i18n="cob_z3_tag" class="font-mono text-[9px] text-brand-muted px-1.5 py-0.5 rounded bg-white/[0.04]">CONSULTA</span>
+              </div>
+              <p data-i18n="cob_z3_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
+                Castellón Sul, Gandia, Cullera e municípios limítrofes.
+              </p>
+              <span data-i18n="cob_z3_time" class="font-mono text-[10px] text-brand-yellow/80 block">
+                Sob Análise Prévia
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ========================================================
+             COLUNA 2: FORMULÁRIO DE PRÉ-AVALIAÇÃO & CONVERSÃO (5 Colunas)
+             ======================================================== -->
+        <div class="reveal-on-scroll lg:col-span-5 card-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10">
+          
+          <div>
+            <!-- Header do Formulário -->
+            <div class="flex items-center justify-between mb-4">
+              <span data-i18n="form_badge" class="font-mono text-[10px] tracking-widest text-brand-yellow uppercase px-2.5 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 font-medium">
+                PRÉ-AVALIAÇÃO DIRETA
+              </span>
+              <span data-i18n="form_step" class="text-xs font-mono text-brand-muted/70">ETAPA ÚNICA</span>
+            </div>
+
+            <h3 data-i18n="form_h3" class="font-syne font-bold text-xl sm:text-2xl text-white tracking-tight mb-2">
+              Solicitar Orçamento Técnico
+            </h3>
+            <p data-i18n="form_desc" class="font-jakarta font-light text-xs text-brand-muted leading-relaxed mb-6">
+              Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.
+            </p>
+
+            <!-- Formulário com Inputs Estilizados -->
+            <form id="contact-pre-form" class="space-y-4" onsubmit="return false;">
+              
+              <!-- Campo 1: Nome (Obrigatório) -->
+              <div>
+                <label for="form-name" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
+                  <span><span data-i18n="form_label_name">Seu Nome ou Razão Social</span> <strong class="text-brand-yellow">*</strong></span>
+                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obrigatório</span>
+                </label>
+                <input type="text" 
+                       id="form-name" 
+                       maxlength="80"
+                       autocomplete="name"
+                       data-i18n-placeholder="form_ph_name"
+                       placeholder="Ex: Carlos Mendes / Hotel Sol"
+                       class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
+              </div>
+
+              <!-- Grid de 2 Seletores Customizados: Tipo de Imóvel & Serviço (Obrigatórios) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                
+                <!-- Seletor Customizado: Tipo de Imóvel -->
+                <div class="relative custom-dropdown" id="dropdown-property" data-input-id="form-property">
+                  <label class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
+                    <span><span data-i18n="form_label_prop">Tipo de Imóvel</span> <strong class="text-brand-yellow">*</strong></span>
+                  </label>
+                  
+                  <input type="hidden" id="form-property" data-current-key="form_prop_opt1" value="Residencial (Piso/Casa)">
+                  
+                  <button type="button" 
+                          class="custom-dropdown-btn w-full px-3.5 py-3 rounded-xl flex items-center justify-between gap-2 text-left cursor-pointer group"
+                          aria-haspopup="listbox" 
+                          aria-expanded="false">
+                    <span class="dropdown-selected-label font-jakarta text-xs sm:text-sm text-white truncate" data-i18n="form_prop_opt1">
+                      Residencial (Piso/Casa)
+                    </span>
+                    <i data-lucide="chevron-down" class="chevron-icon w-4 h-4 text-brand-muted shrink-0 transition-transform duration-300"></i>
+                  </button>
+
+                  <div class="custom-dropdown-menu absolute top-full left-0 right-0 mt-2 z-50 rounded-xl overflow-hidden py-1.5" role="listbox">
+                    <div class="custom-dropdown-item is-selected px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt1" data-value="Residencial (Piso/Casa)">
+                      <span data-i18n="form_prop_opt1">Residencial (Piso/Casa)</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt2" data-value="Airbnb / Imóvel Turístico">
+                      <span data-i18n="form_prop_opt2">Airbnb / Turístico</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt3" data-value="Hotel ou Colégio">
+                      <span data-i18n="form_prop_opt3">Hotel ou Colégio</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt4" data-value="Comércio ou Restaurante">
+                      <span data-i18n="form_prop_opt4">Comércio / PME</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt5" data-value="Planta Industrial">
+                      <span data-i18n="form_prop_opt5">Planta Industrial</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Seletor Customizado: Serviço Desejado -->
+                <div class="relative custom-dropdown" id="dropdown-service" data-input-id="form-service">
+                  <label class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
+                    <span><span data-i18n="form_label_serv">Serviço Desejado</span> <strong class="text-brand-yellow">*</strong></span>
+                  </label>
+                  
+                  <input type="hidden" id="form-service" data-current-key="form_serv_opt1" value="Manutenção Preventiva / Corretiva">
+                  
+                  <button type="button" 
+                          class="custom-dropdown-btn w-full px-3.5 py-3 rounded-xl flex items-center justify-between gap-2 text-left cursor-pointer group"
+                          aria-haspopup="listbox" 
+                          aria-expanded="false">
+                    <span class="dropdown-selected-label font-jakarta text-xs sm:text-sm text-white truncate" data-i18n="form_serv_opt1">
+                      Manutenção Preventiva / Corretiva
+                    </span>
+                    <i data-lucide="chevron-down" class="chevron-icon w-4 h-4 text-brand-muted shrink-0 transition-transform duration-300"></i>
+                  </button>
+
+                  <div class="custom-dropdown-menu absolute top-full left-0 right-0 mt-2 z-50 rounded-xl overflow-hidden py-1.5" role="listbox">
+                    <div class="custom-dropdown-item is-selected px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt1" data-value="Manutenção Preventiva / Corretiva">
+                      <span data-i18n="form_serv_opt1">Manutenção Preventiva / Corretiva</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt2" data-value="Reforma Elétrica Geral">
+                      <span data-i18n="form_serv_opt2">Reforma Geral</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt3" data-value="Montagem de Painel Elétrico">
+                      <span data-i18n="form_serv_opt3">Montagem de Painel</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt4" data-value="Painel Sob Encomenda">
+                      <span data-i18n="form_serv_opt4">Painel Sob Medida</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt5" data-value="Laudo Técnico / Vistoria">
+                      <span data-i18n="form_serv_opt5">Laudo / Vistoria</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Campo: Cidade / Localização (Obrigatório) -->
+              <div>
+                <label for="form-location" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
+                  <span><span data-i18n="form_label_loc">Localização da Instalação</span> <strong class="text-brand-yellow">*</strong></span>
+                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obrigatório</span>
+                </label>
+                <input type="text" 
+                       id="form-location" 
+                       maxlength="80"
+                       autocomplete="address-level2"
+                       data-i18n-placeholder="form_ph_loc"
+                       placeholder="Ex: València Centro, Ruzafa, Paterna..."
+                       class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
+              </div>
+
+              <!-- Campo Opcional: Detalhes Breves -->
+              <div>
+                <label for="form-details" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
+                  <span data-i18n="form_label_details">Observações ou Prazo</span>
+                  <span data-i18n="form_opt" class="text-[9px] text-brand-muted/50 font-normal">Opcional</span>
+                </label>
+                <input type="text" 
+                       id="form-details" 
+                       maxlength="250"
+                       autocomplete="off"
+                       data-i18n-placeholder="form_ph_details"
+                       placeholder="Ex: Queda frequente de disjuntor, urgência..."
+                       class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
+              </div>
+
+              <!-- Proteção Anti-Spam / Bot Honeypot (Invisível para humanos) -->
+              <div class="hidden" aria-hidden="true" style="display:none !important; position:absolute; left:-9999px;">
+                <label for="form-bot-check">Deixe este campo em branco</label>
+                <input type="text" id="form-bot-check" name="security_hp_verify" tabindex="-1" autocomplete="off">
+              </div>
+
+              <!-- Mensagem de Validação de Erro -->
+              <div id="form-validation-msg" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-jakarta flex items-center gap-2">
+                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 text-red-400"></i>
+                <span id="form-validation-text" data-i18n="form_val_err">Por favor, preencha os campos obrigatórios assinalados com (*).</span>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Botão de Envio Direto para WhatsApp -->
+          <div class="pt-5 mt-5 border-t border-white/[0.08]">
+            <button type="button" 
+                    id="submit-whatsapp-btn"
+                    class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01] shadow-[0_0_25px_rgba(255,230,0,0.15)]">
+              <span data-i18n="form_btn_submit">Iniciar Atendimento no WhatsApp</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+            </button>
+            <span data-i18n="form_sec_note" class="block text-center font-mono text-[10px] text-brand-muted/60 mt-2.5">
+              Conexão criptografada direta via WhatsApp Oficial
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       SEÇÃO 6 (2.8): FOOTER ARQUITETÔNICO & HORIZONTE DE ENGENHARIA
+       ========================================== -->
+  <footer class="relative bg-[#030304] text-white pt-20 pb-10 border-t border-white/[0.08] overflow-hidden" role="contentinfo">
+    
+    <!-- Efeito de Luz Superior Suave de Alta Voltagem -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-44 bg-brand-yellow/[0.03] rounded-full blur-[140px] pointer-events-none"></div>
+
+    <!-- Tipografia Monumental de Fundo (Marca d'Água Arquitetônica) -->
+    <div class="absolute -bottom-8 left-0 right-0 overflow-hidden pointer-events-none select-none opacity-[0.035] flex justify-center">
+      <span class="font-syne font-black text-[15vw] tracking-[-0.04em] leading-none whitespace-nowrap text-white">
+        IBERVOLT
+      </span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
+      <!-- ==========================================
+           GRID PRINCIPAL DO FOOTER: 4 MÓDULOS DE ENGENHARIA
+           ========================================== -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-16">
+        
+        <!-- Módulo 1: Identidade Corporativa & Engenharia (4 Colunas) -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="#inicio" class="inline-flex items-center gap-3.5 mb-2 group" aria-label="IberVolt Solutions">
+            <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 w-auto object-contain transition-opacity group-hover:opacity-90">
+            <div class="flex flex-col">
+              <span class="font-syne font-bold text-base tracking-tight text-white leading-none">
+                IBERVOLT <span class="font-light text-brand-muted text-xs font-mono tracking-wider ml-1">SOLUTIONS</span>
+              </span>
+              <span class="font-mono text-[9px] uppercase tracking-widest text-brand-yellow/80 mt-1">
+                Electrical Engineering // S.L.
+              </span>
+            </div>
+          </a>
+
+          <p data-i18n="footer_desc" class="font-jakarta text-xs sm:text-sm text-brand-muted leading-relaxed max-w-sm font-light">
+            Engenharia eletrotécnica de alta performance. Especialistas em reformas completas, manutenção industrial preventiva e fabricação de quadros sob medida em conformidade integral com o regulamento REBT e as normas NR-10 e NR-35.
+          </p>
+        </div>
+
+        <!-- Módulo 2: Links Rápidos de Navegação Técnica (3 Colunas) -->
+        <div class="lg:col-span-3">
+          <span data-i18n="footer_nav_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
+            // NAVEGAÇÃO &amp; PROJETOS
+          </span>
+
+          <ul class="space-y-2.5 font-jakarta text-xs sm:text-sm">
+            <li>
+              <a href="#inicio" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[10px] text-brand-yellow font-medium">01.</span>
+                  <span data-i18n="footer_nav_home">Home // Visão Geral</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-muted/40 group-hover:text-brand-yellow group-hover:translate-x-1 transition-all"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#especialidades" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[10px] text-brand-yellow font-medium">02.</span>
+                  <span data-i18n="footer_nav_serv">Especialidades</span>
+                </div>
+                <span class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">REBT</span>
+              </a>
+            </li>
+            <li>
+              <a href="#certificacoes" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[10px] text-brand-yellow font-medium">03.</span>
+                  <span data-i18n="footer_nav_cert">Certificações &amp; Normas</span>
+                </div>
+                <span class="font-mono text-[9px] text-white/70 px-1.5 py-0.5 rounded bg-white/[0.05]">NR-10/35</span>
+              </a>
+            </li>
+            <li>
+              <a href="#cobertura" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[10px] text-brand-yellow font-medium">04.</span>
+                  <span data-i18n="footer_nav_cob">Atendimento (Valência)</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-muted/40 group-hover:text-brand-yellow group-hover:translate-x-1 transition-all"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#cobertura" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1">
+                <span data-i18n="footer_nav_form">Solicitar Pré-Avaliação</span>
+                <span class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">WhatsApp</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Módulo 3: Selo de Rigor Normativo & Conformidade (3 Colunas) -->
+        <div class="lg:col-span-3">
+          <span data-i18n="footer_comp_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
+            // CONFORMIDADE TÉCNICA
+          </span>
+
+          <div class="space-y-2.5">
+            
+            <!-- Item 1: REBT -->
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+              <div class="flex items-center gap-2 mb-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
+                <span data-i18n="footer_rebt_h" class="font-mono text-xs font-semibold text-white">REBT — RD 842/2002</span>
+              </div>
+              <p data-i18n="footer_rebt_p" class="font-jakarta text-[11px] text-brand-muted leading-snug">
+                Regulamento Eletrotécnico de Baixa Tensão espanhol para boletins e projetos.
+              </p>
+            </div>
+
+            <!-- Item 2: NR-10 e SEP -->
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+              <div class="flex items-center gap-2 mb-1">
+                <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
+                <span data-i18n="footer_nr10_h" class="font-mono text-xs font-semibold text-white">NR-10 &amp; NR-10 SEP</span>
+              </div>
+              <p data-i18n="footer_nr10_p" class="font-jakarta text-[11px] text-brand-muted leading-snug">
+                Procedimentos de proteção a vidas e segurança em redes de alta potência.
+              </p>
+            </div>
+
+            <!-- Item 3: NR-35 -->
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+              <div class="flex items-center gap-2 mb-1">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
+                <span data-i18n="footer_nr35_h" class="font-mono text-xs font-semibold text-white">NR-35 &amp; UNE-EN 61439</span>
+              </div>
+              <p data-i18n="footer_nr35_p" class="font-jakarta text-[11px] text-brand-muted leading-snug">
+                Trabalho vertical em altura e padrões de quadros elétricos certificados.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Módulo 4: Contato Direto & Atendimento (2 Colunas) -->
+        <div class="lg:col-span-2 flex flex-col justify-between">
+          <div>
+            <span data-i18n="footer_dir_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
+              // CANAL DIRETO
+            </span>
+
+            <div class="space-y-3.5 font-jakarta text-xs">
+              <div>
+                <span data-i18n="footer_dir_wa" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Plantão WhatsApp:</span>
+                <a href="https://wa.me/34605555686" target="_blank" rel="noopener noreferrer" class="font-mono text-white hover:text-brand-yellow transition-colors font-medium text-xs sm:text-sm block">
+                  +34 605 55 56 86
+                </a>
+              </div>
+
+              <div>
+                <span data-i18n="footer_dir_att" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Atendimento:</span>
+                <span data-i18n="footer_dir_loc" class="text-white/90 block">Valência — Espanha</span>
+              </div>
+
+              <div>
+                <span data-i18n="footer_dir_lang_label" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Idiomas:</span>
+                <span data-i18n="footer_dir_langs" class="text-white/90 block">Espanhol, Português &amp; Inglês</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-5 mt-5 border-t border-white/[0.06]">
+            <a id="footer-chat-btn"
+               href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="w-full py-2.5 px-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-brand-yellow/50 text-white hover:text-brand-yellow font-mono text-[11px] flex items-center justify-center gap-2 transition-all duration-200">
+              <i data-lucide="message-square" class="w-3.5 h-3.5 text-brand-yellow"></i>
+              <span data-i18n="footer_btn_chat">Iniciar Chat</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           BARRA INFERIOR DE FECHAMENTO: COPYRIGHT & BOTÃO VOLTAR AO TOPO
+           ========================================== -->
+      <div class="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-jakarta text-xs text-brand-muted">
+        
+        <!-- Copyright & Nota de Conformidade -->
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+          <span data-i18n-html="footer_copy">&copy; 2026 <strong>IberVolt Solutions</strong>. Todos os direitos reservados.</span>
+          <span class="hidden sm:inline text-white/20">|</span>
+          <span data-i18n="footer_rebt_sub" class="font-mono text-[10px] text-brand-muted/80">Conformidade REBT &amp; Regulamentações Locais</span>
+        </div>
+
+        <!-- Botão Inovador: Voltar ao Topo -->
+        <button type="button" 
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                class="back-to-top-btn inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 hover:border-brand-yellow/40 hover:bg-white/[0.06] text-white hover:text-brand-yellow font-mono text-xs transition-all duration-300 cursor-pointer group"
+                title="Voltar ao início da página">
+          <span data-i18n="footer_back_top">Voltar ao Topo</span>
+          <div class="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-black transition-colors">
+            <i data-lucide="arrow-up" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+          </div>
+        </button>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- Script de Inicialização, Internacionalização (i18n) e Interações -->
+  <script>
+    // ── Proteção de Segurança: Defesa contra Clickjacking (Frame Busting) ──
+    if (window.top !== window.self) {
+      try {
+        window.top.location = window.self.location;
+      } catch (e) {
+        document.documentElement.style.display = 'none';
+      }
+    }
+
+    // ── Dicionário Completo de Traduções (PT / ES) ──────────────────────────
+    const translations = {
+      pt: {
+        page_title: "IberVolt Solutions // Engenharia Elétrica de Alta Performance",
+        meta_desc: "Engenharia elétrica de alta performance em Valência e região. Manutenção preventiva, reformas elétricas e painéis sob encomenda com conformidade NR-10 e NR-35.",
+        header_sub: "Engenharia Eletrotécnica // Valência",
+        nav_home: "Home",
+        nav_esp: "Especialidades",
+        nav_cert: "Certificações & Normas",
+        nav_cobertura: "Atendimento",
+        nav_whatsapp: "Contato Directo WhatsApp",
+        nav_status_live: "Plantão Valência",
+        nav_esp_desc: "Manutenção, Reformas & Quadros",
+        nav_cert_desc: "REBT, NR-10 & NR-35",
+        nav_cobertura_desc: "Valência e Arredores",
+        nav_mobile_badge: "CONFORMIDADE REBT & NR-10",
+        nav_hotline_label: "Plantão Direto:",
+        mobile_lang_label: "Idioma / Lenguaje:",
+        
+        // Hero
+        hero_badge: "Valência & Região // Certificado NR-10 & NR-35",
+        hero_h1: "Engenharia <span class=\"text-brand-yellow\">Elétrica</span> <br> de <span class=\"font-light italic text-white/90\">Precisão.</span> <br> <span class=\"text-brand-yellow\">Segurança</span> Absoluta <br class=\"hidden sm:inline\"> para o seu Imóvel.",
+        hero_sub: "Soluções elétricas de alta performance para residências exclusivas, redes hoteleiras e indústrias em Valência. Da manutenção crítica a painéis sob medida.",
+        hero_cta_wa: "Solicitar Orçamento",
+        hero_cta_services: "Conhecer Nossos Serviços",
+        hero_img_badge: "Engenharia & Controle // Valência",
+        hero_card_normative: "CONFORMIDADE NORMATIVA",
+        hero_card_sec: "Segurança",
+        hero_card_alt: "Altura",
+        hero_card_homol: "Homologado",
+
+        // Especialidades
+        esp_badge: "02 // Pilares de Atuação Técnica",
+        esp_h2: "Engenharia Aplicada com <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> e Precisão.",
+        esp_sub: "Selecione uma especialidade abaixo para visualizar o escopo técnico e aplicações na região de Valência.",
+        esp_tab_1: "Manutenção Preventiva",
+        esp_tab_2: "Reforma & Retrofit",
+        esp_tab_3: "Montagem de Painéis",
+        esp_tab_4: "Painéis Sob Encomenda",
+        esp_app_label: "Aplicações Principais:",
+        esp_banner_text: "Em conformidade integral com o <strong class=\"text-white font-medium\">REBT</strong> e certificações de segurança <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> em Valência.",
+        esp_banner_btn: "Contato com Engenheiro",
+
+        // Certificações
+        cert_badge: "03 // Rigidez Técnica & Normas Oficiais",
+        cert_h2: "Engenharia Certificada. <br> <span class=\"font-light italic text-white/90\">Segurança Absoluta</span> em Cada Obra.",
+        cert_sub: "Atuação pautada pelo cumprimento irrestrito das normas de segurança NR-10, NR-10 SEP, NR-35 e do regulamento REBT espanhol, assegurando risco zero a vidas e patrimônios.",
+        cert_nr10_badge: "NORMA OFICIAL",
+        cert_nr10_title: "Segurança em Instalações e Serviços em Eletricidade",
+        cert_nr10_desc: "Protocolos integrais de desenergização controlada, bloqueio mecânico LOTO, isolação dielétrica e aterramento temporário para anular qualquer possibilidade de reenergização acidental.",
+        cert_nr10_item1: "Procedimento LOTO (Lockout / Tagout) homologado",
+        cert_nr10_item2: "Medição e laudo de resistência de isolamento",
+        cert_nr10_item3: "Conformidade com o REBT (Baixa Tensão Espanha)",
+        cert_nr10_footer_label: "ESCOPO OPERACIONAL",
+        cert_nr10_footer_val: "BAIXA & MÉDIA TENSÃO",
+        
+        cert_sep_badge: "SISTEMAS DE POTÊNCIA",
+        cert_sep_title: "Sistema Elétrico de Potência (Alta Voltagem)",
+        cert_sep_desc: "Capacitação avançada para manobras de alto risco em cabines primárias, barramentos industriais de alta amperagem, subestações e proteção estrita contra arco elétrico (Arc Flash).",
+        cert_sep_item1: "Varredura termográfica preventiva e preditiva",
+        cert_sep_item2: "EPIs de proteção térmica até 40 cal/cm²",
+        cert_sep_item3: "Ensaios de continuidade e análise de harmônicos",
+        cert_sep_footer_label: "NÍVEL DE CRITICIDADE",
+        cert_sep_footer_val: "ALTA VOLTAGEM / SUBESTAÇÃO",
+
+        cert_nr35_badge: "TRABALHO EM ALTURA",
+        cert_nr35_title: "Capacitação para Trabalhos Técnicos em Altura",
+        cert_nr35_desc: "Planejamento, organização e execução de infraestrutura elétrica vertical, leitos aéreos de cabos, eletrocalhas suspensas em galpões industriais e coberturas prediais com ancoragem certificada.",
+        cert_nr35_item1: "Linhas de vida e pontos de ancoragem certificados",
+        cert_nr35_item2: "Cintos tipo paraquedista com absorvedor de energia",
+        cert_nr35_item3: "Análise de Risco (APR) emitida antes de cada içamento",
+        cert_nr35_footer_label: "ACESSO VERTICAL",
+        cert_nr35_footer_val: "EPIs CLASSE III / LINHA DE VIDA",
+
+        // Setores
+        setores_badge: "SETORES ATENDIDOS",
+        setores_title: "Engenharia Elétrica Especializada em Valência",
+        setores_item1: "Residencial <span class=\"font-light italic text-white/60\">&</span> Airbnb",
+        setores_item2: "Redes Hoteleiras <span class=\"font-light italic text-white/60\">&</span> Colégios",
+        setores_item3: "Comércio <span class=\"font-light italic text-white/60\">&</span> PMEs",
+        setores_item4: "Pequena <span class=\"font-light italic text-white/60\">&</span> Grande Indústria",
+
+        // Cobertura
+        cob_badge: "04 // Atendimento & Cobertura Geográfica",
+        cob_h2: "Atendimento Técnico em <br> <span class=\"font-light italic text-white/90\">Valência e Arredores</span>.",
+        cob_sub: "Atendimento presencial focado na capital valenciana e análise prévia de viabilidade para cidades vizinhas com máximo custo-benefício de deslocamento.",
+        cob_status_h: "VALÈNCIA & COMUNIDADE VALENCIANA",
+        cob_status_sub: "Logística Operacional // Prontidão Técnica",
+        cob_hub_badge: "Hub Central: Ciutat de València",
+        cob_maps_btn: "Ver no Google Maps",
+        cob_maps_title: "Clique para abrir o mapa de Valência no Google Maps",
+        cob_z1_title: "Valência Urbana",
+        cob_z1_tag: "DIRETO",
+        cob_z1_desc: "Ciutat Vella, Eixample, Ruzafa, Campanar, Poblats Marítims.",
+        cob_z1_time: "Atendimento Rápido",
+        cob_z2_title: "Grande Valência",
+        cob_z2_tag: "POLÍGONOS",
+        cob_z2_desc: "Paterna, Torrent, Manises, Burjassot, Sagunto, Alzira.",
+        cob_z2_time: "Indústrias & Parques",
+        cob_z3_title: "Cidades Vizinhas",
+        cob_z3_tag: "CONSULTA",
+        cob_z3_desc: "Castellón Sul, Gandia, Cullera e municípios limítrofes.",
+        cob_z3_time: "Sob Análise Prévia",
+
+        // Formulário
+        form_badge: "PRÉ-AVALIAÇÃO DIRETA",
+        form_step: "ETAPA ÚNICA",
+        form_h3: "Solicitar Orçamento Técnico",
+        form_desc: "Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.",
+        form_label_name: "Seu Nome ou Razão Social",
+        form_req: "Obrigatório",
+        form_ph_name: "Ex: Carlos Mendes / Hotel Sol",
+        form_label_prop: "Tipo de Imóvel",
+        form_prop_opt1: "Residencial (Piso/Casa)",
+        form_prop_opt2: "Airbnb / Turístico",
+        form_prop_opt3: "Hotel ou Colégio",
+        form_prop_opt4: "Comércio / PME",
+        form_prop_opt5: "Planta Industrial",
+        form_label_serv: "Serviço Desejado",
+        form_serv_opt1: "Manutenção Preventiva / Corretiva",
+        form_serv_opt2: "Reforma Geral",
+        form_serv_opt3: "Montagem de Painel",
+        form_serv_opt4: "Painel Sob Medida",
+        form_serv_opt5: "Laudo / Vistoria",
+        form_label_loc: "Localização da Instalação",
+        form_ph_loc: "Ex: València Centro, Ruzafa, Paterna...",
+        form_label_details: "Observações ou Prazo",
+        form_opt: "Opcional",
+        form_ph_details: "Ex: Queda frequente de disjuntor, urgência...",
+        form_val_err: "Por favor, preencha os campos obrigatórios assinalados com (*).",
+        form_btn_submit: "Iniciar Atendimento no WhatsApp",
+        form_sec_note: "Conexão criptografada direta via WhatsApp Oficial",
+
+        // Footer
+        footer_desc: "Engenharia eletrotécnica de alta performance. Especialistas em reformas completas, manutenção industrial preventiva e fabricação de quadros sob medida em conformidade integral com o regulamento REBT e as normas NR-10 e NR-35.",
+        footer_nav_h: "// NAVEGAÇÃO & PROJETOS",
+        footer_nav_home: "Home // Visão Geral",
+        footer_nav_serv: "Especialidades",
+        footer_nav_cert: "Certificações & Normas",
+        footer_nav_cob: "Atendimento (Valência)",
+        footer_nav_form: "Solicitar Pré-Avaliação",
+        footer_comp_h: "// CONFORMIDADE TÉCNICA",
+        footer_rebt_h: "REBT — RD 842/2002",
+        footer_rebt_p: "Regulamento Eletrotécnico de Baixa Tensão espanhol para boletins e projetos.",
+        footer_nr10_h: "NR-10 & NR-10 SEP",
+        footer_nr10_p: "Procedimentos de proteção a vidas e segurança em redes de alta potência.",
+        footer_nr35_h: "NR-35 & UNE-EN 61439",
+        footer_nr35_p: "Trabalho vertical em altura e padrões de quadros elétricos certificados.",
+        footer_dir_h: "// CANAL DIRETO",
+        footer_dir_wa: "Plantão WhatsApp:",
+        footer_dir_att: "Atendimento:",
+        footer_dir_loc: "Valência — Espanha",
+        footer_dir_lang_label: "Idiomas:",
+        footer_dir_langs: "Espanhol, Português & Inglês",
+        footer_btn_chat: "Iniciar Chat",
+        footer_copy: "&copy; 2026 <strong>IberVolt Solutions</strong>. Todos os direitos reservados.",
+        footer_rebt_sub: "Conformidade REBT & Regulamentações Locais",
+        footer_back_top: "Voltar ao Topo"
+      },
+      es: {
+        page_title: "IberVolt Solutions // Ingeniería Eléctrica de Alto Rendimiento",
+        meta_desc: "Ingeniería eléctrica de alto rendimiento en Valencia y región. Mantenimiento preventivo, reformas eléctricas y cuadros por encargo bajo normativa REBT y estándares técnicos.",
+        header_sub: "Ingeniería Electrotécnica // Valencia",
+        nav_home: "Inicio",
+        nav_esp: "Especialidades",
+        nav_cert: "Certificaciones & Normas",
+        nav_cobertura: "Atención",
+        nav_whatsapp: "Contacto Directo WhatsApp",
+        nav_status_live: "Guardia Valencia",
+        nav_home_desc: "Visión General",
+        nav_esp_desc: "Mantenimiento, Reformas & Cuadros",
+        nav_cert_desc: "REBT, NR-10 & NR-35",
+        nav_cobertura_desc: "Valencia y Alrededores",
+        nav_mobile_badge: "CONFORMIDAD REBT & SEGURIDAD",
+        nav_hotline_label: "Guardia Directa:",
+        mobile_lang_label: "Idioma / Lenguaje:",
+        
+        // Hero
+        hero_badge: "Valencia y Región // Certificado REBT & Normativas",
+        hero_h1: "Ingeniería <span class=\"text-brand-yellow\">Eléctrica</span> <br> de <span class=\"font-light italic text-white/90\">Precisión.</span> <br> <span class=\"text-brand-yellow\">Seguridad</span> Absoluta <br class=\"hidden sm:inline\"> para su Inmueble.",
+        hero_sub: "Soluciones eléctricas de alto rendimiento para residencias exclusivas, cadenas hoteleras e industrias en Valencia. Desde el mantenimiento crítico hasta cuadros a medida.",
+        hero_cta_wa: "Solicitar Presupuesto",
+        hero_cta_services: "Conocer Nuestros Servicios",
+        hero_img_badge: "Ingeniería & Control // Valencia",
+        hero_card_normative: "CONFORMIDAD NORMATIVA",
+        hero_card_sec: "Seguridad",
+        hero_card_alt: "Altura",
+        hero_card_homol: "Homologado",
+
+        // Especialidades
+        esp_badge: "02 // Pilares de Actuación Técnica",
+        esp_h2: "Ingeniería Aplicada con <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> y Precisión.",
+        esp_sub: "Seleccione una especialidad a continuación para visualizar el alcance técnico y las aplicaciones en la región de Valencia.",
+        esp_tab_1: "Mantenimiento Preventivo",
+        esp_tab_2: "Reforma & Retrofit",
+        esp_tab_3: "Montaje de Cuadros",
+        esp_tab_4: "Cuadros por Encargo",
+        esp_app_label: "Aplicaciones Principales:",
+        esp_banner_text: "En plena conformidad con el <strong class=\"text-white font-medium\">REBT</strong> y certificaciones de seguridad <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> en Valencia.",
+        esp_banner_btn: "Contacto con Ingeniero",
+
+        // Certificações
+        cert_badge: "03 // Rigor Técnico & Normativa Oficial",
+        cert_h2: "Ingeniería Certificada. <br> <span class=\"font-light italic text-white/90\">Seguridad Absoluta</span> en Cada Obra.",
+        cert_sub: "Actuación basada en el estricto cumplimiento del Reglamento Electrotécnico de Baja Tensión (REBT) español y estándares internacionales de seguridad, asegurando riesgo cero a vidas e instalaciones.",
+        cert_nr10_badge: "NORMA OFICIAL",
+        cert_nr10_title: "Seguridad en Instalaciones y Trabajos Eléctricos",
+        cert_nr10_desc: "Protocolos integrales de desenergización controlada, bloqueo mecánico LOTO, aislamiento dieléctrico y puesta a tierra temporal para anular cualquier reconexión accidental.",
+        cert_nr10_item1: "Procedimiento LOTO (Bloqueo / Señalización) homologado",
+        cert_nr10_item2: "Medición y dictamen de resistencia de aislamiento",
+        cert_nr10_item3: "Conformidad plena con el REBT (Baja Tensión España)",
+        cert_nr10_footer_label: "ALCANCE OPERATIVO",
+        cert_nr10_footer_val: "BAJA & MEDIA TENSIÓN",
+        
+        cert_sep_badge: "SISTEMAS DE POTÊNCIA",
+        cert_sep_title: "Sistema Eléctrico de Potencia (Alta Tensión)",
+        cert_sep_desc: "Capacitación avanzada para maniobras de alto riesgo en centros de transformación, embarrados de alta intensidad, subestaciones y protección estricta contra arco eléctrico (Arc Flash).",
+        cert_sep_item1: "Barrido termográfico preventivo y predictivo",
+        cert_sep_item2: "EPIs de protección térmica hasta 40 cal/cm²",
+        cert_sep_item3: "Ensayos de continuidad y análisis de armónicos",
+        cert_sep_footer_label: "NIVEL DE CRITICIDAD",
+        cert_sep_footer_val: "ALTA TENSIÓN / SUBESTACIÓN",
+
+        cert_nr35_badge: "TRABAJOS EN ALTURA",
+        cert_nr35_title: "Capacitación para Trabajos Técnicos en Altura",
+        cert_nr35_desc: "Planificación, organización y ejecución de tendidos eléctricos verticales, bandejas suspendidas en naves industriales y cubiertas con sistemas de anclaje certificados.",
+        cert_nr35_item1: "Líneas de vida y puntos de anclaje certificados",
+        cert_nr35_item2: "Arneses anticaídas con absorbedor de energía",
+        cert_nr35_item3: "Evaluación de Riesgos (APR) emitida antes de cada elevación",
+        cert_nr35_footer_label: "ACCESO VERTICAL",
+        cert_nr35_footer_val: "EPIs CLASSE III / LÍNEA DE VIDA",
+
+        // Setores
+        setores_badge: "SECTORES ATENDIDOS",
+        setores_title: "Ingeniería Eléctrica Especializada en Valencia",
+        setores_item1: "Residencial <span class=\"font-light italic text-white/60\">&</span> Airbnb",
+        setores_item2: "Cadenas Hoteleras <span class=\"font-light italic text-white/60\">&</span> Colegios",
+        setores_item3: "Comercio <span class=\"font-light italic text-white/60\">&</span> Pymes",
+        setores_item4: "Pequeña <span class=\"font-light italic text-white/60\">&</span> Gran Industria",
+
+        // Cobertura
+        cob_badge: "04 // Atención & Cobertura Geográfica",
+        cob_h2: "Atención Técnica en <br> <span class=\"font-light italic text-white/90\">Valencia y Alrededores</span>.",
+        cob_sub: "Atención presencial enfocada en la capital valenciana y análisis previo de viabilidad para localidades limítrofes con máxima eficiencia logística.",
+        cob_status_h: "VALÈNCIA & COMUNITAT VALENCIANA",
+        cob_status_sub: "Logística Operativa // Disponibilidad Técnica",
+        cob_hub_badge: "Hub Central: Ciudad de Valencia",
+        cob_maps_btn: "Ver en Google Maps",
+        cob_maps_title: "Haga clic para abrir el mapa de Valencia en Google Maps",
+        cob_z1_title: "Valencia Urbana",
+        cob_z1_tag: "DIRECTO",
+        cob_z1_desc: "Ciutat Vella, Eixample, Ruzafa, Campanar, Poblats Marítims.",
+        cob_z1_time: "Atención Inmediata",
+        cob_z2_title: "Gran Valencia",
+        cob_z2_tag: "POLÍGONOS",
+        cob_z2_desc: "Paterna, Torrent, Manises, Burjassot, Sagunto, Alzira.",
+        cob_z2_time: "Industrias & Parques",
+        cob_z3_title: "Localidades Cercanas",
+        cob_z3_tag: "CONSULTA",
+        cob_z3_desc: "Castellón Sur, Gandia, Cullera y municipios limítrofes.",
+        cob_z3_time: "Bajo Valoración Previa",
+
+        // Formulário
+        form_badge: "PRE-EVALUACIÓN DIRECTA",
+        form_step: "PASO ÚNICO",
+        form_h3: "Solicitar Presupuesto Técnico",
+        form_desc: "Seleccione el perfil de su inmueble y servicio para generar un mensaje técnico preparado directamente para el WhatsApp del ingeniero.",
+        form_label_name: "Su Nombre o Razón Social",
+        form_req: "Obligatorio",
+        form_ph_name: "Ej: Carlos Martínez / Hotel Sol",
+        form_label_prop: "Tipo de Inmueble",
+        form_prop_opt1: "Residencial (Piso/Casa)",
+        form_prop_opt2: "Airbnb / Turístico",
+        form_prop_opt3: "Hotel o Colegio",
+        form_prop_opt4: "Comercio / Pyme",
+        form_prop_opt5: "Nave Industrial",
+        form_label_serv: "Servicio Deseado",
+        form_serv_opt1: "Mantenimiento Preventivo / Correctivo",
+        form_serv_opt2: "Reforma General",
+        form_serv_opt3: "Montaje de Cuadro",
+        form_serv_opt4: "Cuadro a Medida",
+        form_serv_opt5: "Boletín / Inspección Técnica",
+        form_label_loc: "Ubicación de la Instalación",
+        form_ph_loc: "Ej: Valencia Centro, Ruzafa, Paterna...",
+        form_label_details: "Observaciones o Plazo",
+        form_opt: "Opcional",
+        form_ph_details: "Ej: Caídas frecuentes de diferencial, urgencia...",
+        form_val_err: "Por favor, complete los campos obligatorios indicados con (*).",
+        form_btn_submit: "Iniciar Consulta en WhatsApp",
+        form_sec_note: "Conexión cifrada directa vía WhatsApp Oficial",
+
+        // Footer
+        footer_desc: "Ingeniería electrotécnica de alto rendimiento. Especialistas en reformas integrales, mantenimiento industrial preventivo y fabricación de cuadros a medida en total conformidad con el reglamento REBT y normativas de seguridad técnica.",
+        footer_nav_h: "// NAVEGACIÓN & PROYECTOS",
+        footer_nav_home: "Inicio // Visión General",
+        footer_nav_serv: "Especialidades",
+        footer_nav_cert: "Certificaciones & Normas",
+        footer_nav_cob: "Atención (Valencia)",
+        footer_nav_form: "Solicitar Pre-Evaluación",
+        footer_comp_h: "// CONFORMIDAD TÉCNICA",
+        footer_rebt_h: "REBT — RD 842/2002",
+        footer_rebt_p: "Reglamento Electrotécnico de Baja Tensión español para boletines y proyectos.",
+        footer_nr10_h: "NR-10 & NR-10 SEP",
+        footer_nr10_p: "Protocolos de seguridad para personas e instalaciones de alta potencia.",
+        footer_nr35_h: "NR-35 & UNE-EN 61439",
+        footer_nr35_p: "Trabajos verticales en altura y estándares de cuadros eléctricos homologados.",
+        footer_dir_h: "// CANAL DIRECTO",
+        footer_dir_wa: "Guardia WhatsApp:",
+        footer_dir_att: "Atención:",
+        footer_dir_loc: "Valencia — España",
+        footer_dir_lang_label: "Idiomas:",
+        footer_dir_langs: "Español, Portugués & Inglés",
+        footer_btn_chat: "Iniciar Chat",
+        footer_copy: "&copy; 2026 <strong>IberVolt Solutions</strong>. Todos los derechos reservados.",
+        footer_rebt_sub: "Conformidad REBT & Normativas Locales",
+        footer_back_top: "Volver Arriba"
+      },
+      en: {
+        page_title: "IberVolt Solutions // High-Performance Electrical Engineering",
+        meta_desc: "High-performance electrical engineering in Valencia and surrounding region. Preventive maintenance, electrical rewiring, and custom distribution panels compliant with REBT and technical safety standards.",
+        header_sub: "Electrical Engineering // Valencia",
+        nav_home: "Home",
+        nav_esp: "Specialties",
+        nav_cert: "Certifications & Norms",
+        nav_cobertura: "Contact & Service",
+        nav_whatsapp: "Direct WhatsApp Support",
+        nav_status_live: "Valencia On-Duty",
+        nav_home_desc: "Overview",
+        nav_esp_desc: "Maintenance, Rewiring & Panels",
+        nav_cert_desc: "REBT, NR-10 & NR-35",
+        nav_cobertura_desc: "Valencia & Surroundings",
+        nav_mobile_badge: "REBT & SAFETY COMPLIANCE",
+        nav_hotline_label: "Direct Technical Line:",
+        mobile_lang_label: "Language:",
+        
+        // Hero
+        hero_badge: "Valencia & Region // REBT Certified & Safety Standards",
+        hero_h1: "Precision <span class=\"text-brand-yellow\">Electrical</span> <br> <span class=\"font-light italic text-white/90\">Engineering.</span> <br> Absolute <span class=\"text-brand-yellow\">Safety</span> <br class=\"hidden sm:inline\"> for Your Facility.",
+        hero_sub: "High-performance electrical solutions for luxury residences, hotel chains, and industrial facilities in Valencia. From critical maintenance to bespoke distribution panels.",
+        hero_cta_wa: "Request a Quote",
+        hero_cta_services: "Explore Our Services",
+        hero_img_badge: "Engineering & Control // Valencia",
+        hero_card_normative: "NORMATIVE COMPLIANCE",
+        hero_card_sec: "Safety",
+        hero_card_alt: "Work at Height",
+        hero_card_homol: "Certified",
+
+        // Especialidades
+        esp_badge: "02 // Technical Pillars",
+        esp_h2: "Applied Engineering with <br> <span class=\"font-light italic text-white/90\">Regulatory Rigor</span> and Precision.",
+        esp_sub: "Select a specialty below to view technical scope and field applications across the Valencia region.",
+        esp_tab_1: "Preventive Maintenance",
+        esp_tab_2: "Retrofit & Rewiring",
+        esp_tab_3: "Panel Assembly",
+        esp_tab_4: "Custom Panels",
+        esp_app_label: "Key Applications:",
+        esp_banner_text: "In full compliance with <strong class=\"text-white font-medium\">REBT</strong> regulations and certified safety protocols <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> in Valencia.",
+        esp_banner_btn: "Contact an Engineer",
+
+        // Certificações
+        cert_badge: "03 // Technical Rigor & Official Regulations",
+        cert_h2: "Certified Engineering. <br> <span class=\"font-light italic text-white/90\">Absolute Safety</span> in Every Project.",
+        cert_sub: "Operations guided by strict compliance with Spanish Low Voltage Electrotechnical Regulations (REBT) and international safety standards, ensuring zero risk to lives and assets.",
+        cert_nr10_badge: "OFFICIAL STANDARD",
+        cert_nr10_title: "Electrical Safety in Installations and Services",
+        cert_nr10_desc: "Comprehensive protocols for controlled de-energization, mechanical LOTO lockout, dielectric insulation testing, and temporary grounding to prevent any accidental re-energization.",
+        cert_nr10_item1: "Certified LOTO (Lockout / Tagout) procedures",
+        cert_nr10_item2: "Insulation resistance testing and technical reporting",
+        cert_nr10_item3: "Full compliance with REBT (Low Voltage Spain)",
+        cert_nr10_footer_label: "OPERATIONAL SCOPE",
+        cert_nr10_footer_val: "LOW & MEDIUM VOLTAGE",
+        
+        cert_sep_badge: "POWER SYSTEMS",
+        cert_sep_title: "Electrical Power Systems (High Voltage)",
+        cert_sep_desc: "Advanced qualification for high-risk operations in primary transformer cabins, high-amperage industrial busbars, substations, and strict Arc Flash thermal protection.",
+        cert_sep_item1: "Preventive & predictive thermographic scanning",
+        cert_sep_item2: "Thermal arc PPE protection rated up to 40 cal/cm²",
+        cert_sep_item3: "Continuity testing and harmonic distortion analysis",
+        cert_sep_footer_label: "CRITICALITY LEVEL",
+        cert_sep_footer_val: "HIGH VOLTAGE / SUBSTATIONS",
+
+        cert_nr35_badge: "WORK AT HEIGHT",
+        cert_nr35_title: "Certified Technical Work at Height",
+        cert_nr35_desc: "Planning, layout, and installation of vertical electrical risers, aerial cable trays, suspended industrial conduits, and rooftop setups with certified anchor systems.",
+        cert_nr35_item1: "Certified horizontal lifelines and anchor points",
+        cert_nr35_item2: "Full-body fall arrest harnesses with energy absorbers",
+        cert_nr35_item3: "Job Safety Analysis (JSA) issued prior to any elevation",
+        cert_nr35_footer_label: "VERTICAL ACCESS",
+        cert_nr35_footer_val: "CLASS III PPE / LIFELINE",
+
+        // Setores
+        setores_badge: "SECTORS SERVED",
+        setores_title: "Specialized Electrical Engineering in Valencia",
+        setores_item1: "Residential <span class=\"font-light italic text-white/60\">&</span> Airbnb",
+        setores_item2: "Hotel Chains <span class=\"font-light italic text-white/60\">&</span> Schools",
+        setores_item3: "Retail <span class=\"font-light italic text-white/60\">&</span> SMEs",
+        setores_item4: "Small <span class=\"font-light italic text-white/60\">&</span> Large Industry",
+
+        // Cobertura
+        cob_badge: "04 // Technical Services & Coverage",
+        cob_h2: "Technical Service in <br> <span class=\"font-light italic text-white/90\">Valencia & Surroundings</span>.",
+        cob_sub: "On-site response centered in the city of Valencia with prior feasibility assessment for adjacent metropolitan areas with maximum logistics efficiency.",
+        cob_status_h: "VALÈNCIA & VALENCIAN COMMUNITY",
+        cob_status_sub: "Operational Logistics // Technical Readiness",
+        cob_hub_badge: "Central Hub: City of Valencia",
+        cob_maps_btn: "View on Google Maps",
+        cob_maps_title: "Click to open Valencia map in Google Maps",
+        cob_z1_title: "Urban Valencia",
+        cob_z1_tag: "DIRECT",
+        cob_z1_desc: "Ciutat Vella, Eixample, Ruzafa, Campanar, Poblats Marítims.",
+        cob_z1_time: "Immediate Dispatch",
+        cob_z2_title: "Greater Valencia",
+        cob_z2_tag: "INDUSTRIAL PARKS",
+        cob_z2_desc: "Paterna, Torrent, Manises, Burjassot, Sagunto, Alzira.",
+        cob_z2_time: "Industries & Business Parks",
+        cob_z3_title: "Nearby Municipalities",
+        cob_z3_tag: "ON REQUEST",
+        cob_z3_desc: "South Castellón, Gandia, Cullera, and surrounding towns.",
+        cob_z3_time: "Subject to Assessment",
+
+        // Formulário
+        form_badge: "DIRECT PRE-EVALUATION",
+        form_step: "SINGLE STEP",
+        form_h3: "Request a Technical Quote",
+        form_desc: "Select your property type and service to generate a technical message directly addressed to our electrical engineer on WhatsApp.",
+        form_label_name: "Your Name or Company Name",
+        form_req: "Required",
+        form_ph_name: "E.g.: Charles Miller / Sol Hotel",
+        form_label_prop: "Property Type",
+        form_prop_opt1: "Residential (Apartment/House)",
+        form_prop_opt2: "Airbnb / Holiday Rental",
+        form_prop_opt3: "Hotel or School",
+        form_prop_opt4: "Retail / Business Premises",
+        form_prop_opt5: "Industrial Plant",
+        form_label_serv: "Desired Service",
+        form_serv_opt1: "Preventive / Corrective Maintenance",
+        form_serv_opt2: "Complete Electrical Rewiring",
+        form_serv_opt3: "Distribution Panel Assembly",
+        form_serv_opt4: "Bespoke Custom Panel",
+        form_serv_opt5: "Technical Inspection / Certificate",
+        form_label_loc: "Installation Location",
+        form_ph_loc: "E.g.: Valencia Center, Ruzafa, Paterna...",
+        form_label_details: "Project Notes or Timeline",
+        form_opt: "Optional",
+        form_ph_details: "E.g.: Frequent breaker trips, project urgency...",
+        form_val_err: "Please fill in all required fields indicated with (*).",
+        form_btn_submit: "Start WhatsApp Consultation",
+        form_sec_note: "Direct encrypted connection via Official WhatsApp",
+
+        // Footer
+        footer_desc: "High-performance electrotechnical engineering. Specialists in turnkey rewiring, preventive industrial maintenance, and custom distribution panels in full compliance with REBT regulations and safety standards.",
+        footer_nav_h: "// NAVIGATION & PROJECTS",
+        footer_nav_home: "Home // Overview",
+        footer_nav_serv: "Specialties",
+        footer_nav_cert: "Certifications & Norms",
+        footer_nav_cob: "Service Area (Valencia)",
+        footer_nav_form: "Request Pre-Evaluation",
+                footer_comp_h: "// TECHNICAL COMPLIANCE",
+        footer_rebt_h: "REBT — RD 842/2002",
+        footer_rebt_p: "Spanish Low Voltage Electrotechnical Regulation for technical reports and installations.",
+        footer_nr10_h: "NR-10 & High Voltage Safety",
+        footer_nr10_p: "Safety protocols protecting lives and high-power electrical infrastructure.",
+        footer_nr35_h: "NR-35 & UNE-EN 61439",
+        footer_nr35_p: "Certified vertical work at height and homologated panel assembly standards.",
+        footer_dir_h: "// DIRECT CHANNEL",
+        footer_dir_wa: "WhatsApp Hotline:",
+        footer_dir_att: "Service Hours:",
+        footer_dir_loc: "Valencia — Spain",
+        footer_dir_lang_label: "Languages:",
+        footer_dir_langs: "English, Spanish & Portuguese",
+        footer_btn_chat: "Start Chat",
+        footer_copy: "&copy; 2026 <strong>IberVolt Solutions</strong>. All rights reserved.",
+        footer_rebt_sub: "REBT Compliance & Local Regulations",
+        footer_back_top: "Back to Top"
+      }
+    };
+
+    // ── Dados dos 4 Pilares de Especialidades por Idioma ────────────────────
+    const servicesDataByLang = {
+      pt: [
+        {
+          tag: "PILAR 01 // PREVENÇÃO & DIAGNÓSTICO",
+          title: "Manutenção Preventiva & Corretiva",
+          desc: "Identificação antecipada de anomalias elétricas, eliminação de sobrecargas e diagnóstico térmico contínuo para evitar paradas operacionais e incidentes elétricos.",
+          ctaText: "Consultar Manutenção no WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20sobre%20o%20servi%C3%A7o%20de%20Manuten%C3%A7%C3%A3o%20Preventiva%20e%20Corretiva%20em%20Val%C3%AAncia.",
+          image: "./assets/images/projeto-termografia.jpg",
+          imageTag: "Inspeção Termográfica // Fluke Ti480",
+          sectors: ["Redes Hoteleiras", "Condomínios", "Indústrias", "Comércio"],
+          specs: [
+            { title: "Inspeção Térmica", text: "Detecção de calor anormal em disjuntores." },
+            { title: "Equilíbrio de Fases", text: "Medição de harmônicos e balanceamento." },
+            { title: "Diagnóstico Ágil", text: "Atendimento emergencial para curtos e fugas." }
+          ]
+        },
+        {
+          tag: "PILAR 02 // RETROFIT & MODERNIZAÇÃO",
+          title: "Reforma de Instalações Elétricas",
+          desc: "Modernização completa de fiações e quadros obsoletos em residências, imóveis turísticos (Airbnb), estabelecimentos comerciais e edificações históricas.",
+          ctaText: "Solicitar Reforma no WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20para%20Reforma%20de%20Instala%C3%A7%C3%B5es%20El%C3%A9tricas%20em%20Val%C3%AAncia.",
+          image: "./assets/images/projeto-residencial.jpg",
+          imageTag: "Retrofit de Luxo // Valência",
+          sectors: ["Pisos Históricos", "Airbnb", "Colégios", "Restaurantes"],
+          specs: [
+            { title: "Condutores LSHF", text: "Cabos antichama livres de halogênio." },
+            { title: "Adequação de Carga", text: "Dimensionamento para HVAC e recarga VE." },
+            { title: "Conformidade REBT", text: "Boletins e certificação técnica oficial." }
+          ]
+        },
+        {
+          tag: "PILAR 03 // QUADROS DE DISTRIBUIÇÃO",
+          title: "Montagem & Reforma de Painéis",
+          desc: "Estruturação milimétrica de quadros de distribuição (QDLF) para ambientes residenciais, comerciais e industriais sob os mais rigorosos padrões normativos.",
+          ctaText: "Orçar Montagem no WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20Montagem%20ou%20Reforma%20de%20Painel%20El%C3%A9trico%20em%20Val%C3%AAncia.",
+          image: "./assets/images/projeto-painel.jpg",
+          imageTag: "Montagem QDLF 250A // REBT",
+          sectors: ["Residencial Nobre", "Hotéis", "Unidades Comerciais"],
+          specs: [
+            { title: "Superimunizados", text: "Diferenciais contra falsos disparos." },
+            { title: "Blindagem DPS", text: "Proteção contra surtos e descargas." },
+            { title: "Identificação Padrão", text: "Canaletas e marcação permanente." }
+          ]
+        },
+        {
+          tag: "PILAR 04 // FABRICAÇÃO CUSTOMIZADA",
+          title: "Venda de Painéis Sob Encomenda",
+          desc: "Projetos executivos e montagens sob medida de quadros elétricos customizados segundo a especificação de carga, dimensões arquitetônicas e demandas operacionais.",
+          ctaText: "Encomendar Painel no WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Tenho%20especifica%C3%A7%C3%B5es%20para%20Fabrica%C3%A7%C3%A3o%20de%20Painel%20El%C3%A9trico%20Sob%20Encomenda.",
+          image: "./assets/images/projeto-fabricacao.jpg",
+          imageTag: "Fabricação Customizada // Bancada Técnica",
+          sectors: ["Indústrias", "Construtoras", "Projetistas & Automação"],
+          specs: [
+            { title: "Projeto Executivo", text: "Diagrama unifilar e cálculo de barramentos." },
+            { title: "Homologados", text: "Schneider Electric, ABB e Siemens." },
+            { title: "Ensaios de Bancada", text: "Testes de isolamento e laudo pré-entrega." }
+          ]
+        }
+      ],
+      es: [
+        {
+          tag: "PILAR 01 // PREVENCIÓN & DIAGNÓSTICO",
+          title: "Mantenimiento Preventivo & Correctivo",
+          desc: "Identificación anticipada de anomalías eléctricas, eliminación de sobrecargas y diagnóstico térmico continuo para evitar paradas operativas e incidentes eléctricos.",
+          ctaText: "Consultar Mantenimiento en WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría consultar sobre el servicio de Mantenimiento Preventivo y Correctivo en Valencia."),
+          image: "./assets/images/projeto-termografia.jpg",
+          imageTag: "Inspección Termográfica // Fluke Ti480",
+          sectors: ["Cadenas Hoteleras", "Comunidades", "Industrias", "Comercio"],
+          specs: [
+            { title: "Inspección Térmica", text: "Detección de calor anómalo en interruptores." },
+            { title: "Equilibrio de Fases", text: "Medición de armónicos y balanceo de cargas." },
+            { title: "Diagnóstico Ágil", text: "Atención técnica para cortocircuitos y derivaciones." }
+          ]
+        },
+        {
+          tag: "PILAR 02 // RETROFIT & MODERNIZACIÓN",
+          title: "Reforma de Instalaciones Eléctricas",
+          desc: "Modernización integral de cableado y cuadros obsoletos en viviendas de alto standing, pisos turísticos (Airbnb), locales comerciales y edificios protegidos.",
+          ctaText: "Solicitar Reforma en WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría solicitar una valoración para Reforma de Instalaciones Eléctricas en Valencia."),
+          image: "./assets/images/projeto-residencial.jpg",
+          imageTag: "Retrofit de Alta Gama // Valencia",
+          sectors: ["Pisos Históricos", "Airbnb", "Colegios", "Restaurantes"],
+          specs: [
+            { title: "Conductores LSHF", text: "Cables libres de halógenos y no propagadores." },
+            { title: "Adecuación de Potencia", text: "Dimensionamiento para climatización y recarga VE." },
+            { title: "Conformidad REBT", text: "Boletines eléctricos y certificación oficial." }
+          ]
+        },
+        {
+          tag: "PILAR 03 // CUADROS DE DISTRIBUCIÓN",
+          title: "Montaje & Reforma de Cuadros Eléctricos",
+          desc: "Estructuración milimétrica de cuadros de distribución eléctrica para entornos residenciales, comerciales e industriales bajo los más estrictos estándares reglamentarios.",
+          ctaText: "Presupuestar Montaje en WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría un presupuesto para Montaje o Reforma de Cuadro Eléctrico en Valencia."),
+          image: "./assets/images/projeto-painel.jpg",
+          imageTag: "Montaje Cuadro 250A // REBT",
+          sectors: ["Residencial Exclusivo", "Hoteles", "Locales Comerciales"],
+          specs: [
+            { title: "Superinmunizados", text: "Diferenciales contra disparos intempestivos." },
+            { title: "Protección Sobretensiones", text: "Descargadores DPS tipo 1+2 homologados." },
+            { title: "Identificación Reglamentaria", text: "Canaletas y etiquetado técnico duradero." }
+          ]
+        },
+        {
+          tag: "PILAR 04 // FABRICACIÓN A MEDIDA",
+          title: "Venta de Cuadros por Encargo",
+          desc: "Proyectos técnicos y ensamblaje a medida de cuadros eléctricos customizados según necesidades de carga, espacio arquitectónico y exigencias de explotación.",
+          ctaText: "Encargar Cuadro en WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Tengo especificaciones técnicas para Fabricación de Cuadro Eléctrico por Encargo."),
+          image: "./assets/images/projeto-fabricacao.jpg",
+          imageTag: "Fabricación a Medida // Banco de Pruebas",
+          sectors: ["Industrias", "Constructoras", "Ingenierías & Automatización"],
+          specs: [
+            { title: "Proyecto de Ejecución", text: "Esquemas unifilares y cálculo térmico de barras." },
+            { title: "Aparamenta Homologada", text: "Schneider Electric, ABB y Siemens." },
+            { title: "Ensayos de Taller", text: "Pruebas de aislamiento y protocolo de entrega." }
+          ]
+        }
+      ],
+      en: [
+        {
+          tag: "PILLAR 01 // PREVENTION & DIAGNOSTICS",
+          title: "Preventive & Corrective Maintenance",
+          desc: "Early detection of electrical anomalies, overload elimination, and continuous thermal diagnostics to prevent operational downtime and electrical hazards.",
+          ctaText: "Consult Maintenance on WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like to inquire about Preventive and Corrective Maintenance in Valencia."),
+          image: "./assets/images/projeto-termografia.jpg",
+          imageTag: "Thermographic Inspection // Fluke Ti480",
+          sectors: ["Hotel Chains", "Communities", "Industries", "Commercial"],
+          specs: [
+            { title: "Thermal Inspection", text: "Abnormal temperature detection on circuit breakers." },
+            { title: "Phase Balancing", text: "Harmonic measurement and balanced load distribution." },
+            { title: "Swift Diagnostics", text: "Emergency response for short circuits and earth faults." }
+          ]
+        },
+        {
+          tag: "PILLAR 02 // RETROFIT & MODERNIZATION",
+          title: "Electrical Installation Rewiring",
+          desc: "Complete modernization of obsolete wiring and electrical panels in high-end residences, tourist apartments (Airbnb), retail spaces, and historical buildings.",
+          ctaText: "Request Rewiring on WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like to request an assessment for Electrical Installation Rewiring in Valencia."),
+          image: "./assets/images/projeto-residencial.jpg",
+          imageTag: "High-End Retrofit // Valencia",
+          sectors: ["Historic Flats", "Airbnb", "Schools", "Restaurants"],
+          specs: [
+            { title: "LSHF Conductors", text: "Halogen-free, fire-retardant low-smoke cables." },
+            { title: "Load Upgrade", text: "Capacity sizing for HVAC and EV charging points." },
+            { title: "REBT Compliance", text: "Official certification and compliance bulletins." }
+          ]
+        },
+        {
+          tag: "PILLAR 03 // DISTRIBUTION PANELS",
+          title: "Assembly & Upgrading of Electrical Panels",
+          desc: "Precision engineering of low-voltage distribution boards (DBs) for residential, commercial, and industrial facilities under the strictest technical standards.",
+          ctaText: "Get Panel Quote on WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like a quote for Electrical Panel Assembly or Upgrading in Valencia."),
+          image: "./assets/images/projeto-painel.jpg",
+          imageTag: "250A Panel Assembly // REBT",
+          sectors: ["Luxury Homes", "Hotels", "Commercial Spaces"],
+          specs: [
+            { title: "Super-Immunized", text: "RCDs protected against nuisance tripping." },
+            { title: "Surge Protection", text: "Homologated Type 1+2 surge arrester devices." },
+            { title: "Standard Identification", text: "Neat trunking and indelible technical labeling." }
+          ]
+        },
+        {
+          tag: "PILLAR 04 // CUSTOM MANUFACTURING",
+          title: "Custom-Built Panels to Order",
+          desc: "Executive design and custom assembly of tailored electrical cabinets built to exact load specs, architectural constraints, and operational requirements.",
+          ctaText: "Order Custom Panel on WhatsApp",
+          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I have technical specifications for a Custom-Built Electrical Panel."),
+          image: "./assets/images/projeto-fabricacao.jpg",
+          imageTag: "Custom Manufacturing // Workshop Bench",
+          sectors: ["Industries", "Contractors", "Engineers & Automation"],
+          specs: [
+            { title: "Executive Design", text: "Single-line schematics and busbar thermal calculations." },
+            { title: "Certified Switchgear", text: "Schneider Electric, ABB, and Siemens." },
+            { title: "Bench Testing", text: "Insulation testing and pre-delivery compliance report." }
+          ]
+        }
+      ]
+    };
+
+    // Estado global de idioma e índice de especialidade
+    let currentLang = localStorage.getItem('ibervolt_lang') || 'pt';
+    let currentServiceIndex = 0;
+
+    // ── Função Central de Alternância de Idiomas ──────────────────────────
+    function switchLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      localStorage.setItem('ibervolt_lang', lang);
+
+      // 1. Atualizar atributo HTML lang
+      document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'es' ? 'es' : 'pt-BR'));
+
+      // 2. Atualizar Title & Meta Description
+      if (translations[lang].page_title) {
+        document.title = translations[lang].page_title;
+      }
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && translations[lang].meta_desc) {
+        metaDesc.setAttribute('content', translations[lang].meta_desc);
+      }
+
+      // 3. Atualizar elementos com data-i18n (Texto puro)
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      // 4. Atualizar elementos com data-i18n-html (Com formatação HTML)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (translations[lang][key] !== undefined) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // 5. Atualizar placeholders de inputs
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key] !== undefined) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // 6. Atualizar estado visual de todos os seletores de idiomas na tela
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        const targetLang = btn.getAttribute('data-lang-btn');
+        if (targetLang === lang) {
+          btn.classList.add('text-brand-yellow', 'font-bold');
+          btn.classList.remove('text-white/50');
+        } else {
+          btn.classList.remove('text-brand-yellow', 'font-bold');
+          btn.classList.add('text-white/50');
+        }
+      });
+
+      // 7. Atualizar links fixos de WhatsApp com mensagem contextual no idioma
+      const waGeneralMsg = lang === 'en'
+        ? "Hello! I would like to request technical electrical engineering service."
+        : (lang === 'es' 
+          ? "¡Hola! Me gustaría solicitar atención técnica de ingeniería eléctrica."
+          : "Olá! Gostaria de solicitar atendimento técnico.");
+      const waEngMsg = lang === 'en'
+        ? "Hello! I would like to speak directly with an engineer from IberVolt."
+        : (lang === 'es'
+          ? "¡Hola! Me gustaría conversar directamente con un ingeniero de IberVolt."
+          : "Olá! Gostaria de conversar diretamente com um engenheiro da IberVolt.");
+      const waQuoteMsg = lang === 'en'
+        ? "Hello! I would like to request a technical quote with IberVolt Solutions."
+        : (lang === 'es'
+          ? "¡Hola! Me gustaría solicitar un presupuesto técnico con IberVolt Solutions."
+          : "Olá! Gostaria de solicitar um orçamento técnico.");
+
+      const headerWa = document.getElementById('header-whatsapp-btn');
+      if (headerWa) headerWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waGeneralMsg);
+
+      const mobileWa = document.getElementById('mobile-whatsapp-btn');
+      if (mobileWa) mobileWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waGeneralMsg);
+
+      const heroWa = document.getElementById('hero-cta-whatsapp');
+      if (heroWa) heroWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waQuoteMsg);
+
+      const engWa = document.getElementById('esp-engineer-contact-btn');
+      if (engWa) engWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waEngMsg);
+
+      const footerChat = document.getElementById('footer-chat-btn');
+      if (footerChat) footerChat.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waQuoteMsg);
+
+      const mapLink = document.getElementById('cob-map-link');
+      if (mapLink && translations[lang].cob_maps_title) {
+        mapLink.setAttribute('title', translations[lang].cob_maps_title);
+      }
+
+      // 8. Re-renderizar o console dinâmico de especialidades no idioma correto
+      renderService(currentServiceIndex);
+
+      // 9. Atualizar labels e inputs ocultos dos dropdowns conforme o idioma
+      ['dropdown-property', 'dropdown-service'].forEach(ddId => {
+        const dd = document.getElementById(ddId);
+        if (!dd) return;
+        const hiddenInput = document.getElementById(dd.getAttribute('data-input-id'));
+        const activeItem = dd.querySelector('.custom-dropdown-item.is-selected');
+        const label = dd.querySelector('.dropdown-selected-label');
+        
+        let key = null;
+        if (activeItem) {
+          key = activeItem.getAttribute('data-key') || (activeItem.querySelector('[data-i18n]') ? activeItem.querySelector('[data-i18n]').getAttribute('data-i18n') : null);
+        }
+        if (!key && label) {
+          key = label.getAttribute('data-i18n');
+        }
+        if (!key && hiddenInput) {
+          key = hiddenInput.getAttribute('data-current-key');
+        }
+
+        if (key && translations[lang] && translations[lang][key]) {
+          const localizedText = translations[lang][key];
+          if (label) {
+            label.textContent = localizedText;
+            label.setAttribute('data-i18n', key);
+          }
+          if (hiddenInput) {
+            hiddenInput.value = localizedText;
+            hiddenInput.setAttribute('data-current-key', key);
+          }
+        }
+      });
+
+      // 10. Atualizar ícones do Lucide
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
+
+    // Variável e função para renderizar especialidades
+    const tabs = document.querySelectorAll('.service-tab');
+    const displayTag = document.getElementById('display-tag');
+    const displayTitle = document.getElementById('display-title');
+    const displayDesc = document.getElementById('display-desc');
+    const displaySectors = document.getElementById('display-sectors');
+    const displayCta = document.getElementById('display-cta');
+    const displayCtaText = document.getElementById('display-cta-text');
+    const displaySpecs = document.getElementById('display-specs');
+    const displayImage = document.getElementById('display-image');
+    const displayImageTag = document.getElementById('display-image-tag');
+    const contentWrapper = document.getElementById('service-content-wrapper');
+
+    function renderService(index) {
+      currentServiceIndex = index;
+      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.pt;
+      const item = dataList[index];
+      if (!item || !contentWrapper) return;
+
+      // Disparar animação suave
+      contentWrapper.classList.remove('tab-content-enter');
+      void contentWrapper.offsetWidth; // trigger reflow
+      contentWrapper.classList.add('tab-content-enter');
+
+      if (displayTag) displayTag.textContent = item.tag;
+      if (displayTitle) displayTitle.textContent = item.title;
+      if (displayDesc) displayDesc.textContent = item.desc;
+      if (displayCtaText) displayCtaText.textContent = item.ctaText;
+      if (displayCta) displayCta.href = item.ctaUrl;
+
+      // Imagem e Tag da Imagem
+      if (displayImage && item.image) {
+        displayImage.src = item.image;
+        displayImage.alt = item.title;
+      }
+      if (displayImageTag && item.imageTag) {
+        displayImageTag.textContent = item.imageTag;
+      }
+
+      // Setores
+      if (displaySectors) {
+        displaySectors.innerHTML = item.sectors.map(s => 
+          `<span class="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-jakarta text-white/90">${s}</span>`
+        ).join('');
+      }
+
+      // Specs em micro-cards horizontais compactos
+      if (displaySpecs) {
+        displaySpecs.innerHTML = item.specs.map(sp => `
+          <div class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+              <span class="font-syne font-bold text-xs text-white tracking-tight">${sp.title}</span>
+            </div>
+            <p class="font-jakarta text-[11px] text-brand-muted leading-relaxed">
+              ${sp.text}
+            </p>
+          </div>
+        `).join('');
+      }
+
+      // Atualizar estilos visuais das tabs
+      tabs.forEach((tab, i) => {
+        const num = tab.querySelector('.tab-num');
+        const title = tab.querySelector('.tab-title');
+        const indicator = tab.querySelector('.tab-indicator');
+        
+        if (i === index) {
+          tab.setAttribute('aria-selected', 'true');
+          tab.className = "service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-white/[0.04] border-brand-yellow/50 shadow-[0_0_20px_rgba(255,230,0,0.08)]";
+          if (num) num.className = "tab-num font-mono text-[11px] tracking-widest text-brand-yellow font-medium";
+          if (title) title.className = "tab-title font-syne font-bold text-xs sm:text-sm text-white tracking-tight";
+          if (indicator) indicator.className = "tab-indicator w-1.5 h-1.5 rounded-full bg-brand-yellow";
+        } else {
+          tab.setAttribute('aria-selected', 'false');
+          tab.className = "service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20";
+          if (num) num.className = "tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors";
+          if (title) title.className = "tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors";
+          if (indicator) indicator.className = "tab-indicator w-1.5 h-1.5 rounded-full bg-transparent";
+        }
+      });
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    // Garantir retorno ao topo (página inicial) ao recarregar
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+
+    // ── Preloader High-End: Contador 0 a 100% & Barra Fina Inferior com Efeito Persiana ──
+    (function initPreloader() {
+      const preloader = document.getElementById('site-preloader');
+      const counterEl = document.getElementById('preloader-counter');
+      const barFill = document.getElementById('preloader-bar-fill');
+      if (!preloader || !counterEl || !barFill) return;
+
+      document.body.style.overflow = 'hidden';
+
+      let currentProgress = 0;
+      let targetProgress = 12;
+      let isWindowLoaded = false;
+      let animationFrameId = null;
+      let isFinished = false;
+
+      function updateLoader() {
+        if (currentProgress < targetProgress) {
+          const distance = targetProgress - currentProgress;
+          
+          // Velocidade variável (não-linear):
+          // Entre 30% e 80% a aceleração é expressivamente mais rápida (turbo)
+          let speedFactor;
+          if (currentProgress >= 30 && currentProgress < 80) {
+            speedFactor = 0.18; // Arrancada rápida
+          } else if (currentProgress >= 80) {
+            speedFactor = 0.055; // Desaceleração suave na chegada aos 100%
+          } else {
+            speedFactor = 0.07; // Início cadenciado elegante de 0 a 30%
+          }
+
+          const minStep = (currentProgress >= 30 && currentProgress < 80) ? 0.95 : 0.28;
+          const maxStep = (currentProgress >= 30 && currentProgress < 80) ? 3.5 : 1.3;
+          const step = Math.min(maxStep, Math.max(minStep, distance * speedFactor));
+
+          currentProgress = Math.min(targetProgress, currentProgress + step);
+          const rounded = Math.floor(currentProgress);
+          counterEl.textContent = rounded;
+          barFill.style.width = currentProgress.toFixed(1) + '%';
+        }
+
+        if (currentProgress >= 100 && !isFinished) {
+          isFinished = true;
+          counterEl.textContent = '100';
+          barFill.style.width = '100%';
+          cancelAnimationFrame(animationFrameId);
+
+          // 1. Pausa de confirmação nos 100% e fade-out dos textos/barra
+          setTimeout(() => {
+            preloader.classList.add('preloader-closing');
+
+            // 2. Disparar a descida da cortina/persiana de cima para baixo
+            setTimeout(() => {
+              preloader.classList.add('preloader-shutter-open');
+              document.body.style.overflow = '';
+              window.scrollTo(0, 0);
+
+              // 3. Remover do DOM após a conclusão da animação da persiana
+              setTimeout(() => {
+                preloader.remove();
+              }, 900);
+            }, 280);
+          }, 320);
+          return;
+        }
+
+        animationFrameId = requestAnimationFrame(updateLoader);
+      }
+
+      animationFrameId = requestAnimationFrame(updateLoader);
+
+      // Ritmo não-linear:
+      // 0 -> 30% (ritmo inicial firme)
+      // 30% -> 80% (disparo veloz com intervalos curtos)
+      // 80% -> 100% (desaceleração controlada de chegada técnica)
+      const progressSteps = [
+        { pct: 30, delay: 350 },
+        { pct: 60, delay: 520 },
+        { pct: 82, delay: 720 },
+        { pct: 93, delay: 1100 },
+        { pct: 100, delay: 1550 }
+      ];
+
+      progressSteps.forEach(step => {
+        setTimeout(() => {
+          if (targetProgress < step.pct) {
+            targetProgress = step.pct;
+          }
+        }, step.delay);
+      });
+
+      function onResourcesLoaded() {
+        isWindowLoaded = true;
+      }
+
+      window.addEventListener('load', onResourcesLoaded);
+    })();
+
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0, 0);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      window.scrollTo(0, 0);
+      // 1. Inicializar ícones do Lucide
+      lucide.createIcons();
+
+      // 2. Scroll Reveal Suave com IntersectionObserver
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 2.1. Animação Lateral Bidirecional Repetível dos Cards de Certificação (Mobile)
+        const certSlideCards = document.querySelectorAll('.cert-card-slide');
+        if (certSlideCards.length > 0) {
+          const certSlideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in-view');
+              } else {
+                // Ao sair da tela (subir ou descer), reseta a animação para reaparecer com slide
+                entry.target.classList.remove('is-in-view');
+              }
+            });
+          }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -20px 0px'
+          });
+
+          certSlideCards.forEach(card => certSlideObserver.observe(card));
+        }
+      } else {
+        revealElements.forEach(el => el.classList.add('is-visible'));
+        document.querySelectorAll('.cert-card-slide').forEach(c => c.classList.add('is-in-view'));
+      }
+
+      // 3. Event listeners para as Tabs de Especialidades
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const idx = parseInt(tab.getAttribute('data-tab-index'), 10);
+          renderService(idx);
+        });
+      });
+
+      // 4. Menu Mobile Arquitetônico
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function openMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('hidden');
+        if (iconOpen) iconOpen.classList.add('hidden');
+        if (iconClose) iconClose.classList.remove('hidden');
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+
+      function closeMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add('hidden');
+        if (iconOpen) iconOpen.classList.remove('hidden');
+        if (iconClose) iconClose.classList.add('hidden');
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isCurrentlyHidden = mobileMenu.classList.contains('hidden');
+          if (isCurrentlyHidden) {
+            openMobileMenu();
+          } else {
+            closeMobileMenu();
+          }
+        });
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            closeMobileMenu();
+          });
+        });
+
+        // Fechar ao clicar fora ou ao pressionar ESC
+        document.addEventListener('click', (e) => {
+          if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            closeMobileMenu();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+            closeMobileMenu();
+          }
+        });
+      }
+
+      // 5. Header Scroll State & ScrollSpy Ativo
+      const header = document.getElementById('site-header');
+      const navDesktopItems = document.querySelectorAll('.nav-desktop-item');
+      const spySections = [
+        { id: 'inicio', target: 'inicio' },
+        { id: 'especialidades', target: 'especialidades' },
+        { id: 'certificacoes', target: 'certificacoes' },
+        { id: 'cobertura', target: 'cobertura' }
+      ];
+
+      function updateHeaderOnScroll() {
+        const scrollY = window.scrollY;
+
+        // Estilo Scrolled com Glassmorphism reforçado
+        if (header) {
+          if (scrollY > 25) {
+            header.classList.add('header-scrolled');
+          } else {
+            header.classList.remove('header-scrolled');
+          }
+        }
+
+        // ScrollSpy para navegação desktop
+        let currentSection = 'inicio';
+        spySections.forEach(sec => {
+          const el = document.getElementById(sec.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 240 && rect.bottom >= 160) {
+              currentSection = sec.target;
+            }
+          }
+        });
+
+        navDesktopItems.forEach(item => {
+          const target = item.getAttribute('data-nav-target');
+          if (currentSection && target === currentSection) {
+            item.classList.add('is-active');
+          } else {
+            item.classList.remove('is-active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+      updateHeaderOnScroll();
+
+      // 5.1. Ação Direta do Link "#paineis" (Scroll suave + Ativação da Tab 04 de Painéis Sob Encomenda)
+      document.querySelectorAll('a[href="#paineis"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetEl = document.getElementById('especialidades');
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (typeof renderService === 'function') {
+            renderService(3); // Tab 04: Painéis Sob Encomenda
+          }
+          closeMobileMenu();
+        });
+      });
+
+      // 5.2. Efeito Parallax Expressivo no Mapa de Cobertura (Baseado no Scroll)
+      const cobMapWrapper = document.getElementById('cob-map-wrapper');
+      const cobMapImg = document.getElementById('cob-map-img');
+
+      if (cobMapWrapper && cobMapImg) {
+        let tickingParallax = false;
+
+        function updateMapParallax() {
+          const rect = cobMapWrapper.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+          // Executar cálculo apenas quando o mapa estiver na viewport (com margem de segurança)
+          if (rect.bottom >= -100 && rect.top <= windowHeight + 100) {
+            // Progresso de 0 (entrando no rodapé da viewport) a 1 (saindo pelo topo)
+            const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+            // Amplitude dinâmica de -110px a +110px (movimento claramente perceptível e imersivo)
+            const translateY = (progress - 0.5) * 220;
+            cobMapImg.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.10)`;
+          }
+          tickingParallax = false;
+        }
+
+        function requestMapParallax() {
+          if (!tickingParallax) {
+            tickingParallax = true;
+            window.requestAnimationFrame(updateMapParallax);
+          }
+        }
+
+        window.addEventListener('scroll', requestMapParallax, { passive: true });
+        window.addEventListener('resize', requestMapParallax);
+        updateMapParallax();
+      }
+
+      // 6. Canvas de Partículas Elétricas (Hero e Certificações)
+      function initParticlesCanvas(canvasId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let W, H;
+
+        function resize() {
+          W = canvas.width  = canvas.offsetWidth;
+          H = canvas.height = canvas.offsetHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const COUNT = 42;
+        const MAX_DIST = 190;
+        const pts = Array.from({ length: COUNT }, () => ({
+          x:  Math.random() * (W || 800),
+          y:  Math.random() * (H || 600),
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28
+        }));
+
+        function tick() {
+          ctx.clearRect(0, 0, W, H);
+
+          pts.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > W) p.vx *= -1;
+            if (p.y < 0 || p.y > H) p.vy *= -1;
+          });
+
+          for (let i = 0; i < COUNT; i++) {
+            for (let j = i + 1; j < COUNT; j++) {
+              const dx = pts[i].x - pts[j].x;
+              const dy = pts[i].y - pts[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < MAX_DIST) {
+                const alpha = (1 - dist / MAX_DIST) * 0.42;
+                ctx.beginPath();
+                ctx.moveTo(pts[i].x, pts[i].y);
+                ctx.lineTo(pts[j].x, pts[j].y);
+                ctx.strokeStyle = `rgba(255, 210, 0, ${alpha})`;
+                ctx.lineWidth   = 0.6;
+                ctx.shadowBlur  = 0;
+                ctx.stroke();
+              }
+            }
+          }
+
+          pts.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 210, 0, 0.50)';
+            ctx.fill();
+          });
+
+          requestAnimationFrame(tick);
+        }
+
+        tick();
+      }
+
+      initParticlesCanvas('hero-canvas');
+      initParticlesCanvas('cert-canvas');
+
+      // 7. Controle dos Dropdowns Customizados
+      const dropdowns = document.querySelectorAll('.custom-dropdown');
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.custom-dropdown-btn');
+        const label = dd.querySelector('.dropdown-selected-label');
+        const hiddenInput = document.getElementById(dd.getAttribute('data-input-id'));
+        const items = dd.querySelectorAll('.custom-dropdown-item');
+
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dd.classList.contains('is-open');
+            dropdowns.forEach(other => {
+              if (other !== dd) {
+                other.classList.remove('is-open');
+                const otherBtn = other.querySelector('.custom-dropdown-btn');
+                if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+              }
+            });
+            dd.classList.toggle('is-open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+          });
+        }
+
+        items.forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const key = item.getAttribute('data-key') || (item.querySelector('[data-i18n]') ? item.querySelector('[data-i18n]').getAttribute('data-i18n') : null);
+            const val = item.getAttribute('data-value');
+            const spanEl = item.querySelector('span:first-child');
+            const fallbackText = spanEl ? spanEl.textContent.trim() : val;
+            const localizedText = (key && translations[currentLang] && translations[currentLang][key]) ? translations[currentLang][key] : fallbackText;
+            
+            if (hiddenInput) {
+              hiddenInput.value = localizedText;
+              if (key) hiddenInput.setAttribute('data-current-key', key);
+            }
+            if (label) {
+              label.textContent = localizedText;
+              if (key) label.setAttribute('data-i18n', key);
+            }
+
+            items.forEach(i => {
+              i.classList.remove('is-selected');
+              const dot = i.querySelector('span:last-child');
+              if (dot) dot.className = 'w-1.5 h-1.5 rounded-full bg-transparent';
+            });
+            item.classList.add('is-selected');
+            const activeDot = item.querySelector('span:last-child');
+            if (activeDot) activeDot.className = 'w-1.5 h-1.5 rounded-full bg-brand-yellow';
+
+            dd.classList.remove('is-open');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      });
+
+      // Fechar dropdowns ao clicar fora
+      document.addEventListener('click', () => {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('is-open');
+          const btn = dd.querySelector('.custom-dropdown-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // 8. Integração Dinâmica e Segura do Formulário com WhatsApp
+      const submitWhatsappBtn = document.getElementById('submit-whatsapp-btn');
+      let isSubmittingWhatsapp = false;
+
+      // Sanitização de segurança (Anti-XSS e remoção de caracteres de controle)
+      function sanitizeInputText(str, maxLength) {
+        if (!str || typeof str !== 'string') return "";
+        return str
+          .replace(/[<>]/g, '')
+          .replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
+          .trim()
+          .slice(0, maxLength);
+      }
+
+      if (submitWhatsappBtn) {
+        submitWhatsappBtn.addEventListener('click', () => {
+          // Prevenção de múltiplos envios rápidos / Anti-spam cooldown
+          if (isSubmittingWhatsapp) return;
+
+          // Verificação de Armadilha Anti-Bot (Honeypot)
+          const botField = document.getElementById('form-bot-check');
+          if (botField && botField.value.trim() !== '') {
+            console.warn('Bot submission blocked.');
+            return;
+          }
+
+          const nameInput = document.getElementById('form-name');
+          const propertyInput = document.getElementById('form-property');
+          const serviceInput = document.getElementById('form-service');
+          const locationInput = document.getElementById('form-location');
+          const detailsInput = document.getElementById('form-details');
+          const validationMsg = document.getElementById('form-validation-msg');
+          const validationText = document.getElementById('form-validation-text');
+
+          // Função para garantir texto traduzido exato no idioma atual
+          function getDropdownLocalizedValue(ddId, inputId, defaultKey) {
+            const dd = document.getElementById(ddId);
+            const input = document.getElementById(inputId);
+            const activeItem = dd ? dd.querySelector('.custom-dropdown-item.is-selected') : null;
+            const key = (activeItem && activeItem.getAttribute('data-key'))
+              || (activeItem && activeItem.querySelector('[data-i18n]') && activeItem.querySelector('[data-i18n]').getAttribute('data-i18n'))
+              || (input && input.getAttribute('data-current-key'))
+              || defaultKey;
+
+            if (key && translations[currentLang] && translations[currentLang][key]) {
+              return translations[currentLang][key];
+            }
+            if (input && input.value && input.value.trim()) {
+              return input.value.trim();
+            }
+            const label = dd ? dd.querySelector('.dropdown-selected-label') : null;
+            if (label && label.textContent.trim()) {
+              return label.textContent.trim();
+            }
+            return "";
+          }
+
+          // Sanitização rigorosa dos dados de entrada
+          const name = sanitizeInputText(nameInput ? nameInput.value : "", 80);
+          const property = sanitizeInputText(getDropdownLocalizedValue('dropdown-property', 'form-property', 'form_prop_opt1'), 60);
+          const service = sanitizeInputText(getDropdownLocalizedValue('dropdown-service', 'form-service', 'form_serv_opt1'), 60);
+          const location = sanitizeInputText(locationInput ? locationInput.value : "", 80);
+          const details = sanitizeInputText(detailsInput ? detailsInput.value : "", 250);
+
+          // Limpar erros anteriores
+          [nameInput, locationInput].forEach(el => {
+            if (el) el.classList.remove('input-error');
+          });
+          const propBtn = document.querySelector('#dropdown-property .custom-dropdown-btn');
+          const servBtn = document.querySelector('#dropdown-service .custom-dropdown-btn');
+          if (propBtn) propBtn.classList.remove('input-error');
+          if (servBtn) servBtn.classList.remove('input-error');
+
+          let hasError = false;
+          let errorField = null;
+
+          if (!name) {
+            hasError = true;
+            if (nameInput) nameInput.classList.add('input-error');
+            if (!errorField) errorField = nameInput;
+          }
+
+          if (!property) {
+            hasError = true;
+            if (propBtn) propBtn.classList.add('input-error');
+            if (!errorField) errorField = propBtn;
+          }
+
+          if (!service) {
+            hasError = true;
+            if (servBtn) servBtn.classList.add('input-error');
+            if (!errorField) errorField = servBtn;
+          }
+
+          if (!location) {
+            hasError = true;
+            if (locationInput) locationInput.classList.add('input-error');
+            if (!errorField) errorField = locationInput;
+          }
+
+          if (hasError) {
+            if (validationMsg) {
+              validationMsg.classList.remove('hidden');
+              if (validationText && translations[currentLang]) {
+                validationText.textContent = translations[currentLang].form_val_err;
+              }
+              if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+            if (errorField && typeof errorField.focus === 'function') {
+              errorField.focus();
+            }
+            return;
+          }
+
+          if (validationMsg) validationMsg.classList.add('hidden');
+
+          // Ativar cooldown para prevenir envios múltiplos e acidentais
+          isSubmittingWhatsapp = true;
+          submitWhatsappBtn.disabled = true;
+          submitWhatsappBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+          setTimeout(() => {
+            isSubmittingWhatsapp = false;
+            submitWhatsappBtn.disabled = false;
+            submitWhatsappBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+          }, 3500);
+
+          // Montar mensagem 100% no idioma selecionado
+          let message = "";
+          if (currentLang === 'en') {
+            message = "Hello! I would like to request a technical quote with IberVolt Solutions.\n\n";
+            message += `• Client: ${name}\n`;
+            message += `• Property: ${property}\n`;
+            message += `• Service: ${service}\n`;
+            message += `• Location: ${location}\n`;
+            if (details) message += `• Project Notes: ${details}\n`;
+          } else if (currentLang === 'es') {
+            message = "¡Hola! Me gustaría solicitar un presupuesto técnico con IberVolt Solutions.\n\n";
+            message += `• Cliente: ${name}\n`;
+            message += `• Inmueble: ${property}\n`;
+            message += `• Servicio: ${service}\n`;
+            message += `• Ubicación: ${location}\n`;
+            if (details) message += `• Observaciones: ${details}\n`;
+          } else {
+            message = "Olá! Gostaria de solicitar um orçamento técnico com a IberVolt Solutions.\n\n";
+            message += `• Cliente: ${name}\n`;
+            message += `• Imóvel: ${property}\n`;
+            message += `• Serviço: ${service}\n`;
+            message += `• Localização: ${location}\n`;
+            if (details) message += `• Observações: ${details}\n`;
+          }
+
+          const phone = "34605555686";
+          const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+          window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        });
+
+        // Limpar indicador de erro ao digitar
+        ['form-name', 'form-location'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener('input', () => {
+              el.classList.remove('input-error');
+              const msg = document.getElementById('form-validation-msg');
+              if (msg) msg.classList.add('hidden');
+            });
+          }
+        });
+      }
+
+      // 9. Aplicar o idioma salvo no carregamento
+      switchLanguage(currentLang);
+    });
+  </script>
+
+</body>
+</html>

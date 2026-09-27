@@ -1,0 +1,8 @@
+# Robots.txt - IberVolt Solutions
+User-agent: *
+Allow: /
+# Proteger documentações internas e especificações técnicas de indexação pública
+Disallow: /docs/
+
+# Sitemap
+Sitemap: https://ibervoltsolutions.es/sitemap.xml

@@ -1,0 +1,25 @@
+# ==============================================================================
+# IberVolt Solutions - Diretivas de Segurança Apache / LiteSpeed (.htaccess)
+# ==============================================================================
+
+# 1. Desabilitar listagem pública de diretórios
+Options -Indexes
+
+# 2. Bloquear acesso a arquivos ocultos, backups, logs e especificações internas
+<FilesMatch "(^\.|\.md$|\.log$|\.pdf$|\.bak$|\.tmp$)">
+    Require all denied
+</FilesMatch>
+
+# 3. Cabeçalhos de Segurança HTTP (Security Headers)
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';"
+</IfModule>
+
+# 4. Forçar codificação UTF-8
+AddDefaultCharset UTF-8

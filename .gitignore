@@ -1,0 +1,17 @@
+# Sistema Operacional / Arquivos Temporários
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+
+# Editores & IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Backups e rascunhos
+*.bak
+*.swp
+*~
