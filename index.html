@@ -139,23 +139,180 @@
       transform: translateY(0);
     }
 
-    /* Animação Lateral Bidirecional nos Cards de Certificação (Mobile) */
-    @media (max-width: 1023px) {
-      .cert-card-slide {
-        will-change: transform, opacity;
-        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Animação do Indicador de Rolagem: Mouse no Desktop */
+    @keyframes mouseChassisPulse {
+      0%, 100% {
+        transform: translateY(0);
+        border-color: rgba(255, 255, 255, 0.35);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 rgba(255, 230, 0, 0);
       }
+      50% {
+        transform: translateY(4px);
+        border-color: rgba(255, 230, 0, 0.7);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 230, 0, 0.35);
+      }
+    }
+    @keyframes mouseWheelScroll {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scaleY(0.7);
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(9px) scaleY(1.1);
+      }
+      85%, 100% {
+        opacity: 0;
+        transform: translateY(13px) scaleY(0.6);
+      }
+    }
+    .mouse-chassis-anim {
+      animation: mouseChassisPulse 2.2s ease-in-out infinite;
+    }
+    .mouse-wheel-anim {
+      animation: mouseWheelScroll 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    /* Animação do Indicador de Rolagem: Dedo Arrastando no Mobile */
+    @keyframes fingerDragSwipe {
+      0% {
+        transform: translateY(8px);
+        opacity: 0;
+      }
+      20% {
+        transform: translateY(5px);
+        opacity: 1;
+      }
+      70% {
+        transform: translateY(-8px);
+        opacity: 1;
+      }
+      90%, 100% {
+        transform: translateY(-13px);
+        opacity: 0;
+      }
+    }
+    @keyframes fingerTouchPulse {
+      0% {
+        transform: scale(0.4) translateY(8px);
+        opacity: 0;
+      }
+      20% {
+        transform: scale(1.2) translateY(5px);
+        opacity: 1;
+      }
+      70% {
+        transform: scale(0.9) translateY(-8px);
+        opacity: 0.8;
+      }
+      90%, 100% {
+        transform: scale(0.4) translateY(-13px);
+        opacity: 0;
+      }
+    }
+    @keyframes fingerTrailFlow {
+      0% {
+        opacity: 0;
+        height: 0px;
+        transform: translateY(8px);
+      }
+      30% {
+        opacity: 0.9;
+        height: 18px;
+        transform: translateY(2px);
+      }
+      70% {
+        opacity: 0.9;
+        height: 22px;
+        transform: translateY(-5px);
+      }
+      90%, 100% {
+        opacity: 0;
+        height: 8px;
+        transform: translateY(-12px);
+      }
+    }
+    .finger-drag-anim {
+      animation: fingerDragSwipe 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+    .finger-touch-pulse {
+      animation: fingerTouchPulse 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+    .finger-trail-anim {
+      animation: fingerTrailFlow 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mouse-chassis-anim,
+      .mouse-wheel-anim,
+      .finger-drag-anim,
+      .finger-touch-pulse,
+      .finger-trail-anim {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    /* Animação nos Cards de Certificação (Mobile e Desktop) */
+    .cert-card-slide {
+      will-change: transform, opacity;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.4s ease;
+    }
+
+    /* Mobile (< 1024px): Efeito lateral dinâmico bidirecional */
+    @media (max-width: 1023px) {
       .cert-card-slide.slide-from-left {
         opacity: 0;
-        transform: translate3d(-70px, 0, 0);
+        transform: translate3d(-60px, 0, 0);
       }
       .cert-card-slide.slide-from-right {
         opacity: 0;
-        transform: translate3d(70px, 0, 0);
+        transform: translate3d(60px, 0, 0);
       }
       .cert-card-slide.is-in-view {
         opacity: 1;
         transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Desktop (>= 1024px): Efeito de entrada escalonado em cascata com convergência */
+    @media (min-width: 1024px) {
+      .cert-card-slide {
+        opacity: 0;
+      }
+      /* Card 01: NR-10 (Desliza da esquerda com elevação) */
+      .cert-card-slide:nth-child(1) {
+        transform: translate3d(-40px, 45px, 0);
+        transition-delay: 0.05s;
+      }
+      /* Card 02: NR-10 SEP (Emerge no centro com subida) */
+      .cert-card-slide:nth-child(2) {
+        transform: translate3d(0, 55px, 0);
+        transition-delay: 0.20s;
+      }
+      /* Card 03: NR-35 (Desliza da direita com elevação) */
+      .cert-card-slide:nth-child(3) {
+        transform: translate3d(40px, 45px, 0);
+        transition-delay: 0.35s;
+      }
+      /* Estado Ativado / Na Viewport */
+      .cert-card-slide.is-in-view {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+      /* Hover refinado no desktop */
+      .cert-card-slide.is-in-view:hover {
+        transform: translate3d(0, -6px, 0);
+        border-color: rgba(255, 230, 0, 0.45);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 32px rgba(255, 230, 0, 0.12);
       }
     }
 
@@ -290,7 +447,12 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+    }
+    #site-header.header-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
     }
     #site-header.header-scrolled {
       background: rgba(5, 5, 5, 0.70) !important;
@@ -300,7 +462,12 @@
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
     }
     #site-header.header-scrolled #header-inner {
-      height: 4.25rem !important; /* 68px */
+      height: 3.75rem !important; /* 60px no mobile */
+    }
+    @media (min-width: 640px) {
+      #site-header.header-scrolled #header-inner {
+        height: 4.25rem !important; /* 68px no desktop */
+      }
     }
     .nav-desktop-item {
       position: relative;
@@ -358,6 +525,58 @@
       }
     }
 
+    /* Parallax de Alta Fidelidade nas Miniaturas dos Serviços (Blindagem contra Frestas e Partes Pretas) */
+    .parallax-card-container {
+      position: relative;
+      overflow: hidden;
+      background-color: #0c0c0e;
+      will-change: transform;
+    }
+    .parallax-card-img {
+      position: absolute !important;
+      top: -30% !important;
+      left: -6% !important;
+      width: 112% !important;
+      height: 160% !important;
+      max-width: none !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      will-change: transform;
+      pointer-events: none;
+      transform: translate3d(0, 0, 0) scale(1.15);
+      transition: filter 0.5s ease;
+    }
+
+    /* Estilização Industrial de Alta Engenharia para Serviços e Barramento Central */
+    .busbar-rail {
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.10) 0px,
+        rgba(255, 255, 255, 0.10) 1px,
+        transparent 1px,
+        transparent 14px
+      );
+    }
+    .plasma-core-glow {
+      box-shadow: 
+        0 0 6px #FFFFFF,
+        0 0 14px #FFE600,
+        0 0 26px #FFE600,
+        0 0 45px rgba(255, 230, 0, 0.85),
+        0 0 75px rgba(255, 200, 0, 0.45);
+    }
+    .technical-card-grid {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .card-electrified {
+      border-color: rgba(255, 230, 0, 0.75) !important;
+      box-shadow: 0 0 28px rgba(255, 230, 0, 0.18), 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
     /* Preloader High-End com Efeito Persiana */
     #site-preloader {
       position: fixed;
@@ -404,6 +623,37 @@
       box-shadow: 0 0 12px rgba(255, 230, 0, 0.7), 0 0 24px rgba(255, 230, 0, 0.35);
       transition: width 0.08s ease-out;
     }
+
+    /* Scroll Sequence Video Styling */
+    .scroll-sequence-section {
+      position: relative;
+      height: 600vh;
+      background-color: #050505;
+    }
+    .scroll-sequence-sticky {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    /* Fim do estilo sticky */
+    #scroll-video-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+      will-change: transform;
+    }
+    .hero-title-shadow {
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.95);
+    }
   </style>
 </head>
 <body class="bg-brand-obsidian text-white min-h-screen selection:bg-brand-yellow selection:text-black">
@@ -429,13 +679,13 @@
   <!-- ==========================================
        SEÇÃO 1: HEADER (MINIMALISTA & ARQUITETÔNICO)
        ========================================== -->
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="site-header">
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-hidden" id="site-header">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="flex items-center justify-between h-20 transition-all duration-300" id="header-inner">
+      <div class="flex items-center justify-between h-16 sm:h-20 transition-all duration-300" id="header-inner">
         
         <!-- Identidade IberVolt (Apenas Logo Oficial sem duplicação de texto) -->
         <a href="#inicio" class="anim-in delay-1 flex items-center group shrink-0" aria-label="IberVolt Solutions">
-          <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 sm:h-11 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90">
+          <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-9 sm:h-11 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90">
         </a>
 
         <!-- Navegação Desktop Minimalista (Com numeração editorial 01 a 04) -->
@@ -488,11 +738,9 @@
             </button>
           </div>
 
-          <!-- Botão WhatsApp com Formatação Impecável -->
+          <!-- Botão WhatsApp com Formatação Impecável (Leva ao Formulário de Orçamento) -->
           <a id="header-whatsapp-btn"
-             href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20atendimento%20t%C3%A9cnico." 
-             target="_blank" 
-             rel="noopener noreferrer"
+             href="#orcamento"
              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(255,230,0,0.22)] transition-all duration-200 hover:bg-brand-yellowHover hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(255,230,0,0.35)] shrink-0">
             <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
@@ -557,9 +805,7 @@
         </div>
 
         <a id="mobile-whatsapp-btn" 
-           href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20atendimento%20t%C3%A9cnico." 
-           target="_blank" 
-           rel="noopener noreferrer" 
+           href="#orcamento" 
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs tracking-wide shadow-[0_0_15px_rgba(255,230,0,0.22)]">
           <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
@@ -572,109 +818,112 @@
 
 
   <!-- ==========================================
-       SEÇÃO 2: HERO SECTION (EDITORIAL & RESPIRADA)
+       SEÇÃO: HERO SCROLL SEQUENCE (VÍDEO DE ENERGIZAÇÃO EM FRAMES)
        ========================================== -->
-  <section id="inicio" class="relative min-h-screen pt-36 pb-24 md:pt-48 md:pb-36 flex items-center bg-brand-obsidian overflow-hidden">
+  <section id="inicio" class="scroll-sequence-section" aria-label="Apresentação e Energização IberVolt">
     
-    <!-- Vinheta de profundidade -->
-    <div class="anim-fade delay-7 hero-vignette absolute inset-0 pointer-events-none z-0"></div>
+    <div class="scroll-sequence-sticky">
+      <!-- Canvas de Alta Performance: Renderiza a sequência de 200 frames sincronizada com o scroll -->
+      <canvas id="scroll-video-canvas" width="1920" height="1080"></canvas>
 
-    <!-- Canvas: Rede de pontos lentos e discretos -->
-    <canvas id="hero-canvas" class="anim-fade delay-7 absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-    
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Vinheta Cinematográfica Dinâmica: Garante imersão e contraste supremo no carregamento do título -->
+      <div id="video-overlay" class="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300 bg-gradient-to-t from-brand-obsidian via-brand-obsidian/45 to-brand-obsidian/75 opacity-20"></div>
+
+      <!-- Dica Inicial de Rolagem (Aparece no topo e desaparece suavemente ao rolar) -->
+      <div id="scroll-prompt" class="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none transition-all duration-300 select-none">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/15 mb-3 text-white/90 font-mono text-[10px] sm:text-[11px] tracking-wider uppercase shadow-xl">
+          <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
+          <span data-i18n="scroll_energize">Role a página</span>
+        </div>
         
-        <!-- Coluna de Impacto Tipográfico (7 Colunas) -->
-        <div class="lg:col-span-7 flex flex-col items-start">
+        <!-- Indicador Desktop: Mouse Dinâmico com Chassis Flutuante e Roda de Rolagem Elétrica -->
+        <div class="hidden sm:flex flex-col items-center">
+          <div class="mouse-chassis-anim relative w-5 h-9 rounded-full border border-white/30 bg-black/50 backdrop-blur-md flex items-start justify-center p-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+            <div class="mouse-wheel-anim w-1 h-2 rounded-full bg-brand-yellow shadow-[0_0_8px_#FFE600]"></div>
+          </div>
+        </div>
+
+        <!-- Indicador Mobile: Gesto Tátil de Dedo Arrastando (Swipe Vertical com Trilha de Plasma) -->
+        <div class="flex sm:hidden flex-col items-center">
+          <div class="relative w-8 h-10 flex items-center justify-center">
+            <!-- Linha/Trilha luminosa de arraste vertical -->
+            <div class="finger-trail-anim absolute w-[2px] h-7 -top-2 bg-gradient-to-t from-brand-yellow/80 via-brand-yellow/30 to-transparent rounded-full"></div>
+            <!-- Ponto de toque no topo que pulsa no impacto -->
+            <div class="finger-touch-pulse absolute top-1 w-2.5 h-2.5 rounded-full bg-brand-yellow/30 border border-brand-yellow shadow-[0_0_8px_#FFE600]"></div>
+            <!-- Ícone vetorial da mão com dedo indicador arrastando -->
+            <svg class="finger-drag-anim w-6 h-6 text-white drop-shadow-[0_2px_8px_rgba(255,230,0,0.4)]" 
+                 viewBox="0 0 24 24" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 stroke-width="1.8" 
+                 stroke-linecap="round" 
+                 stroke-linejoin="round">
+              <!-- Dedo indicador estendido para cima -->
+              <path d="M12 11V3a1.5 1.5 0 0 1 3 0v7" />
+              <!-- Demais dedos e dorso da mão -->
+              <path d="M15 10a1.5 1.5 0 0 1 3 0v2a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-3a1.5 1.5 0 0 1 3 0v1" />
+              <!-- Polegar dobrado lateralmente -->
+              <path d="M9 10.5V9a1.5 1.5 0 0 1 3 0" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo Oficial do Hero: Título Residencial e CTAs (Entram com Parallax Escalonado apenas DEPOIS do último frame) -->
+      <div id="hero-content" class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full h-full sm:h-auto flex flex-col justify-between sm:justify-center pt-24 sm:pt-0 pb-16 sm:pb-0 relative z-20 pointer-events-none">
+        
+        <!-- Topo (Céu Estrelado): Badge, Título H1 e Subtítulo Refinado com margem confortável -->
+        <div class="max-w-xl sm:max-w-2xl flex flex-col items-start pointer-events-auto">
           
-          <!-- Badge Técnico Discreto -->
-          <div class="anim-in delay-1 inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-8 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-            <span data-i18n="hero_badge">Valência & Região // Certificado NR-10 & NR-35</span>
+          <!-- Elemento 1: Badge Residencial com Parallax -->
+          <div id="hero-el-badge" class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/10 sm:border-white/15 mb-2.5 sm:mb-4 text-brand-muted font-mono text-[9px] sm:text-[11px] tracking-wider uppercase shadow-xl opacity-0 translate-y-6 will-change-transform">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
+            <span data-i18n="hero_badge">Engenharia Residencial // Valência &amp; Região</span>
           </div>
 
-          <!-- Título H1 Esculpido -->
-          <h1 data-i18n-html="hero_h1" class="anim-in delay-2 font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.06] tracking-[-0.03em] text-white mb-8">
-            Engenharia <span class="text-brand-yellow">Elétrica</span> <br>
-            de <span class="font-light italic text-white/90">Precisão.</span> <br>
-            <span class="text-brand-yellow">Segurança</span> Absoluta <br class="hidden sm:inline">
-            para o seu Imóvel.
+          <!-- Elemento 2: Título H1 Residencial com Parallax -->
+          <h1 id="hero-el-title" data-i18n-html="hero_h1" class="hero-title-shadow font-syne font-bold text-xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-snug sm:leading-[1.14] tracking-[-0.02em] text-white mb-2 sm:mb-4 opacity-0 translate-y-10 will-change-transform max-w-xl">
+            A sua casa precisa de uma <span class="text-brand-yellow">instalação elétrica</span> <br class="hidden sm:inline">
+            à altura da sua <span class="font-light italic text-white/90">segurança e conforto.</span>
           </h1>
 
-          <!-- Subtítulo -->
-          <p data-i18n="hero_sub" class="anim-in delay-3 font-jakarta font-light text-base sm:text-lg text-brand-muted leading-relaxed max-w-xl mb-10">
-            Soluções elétricas de alta performance para residências exclusivas, redes hoteleiras e indústrias em Valência. Da manutenção crítica a painéis sob medida.
+          <!-- Elemento 3: Subtítulo (Reformulado, completo e direto no mobile, detalhado no desktop) -->
+          <p id="hero-el-sub" data-i18n-html="hero_sub" class="hero-title-shadow font-jakarta font-light text-xs sm:text-base text-white/85 leading-relaxed max-w-lg mb-0 sm:mb-7 opacity-0 translate-y-12 will-change-transform">
+            <span class="sm:hidden">Elimine curtos-circuitos, quedas de disjuntor e sobrecargas. Projetos e reformas elétricas com certificação e segurança em Valência.</span>
+            <span class="hidden sm:inline">Evite curtos-circuitos, quedas de disjuntor e sobrecargas invisíveis. Projetamos, reformamos e modernizamos a rede elétrica da sua residência em Valência com precisão absoluta e conformidade normativa.</span>
           </p>
-
-          <!-- CTAs -->
-          <div class="anim-in delay-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-            
-            <a id="hero-cta-whatsapp"
-               href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico." 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01]">
-              <span data-i18n="hero_cta_wa">Solicitar Orçamento</span>
-              <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
-            </a>
-
-            <a href="#especialidades" 
-               class="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-white/80 font-jakarta text-xs font-medium tracking-wider transition-all duration-200 hover:text-white hover:bg-white/[0.04]">
-              <span data-i18n="hero_cta_services">Conhecer Nossos Serviços</span>
-            </a>
-
-          </div>
 
         </div>
 
-
-        <!-- Coluna da Direita: Moldura Fotográfica de Engenharia com Glassmorphism Flutuante -->
-        <div class="anim-right delay-5 lg:col-span-5 relative">
+        <!-- Base (Pista): CTAs de Ação Equilibrados e Elevados da Borda -->
+        <div id="hero-el-ctas" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3.5 w-full sm:w-auto opacity-0 translate-y-10 will-change-transform pointer-events-none max-w-xs sm:max-w-none">
           
-          <div class="relative rounded-3xl overflow-hidden border border-white/[0.12] shadow-2xl group">
-            <!-- Imagem de Engenharia em Alta Definição -->
-            <img src="./assets/images/hero-engenharia.jpg" alt="IberVolt - Engenharia Elétrica de Alta Performance" class="w-full h-[440px] sm:h-[480px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-700">
-            
-            <!-- Vinheta Gradiente com profundidade escura -->
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian via-brand-obsidian/30 to-transparent"></div>
+          <a id="hero-cta-whatsapp"
+             href="#orcamento"
+             class="inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-6 sm:py-3 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.02] shadow-[0_0_25px_rgba(255,230,0,0.35)] w-full sm:w-auto">
+            <span class="sm:hidden font-jakarta font-bold text-xs uppercase tracking-wider" data-i18n="hero_cta_wa_mobile">Solicitar Orçamento</span>
+            <span class="hidden sm:inline font-jakarta font-bold text-xs uppercase tracking-wider" data-i18n="hero_cta_wa">Solicitar Orçamento Residencial</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+          </a>
 
-            <!-- Badge Superior Flutuante -->
-            <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] tracking-wider uppercase">
-              <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-              <span data-i18n="hero_img_badge">Engenharia & Controle // Valência</span>
-            </div>
+          <!-- Botão Secundário Visível no Desktop -->
+          <a href="#especialidades" 
+             class="hidden sm:inline-flex items-center justify-center px-6 py-3 rounded-full text-white/90 font-jakarta text-xs font-medium tracking-wider transition-all duration-200 hover:text-white bg-white/[0.08] hover:bg-white/[0.15] border border-white/10 backdrop-blur-md shadow-lg">
+            <span data-i18n="hero_cta_services">Conhecer Nossos Serviços</span>
+          </a>
 
-            <!-- Card de Glassmorphism Flutuante com Especificações Cirúrgicas -->
-            <div class="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/[0.12] p-4 sm:p-5"
-                 style="background: rgba(13, 13, 14, 0.70); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
-              
-              <div class="flex items-center justify-between mb-2.5 text-[10px] font-mono text-brand-muted uppercase tracking-wider">
-                <span data-i18n="hero_card_normative">CONFORMIDADE NORMATIVA</span>
-                <span class="text-brand-yellow font-medium">REBT // NR-10 // NR-35</span>
-              </div>
+          <!-- Link Secundário Minimalista no Mobile -->
+          <a href="#especialidades" 
+             class="sm:hidden inline-flex items-center justify-center py-1 text-[11px] text-white/60 hover:text-white transition-colors text-center font-jakarta">
+            <span data-i18n="hero_cta_services">Conhecer Nossos Serviços</span>
+            <svg class="w-3.5 h-3.5 ml-1 opacity-70 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </a>
 
-              <div class="grid grid-cols-3 gap-2.5 text-center">
-                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
-                  <div class="font-syne font-bold text-xs sm:text-sm text-white">NR-10</div>
-                  <div data-i18n="hero_card_sec" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Segurança</div>
-                </div>
-                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
-                  <div class="font-syne font-bold text-xs sm:text-sm text-white">NR-35</div>
-                  <div data-i18n="hero_card_alt" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Altura</div>
-                </div>
-                <div class="bg-white/[0.04] p-2 rounded-xl border border-white/[0.06]">
-                  <div class="font-syne font-bold text-xs sm:text-sm text-brand-yellow">100%</div>
-                  <div data-i18n="hero_card_homol" class="font-jakarta text-[10px] text-brand-muted mt-0.5">Homologado</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
         </div>
 
       </div>
     </div>
+
   </section>
 
 
@@ -713,147 +962,357 @@
       <!-- Âncora de Navegação Direta para Painéis -->
       <div id="paineis" class="scroll-mt-28"></div>
 
-      <!-- Navegador Dinâmico (Tabs Minimalistas Estilo Architectural Tech) -->
-      <div class="reveal-on-scroll grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" id="services-tabs" role="tablist" aria-label="Especialidades">
+      <!-- Grade Exclusiva de Serviços em 2 Colunas com Raio Elétrico Realista Central -->
+      <div id="services-wrapper" class="reveal-on-scroll relative w-full my-6">
         
-        <!-- Tab 01 -->
-        <button type="button" 
-                role="tab" 
-                aria-selected="true" 
-                data-tab-index="0"
-                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-white/[0.04] border-brand-yellow/50 shadow-[0_0_20px_rgba(255,230,0,0.08)]">
-          <div class="flex items-center justify-between w-full mb-3">
-            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-yellow font-medium">01</span>
-            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-          </div>
-          <span data-i18n="esp_tab_1" class="tab-title font-syne font-bold text-xs sm:text-sm text-white tracking-tight">
-            Manutenção Preventiva
-          </span>
-        </button>
-
-        <!-- Tab 02 -->
-        <button type="button" 
-                role="tab" 
-                aria-selected="false" 
-                data-tab-index="1"
-                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
-          <div class="flex items-center justify-between w-full mb-3">
-            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">02</span>
-            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
-          </div>
-          <span data-i18n="esp_tab_2" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
-            Reforma & Retrofit
-          </span>
-        </button>
-
-        <!-- Tab 03 -->
-        <button type="button" 
-                role="tab" 
-                aria-selected="false" 
-                data-tab-index="2"
-                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
-          <div class="flex items-center justify-between w-full mb-3">
-            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">03</span>
-            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
-          </div>
-          <span data-i18n="esp_tab_3" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
-            Montagem de Painéis
-          </span>
-        </button>
-
-        <!-- Tab 04 -->
-        <button type="button" 
-                role="tab" 
-                aria-selected="false" 
-                data-tab-index="3"
-                class="service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20">
-          <div class="flex items-center justify-between w-full mb-3">
-            <span class="tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors">04</span>
-            <span class="tab-indicator w-1.5 h-1.5 rounded-full bg-transparent"></span>
-          </div>
-          <span data-i18n="esp_tab_4" class="tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors">
-            Painéis Sob Encomenda
-          </span>
-        </button>
-
-      </div>
-
-      <!-- Display Dinâmico de Alta Precisão (Graphite Glass) -->
-      <div id="service-display" class="reveal-on-scroll card-glass rounded-3xl p-7 sm:p-10 lg:p-12">
-        <div id="service-content-wrapper" class="tab-content-enter grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Canal do Raio Elétrico Realista (Scroll-Driven Realistic Lightning: Zigzag Mobile & Canal Central Desktop) -->
+        <div id="services-lightning-guide" class="flex absolute inset-0 w-full h-full pointer-events-none z-20 select-none md:w-48 md:left-1/2 md:-translate-x-1/2 md:inset-auto md:top-0 md:bottom-0">
           
-          <!-- Coluna 1: Conteúdo Editorial, Setores & CTA (7 Colunas) -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-3 mb-4">
-                <span id="display-tag" class="font-mono text-[11px] tracking-widest text-brand-yellow font-medium">
-                  PILAR 01 // PREVENÇÃO & DIAGNÓSTICO
-                </span>
-              </div>
-
-              <h3 id="display-title" class="font-syne font-bold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight mb-4">
-                Manutenção Preventiva & Corretiva
-              </h3>
-
-              <p id="display-desc" class="font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
-                Identificação antecipada de anomalias elétricas, eliminação de sobrecargas e diagnóstico preventivo contínuo para evitar paradas operacionais e incidentes elétricos.
-              </p>
-
-              <!-- Chips de Aplicações Principais -->
-              <div class="mb-8">
-                <span data-i18n="esp_app_label" class="font-mono text-[10px] tracking-wider text-brand-muted/70 uppercase block mb-2.5">
-                  Aplicações Principais:
-                </span>
-                <div id="display-sectors" class="flex flex-wrap gap-2">
-                  <!-- Injetado dinamicamente -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Botão de Ação Direta -->
-            <div>
-              <a id="display-cta" 
-                 href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20sobre%20o%20servi%C3%A7o%20de%20Manuten%C3%A7%C3%A3o%20Preventiva%20e%20Corretiva%20em%20Val%C3%AAncia." 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01]">
-                <span id="display-cta-text">Consultar Manutenção no WhatsApp</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Coluna 2: Imagem Técnica Real & Destaques de Engenharia (5 Colunas) -->
-          <div class="lg:col-span-5 flex flex-col gap-4">
+          <!-- Canal Livre e Contínuo -->
+          <div class="relative w-full h-full flex items-center justify-center">
             
-            <!-- Moldura da Imagem com Glassmorphism e Vinheta -->
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-brand-card border border-white/10 group">
-              <img id="display-image" 
-                   src="./assets/images/projeto-termografia.jpg" 
-                   alt="Manutenção Preventiva" 
-                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              
-              <!-- Gradiente de profundidade -->
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian/90 via-transparent to-transparent"></div>
-              
-              <!-- Selo Flutuante sobre a Foto -->
-              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                <span id="display-image-tag" class="font-mono text-[10px] tracking-wider text-white/90 bg-brand-obsidian/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                  Inspeção Termográfica // Fluke Ti480
-                </span>
-                <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
-              </div>
-            </div>
+            <!-- Linha Guia Translúcida Sutil de Fundo (Apenas Desktop) -->
+            <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-brand-yellow/30 via-white/10 to-brand-yellow/30 opacity-40"></div>
+            <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[16px] bg-brand-yellow/[0.03] blur-md"></div>
 
-            <!-- Micro-especificações Técnicas -->
-            <div id="display-specs" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <!-- Injetado dinamicamente -->
+            <!-- Canvas de Alta Resolução do Raio Realista (Arcos Fractais, Ramificações e Fagulhas Vivas) -->
+            <canvas id="lightning-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+            <!-- Ponto de Impacto / Centelha Incandescente do Raio (Pura Energia Elétrica) -->
+            <div id="lightning-spark-head" class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 transition-none flex items-center justify-center pointer-events-none" style="top: 0%;">
+              <!-- Flare Radiante de Plasma e Halo Eletromagnético -->
+              <div class="absolute w-24 h-24 rounded-full bg-brand-yellow/35 blur-xl animate-pulse"></div>
+              <div class="absolute w-12 h-12 rounded-full bg-white/50 blur-md"></div>
+              <!-- Ondas de Choque Elétricas Finas e Rápidas -->
+              <div class="absolute w-10 h-10 rounded-full border border-brand-yellow animate-ping opacity-75"></div>
+              <div class="absolute w-6 h-6 rounded-full border border-white animate-pulse opacity-90"></div>
+              <!-- Núcleo Incandescente de Plasma Puro (10.000K, Branco Puro) -->
+              <div class="relative w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_15px_#FFFFFF,0_0_30px_#FFE600,0_0_55px_#FFE600]"></div>
             </div>
 
           </div>
 
         </div>
+
+        <!-- Grade de 2 Colunas com Espaçamento Amplo no Meio -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-10 lg:gap-y-12 px-3.5 sm:px-0" id="services-grid">
+        
+        <!-- Serviço 01: Manutenção Preventiva & Corretiva -->
+        <div class="service-card group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-white/[0.08] bg-[#0c0c0e]/95 hover:bg-[#111114] hover:border-brand-yellow/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(255,230,0,0.12)] cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-yellow/60 technical-card-grid mx-1.5 sm:mx-0"
+             role="button" 
+             tabindex="0" 
+             aria-haspopup="dialog"
+             data-service-index="0"
+             onclick="openServiceModal(0)">
+          
+          <!-- Cantoneiras de Precisão Industrial nos Cantos (Sutis) -->
+          <div class="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+          <div class="absolute top-3 right-3 w-2.5 h-2.5 border-t-2 border-r-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+
+          <div>
+            <!-- Barra Superior Técnica Minimalista -->
+            <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.06] text-[11px] font-mono">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
+                <span class="font-bold text-brand-yellow tracking-wider">SYS.01 // DIAG</span>
+              </div>
+              <span class="text-white/40 text-[10px] tracking-wider uppercase font-medium">
+                ATIVO // REBT
+              </span>
+            </div>
+
+            <!-- Imagem Panorâmica Técnica com Parallax e Mira Óptica Limpa -->
+            <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
+              <img src="./assets/images/projeto-termografia.jpg" 
+                   alt="Manutenção Preventiva & Corretiva" 
+                   class="parallax-card-img">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+              
+              <!-- Mira Óptica e Tag Técnica Limpa -->
+              <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3 h-3 text-brand-yellow"></i>
+                <span id="service-card-tag-0">01 // PREVENÇÃO</span>
+              </div>
+
+              <div class="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 group-hover:text-black group-hover:bg-brand-yellow transition-all duration-300 shadow-md">
+                <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+            </div>
+
+            <!-- Título e Descrição de Engenharia -->
+            <h3 id="service-card-title-0" class="font-syne font-bold text-lg sm:text-2xl text-white group-hover:text-brand-yellow transition-colors tracking-tight leading-snug mb-2">
+              Manutenção Preventiva &amp; Corretiva
+            </h3>
+            <p id="service-card-desc-0" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+              Inspeção termográfica preditiva de alta resolução, detecção antecipada de aquecimento anômalo, balanceamento de fases e eliminação de sobrecargas em quadros elétricos de potência.
+            </p>
+
+            <!-- Matriz de Especificações Técnicas Minimalista -->
+            <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-4 text-[11px] font-mono text-white/75">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Termografia FLIR® HD</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Pontos Críticos ΔT &gt; 15°C</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Análise de Harmônicas</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Laudo Técnico ART / REBT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rodapé Executivo do Card -->
+          <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+            <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
+              <span data-i18n="service_view_details">Especificações Técnicas</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
+            </span>
+            <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
+              RESPOSTA &lt; 2H
+            </span>
+          </div>
+        </div>
+
+        <!-- Serviço 02: Reforma de Instalações Elétricas -->
+        <div class="service-card group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-white/[0.08] bg-[#0c0c0e]/95 hover:bg-[#111114] hover:border-brand-yellow/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(255,230,0,0.12)] cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-yellow/60 technical-card-grid mx-1.5 sm:mx-0"
+             role="button" 
+             tabindex="0" 
+             aria-haspopup="dialog"
+             data-service-index="1"
+             onclick="openServiceModal(1)">
+          
+          <div class="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+          <div class="absolute top-3 right-3 w-2.5 h-2.5 border-t-2 border-r-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.06] text-[11px] font-mono">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
+                <span class="font-bold text-brand-yellow tracking-wider">SYS.02 // RETRO</span>
+              </div>
+              <span class="text-white/40 text-[10px] tracking-wider uppercase font-medium">
+                ATIVO // ITC-BT
+              </span>
+            </div>
+
+            <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
+              <img src="./assets/images/projeto-residencial.jpg" 
+                   alt="Reforma de Instalações Elétricas" 
+                   class="parallax-card-img">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+              
+              <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3 h-3 text-brand-yellow"></i>
+                <span id="service-card-tag-1">02 // RETROFIT</span>
+              </div>
+
+              <div class="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 group-hover:text-black group-hover:bg-brand-yellow transition-all duration-300 shadow-md">
+                <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+            </div>
+
+            <h3 id="service-card-title-1" class="font-syne font-bold text-lg sm:text-2xl text-white group-hover:text-brand-yellow transition-colors tracking-tight leading-snug mb-2">
+              Reforma de Instalações Elétricas
+            </h3>
+            <p id="service-card-desc-1" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+              Retrofit total de prumadas e quadros obsoletos em residências, condomínios e imóveis de alto padrão. Condutores anti-chama LSHF e dispositivos superimunizados classe A.
+            </p>
+
+            <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-4 text-[11px] font-mono text-white/75">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Cabos LSHF Anti-Chama</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Diferenciais Superimunizados</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Retrofit Sem Demolições</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Boletim Oficial CIE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+            <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
+              <span data-i18n="service_view_details">Especificações Técnicas</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
+            </span>
+            <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
+              GARANTIA 5 ANOS
+            </span>
+          </div>
+        </div>
+
+        <!-- Serviço 03: Montagem & Reforma de Painéis -->
+        <div class="service-card group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-white/[0.08] bg-[#0c0c0e]/95 hover:bg-[#111114] hover:border-brand-yellow/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(255,230,0,0.12)] cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-yellow/60 technical-card-grid mx-1.5 sm:mx-0"
+             role="button" 
+             tabindex="0" 
+             aria-haspopup="dialog"
+             data-service-index="2"
+             onclick="openServiceModal(2)">
+          
+          <div class="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+          <div class="absolute top-3 right-3 w-2.5 h-2.5 border-t-2 border-r-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.06] text-[11px] font-mono">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
+                <span class="font-bold text-brand-yellow tracking-wider">SYS.03 // PANEL</span>
+              </div>
+              <span class="text-white/40 text-[10px] tracking-wider uppercase font-medium">
+                CERTIFICADO // TTA
+              </span>
+            </div>
+
+            <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
+              <img src="./assets/images/projeto-painel.jpg" 
+                   alt="Montagem & Reforma de Painéis" 
+                   class="parallax-card-img">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+              
+              <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3 h-3 text-brand-yellow"></i>
+                <span id="service-card-tag-2">03 // MONTAGEM</span>
+              </div>
+
+              <div class="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 group-hover:text-black group-hover:bg-brand-yellow transition-all duration-300 shadow-md">
+                <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+            </div>
+
+            <h3 id="service-card-title-2" class="font-syne font-bold text-lg sm:text-2xl text-white group-hover:text-brand-yellow transition-colors tracking-tight leading-snug mb-2">
+              Montagem &amp; Reforma de Painéis
+            </h3>
+            <p id="service-card-desc-2" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+              Estruturação milimétrica de quadros gerais e de distribuição (QDLF). Barramentos em cobre eletrolítico estanhado Cu-ETP, proteção DPS combinada e coordenação seletiva integral.
+            </p>
+
+            <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-4 text-[11px] font-mono text-white/75">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Barramentos até 1600A</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">DPS Coordenado I+II</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Disjuntores Caixa Moldada</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Norma UNE-EN 61439</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+            <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
+              <span data-i18n="service_view_details">Especificações Técnicas</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
+            </span>
+            <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
+              SCHNEIDER // ABB
+            </span>
+          </div>
+        </div>
+
+        <!-- Serviço 04: Venda de Painéis Sob Encomenda -->
+        <div class="service-card group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-white/[0.08] bg-[#0c0c0e]/95 hover:bg-[#111114] hover:border-brand-yellow/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(255,230,0,0.12)] cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-yellow/60 technical-card-grid mx-1.5 sm:mx-0"
+             role="button" 
+             tabindex="0" 
+             aria-haspopup="dialog"
+             data-service-index="3"
+             onclick="openServiceModal(3)">
+          
+          <div class="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+          <div class="absolute top-3 right-3 w-2.5 h-2.5 border-t-2 border-r-2 border-brand-yellow/30 group-hover:border-brand-yellow transition-colors pointer-events-none"></div>
+
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.06] text-[11px] font-mono">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
+                <span class="font-bold text-brand-yellow tracking-wider">SYS.04 // OEM</span>
+              </div>
+              <span class="text-white/40 text-[10px] tracking-wider uppercase font-medium">
+                ENGENHARIA 3D
+              </span>
+            </div>
+
+            <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
+              <img src="./assets/images/projeto-fabricacao.jpg" 
+                   alt="Venda de Painéis Sob Encomenda" 
+                   class="parallax-card-img">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+              
+              <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3 h-3 text-brand-yellow"></i>
+                <span id="service-card-tag-3">04 // SOB ENCOMENDA</span>
+              </div>
+
+              <div class="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 group-hover:text-black group-hover:bg-brand-yellow transition-all duration-300 shadow-md">
+                <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+            </div>
+
+            <h3 id="service-card-title-3" class="font-syne font-bold text-lg sm:text-2xl text-white group-hover:text-brand-yellow transition-colors tracking-tight leading-snug mb-2">
+              Venda de Painéis Sob Encomenda
+            </h3>
+            <p id="service-card-desc-3" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+              Projetos executivos integrados com modelagem térmica 3D e cálculo de curto-circuito (Icw). Montagens personalizadas de 40A a 2500A com ensaios individuais em bancada de testes.
+            </p>
+
+            <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-4 text-[11px] font-mono text-white/75">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Engenharia EPLAN / CAD</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Testes Rigidez 2.5kV</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Quadros 40A a 2500A</span>
+              </div>
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
+                <span class="truncate">Esquema As-Built</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+            <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
+              <span data-i18n="service_view_details">Especificações Técnicas</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
+            </span>
+            <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
+              BANCADA 100% OK
+            </span>
+          </div>
+        </div>
+
       </div>
+      <!-- Fim de #services-grid -->
+
+    </div>
+    <!-- Fim de #services-wrapper -->
 
       <!-- Faixa Discreta de Conformidade Técnica -->
       <div class="reveal-on-scroll mt-8 rounded-2xl border border-white/[0.06] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
@@ -868,9 +1327,7 @@
         </div>
 
         <a id="esp-engineer-contact-btn"
-           href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20diretamente%20com%20um%20engenheiro%20da%20IberVolt."
-           target="_blank"
-           rel="noopener noreferrer"
+           href="#orcamento"
            class="inline-flex items-center gap-2 font-mono text-xs text-brand-yellow hover:text-white transition-colors shrink-0">
           <span data-i18n="esp_banner_btn">Contato com Engenheiro</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5 stroke-[2.2]"></i>
@@ -914,7 +1371,7 @@
       </div>
 
       <!-- Grid Principal: Os 3 Pilares Normativos Oficiais (Sem Imagens - Design de Engenharia & Console) -->
-      <div id="cert-cards-grid" class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div id="cert-cards-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- Bloco 01: NR-10 (Mobile: desliza da esquerda para o meio) -->
         <div class="card-glass cert-card-slide slide-from-left rounded-3xl p-7 sm:p-8 flex flex-col justify-between group relative overflow-hidden">
@@ -1321,7 +1778,7 @@
         <!-- ========================================================
              COLUNA 2: FORMULÁRIO DE PRÉ-AVALIAÇÃO & CONVERSÃO (5 Colunas)
              ======================================================== -->
-        <div class="reveal-on-scroll lg:col-span-5 card-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10">
+        <div id="orcamento" class="reveal-on-scroll lg:col-span-5 card-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-all duration-500">
           
           <div>
             <!-- Header do Formulário -->
@@ -1659,7 +2116,7 @@
             <div class="space-y-3.5 font-jakarta text-xs">
               <div>
                 <span data-i18n="footer_dir_wa" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Plantão WhatsApp:</span>
-                <a href="https://wa.me/34605555686" target="_blank" rel="noopener noreferrer" class="font-mono text-white hover:text-brand-yellow transition-colors font-medium text-xs sm:text-sm block">
+                <a href="#orcamento" class="font-mono text-white hover:text-brand-yellow transition-colors font-medium text-xs sm:text-sm block">
                   +34 605 55 56 86
                 </a>
               </div>
@@ -1678,9 +2135,7 @@
 
           <div class="pt-5 mt-5 border-t border-white/[0.06]">
             <a id="footer-chat-btn"
-               href="https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico." 
-               target="_blank" 
-               rel="noopener noreferrer" 
+               href="#orcamento"
                class="w-full py-2.5 px-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-brand-yellow/50 text-white hover:text-brand-yellow font-mono text-[11px] flex items-center justify-center gap-2 transition-all duration-200">
               <i data-lucide="message-square" class="w-3.5 h-3.5 text-brand-yellow"></i>
               <span data-i18n="footer_btn_chat">Iniciar Chat</span>
@@ -1702,9 +2157,9 @@
           <span data-i18n="footer_rebt_sub" class="font-mono text-[10px] text-brand-muted/80">Conformidade REBT &amp; Regulamentações Locais</span>
         </div>
 
-        <!-- Botão Inovador: Voltar ao Topo -->
+        <!-- Botão Inovador: Voltar ao Topo (Leva para a Home Energizada) -->
         <button type="button" 
-                onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                onclick="if(typeof window.scrollToHomeEnergized==='function'){window.scrollToHomeEnergized(true);}else{window.scrollTo({top:0,behavior:'smooth'});}" 
                 class="back-to-top-btn inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 hover:border-brand-yellow/40 hover:bg-white/[0.06] text-white hover:text-brand-yellow font-mono text-xs transition-all duration-300 cursor-pointer group"
                 title="Voltar ao início da página">
           <span data-i18n="footer_back_top">Voltar ao Topo</span>
@@ -1718,6 +2173,137 @@
     </div>
 
   </footer>
+
+  <!-- ==========================================
+       MODAL / POPUP DE DETALHES DO SERVIÇO
+       ========================================== -->
+  <div id="service-modal" 
+       class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300"
+       role="dialog" 
+       aria-modal="true" 
+       aria-labelledby="modal-service-title">
+    
+    <!-- Backdrop com Blur e Escurecimento -->
+    <div id="service-modal-backdrop" 
+         onclick="closeServiceModal()"
+         class="absolute inset-0 bg-black/85 backdrop-blur-md transition-opacity duration-300 cursor-pointer"></div>
+
+    <!-- Container do Modal -->
+    <div id="service-modal-card" 
+         class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-brand-obsidian border border-white/15 p-6 sm:p-8 lg:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 transform scale-95 transition-all duration-300">
+      
+      <!-- Botão Fechar -->
+      <button type="button" 
+              id="service-modal-close" 
+              onclick="closeServiceModal()"
+              aria-label="Fechar detalhes" 
+              class="absolute top-5 right-5 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-brand-yellow hover:text-black text-white/80 border border-white/10 hover:border-brand-yellow transition-all duration-200 flex items-center justify-center z-20 cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5 stroke-[2.2]"></i>
+      </button>
+
+      <!-- Cabeçalho do Modal -->
+      <div class="pr-12 mb-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
+          <span id="modal-service-tag" class="font-mono text-xs tracking-widest text-brand-yellow uppercase font-semibold">
+            PILAR 01 // PREVENÇÃO &amp; DIAGNÓSTICO
+          </span>
+        </div>
+        <h3 id="modal-service-title" class="font-syne font-bold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+          Manutenção Preventiva &amp; Corretiva
+        </h3>
+      </div>
+
+      <!-- Grade de Conteúdo do Modal (2 Colunas) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        
+        <!-- Coluna Esquerda: Descrição, Aplicações e CTA -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div>
+            <p id="modal-service-desc" class="font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
+              Identificação antecipada de anomalias elétricas, eliminação de sobrecargas e diagnóstico térmico contínuo para evitar paradas operacionais e incidentes elétricos.
+            </p>
+
+            <!-- Aplicações Principais -->
+            <div class="mb-6">
+              <span data-i18n="modal_sectors_label" class="font-mono text-[10px] tracking-wider text-brand-muted/70 uppercase block mb-2.5 font-medium">
+                Aplicações Principais:
+              </span>
+              <div id="modal-service-sectors" class="flex flex-wrap gap-2">
+                <!-- Injetado dinamicamente -->
+              </div>
+            </div>
+
+            <!-- Faixa de Garantia / Conformidade -->
+            <div class="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center text-brand-yellow shrink-0">
+                <i data-lucide="shield-check" class="w-4 h-4 stroke-[2]"></i>
+              </div>
+              <span data-i18n="modal_compliance_label" class="font-jakarta text-xs text-white/70 leading-snug">
+                Execução sob o regulamento REBT (RD 842/2002) e normas de segurança NR-10 &amp; NR-35.
+              </span>
+            </div>
+          </div>
+
+          <!-- Botão WhatsApp com Redirecionamento Direto para o Formulário de Orçamento -->
+          <div>
+            <a id="modal-service-cta" 
+               href="#orcamento" 
+               class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.02] shadow-[0_0_25px_rgba(255,230,0,0.3)]">
+              <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
+              </svg>
+              <span id="modal-service-cta-text">Solicitar Orçamento</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Foto Real e Especificações Técnicas -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-brand-card border border-white/10">
+            <img id="modal-service-image" 
+                 src="./assets/images/projeto-termografia.jpg" 
+                 alt="Foto Técnica do Serviço" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian/90 via-transparent to-transparent"></div>
+            
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+              <span id="modal-service-image-tag" class="font-mono text-[10px] tracking-wider text-white/90 bg-brand-obsidian/85 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                Inspeção Termográfica // Fluke Ti480
+              </span>
+              <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+            </div>
+          </div>
+
+          <div id="modal-service-specs" class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2.5">
+            <!-- Injetado dinamicamente -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navegação Entre Serviços no Rodapé do Modal -->
+      <div class="mt-8 pt-5 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono text-brand-muted">
+        <button type="button" 
+                id="modal-prev-service" 
+                class="hover:text-brand-yellow transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-brand-yellow/30 cursor-pointer">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span data-i18n="modal_prev_btn">Anterior</span>
+        </button>
+        <span id="modal-service-counter" class="text-white/60 tracking-widest font-semibold">
+          01 / 04
+        </span>
+        <button type="button" 
+                id="modal-next-service" 
+                class="hover:text-brand-yellow transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-brand-yellow/30 cursor-pointer">
+          <span data-i18n="modal_next_btn">Próximo</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
 
 
   <!-- Script de Inicialização, Internacionalização (i18n) e Interações -->
@@ -1750,27 +2336,24 @@
         nav_hotline_label: "Plantão Direto:",
         mobile_lang_label: "Idioma / Lenguaje:",
         
-        // Hero
-        hero_badge: "Valência & Região // Certificado NR-10 & NR-35",
-        hero_h1: "Engenharia <span class=\"text-brand-yellow\">Elétrica</span> <br> de <span class=\"font-light italic text-white/90\">Precisão.</span> <br> <span class=\"text-brand-yellow\">Segurança</span> Absoluta <br class=\"hidden sm:inline\"> para o seu Imóvel.",
-        hero_sub: "Soluções elétricas de alta performance para residências exclusivas, redes hoteleiras e indústrias em Valência. Da manutenção crítica a painéis sob medida.",
-        hero_cta_wa: "Solicitar Orçamento",
+        // Hero & Scroll Video Sequence
+        scroll_energize: "Role a página",
+        hero_badge: "Engenharia Residencial // Valência & Região",
+        hero_h1: "A sua casa precisa de uma <span class=\"text-brand-yellow\">instalação elétrica</span> <br class=\"hidden sm:inline\"> à altura da sua <span class=\"font-light italic text-white/90\">segurança e conforto.</span>",
+        hero_sub: "<span class=\"sm:hidden\">Elimine curtos-circuitos, quedas de disjuntor e sobrecargas. Projetos e reformas elétricas com certificação e segurança em Valência.</span><span class=\"hidden sm:inline\">Evite curtos-circuitos, quedas de disjuntor e sobrecargas invisíveis. Projetamos, reformamos e modernizamos a rede elétrica da sua residência em Valência com precisão absoluta e conformidade normativa.</span>",
+        hero_cta_wa: "Solicitar Orçamento Residencial",
+        hero_cta_wa_mobile: "Solicitar Orçamento",
         hero_cta_services: "Conhecer Nossos Serviços",
-        hero_img_badge: "Engenharia & Controle // Valência",
-        hero_card_normative: "CONFORMIDADE NORMATIVA",
-        hero_card_sec: "Segurança",
-        hero_card_alt: "Altura",
-        hero_card_homol: "Homologado",
 
-        // Especialidades
+        // Especialidades & Serviços
         esp_badge: "02 // Pilares de Atuação Técnica",
         esp_h2: "Engenharia Aplicada com <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> e Precisão.",
-        esp_sub: "Selecione uma especialidade abaixo para visualizar o escopo técnico e aplicações na região de Valência.",
-        esp_tab_1: "Manutenção Preventiva",
-        esp_tab_2: "Reforma & Retrofit",
-        esp_tab_3: "Montagem de Painéis",
-        esp_tab_4: "Painéis Sob Encomenda",
-        esp_app_label: "Aplicações Principais:",
+        esp_sub: "Conheça nossas soluções especializadas em engenharia elétrica. Clique em qualquer serviço para visualizar as especificações técnicas completas.",
+        service_view_details: "Ver Especificações",
+        modal_prev_btn: "Anterior",
+        modal_next_btn: "Próximo",
+        modal_sectors_label: "Aplicações Principais:",
+        modal_compliance_label: "Execução sob o regulamento REBT (RD 842/2002) e normas de segurança NR-10 & NR-35.",
         esp_banner_text: "Em conformidade integral com o <strong class=\"text-white font-medium\">REBT</strong> e certificações de segurança <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> em Valência.",
         esp_banner_btn: "Contato com Engenheiro",
 
@@ -1908,27 +2491,24 @@
         nav_hotline_label: "Guardia Directa:",
         mobile_lang_label: "Idioma / Lenguaje:",
         
-        // Hero
-        hero_badge: "Valencia y Región // Certificado REBT & Normativas",
-        hero_h1: "Ingeniería <span class=\"text-brand-yellow\">Eléctrica</span> <br> de <span class=\"font-light italic text-white/90\">Precisión.</span> <br> <span class=\"text-brand-yellow\">Seguridad</span> Absoluta <br class=\"hidden sm:inline\"> para su Inmueble.",
-        hero_sub: "Soluciones eléctricas de alto rendimiento para residencias exclusivas, cadenas hoteleras e industrias en Valencia. Desde el mantenimiento crítico hasta cuadros a medida.",
-        hero_cta_wa: "Solicitar Presupuesto",
+        // Hero & Scroll Video Sequence
+        scroll_energize: "Deslice la página",
+        hero_badge: "Ingeniería Residencial // Valencia y Región",
+        hero_h1: "Su hogar necesita una <span class=\"text-brand-yellow\">instalación eléctrica</span> <br class=\"hidden sm:inline\"> a la altura de su <span class=\"font-light italic text-white/90\">seguridad y confort.</span>",
+        hero_sub: "<span class=\"sm:hidden\">Elimine cortocircuitos, caídas de tensión y sobrecargas. Reformas y proyectos eléctricos certificados en Valencia.</span><span class=\"hidden sm:inline\">Evite cortocircuitos, caídas de tensión y riesgos invisibles. Diseñamos, reformamos y modernizamos la red eléctrica de su vivienda en Valencia con máxima precisión técnica y normativa REBT.</span>",
+        hero_cta_wa: "Solicitar Presupuesto Residencial",
+        hero_cta_wa_mobile: "Pedir Presupuesto",
         hero_cta_services: "Conocer Nuestros Servicios",
-        hero_img_badge: "Ingeniería & Control // Valencia",
-        hero_card_normative: "CONFORMIDAD NORMATIVA",
-        hero_card_sec: "Seguridad",
-        hero_card_alt: "Altura",
-        hero_card_homol: "Homologado",
 
-        // Especialidades
+        // Especialidades & Serviços
         esp_badge: "02 // Pilares de Actuación Técnica",
         esp_h2: "Ingeniería Aplicada con <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> y Precisión.",
-        esp_sub: "Seleccione una especialidad a continuación para visualizar el alcance técnico y las aplicaciones en la región de Valencia.",
-        esp_tab_1: "Mantenimiento Preventivo",
-        esp_tab_2: "Reforma & Retrofit",
-        esp_tab_3: "Montaje de Cuadros",
-        esp_tab_4: "Cuadros por Encargo",
-        esp_app_label: "Aplicaciones Principales:",
+        esp_sub: "Conozca nuestras soluciones especializadas en ingeniería eléctrica. Haga clic en cualquier servicio para ver las especificaciones técnicas completas.",
+        service_view_details: "Ver Especificaciones",
+        modal_prev_btn: "Anterior",
+        modal_next_btn: "Siguiente",
+        modal_sectors_label: "Aplicaciones Principales:",
+        modal_compliance_label: "Ejecución bajo el reglamento REBT (RD 842/2002) y normativas de seguridad NR-10 & NR-35.",
         esp_banner_text: "En plena conformidad con el <strong class=\"text-white font-medium\">REBT</strong> y certificaciones de seguridad <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> en Valencia.",
         esp_banner_btn: "Contacto con Ingeniero",
 
@@ -2066,27 +2646,24 @@
         nav_hotline_label: "Direct Technical Line:",
         mobile_lang_label: "Language:",
         
-        // Hero
-        hero_badge: "Valencia & Region // REBT Certified & Safety Standards",
-        hero_h1: "Precision <span class=\"text-brand-yellow\">Electrical</span> <br> <span class=\"font-light italic text-white/90\">Engineering.</span> <br> Absolute <span class=\"text-brand-yellow\">Safety</span> <br class=\"hidden sm:inline\"> for Your Facility.",
-        hero_sub: "High-performance electrical solutions for luxury residences, hotel chains, and industrial facilities in Valencia. From critical maintenance to bespoke distribution panels.",
-        hero_cta_wa: "Request a Quote",
+        // Hero & Scroll Video Sequence
+        scroll_energize: "Scroll the page",
+        hero_badge: "Residential Engineering // Valencia & Region",
+        hero_h1: "Your home deserves an <span class=\"text-brand-yellow\">electrical installation</span> <br class=\"hidden sm:inline\"> built for absolute <span class=\"font-light italic text-white/90\">safety and comfort.</span>",
+        hero_sub: "<span class=\"sm:hidden\">Prevent short circuits, breaker trips, and hazards. Certified electrical upgrades and rewiring in Valencia.</span><span class=\"hidden sm:inline\">Prevent short circuits, breaker trips, and hidden hazards. We design, rewire, and upgrade residential electrical systems in Valencia with certified engineering standards.</span>",
+        hero_cta_wa: "Request a Residential Quote",
+        hero_cta_wa_mobile: "Request a Quote",
         hero_cta_services: "Explore Our Services",
-        hero_img_badge: "Engineering & Control // Valencia",
-        hero_card_normative: "NORMATIVE COMPLIANCE",
-        hero_card_sec: "Safety",
-        hero_card_alt: "Work at Height",
-        hero_card_homol: "Certified",
 
-        // Especialidades
+        // Especialidades & Serviços
         esp_badge: "02 // Technical Pillars",
         esp_h2: "Applied Engineering with <br> <span class=\"font-light italic text-white/90\">Regulatory Rigor</span> and Precision.",
-        esp_sub: "Select a specialty below to view technical scope and field applications across the Valencia region.",
-        esp_tab_1: "Preventive Maintenance",
-        esp_tab_2: "Retrofit & Rewiring",
-        esp_tab_3: "Panel Assembly",
-        esp_tab_4: "Custom Panels",
-        esp_app_label: "Key Applications:",
+        esp_sub: "Explore our specialized electrical engineering solutions. Click on any service to view complete technical specifications.",
+        service_view_details: "View Specifications",
+        modal_prev_btn: "Previous",
+        modal_next_btn: "Next",
+        modal_sectors_label: "Key Applications:",
+        modal_compliance_label: "Execution in full compliance with REBT (RD 842/2002) and certified safety standards NR-10 & NR-35.",
         esp_banner_text: "In full compliance with <strong class=\"text-white font-medium\">REBT</strong> regulations and certified safety protocols <strong class=\"text-white font-medium\">NR-10 & NR-35</strong> in Valencia.",
         esp_banner_btn: "Contact an Engineer",
 
@@ -2212,11 +2789,13 @@
     const servicesDataByLang = {
       pt: [
         {
+          cardTag: "01 // PREVENÇÃO",
           tag: "PILAR 01 // PREVENÇÃO & DIAGNÓSTICO",
           title: "Manutenção Preventiva & Corretiva",
+          shortDesc: "Inspeção termográfica de ponta, detecção de aquecimento anormal e eliminação de sobrecargas em quadros elétricos.",
           desc: "Identificação antecipada de anomalias elétricas, eliminação de sobrecargas e diagnóstico térmico contínuo para evitar paradas operacionais e incidentes elétricos.",
-          ctaText: "Consultar Manutenção no WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20sobre%20o%20servi%C3%A7o%20de%20Manuten%C3%A7%C3%A3o%20Preventiva%20e%20Corretiva%20em%20Val%C3%AAncia.",
+          ctaText: "Solicitar Orçamento",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-termografia.jpg",
           imageTag: "Inspeção Termográfica // Fluke Ti480",
           sectors: ["Redes Hoteleiras", "Condomínios", "Indústrias", "Comércio"],
@@ -2227,11 +2806,13 @@
           ]
         },
         {
+          cardTag: "02 // RETROFIT",
           tag: "PILAR 02 // RETROFIT & MODERNIZAÇÃO",
           title: "Reforma de Instalações Elétricas",
+          shortDesc: "Modernização completa de fiações e quadros obsoletos em residências, condomínios e imóveis de alto padrão.",
           desc: "Modernização completa de fiações e quadros obsoletos em residências, imóveis turísticos (Airbnb), estabelecimentos comerciais e edificações históricas.",
-          ctaText: "Solicitar Reforma no WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20para%20Reforma%20de%20Instala%C3%A7%C3%B5es%20El%C3%A9tricas%20em%20Val%C3%AAncia.",
+          ctaText: "Solicitar Orçamento",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-residencial.jpg",
           imageTag: "Retrofit de Luxo // Valência",
           sectors: ["Pisos Históricos", "Airbnb", "Colégios", "Restaurantes"],
@@ -2242,11 +2823,13 @@
           ]
         },
         {
+          cardTag: "03 // MONTAGEM",
           tag: "PILAR 03 // QUADROS DE DISTRIBUIÇÃO",
           title: "Montagem & Reforma de Painéis",
+          shortDesc: "Estruturação milimétrica de quadros QDLF com dispositivos superimunizados, proteção DPS e barramentos certificados.",
           desc: "Estruturação milimétrica de quadros de distribuição (QDLF) para ambientes residenciais, comerciais e industriais sob os mais rigorosos padrões normativos.",
-          ctaText: "Orçar Montagem no WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20Montagem%20ou%20Reforma%20de%20Painel%20El%C3%A9trico%20em%20Val%C3%AAncia.",
+          ctaText: "Solicitar Orçamento",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-painel.jpg",
           imageTag: "Montagem QDLF 250A // REBT",
           sectors: ["Residencial Nobre", "Hotéis", "Unidades Comerciais"],
@@ -2257,11 +2840,13 @@
           ]
         },
         {
+          cardTag: "04 // SOB ENCOMENDA",
           tag: "PILAR 04 // FABRICAÇÃO CUSTOMIZADA",
           title: "Venda de Painéis Sob Encomenda",
+          shortDesc: "Projetos executivos e montagens sob medida de quadros elétricos customizados com componentes homologados Schneider, ABB e Siemens.",
           desc: "Projetos executivos e montagens sob medida de quadros elétricos customizados segundo a especificação de carga, dimensões arquitetônicas e demandas operacionais.",
-          ctaText: "Encomendar Painel no WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=Ol%C3%A1!%20Tenho%20especifica%C3%A7%C3%B5es%20para%20Fabrica%C3%A7%C3%A3o%20de%20Painel%20El%C3%A9trico%20Sob%20Encomenda.",
+          ctaText: "Solicitar Orçamento",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-fabricacao.jpg",
           imageTag: "Fabricação Customizada // Bancada Técnica",
           sectors: ["Indústrias", "Construtoras", "Projetistas & Automação"],
@@ -2274,11 +2859,13 @@
       ],
       es: [
         {
+          cardTag: "01 // PREVENCIÓN",
           tag: "PILAR 01 // PREVENCIÓN & DIAGNÓSTICO",
           title: "Mantenimiento Preventivo & Correctivo",
+          shortDesc: "Inspección termográfica avanzada, detección de calor anómalo en interruptores y eliminación de sobrecargas.",
           desc: "Identificación anticipada de anomalías eléctricas, eliminación de sobrecargas y diagnóstico térmico continuo para evitar paradas operativas e incidentes eléctricos.",
-          ctaText: "Consultar Mantenimiento en WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría consultar sobre el servicio de Mantenimiento Preventivo y Correctivo en Valencia."),
+          ctaText: "Solicitar Presupuesto",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-termografia.jpg",
           imageTag: "Inspección Termográfica // Fluke Ti480",
           sectors: ["Cadenas Hoteleras", "Comunidades", "Industrias", "Comercio"],
@@ -2289,11 +2876,13 @@
           ]
         },
         {
+          cardTag: "02 // RETROFIT",
           tag: "PILAR 02 // RETROFIT & MODERNIZACIÓN",
           title: "Reforma de Instalaciones Eléctricas",
+          shortDesc: "Modernización integral de cableado y cuadros obsoletos en viviendas, comunidades y locales comerciales bajo REBT.",
           desc: "Modernización integral de cableado y cuadros obsoletos en viviendas de alto standing, pisos turísticos (Airbnb), locales comerciales y edificios protegidos.",
-          ctaText: "Solicitar Reforma en WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría solicitar una valoración para Reforma de Instalaciones Eléctricas en Valencia."),
+          ctaText: "Solicitar Presupuesto",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-residencial.jpg",
           imageTag: "Retrofit de Alta Gama // Valencia",
           sectors: ["Pisos Históricos", "Airbnb", "Colegios", "Restaurantes"],
@@ -2304,11 +2893,13 @@
           ]
         },
         {
+          cardTag: "03 // MONTAJE",
           tag: "PILAR 03 // CUADROS DE DISTRIBUCIÓN",
           title: "Montaje & Reforma de Cuadros Eléctricos",
+          shortDesc: "Estructuración técnica de cuadros de distribución con embarrados protegidos, descargadores DPS y diferenciales superinmunizados.",
           desc: "Estructuración milimétrica de cuadros de distribución eléctrica para entornos residenciales, comerciales e industriales bajo los más estrictos estándares reglamentarios.",
-          ctaText: "Presupuestar Montaje en WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Me gustaría un presupuesto para Montaje o Reforma de Cuadro Eléctrico en Valencia."),
+          ctaText: "Solicitar Presupuesto",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-painel.jpg",
           imageTag: "Montaje Cuadro 250A // REBT",
           sectors: ["Residencial Exclusivo", "Hoteles", "Locales Comerciales"],
@@ -2319,11 +2910,13 @@
           ]
         },
         {
+          cardTag: "04 // A MEDIDA",
           tag: "PILAR 04 // FABRICACIÓN A MEDIDA",
           title: "Venta de Cuadros por Encargo",
+          shortDesc: "Proyectos técnicos y fabricación a medida de cuadros eléctricos customizados con aparamenta homologada de primeras marcas.",
           desc: "Proyectos técnicos y ensamblaje a medida de cuadros eléctricos customizados según necesidades de carga, espacio arquitectónico y exigencias de explotación.",
-          ctaText: "Encargar Cuadro en WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("¡Hola! Tengo especificaciones técnicas para Fabricación de Cuadro Eléctrico por Encargo."),
+          ctaText: "Solicitar Presupuesto",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-fabricacao.jpg",
           imageTag: "Fabricación a Medida // Banco de Pruebas",
           sectors: ["Industrias", "Constructoras", "Ingenierías & Automatización"],
@@ -2336,11 +2929,13 @@
       ],
       en: [
         {
+          cardTag: "01 // PREVENTION",
           tag: "PILLAR 01 // PREVENTION & DIAGNOSTICS",
           title: "Preventive & Corrective Maintenance",
+          shortDesc: "Advanced thermographic inspections, hot spot detection, and active overload mitigation across distribution panels.",
           desc: "Early detection of electrical anomalies, overload elimination, and continuous thermal diagnostics to prevent operational downtime and electrical hazards.",
-          ctaText: "Consult Maintenance on WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like to inquire about Preventive and Corrective Maintenance in Valencia."),
+          ctaText: "Request a Quote",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-termografia.jpg",
           imageTag: "Thermographic Inspection // Fluke Ti480",
           sectors: ["Hotel Chains", "Communities", "Industries", "Commercial"],
@@ -2351,11 +2946,13 @@
           ]
         },
         {
+          cardTag: "02 // RETROFIT",
           tag: "PILLAR 02 // RETROFIT & MODERNIZATION",
           title: "Electrical Installation Rewiring",
+          shortDesc: "Comprehensive wiring modernization, capacity upgrades, and obsolete panel replacements compliant with REBT.",
           desc: "Complete modernization of obsolete wiring and electrical panels in high-end residences, tourist apartments (Airbnb), retail spaces, and historical buildings.",
-          ctaText: "Request Rewiring on WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like to request an assessment for Electrical Installation Rewiring in Valencia."),
+          ctaText: "Request a Quote",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-residencial.jpg",
           imageTag: "High-End Retrofit // Valencia",
           sectors: ["Historic Flats", "Airbnb", "Schools", "Restaurants"],
@@ -2366,11 +2963,13 @@
           ]
         },
         {
+          cardTag: "03 // ASSEMBLY",
           tag: "PILLAR 03 // DISTRIBUTION PANELS",
           title: "Assembly & Upgrading of Electrical Panels",
+          shortDesc: "Precision assembly of distribution boards with certified busbars, type 1+2 surge protection, and specialized RCDs.",
           desc: "Precision engineering of low-voltage distribution boards (DBs) for residential, commercial, and industrial facilities under the strictest technical standards.",
-          ctaText: "Get Panel Quote on WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I would like a quote for Electrical Panel Assembly or Upgrading in Valencia."),
+          ctaText: "Request a Quote",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-painel.jpg",
           imageTag: "250A Panel Assembly // REBT",
           sectors: ["Luxury Homes", "Hotels", "Commercial Spaces"],
@@ -2381,11 +2980,13 @@
           ]
         },
         {
+          cardTag: "04 // CUSTOM PANELS",
           tag: "PILLAR 04 // CUSTOM MANUFACTURING",
           title: "Custom-Built Panels to Order",
+          shortDesc: "Bespoke executive design and custom panel fabrication utilizing tier-1 certified switchgear components.",
           desc: "Executive design and custom assembly of tailored electrical cabinets built to exact load specs, architectural constraints, and operational requirements.",
-          ctaText: "Order Custom Panel on WhatsApp",
-          ctaUrl: "https://wa.me/34605555686?text=" + encodeURIComponent("Hello! I have technical specifications for a Custom-Built Electrical Panel."),
+          ctaText: "Request a Quote",
+          ctaUrl: "#orcamento",
           image: "./assets/images/projeto-fabricacao.jpg",
           imageTag: "Custom Manufacturing // Workshop Bench",
           sectors: ["Industries", "Contractors", "Engineers & Automation"],
@@ -2473,28 +3074,22 @@
           ? "¡Hola! Me gustaría solicitar un presupuesto técnico con IberVolt Solutions."
           : "Olá! Gostaria de solicitar um orçamento técnico.");
 
-      const headerWa = document.getElementById('header-whatsapp-btn');
-      if (headerWa) headerWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waGeneralMsg);
-
-      const mobileWa = document.getElementById('mobile-whatsapp-btn');
-      if (mobileWa) mobileWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waGeneralMsg);
-
-      const heroWa = document.getElementById('hero-cta-whatsapp');
-      if (heroWa) heroWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waQuoteMsg);
-
-      const engWa = document.getElementById('esp-engineer-contact-btn');
-      if (engWa) engWa.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waEngMsg);
-
-      const footerChat = document.getElementById('footer-chat-btn');
-      if (footerChat) footerChat.href = "https://wa.me/34605555686?text=" + encodeURIComponent(waQuoteMsg);
+      // Os botões de contato conduzem ao formulário de orçamento (#orcamento) para garantir a pré-qualificação técnica
+      ['header-whatsapp-btn', 'mobile-whatsapp-btn', 'hero-cta-whatsapp', 'esp-engineer-contact-btn', 'footer-chat-btn'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.href = "#orcamento";
+      });
 
       const mapLink = document.getElementById('cob-map-link');
       if (mapLink && translations[lang].cob_maps_title) {
         mapLink.setAttribute('title', translations[lang].cob_maps_title);
       }
 
-      // 8. Re-renderizar o console dinâmico de especialidades no idioma correto
-      renderService(currentServiceIndex);
+      // 8. Re-renderizar os cards de serviços e o modal no idioma correto
+      updateServicesCards();
+      if (typeof isServiceModalOpen !== 'undefined' && isServiceModalOpen) {
+        renderServiceModal(currentServiceIndex);
+      }
 
       // 9. Atualizar labels e inputs ocultos dos dropdowns conforme o idioma
       ['dropdown-property', 'dropdown-service'].forEach(ddId => {
@@ -2534,55 +3129,69 @@
       }
     }
 
-    // Variável e função para renderizar especialidades
-    const tabs = document.querySelectorAll('.service-tab');
-    const displayTag = document.getElementById('display-tag');
-    const displayTitle = document.getElementById('display-title');
-    const displayDesc = document.getElementById('display-desc');
-    const displaySectors = document.getElementById('display-sectors');
-    const displayCta = document.getElementById('display-cta');
-    const displayCtaText = document.getElementById('display-cta-text');
-    const displaySpecs = document.getElementById('display-specs');
-    const displayImage = document.getElementById('display-image');
-    const displayImageTag = document.getElementById('display-image-tag');
-    const contentWrapper = document.getElementById('service-content-wrapper');
+    // ── Controle dos Cards de Serviços & Popup Modal ──────────────────────
+    let isServiceModalOpen = false;
 
-    function renderService(index) {
+    function updateServicesCards() {
+      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.pt;
+      dataList.forEach((item, i) => {
+        const tagEl = document.getElementById(`service-card-tag-${i}`);
+        const titleEl = document.getElementById(`service-card-title-${i}`);
+        const descEl = document.getElementById(`service-card-desc-${i}`);
+        if (tagEl && item.cardTag) tagEl.textContent = item.cardTag;
+        if (titleEl && item.title) titleEl.textContent = item.title;
+        if (descEl && item.shortDesc) descEl.textContent = item.shortDesc;
+      });
+    }
+
+    function renderServiceModal(index) {
       currentServiceIndex = index;
       const dataList = servicesDataByLang[currentLang] || servicesDataByLang.pt;
       const item = dataList[index];
-      if (!item || !contentWrapper) return;
+      if (!item) return;
 
-      // Disparar animação suave
-      contentWrapper.classList.remove('tab-content-enter');
-      void contentWrapper.offsetWidth; // trigger reflow
-      contentWrapper.classList.add('tab-content-enter');
+      const modalTag = document.getElementById('modal-service-tag');
+      const modalTitle = document.getElementById('modal-service-title');
+      const modalDesc = document.getElementById('modal-service-desc');
+      const modalSectors = document.getElementById('modal-service-sectors');
+      const modalCta = document.getElementById('modal-service-cta');
+      const modalCtaText = document.getElementById('modal-service-cta-text');
+      const modalImage = document.getElementById('modal-service-image');
+      const modalImageTag = document.getElementById('modal-service-image-tag');
+      const modalSpecs = document.getElementById('modal-service-specs');
+      const modalCounter = document.getElementById('modal-service-counter');
 
-      if (displayTag) displayTag.textContent = item.tag;
-      if (displayTitle) displayTitle.textContent = item.title;
-      if (displayDesc) displayDesc.textContent = item.desc;
-      if (displayCtaText) displayCtaText.textContent = item.ctaText;
-      if (displayCta) displayCta.href = item.ctaUrl;
-
-      // Imagem e Tag da Imagem
-      if (displayImage && item.image) {
-        displayImage.src = item.image;
-        displayImage.alt = item.title;
+      if (modalTag) modalTag.textContent = item.tag;
+      if (modalTitle) modalTitle.textContent = item.title;
+      if (modalDesc) modalDesc.textContent = item.desc;
+      if (modalCtaText) modalCtaText.textContent = item.ctaText;
+      if (modalCta) {
+        modalCta.href = '#orcamento';
+        modalCta.onclick = (e) => {
+          e.preventDefault();
+          if (typeof closeServiceModal === 'function') closeServiceModal();
+          if (typeof window.scrollToOrcamento === 'function') {
+            window.scrollToOrcamento(currentServiceIndex);
+          }
+        };
       }
-      if (displayImageTag && item.imageTag) {
-        displayImageTag.textContent = item.imageTag;
+
+      if (modalImage && item.image) {
+        modalImage.src = item.image;
+        modalImage.alt = item.title;
+      }
+      if (modalImageTag && item.imageTag) {
+        modalImageTag.textContent = item.imageTag;
       }
 
-      // Setores
-      if (displaySectors) {
-        displaySectors.innerHTML = item.sectors.map(s => 
+      if (modalSectors && item.sectors) {
+        modalSectors.innerHTML = item.sectors.map(s => 
           `<span class="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-jakarta text-white/90">${s}</span>`
         ).join('');
       }
 
-      // Specs em micro-cards horizontais compactos
-      if (displaySpecs) {
-        displaySpecs.innerHTML = item.specs.map(sp => `
+      if (modalSpecs && item.specs) {
+        modalSpecs.innerHTML = item.specs.map(sp => `
           <div class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
             <div class="flex items-center gap-2 mb-1">
               <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
@@ -2595,28 +3204,46 @@
         `).join('');
       }
 
-      // Atualizar estilos visuais das tabs
-      tabs.forEach((tab, i) => {
-        const num = tab.querySelector('.tab-num');
-        const title = tab.querySelector('.tab-title');
-        const indicator = tab.querySelector('.tab-indicator');
-        
-        if (i === index) {
-          tab.setAttribute('aria-selected', 'true');
-          tab.className = "service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-white/[0.04] border-brand-yellow/50 shadow-[0_0_20px_rgba(255,230,0,0.08)]";
-          if (num) num.className = "tab-num font-mono text-[11px] tracking-widest text-brand-yellow font-medium";
-          if (title) title.className = "tab-title font-syne font-bold text-xs sm:text-sm text-white tracking-tight";
-          if (indicator) indicator.className = "tab-indicator w-1.5 h-1.5 rounded-full bg-brand-yellow";
-        } else {
-          tab.setAttribute('aria-selected', 'false');
-          tab.className = "service-tab text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group bg-brand-card/40 border-white/[0.06] hover:border-white/20";
-          if (num) num.className = "tab-num font-mono text-[11px] tracking-widest text-brand-muted/70 font-medium group-hover:text-brand-yellow transition-colors";
-          if (title) title.className = "tab-title font-syne font-bold text-xs sm:text-sm text-white/70 group-hover:text-white tracking-tight transition-colors";
-          if (indicator) indicator.className = "tab-indicator w-1.5 h-1.5 rounded-full bg-transparent";
-        }
-      });
+      if (modalCounter) {
+        modalCounter.textContent = `0${index + 1} / 04`;
+      }
 
       if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function openServiceModal(index) {
+      currentServiceIndex = index;
+      renderServiceModal(index);
+      const modal = document.getElementById('service-modal');
+      const modalCard = document.getElementById('service-modal-card');
+      if (!modal || !modalCard) return;
+
+      isServiceModalOpen = true;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modalCard.classList.remove('scale-95');
+      modalCard.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function closeServiceModal() {
+      const modal = document.getElementById('service-modal');
+      const modalCard = document.getElementById('service-modal-card');
+      if (!modal || !modalCard) return;
+
+      isServiceModalOpen = false;
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modalCard.classList.remove('scale-100');
+      modalCard.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
+    // Compatibilidade reversa para chamadas legadas
+    function renderService(index) {
+      openServiceModal(index);
     }
 
     // Garantir retorno ao topo (página inicial) ao recarregar
@@ -2628,109 +3255,409 @@
     }
     window.scrollTo(0, 0);
 
-    // ── Preloader High-End: Contador 0 a 100% & Barra Fina Inferior com Efeito Persiana ──
-    (function initPreloader() {
+    // ── Sequência de Vídeo Scrollytelling (200 Frames) & Preloader Integrado ──
+    (function initScrollVideoExperience() {
+      const TOTAL_FRAMES = 200;
+      const DESKTOP_FOLDER = './assets/video/desktop-ezgif-82a16cf38fd88af0-jpg';
+      const MOBILE_FOLDER = './assets/video/mobile-ezgif-3a31cb3b0aa0f4f2-jpg';
+
+      function checkIsMobile() {
+        // Modo mobile/vertical ativado em larguras <= 768px ou em tablets/celulares em formato retrato
+        return window.innerWidth <= 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
+      }
+
+      function getFrameSrc(idx, isMobile) {
+        const folder = isMobile ? MOBILE_FOLDER : DESKTOP_FOLDER;
+        return `${folder}/ezgif-frame-${String(idx + 1).padStart(3, '0')}.jpg`;
+      }
+
       const preloader = document.getElementById('site-preloader');
       const counterEl = document.getElementById('preloader-counter');
       const barFill = document.getElementById('preloader-bar-fill');
-      if (!preloader || !counterEl || !barFill) return;
+      const introSection = document.getElementById('inicio');
+      const siteHeader = document.getElementById('site-header');
+      const canvas = document.getElementById('scroll-video-canvas');
+      const videoOverlay = document.getElementById('video-overlay');
+      const scrollPrompt = document.getElementById('scroll-prompt');
+      const heroContent = document.getElementById('hero-content');
+      const elBadge = document.getElementById('hero-el-badge');
+      const elTitle = document.getElementById('hero-el-title');
+      const elSub = document.getElementById('hero-el-sub');
+      const elCtas = document.getElementById('hero-el-ctas');
 
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      // Bloquear scroll inicial durante o preloader
       document.body.style.overflow = 'hidden';
 
+      let isCurrentMobile = checkIsMobile();
+      const desktopFrames = new Array(TOTAL_FRAMES);
+      const mobileFrames = new Array(TOTAL_FRAMES);
+      let isDesktopLoadingStarted = false;
+      let isMobileLoadingStarted = false;
+
+      let loadedFramesCount = 0;
+      let targetProgress = 10;
       let currentProgress = 0;
-      let targetProgress = 12;
-      let isWindowLoaded = false;
-      let animationFrameId = null;
-      let isFinished = false;
+      let isPreloaderComplete = false;
+      let currentFrameIndex = 0;
+      let targetFrameIndex = 0;
+      let isRenderingLoopActive = false;
 
-      function updateLoader() {
-        if (currentProgress < targetProgress) {
-          const distance = targetProgress - currentProgress;
-          
-          // Velocidade variável (não-linear):
-          // Entre 30% e 80% a aceleração é expressivamente mais rápida (turbo)
-          let speedFactor;
-          if (currentProgress >= 30 && currentProgress < 80) {
-            speedFactor = 0.18; // Arrancada rápida
-          } else if (currentProgress >= 80) {
-            speedFactor = 0.055; // Desaceleração suave na chegada aos 100%
-          } else {
-            speedFactor = 0.07; // Início cadenciado elegante de 0 a 30%
-          }
+      // Desenhar frame com preenchimento total e proporção preservada (object-fit: cover)
+      function drawFrame(index) {
+        const clampedIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
+        const activeImages = isCurrentMobile ? mobileFrames : desktopFrames;
+        const fallbackImages = isCurrentMobile ? desktopFrames : mobileFrames;
 
-          const minStep = (currentProgress >= 30 && currentProgress < 80) ? 0.95 : 0.28;
-          const maxStep = (currentProgress >= 30 && currentProgress < 80) ? 3.5 : 1.3;
-          const step = Math.min(maxStep, Math.max(minStep, distance * speedFactor));
+        let img = activeImages[clampedIndex] || activeImages[0];
+        if (!img || !img.complete || img.naturalWidth === 0) {
+          img = fallbackImages[clampedIndex] || fallbackImages[0];
+        }
+        if (!img || !img.complete || img.naturalWidth === 0) return;
 
-          currentProgress = Math.min(targetProgress, currentProgress + step);
-          const rounded = Math.floor(currentProgress);
-          counterEl.textContent = rounded;
-          barFill.style.width = currentProgress.toFixed(1) + '%';
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+
+        const canvasRatio = cw / ch;
+        const imgRatio = iw / ih;
+
+        let renderW, renderH, offsetX, offsetY;
+        if (canvasRatio > imgRatio) {
+          renderW = cw;
+          renderH = cw / imgRatio;
+          offsetX = 0;
+          offsetY = (ch - renderH) / 2;
+        } else {
+          renderH = ch;
+          renderW = ch * imgRatio;
+          offsetX = (cw - renderW) / 2;
+          offsetY = 0;
         }
 
-        if (currentProgress >= 100 && !isFinished) {
-          isFinished = true;
-          counterEl.textContent = '100';
-          barFill.style.width = '100%';
-          cancelAnimationFrame(animationFrameId);
+        ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
+      }
 
-          // 1. Pausa de confirmação nos 100% e fade-out dos textos/barra
+      // Redimensionamento de Alta Resolução (Retina / OLED) e troca dinâmica Mobile/Desktop
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const targetW = Math.round(w * dpr);
+        const targetH = Math.round(h * dpr);
+
+        if (canvas.width !== targetW || canvas.height !== targetH) {
+          canvas.width = targetW;
+          canvas.height = targetH;
+        }
+
+        const newIsMobile = checkIsMobile();
+        if (newIsMobile !== isCurrentMobile) {
+          isCurrentMobile = newIsMobile;
+          loadFrameSet(isCurrentMobile);
+        }
+
+        drawFrame(Math.round(currentFrameIndex));
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Atualizar interface de acordo com o progresso da rolagem
+      function updateScrollState() {
+        if (!introSection) return;
+        const rect = introSection.getBoundingClientRect();
+        const maxScroll = introSection.offsetHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+        // 1. Reprodução do Vídeo (0 a 199 frames)
+        // O vídeo percorre toda a sequência suavemente nos primeiros 52% da rolagem
+        const VIDEO_END = 0.52;
+        if (progress <= VIDEO_END) {
+          const videoProgress = Math.min(1, Math.max(0, progress / VIDEO_END));
+          targetFrameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(videoProgress * (TOTAL_FRAMES - 1))));
+        } else {
+          // Após o vídeo, trava no último frame (frame 200, índice 199) como plano de fundo
+          targetFrameIndex = TOTAL_FRAMES - 1;
+        }
+
+        // 2. Dica Inicial de Scroll (visível no topo e desaparece logo ao rolar)
+        if (scrollPrompt) {
+          if (progress < 0.02) {
+            scrollPrompt.style.opacity = '1';
+            scrollPrompt.style.transform = 'translate(-50%, 0)';
+            scrollPrompt.style.pointerEvents = 'none';
+          } else if (progress < 0.12) {
+            const p = (progress - 0.02) / 0.10;
+            scrollPrompt.style.opacity = (1 - p).toFixed(3);
+            scrollPrompt.style.transform = `translate(-50%, ${p * 18}px)`;
+            scrollPrompt.style.pointerEvents = 'none';
+          } else {
+            scrollPrompt.style.opacity = '0';
+            scrollPrompt.style.pointerEvents = 'none';
+          }
+        }
+
+        // 3. Vinheta Cinematográfica (Sutil durante o vídeo, reforça contraste no surgimento dos títulos)
+        if (videoOverlay) {
+          if (progress <= VIDEO_END) {
+            videoOverlay.style.opacity = '0.18';
+          } else {
+            const overlayProgress = Math.min(1, Math.max(0, (progress - VIDEO_END) / 0.28));
+            videoOverlay.style.opacity = (0.18 + overlayProgress * 0.44).toFixed(3);
+          }
+        }
+
+        // 4. Elementos do Hero com Parallax Escalonado
+        // REGRA CRÍTICA: Os títulos e CTAs SÓ aparecem DEPOIS do último frame do vídeo (progress > VIDEO_END)
+        // Nada aparece ao mesmo tempo — cada elemento tem seu limiar de entrada com parallax físico
+        if (progress <= VIDEO_END + 0.02) {
+          // Durante o vídeo: absolutamente nada de texto visível
+          if (elBadge) {
+            elBadge.style.opacity = '0';
+            elBadge.style.transform = 'translateY(28px)';
+          }
+          if (elTitle) {
+            elTitle.style.opacity = '0';
+            elTitle.style.transform = 'translateY(42px)';
+          }
+          if (elSub) {
+            elSub.style.opacity = '0';
+            elSub.style.transform = 'translateY(32px)';
+          }
+          if (elCtas) {
+            elCtas.style.opacity = '0';
+            elCtas.style.transform = 'translateY(24px)';
+            elCtas.style.pointerEvents = 'none';
+          }
+          if (heroContent) heroContent.style.pointerEvents = 'none';
+        } else {
+          // Fase pós-vídeo: Parallax sequencial escalonado
+
+          // Elemento 1: Badge Residencial (Entra de 0.55 a 0.66)
+          if (elBadge) {
+            const pBadge = Math.min(1, Math.max(0, (progress - 0.55) / 0.11));
+            elBadge.style.opacity = pBadge.toFixed(3);
+            elBadge.style.transform = `translateY(${((1 - pBadge) * 28).toFixed(1)}px)`;
+          }
+
+          // Elemento 2: Título H1 Residencial (Entra de 0.65 a 0.76)
+          if (elTitle) {
+            const pTitle = Math.min(1, Math.max(0, (progress - 0.65) / 0.11));
+            elTitle.style.opacity = pTitle.toFixed(3);
+            elTitle.style.transform = `translateY(${((1 - pTitle) * 42).toFixed(1)}px)`;
+          }
+
+          // Elemento 3: Subtítulo Residencial (Entra de 0.75 a 0.86)
+          if (elSub) {
+            const pSub = Math.min(1, Math.max(0, (progress - 0.75) / 0.11));
+            elSub.style.opacity = pSub.toFixed(3);
+            elSub.style.transform = `translateY(${((1 - pSub) * 32).toFixed(1)}px)`;
+          }
+
+          // Elemento 4: CTAs de Ação (Entra de 0.85 a 0.95)
+          if (elCtas) {
+            const pCtas = Math.min(1, Math.max(0, (progress - 0.85) / 0.10));
+            elCtas.style.opacity = pCtas.toFixed(3);
+            elCtas.style.transform = `translateY(${((1 - pCtas) * 24).toFixed(1)}px)`;
+            elCtas.style.pointerEvents = pCtas > 0.4 ? 'auto' : 'none';
+          }
+
+          if (heroContent) {
+            heroContent.style.pointerEvents = progress >= 0.85 ? 'auto' : 'none';
+          }
+        }
+
+        // 5. Barra Superior (Header): Oculta durante o vídeo, só surge após a conclusão dos títulos
+        if (siteHeader) {
+          const headerThreshold = window.innerWidth <= 768 ? 0.94 : 0.85;
+          if (progress < headerThreshold) {
+            siteHeader.classList.add('header-hidden');
+          } else {
+            siteHeader.classList.remove('header-hidden');
+          }
+        }
+
+        // Disparar loop suave de renderização de frames
+        if (!isRenderingLoopActive) {
+          isRenderingLoopActive = true;
+          requestAnimationFrame(renderLoop);
+        }
+      }
+
+      // Loop de Interpolação Suave (Lerp Físico a 60fps - Movimento Lento e Preciso)
+      function renderLoop() {
+        const diff = targetFrameIndex - currentFrameIndex;
+        if (Math.abs(diff) > 0.04) {
+          currentFrameIndex += diff * 0.18;
+          drawFrame(Math.round(currentFrameIndex));
+          requestAnimationFrame(renderLoop);
+        } else {
+          currentFrameIndex = targetFrameIndex;
+          drawFrame(targetFrameIndex);
+          isRenderingLoopActive = false;
+        }
+      }
+
+      window.addEventListener('scroll', updateScrollState, { passive: true });
+
+      // Cálculo e navegação para a posição em que a Home está 100% energizada com os elementos visíveis
+      function getHomeEnergizedScrollTop() {
+        if (!introSection) return 0;
+        const maxScroll = introSection.offsetHeight - window.innerHeight;
+        if (maxScroll <= 0) return 0;
+        return Math.round(introSection.offsetTop + maxScroll * 0.96);
+      }
+
+      function scrollToHomeEnergized(smooth = true) {
+        const targetTop = getHomeEnergizedScrollTop();
+
+        // Fixar imediatamente a casa 100% iluminada (último frame)
+        targetFrameIndex = TOTAL_FRAMES - 1;
+        currentFrameIndex = TOTAL_FRAMES - 1;
+        drawFrame(TOTAL_FRAMES - 1);
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: smooth ? 'smooth' : 'instant'
+        });
+
+        updateScrollState();
+        if (typeof updateHeaderOnScroll === 'function') {
+          updateHeaderOnScroll();
+        }
+
+        if (smooth) {
           setTimeout(() => {
-            preloader.classList.add('preloader-closing');
+            updateScrollState();
+            if (typeof updateHeaderOnScroll === 'function') updateHeaderOnScroll();
+          }, 250);
+          setTimeout(() => {
+            updateScrollState();
+            if (typeof updateHeaderOnScroll === 'function') updateHeaderOnScroll();
+          }, 600);
+        }
+      }
 
-            // 2. Disparar a descida da cortina/persiana de cima para baixo
+      window.getHomeEnergizedScrollTop = getHomeEnergizedScrollTop;
+      window.scrollToHomeEnergized = scrollToHomeEnergized;
+
+      // Carregador assíncrono com suporte a progresso para o conjunto ativo (Mobile ou Desktop)
+      function loadFrameSet(forMobile, onProgress) {
+        if (forMobile && isMobileLoadingStarted) return;
+        if (!forMobile && isDesktopLoadingStarted) return;
+
+        if (forMobile) isMobileLoadingStarted = true;
+        else isDesktopLoadingStarted = true;
+
+        const targetArray = forMobile ? mobileFrames : desktopFrames;
+        let count = 0;
+
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.src = getFrameSrc(i, forMobile);
+
+          img.onload = () => {
+            targetArray[i] = img;
+            count++;
+            if (onProgress) onProgress(count, TOTAL_FRAMES);
+
+            if (isCurrentMobile === forMobile) {
+              const currIdx = Math.round(currentFrameIndex);
+              if (i === currIdx || (i === 0 && (!targetArray[currIdx] || !targetArray[currIdx].complete))) {
+                drawFrame(currIdx);
+              }
+            }
+          };
+
+          img.onerror = () => {
+            count++;
+            if (onProgress) onProgress(count, TOTAL_FRAMES);
+          };
+        }
+      }
+
+      // Iniciar carregamento do conjunto do dispositivo atual
+      loadFrameSet(isCurrentMobile, (count, total) => {
+        loadedFramesCount = count;
+        if (count === 1) {
+          drawFrame(0);
+        }
+        const pct = Math.floor((count / total) * 100);
+        if (pct > targetProgress) {
+          targetProgress = Math.min(100, pct);
+        }
+      });
+
+      // Animação Contínua e Acelerada do Preloader
+      function updatePreloaderEngine() {
+        if (currentProgress < targetProgress) {
+          const diff = targetProgress - currentProgress;
+          const step = Math.min(3.8, Math.max(0.4, diff * 0.14));
+          currentProgress = Math.min(targetProgress, currentProgress + step);
+
+          if (counterEl) counterEl.textContent = Math.floor(currentProgress);
+          if (barFill) barFill.style.width = currentProgress.toFixed(1) + '%';
+        }
+
+        // Conclusão aos 100%
+        if (currentProgress >= 100 && !isPreloaderComplete) {
+          isPreloaderComplete = true;
+          if (counterEl) counterEl.textContent = '100';
+          if (barFill) barFill.style.width = '100%';
+
+          // Garantir primeiro frame desenhado
+          drawFrame(0);
+
+          setTimeout(() => {
+            if (preloader) preloader.classList.add('preloader-closing');
+
             setTimeout(() => {
-              preloader.classList.add('preloader-shutter-open');
+              if (preloader) preloader.classList.add('preloader-shutter-open');
               document.body.style.overflow = '';
-              window.scrollTo(0, 0);
 
-              // 3. Remover do DOM após a conclusão da animação da persiana
+              if (window.location.hash === '#inicio') {
+                scrollToHomeEnergized(false);
+              } else if (!window.location.hash || window.location.hash === '#') {
+                window.scrollTo(0, 0);
+              }
+              updateScrollState();
+
               setTimeout(() => {
-                preloader.remove();
-              }, 900);
+                if (preloader) preloader.remove();
+              }, 950);
             }, 280);
           }, 320);
           return;
         }
 
-        animationFrameId = requestAnimationFrame(updateLoader);
+        requestAnimationFrame(updatePreloaderEngine);
       }
 
-      animationFrameId = requestAnimationFrame(updateLoader);
+      requestAnimationFrame(updatePreloaderEngine);
 
-      // Ritmo não-linear:
-      // 0 -> 30% (ritmo inicial firme)
-      // 30% -> 80% (disparo veloz com intervalos curtos)
-      // 80% -> 100% (desaceleração controlada de chegada técnica)
-      const progressSteps = [
-        { pct: 30, delay: 350 },
-        { pct: 60, delay: 520 },
-        { pct: 82, delay: 720 },
-        { pct: 93, delay: 1100 },
-        { pct: 100, delay: 1550 }
-      ];
-
-      progressSteps.forEach(step => {
-        setTimeout(() => {
-          if (targetProgress < step.pct) {
-            targetProgress = step.pct;
-          }
-        }, step.delay);
-      });
-
-      function onResourcesLoaded() {
-        isWindowLoaded = true;
-      }
-
-      window.addEventListener('load', onResourcesLoaded);
+      // Fallback de segurança: assegurar abertura do preloader em no máximo 2.8s
+      setTimeout(() => {
+        targetProgress = 100;
+      }, 2800);
     })();
 
     window.addEventListener('beforeunload', () => {
-      window.scrollTo(0, 0);
+      if (window.location.hash !== '#inicio') {
+        window.scrollTo(0, 0);
+      }
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-      window.scrollTo(0, 0);
+      if (window.location.hash !== '#inicio') {
+        window.scrollTo(0, 0);
+      }
       // 1. Inicializar ícones do Lucide
       lucide.createIcons();
 
@@ -2775,11 +3702,48 @@
         document.querySelectorAll('.cert-card-slide').forEach(c => c.classList.add('is-in-view'));
       }
 
-      // 3. Event listeners para as Tabs de Especialidades
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const idx = parseInt(tab.getAttribute('data-tab-index'), 10);
-          renderService(idx);
+      // 3. Controles do Modal de Serviços (Anterior, Próximo e Teclado)
+      const prevServiceBtn = document.getElementById('modal-prev-service');
+      const nextServiceBtn = document.getElementById('modal-next-service');
+
+      if (prevServiceBtn) {
+        prevServiceBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const newIdx = (currentServiceIndex - 1 + 4) % 4;
+          renderServiceModal(newIdx);
+        });
+      }
+
+      if (nextServiceBtn) {
+        nextServiceBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const newIdx = (currentServiceIndex + 1) % 4;
+          renderServiceModal(newIdx);
+        });
+      }
+
+      // Teclado para modal (Esc para fechar, setas para navegar entre serviços)
+      document.addEventListener('keydown', (e) => {
+        if (!isServiceModalOpen) return;
+        if (e.key === 'Escape') {
+          closeServiceModal();
+        } else if (e.key === 'ArrowLeft') {
+          const newIdx = (currentServiceIndex - 1 + 4) % 4;
+          renderServiceModal(newIdx);
+        } else if (e.key === 'ArrowRight') {
+          const newIdx = (currentServiceIndex + 1) % 4;
+          renderServiceModal(newIdx);
+        }
+      });
+
+      // Acessibilidade via teclado nos cards de serviços (Enter ou Espaço abre o modal)
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const idx = parseInt(card.getAttribute('data-service-index') || '0', 10);
+            openServiceModal(idx);
+          }
         });
       });
 
@@ -2850,6 +3814,20 @@
 
       function updateHeaderOnScroll() {
         const scrollY = window.scrollY;
+        const introSection = document.getElementById('inicio');
+
+        // Se estiver dentro da reprodução do vídeo na seção início, manter barra superior oculta
+        if (introSection && header) {
+          const rect = introSection.getBoundingClientRect();
+          const maxScroll = introSection.offsetHeight - window.innerHeight;
+          const progress = maxScroll > 0 ? Math.max(0, Math.min(1, (-rect.top) / maxScroll)) : 1;
+
+          if (progress < 0.85 && rect.bottom > window.innerHeight) {
+            header.classList.add('header-hidden');
+          } else {
+            header.classList.remove('header-hidden');
+          }
+        }
 
         // Estilo Scrolled com Glassmorphism reforçado
         if (header) {
@@ -2885,7 +3863,39 @@
       window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
       updateHeaderOnScroll();
 
-      // 5.1. Ação Direta do Link "#paineis" (Scroll suave + Ativação da Tab 04 de Painéis Sob Encomenda)
+      // 5.1. Navegação Exclusiva para a Home Energizada (Barra Superior, Logo, Menu Mobile, Rodapé e Voltar ao Topo)
+      function triggerGoHome(e) {
+        if (e) e.preventDefault();
+        if (typeof window.scrollToHomeEnergized === 'function') {
+          window.scrollToHomeEnergized(true);
+        } else {
+          const intro = document.getElementById('inicio');
+          if (intro) {
+            const maxScroll = intro.offsetHeight - window.innerHeight;
+            window.scrollTo({ top: Math.round(maxScroll * 0.96), behavior: 'smooth' });
+          }
+        }
+        if (history.pushState) {
+          history.pushState(null, null, '#inicio');
+        }
+        if (typeof closeMobileMenu === 'function') {
+          closeMobileMenu();
+        }
+      }
+
+      document.querySelectorAll('a[href="#inicio"], [data-nav-target="inicio"], .back-to-top-btn').forEach(link => {
+        link.addEventListener('click', triggerGoHome);
+      });
+
+      window.addEventListener('hashchange', () => {
+        if (window.location.hash === '#inicio') {
+          if (typeof window.scrollToHomeEnergized === 'function') {
+            window.scrollToHomeEnergized(true);
+          }
+        }
+      });
+
+      // 5.2. Ação Direta do Link "#paineis" (Scroll suave + Ativação da Tab 04 de Painéis Sob Encomenda)
       document.querySelectorAll('a[href="#paineis"]').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
@@ -2897,6 +3907,62 @@
             renderService(3); // Tab 04: Painéis Sob Encomenda
           }
           closeMobileMenu();
+        });
+      });
+
+      // 5.2.1. Redirecionamento Unificado de WhatsApp para o Card de Orçamento (#orcamento)
+      function scrollToOrcamento(serviceIndex) {
+        const orcamentoCard = document.getElementById('orcamento');
+        if (!orcamentoCard) return;
+
+        // Se o menu mobile estiver aberto, fechar
+        if (typeof closeMobileMenu === 'function') {
+          closeMobileMenu();
+        }
+
+        // Se o modal de serviço estiver aberto, fechar
+        if (typeof closeServiceModal === 'function') {
+          closeServiceModal();
+        }
+
+        // Se veio de um serviço específico, selecionar no dropdown do formulário
+        if (typeof serviceIndex === 'number' && serviceIndex >= 0 && serviceIndex < 4) {
+          const serviceKeys = ['form_srv_opt1', 'form_srv_opt2', 'form_srv_opt3', 'form_srv_opt4'];
+          const targetKey = serviceKeys[serviceIndex];
+          const dropdownSrv = document.getElementById('dropdown-service');
+          if (dropdownSrv) {
+            const itemToSelect = dropdownSrv.querySelector(`.custom-dropdown-item[data-key="${targetKey}"]`);
+            if (itemToSelect) {
+              itemToSelect.click();
+            }
+          }
+        }
+
+        // Rolagem suave até o card de orçamento
+        orcamentoCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Destaque visual pulsante no card para direcionar a atenção do usuário
+        orcamentoCard.classList.add('border-brand-yellow', 'shadow-[0_0_45px_rgba(255,230,0,0.35)]');
+        setTimeout(() => {
+          orcamentoCard.classList.remove('border-brand-yellow', 'shadow-[0_0_45px_rgba(255,230,0,0.35)]');
+        }, 2200);
+
+        // Focar no primeiro campo para digitação imediata
+        setTimeout(() => {
+          const nameInput = document.getElementById('form-name');
+          if (nameInput) {
+            nameInput.focus({ preventScroll: true });
+          }
+        }, 500);
+      }
+
+      window.scrollToOrcamento = scrollToOrcamento;
+
+      // Vincular todos os botões e links de WhatsApp espalhados pelo site
+      document.querySelectorAll('a[href="#orcamento"], #header-whatsapp-btn, #mobile-whatsapp-btn, #hero-cta-whatsapp, #esp-engineer-contact-btn, #footer-chat-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToOrcamento();
         });
       });
 
@@ -2913,11 +3979,11 @@
 
           // Executar cálculo apenas quando o mapa estiver na viewport (com margem de segurança)
           if (rect.bottom >= -100 && rect.top <= windowHeight + 100) {
-            // Progresso de 0 (entrando no rodapé da viewport) a 1 (saindo pelo topo)
-            const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
-            // Amplitude dinâmica de -110px a +110px (movimento claramente perceptível e imersivo)
-            const translateY = (progress - 0.5) * 220;
-            cobMapImg.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.10)`;
+            // Progresso de 0 (entrando no rodapé da viewport) a 1 (saindo pelo topo) com clamp preventivo
+            const rawProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+            const clamped = Math.max(0, Math.min(1, rawProgress));
+            const translateY = (clamped - 0.5) * 180;
+            cobMapImg.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.12)`;
           }
           tickingParallax = false;
         }
@@ -2932,6 +3998,610 @@
         window.addEventListener('scroll', requestMapParallax, { passive: true });
         window.addEventListener('resize', requestMapParallax);
         updateMapParallax();
+      }
+
+      // 5.3. Efeito Parallax Dinâmico e Blindado nas Miniaturas dos Serviços (Anti-Blackout & Zero Frestas)
+      const serviceCardContainers = document.querySelectorAll('.service-card .parallax-card-container');
+      if (serviceCardContainers.length > 0) {
+        let tickingServiceParallax = false;
+
+        function updateServiceThumbnailsParallax() {
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          const isMobile = window.innerWidth < 768;
+
+          serviceCardContainers.forEach(container => {
+            const rect = container.getBoundingClientRect();
+            // Verifica se a miniatura está visível na viewport ou prestes a entrar (tolerância de 150px)
+            if (rect.bottom >= -150 && rect.top <= windowHeight + 150) {
+              const img = container.querySelector('.parallax-card-img');
+              if (img) {
+                // Cálculo de centro relativo:
+                // Quando o card está no centro da viewport: progressFactor = 0
+                // Quando o card está na base da tela (entrando): progressFactor = -1
+                // Quando o card está no topo da tela (saindo): progressFactor = +1
+                const viewportCenter = windowHeight / 2;
+                const cardCenter = rect.top + rect.height / 2;
+                const maxRange = (windowHeight + rect.height) / 2;
+                const rawFactor = (viewportCenter - cardCenter) / maxRange;
+                
+                // Blindagem absoluta: clampa de -1 a +1 para zero chances de frestas
+                const clampedFactor = Math.max(-1, Math.min(1, rawFactor));
+
+                // Calibração de amplitude com curso nítido e expressivo em mobile e desktop:
+                // Mobile: fator 0.24 fornece ~46px para cima e para baixo (~92px de curso total perceptível ao rolar com o dedo)
+                // Desktop: fator 0.22 fornece ~75px para cima e para baixo (~150px de curso total)
+                // Headroom visual total é de 42% (top -30%, height 160%, scale 1.15),
+                // garantindo que sobram sempre de 18% a 20% de margem e NUNCA aparece nenhuma parte preta.
+                const amplitudeFactor = isMobile ? 0.24 : 0.22;
+                const maxShift = rect.height * amplitudeFactor;
+                const translateY = clampedFactor * maxShift;
+
+                img.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.15)`;
+              }
+            }
+          });
+
+          tickingServiceParallax = false;
+        }
+
+        function requestServiceParallax() {
+          if (!tickingServiceParallax) {
+            tickingServiceParallax = true;
+            window.requestAnimationFrame(updateServiceThumbnailsParallax);
+          }
+        }
+
+        window.addEventListener('scroll', requestServiceParallax, { passive: true });
+        window.addEventListener('touchmove', requestServiceParallax, { passive: true });
+        window.addEventListener('resize', requestServiceParallax);
+        window.addEventListener('orientationchange', requestServiceParallax);
+        window.addEventListener('load', updateServiceThumbnailsParallax);
+        document.querySelectorAll('.parallax-card-img').forEach(img => {
+          if (img.complete) {
+            requestServiceParallax();
+          } else {
+            img.addEventListener('load', requestServiceParallax, { once: true });
+          }
+        });
+        updateServiceThumbnailsParallax();
+      }
+
+      // 5.4. Raio Elétrico Fractal Realista de Alta Tensão (Scroll-Driven Organic Lightning: Zigzag Mobile & Canal Central Desktop)
+      function initCentralLightning() {
+        const wrapper = document.getElementById('services-wrapper');
+        const sparkHead = document.getElementById('lightning-spark-head');
+        const canvas = document.getElementById('lightning-canvas');
+        if (!wrapper || !sparkHead || !canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        let W = 0, H = 0;
+        let scrollProgress = 0;
+        let targetProgress = 0;
+        let sparks = [];
+
+        function isMobileView() {
+          return window.innerWidth < 768;
+        }
+
+        function resizeCanvas() {
+          const mobile = isMobileView();
+          const guide = document.getElementById('services-lightning-guide');
+          let displayW, displayH;
+          if (mobile) {
+            displayW = Math.round(wrapper.clientWidth || wrapper.offsetWidth || window.innerWidth);
+            displayH = Math.round(wrapper.clientHeight || wrapper.offsetHeight || 1200);
+          } else {
+            displayW = guide ? Math.round(guide.clientWidth || guide.offsetWidth || 192) : 192;
+            displayH = guide ? Math.round(guide.clientHeight || guide.offsetHeight || 600) : 600;
+          }
+          
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = displayW * dpr;
+          canvas.height = displayH * dpr;
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.scale(dpr, dpr);
+          W = displayW;
+          H = displayH;
+        }
+
+        function updateScroll() {
+          const rect = wrapper.getBoundingClientRect();
+          const windowH = window.innerHeight || document.documentElement.clientHeight;
+          
+          // Inicia quando o topo da seção entra a ~72% da viewport
+          // Completa quando a base da seção passa por ~28% da viewport
+          const startThreshold = windowH * 0.72;
+          const endThreshold = windowH * 0.28;
+          const totalTravel = rect.height + (startThreshold - endThreshold);
+          const currentPos = startThreshold - rect.top;
+          
+          let p = currentPos / totalTravel;
+          targetProgress = Math.max(0, Math.min(1, p));
+        }
+
+        // Fagulhas e centelhas incandescentes na ponta do arco
+        function spawnSparks(x, y) {
+          if (sparks.length > 50) return;
+          const count = Math.floor(Math.random() * 3) + 2;
+          for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 1.5 + Math.random() * 4.5;
+            sparks.push({
+              x: x + (Math.random() - 0.5) * 6,
+              y: y + (Math.random() - 0.5) * 6,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed + 0.8,
+              life: 1.0,
+              decay: 0.03 + Math.random() * 0.045,
+              size: 1.2 + Math.random() * 1.8,
+              color: Math.random() > 0.35 ? '#FFE600' : '#FFFFFF'
+            });
+          }
+        }
+
+        // Gerador de Caminho Fractal Realista para o Raio Central no Desktop
+        function generateFractalPath(x1, y1, x2, y2, roughness, maxDisplace) {
+          let points = [{ x: x1, y: y1 }, { x: x2, y: y2 }];
+          let displace = maxDisplace;
+          for (let iter = 0; iter < 5; iter++) {
+            let next = [points[0]];
+            for (let i = 0; i < points.length - 1; i++) {
+              const p1 = points[i];
+              const p2 = points[i + 1];
+              const midX = (p1.x + p2.x) / 2 + (Math.random() - 0.5) * displace;
+              const midY = (p1.y + p2.y) / 2 + (Math.random() - 0.5) * (displace * 0.22);
+              next.push({ x: midX, y: midY });
+              next.push(p2);
+            }
+            points = next;
+            displace *= roughness;
+          }
+          return points;
+        }
+
+        // Gerador de Polilinha Fractal Orgânica para o Zigzag Mobile
+        function generateFractalPolyline(points, maxDisplacement) {
+          if (!points || points.length < 2) return points;
+          const result = [points[0]];
+          for (let i = 0; i < points.length - 1; i++) {
+            const p1 = points[i];
+            const p2 = points[i + 1];
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const segLen = Math.hypot(dx, dy);
+            if (segLen === 0) continue;
+
+            const isVerticalEdge = Math.abs(dx) < 2; // Rente ao extremo do card
+            const segMaxDisp = isVerticalEdge ? Math.min(1.5, maxDisplacement * 0.15) : maxDisplacement;
+
+            const perpX = -dy / segLen;
+            const perpY = dx / segLen;
+
+            if (segLen > 24) {
+              const count = Math.min(3, Math.max(1, Math.floor(segLen / 24)));
+              for (let k = 1; k <= count; k++) {
+                const ratio = k / (count + 1);
+                const disp = (Math.random() - 0.5) * segMaxDisp;
+                result.push({
+                  x: p1.x + dx * ratio + perpX * disp,
+                  y: p1.y + dy * ratio + perpY * (disp * 0.25)
+                });
+              }
+            } else if (segLen > 8) {
+              const disp = (Math.random() - 0.5) * (segMaxDisp * 0.6);
+              result.push({
+                x: (p1.x + p2.x) / 2 + perpX * disp,
+                y: (p1.y + p2.y) / 2 + perpY * (disp * 0.25)
+              });
+            }
+            result.push(p2);
+          }
+          return result;
+        }
+
+        // Waypoints do Zigzag Mobile contornando cada card EXATAMENTE no seu extremo
+        function getMobileZigzagWaypoints() {
+          const cards = wrapper.querySelectorAll('.service-card');
+          if (!cards || cards.length === 0) return null;
+
+          const wRect = wrapper.getBoundingClientRect();
+          const waypoints = [];
+
+          // Coletar métricas exatas de cada card relativas ao wrapper
+          const cardData = [];
+          for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const cRect = card.getBoundingClientRect();
+            const cTop = cRect.top - wRect.top;
+            const cBottom = cRect.bottom - wRect.top;
+            const cLeft = cRect.left - wRect.left;
+            const cRight = cRect.right - wRect.left;
+            const isLeft = (i % 2 === 0);
+
+            // Coordenada do extremo do card:
+            // Extremo esquerdo: cLeft - 2
+            // Extremo direito: cRight + 2
+            const edgeX = isLeft ? Math.max(3, cLeft - 2) : Math.min(W - 3, cRight + 2);
+
+            cardData.push({
+              card,
+              top: cTop,
+              bottom: cBottom,
+              left: cLeft,
+              right: cRight,
+              height: cBottom - cTop,
+              isLeft,
+              edgeX
+            });
+          }
+
+          if (cardData.length === 0) return null;
+
+          // 1. Entrada no topo do wrapper alinhada com o extremo do Card 0
+          const first = cardData[0];
+          waypoints.push({ x: first.edgeX, y: 0 });
+          waypoints.push({ x: first.edgeX, y: Math.max(0, first.top - 6) });
+
+          // 2. Percorrer cada card estritamente pelo seu extremo exterior
+          for (let i = 0; i < cardData.length; i++) {
+            const curr = cardData[i];
+
+            // Trecho vertical que desce rente ao extremo do card
+            // x permanece estritamente curr.edgeX sem desviar para dentro do card
+            waypoints.push({ x: curr.edgeX, y: curr.top });
+            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.33 });
+            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.67 });
+            waypoints.push({ x: curr.edgeX, y: curr.bottom });
+            waypoints.push({ x: curr.edgeX, y: curr.bottom + 6 });
+
+            // Transição em ZIGZAG para o próximo card (EXCLUSIVAMENTE NO VÃO ENTRE OS CARDS)
+            if (i < cardData.length - 1) {
+              const next = cardData[i + 1];
+              const gapStart = curr.bottom + 6;
+              const gapEnd = next.top - 6;
+              const gapH = Math.max(10, gapEnd - gapStart);
+
+              // Transição em "S" orgânica no vão escuro entre os dois cards
+              waypoints.push({
+                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.18,
+                y: gapStart + gapH * 0.25
+              });
+              waypoints.push({
+                x: (curr.edgeX + next.edgeX) / 2,
+                y: gapStart + gapH * 0.50
+              });
+              waypoints.push({
+                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.82,
+                y: gapStart + gapH * 0.75
+              });
+              waypoints.push({
+                x: next.edgeX,
+                y: gapEnd
+              });
+            }
+          }
+
+          // 3. Saída inferior após o último card
+          const last = cardData[cardData.length - 1];
+          waypoints.push({ x: last.edgeX, y: Math.min(H, last.bottom + 25) });
+          waypoints.push({ x: W / 2, y: H });
+
+          return { waypoints, cardData };
+        }
+
+        // Interpolação ao longo da polilinha no progresso atual
+        function getPathAtProgress(waypoints, progress) {
+          if (!waypoints || waypoints.length === 0) return { path: [], head: { x: W / 2, y: 0 } };
+          if (progress <= 0) return { path: [waypoints[0]], head: waypoints[0] };
+
+          const segLengths = [];
+          let totalLen = 0;
+          for (let i = 0; i < waypoints.length - 1; i++) {
+            const dx = waypoints[i + 1].x - waypoints[i].x;
+            const dy = waypoints[i + 1].y - waypoints[i].y;
+            const len = Math.hypot(dx, dy);
+            segLengths.push(len);
+            totalLen += len;
+          }
+
+          const targetDist = progress * totalLen;
+          let traveled = 0;
+          const activePoints = [waypoints[0]];
+          let head = waypoints[0];
+
+          for (let i = 0; i < segLengths.length; i++) {
+            const len = segLengths[i];
+            if (traveled + len < targetDist) {
+              traveled += len;
+              activePoints.push(waypoints[i + 1]);
+              head = waypoints[i + 1];
+            } else {
+              const remaining = targetDist - traveled;
+              const t = len > 0 ? remaining / len : 0;
+              const pA = waypoints[i];
+              const pB = waypoints[i + 1];
+              head = {
+                x: pA.x + (pB.x - pA.x) * t,
+                y: pA.y + (pB.y - pA.y) * t
+              };
+              activePoints.push(head);
+              break;
+            }
+          }
+
+          return { path: activePoints, head };
+        }
+
+        // Gerador de Ramificações (Branches) que bifurcam para os lados
+        function generateBranch(originX, originY, angle, length, maxDisplace) {
+          const targetX = originX + Math.cos(angle) * length;
+          const targetY = originY + Math.sin(angle) * length;
+          let points = [{ x: originX, y: originY }, { x: targetX, y: targetY }];
+          let displace = maxDisplace;
+          for (let iter = 0; iter < 4; iter++) {
+            let next = [points[0]];
+            for (let i = 0; i < points.length - 1; i++) {
+              const p1 = points[i];
+              const p2 = points[i + 1];
+              const midX = (p1.x + p2.x) / 2 + (Math.random() - 0.5) * displace;
+              const midY = (p1.y + p2.y) / 2 + (Math.random() - 0.5) * displace;
+              next.push({ x: midX, y: midY });
+              next.push(p2);
+            }
+            points = next;
+            displace *= 0.55;
+          }
+          return points;
+        }
+
+        function drawPath(points, width, color, shadowBlur, shadowColor) {
+          if (!points || points.length < 2) return;
+          ctx.beginPath();
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+          }
+          ctx.strokeStyle = color;
+          ctx.lineWidth = width;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          if (shadowBlur > 0) {
+            ctx.shadowColor = shadowColor || color;
+            ctx.shadowBlur = shadowBlur;
+          } else {
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+        }
+
+        function renderLightning() {
+          scrollProgress += (targetProgress - scrollProgress) * 0.12;
+          if (Math.abs(targetProgress - scrollProgress) < 0.0005) {
+            scrollProgress = targetProgress;
+          }
+
+          const percent = scrollProgress * 100;
+          const isMobile = isMobileView();
+
+          // Limpar canvas
+          ctx.clearRect(0, 0, W, H);
+
+          if (isMobile) {
+            // === MODO MOBILE: CONTORNO DOS CARDS EM ZIGZAG EXATAMENTE NOS EXTREMOS ===
+            const zigzagResult = getMobileZigzagWaypoints();
+            if (zigzagResult && zigzagResult.waypoints.length > 2) {
+              const waypoints = zigzagResult.waypoints;
+              const cardData = zigzagResult.cardData;
+
+              // 1. Linha guia sutil translúcida de fundo em zigzag (conduíte de energia)
+              ctx.save();
+              ctx.beginPath();
+              ctx.moveTo(waypoints[0].x, waypoints[0].y);
+              for (let w = 1; w < waypoints.length; w++) {
+                ctx.lineTo(waypoints[w].x, waypoints[w].y);
+              }
+              ctx.strokeStyle = 'rgba(255, 230, 0, 0.12)';
+              ctx.lineWidth = 1.5;
+              ctx.setLineDash([4, 6]);
+              ctx.stroke();
+              ctx.restore();
+
+              if (scrollProgress > 0.01 && H > 0) {
+                const { path: activeWaypoints, head } = getPathAtProgress(waypoints, scrollProgress);
+
+                // Posicionar a cabeça incandescente na coordenada exata
+                sparkHead.style.left = `${head.x.toFixed(1)}px`;
+                sparkHead.style.top = `${head.y.toFixed(1)}px`;
+                sparkHead.style.transform = 'translate(-50%, -50%)';
+
+                // Fagulhas na cabeça
+                spawnSparks(head.x, head.y);
+
+                // Destacar com halo elétrico o card cujo extremo o raio está percorrendo
+                cardData.forEach((cd) => {
+                  if (head.y >= cd.top - 12 && head.y <= cd.bottom + 12 && scrollProgress > 0.02) {
+                    cd.card.classList.add('card-electrified');
+                  } else {
+                    cd.card.classList.remove('card-electrified');
+                  }
+                });
+
+                ctx.save();
+
+                // Gerar o arco fractal ao longo da polilinha em zigzag
+                const mainFractal = generateFractalPolyline(activeWaypoints, 10);
+
+                // 4 Passes de Plasma de Alta Voltagem
+                drawPath(mainFractal, 12, 'rgba(255, 215, 0, 0.22)', 22, '#FFE600');
+                drawPath(mainFractal, 4.5, 'rgba(255, 230, 0, 0.70)', 12, '#FFE600');
+                drawPath(mainFractal, 2.5, '#FFF770', 7, '#FFFFFF');
+                drawPath(mainFractal, 1.2, '#FFFFFF', 3.5, '#FFFFFF');
+
+                // Micro-arcos na ponta de impacto (strike discharge)
+                for (let a = 0; a < 3; a++) {
+                  const strikeAngle = Math.random() * Math.PI * 2;
+                  const strikeLen = 6 + Math.random() * 8;
+                  const strikePts = generateBranch(head.x, head.y, strikeAngle, strikeLen, 4);
+                  drawPath(strikePts, 1.0, '#FFFFFF', 4, '#FFE600');
+                }
+
+                // Ramificação sutil no mobile direcionada para a margem externa (sem invadir os cards)
+                if (Math.random() > 0.65 && activeWaypoints.length > 2) {
+                  const randIdx = Math.floor(Math.random() * (activeWaypoints.length - 1));
+                  const p = activeWaypoints[randIdx];
+                  const branchAngle = (p.x < W / 2 ? Math.PI : 0) + (Math.random() - 0.5) * 0.8;
+                  const branchLen = 8 + Math.random() * 12;
+                  const bPts = generateBranch(p.x, p.y, branchAngle, branchLen, 3);
+                  drawPath(bPts, 2.0, 'rgba(255, 230, 0, 0.40)', 6, '#FFE600');
+                  drawPath(bPts, 1.0, '#FFFFFF', 3, '#FFFFFF');
+                }
+
+                // Partículas e fagulhas
+                for (let i = sparks.length - 1; i >= 0; i--) {
+                  const s = sparks[i];
+                  s.x += s.vx;
+                  s.y += s.vy;
+                  s.life -= s.decay;
+
+                  if (s.life <= 0) {
+                    sparks.splice(i, 1);
+                    continue;
+                  }
+
+                  ctx.beginPath();
+                  ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+                  ctx.fillStyle = s.color;
+                  ctx.shadowColor = '#FFE600';
+                  ctx.shadowBlur = 8;
+                  ctx.fill();
+                }
+
+                ctx.restore();
+              }
+            }
+          } else {
+            // === MODO DESKTOP: CANAL CENTRAL FRACTAL ===
+            sparkHead.style.left = '50%';
+            sparkHead.style.top = `${percent.toFixed(2)}%`;
+            sparkHead.style.transform = 'translate(-50%, -50%)';
+
+            // Remover classes de mobile em cards se houver
+            const cards = wrapper.querySelectorAll('.service-card');
+            cards.forEach(card => card.classList.remove('card-electrified'));
+
+            if (scrollProgress > 0.01 && H > 0) {
+              const startX = W / 2;
+              const startY = 0;
+              const endX = W / 2;
+              const endY = H * scrollProgress;
+
+              spawnSparks(endX, endY);
+
+              ctx.save();
+
+              const mainPath = generateFractalPath(startX, startY, endX, endY, 0.54, 22);
+
+              drawPath(mainPath, 14, 'rgba(255, 215, 0, 0.22)', 28, '#FFE600');
+              drawPath(mainPath, 5.0, 'rgba(255, 230, 0, 0.70)', 14, '#FFE600');
+              drawPath(mainPath, 2.8, '#FFF770', 8, '#FFFFFF');
+              drawPath(mainPath, 1.2, '#FFFFFF', 4, '#FFFFFF');
+
+              if (mainPath.length > 8 && Math.random() > 0.25) {
+                const twinStartIdx = Math.floor(Math.random() * (mainPath.length - 8));
+                const twinLength = Math.floor(Math.random() * 6) + 3;
+                const twinPoints = [];
+                for (let i = twinStartIdx; i < twinStartIdx + twinLength && i < mainPath.length; i++) {
+                  twinPoints.push({
+                    x: mainPath[i].x + (Math.random() - 0.5) * 8,
+                    y: mainPath[i].y + (Math.random() - 0.5) * 4
+                  });
+                }
+                drawPath(twinPoints, 1.0, '#FFFFFF', 6, '#FFE600');
+              }
+
+              const branchCount = Math.floor(Math.random() * 2) + 2;
+              for (let b = 0; b < branchCount; b++) {
+                const nodeIdx = Math.floor((b + 0.3 + Math.random() * 0.4) / branchCount * (mainPath.length - 1));
+                const node = mainPath[nodeIdx] || mainPath[Math.floor(mainPath.length / 2)];
+                const side = (b % 2 === 0) ? 1 : -1;
+                const branchAngle = (side > 0 ? 0.3 : Math.PI - 0.3) + (Math.random() - 0.5) * 0.4;
+                const branchLength = 25 + Math.random() * 40;
+                const branchPts = generateBranch(node.x, node.y, branchAngle, branchLength, 12);
+
+                drawPath(branchPts, 3.2, 'rgba(255, 230, 0, 0.45)', 10, '#FFE600');
+                drawPath(branchPts, 1.2, '#FFFFFF', 4, '#FFFFFF');
+              }
+
+              const strikeArcCount = 4;
+              for (let a = 0; a < strikeArcCount; a++) {
+                const strikeAngle = Math.random() * Math.PI * 2;
+                const strikeLen = 8 + Math.random() * 14;
+                const strikePts = generateBranch(endX, endY, strikeAngle, strikeLen, 6);
+                drawPath(strikePts, 1.0, '#FFFFFF', 6, '#FFE600');
+              }
+
+              for (let i = sparks.length - 1; i >= 0; i--) {
+                const s = sparks[i];
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= s.decay;
+
+                if (s.life <= 0) {
+                  sparks.splice(i, 1);
+                  continue;
+                }
+
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+                ctx.fillStyle = s.color;
+                ctx.shadowColor = '#FFE600';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+              }
+
+              ctx.restore();
+            }
+          }
+
+          requestAnimationFrame(renderLightning);
+        }
+
+        window.addEventListener('scroll', updateScroll, { passive: true });
+        window.addEventListener('resize', () => {
+          resizeCanvas();
+          updateScroll();
+        });
+
+        // ResizeObserver para recalibrar o canvas quando o wrapper ou imagens alterarem dimensões
+        if (window.ResizeObserver && wrapper) {
+          const ro = new ResizeObserver(() => {
+            resizeCanvas();
+            updateScroll();
+          });
+          ro.observe(wrapper);
+        }
+
+        // Calibrar assim que imagens dos cards carregarem
+        const cardImgs = wrapper.querySelectorAll('img');
+        cardImgs.forEach(img => {
+          if (!img.complete) {
+            img.addEventListener('load', () => {
+              resizeCanvas();
+              updateScroll();
+            }, { once: true });
+          }
+        });
+
+        // Inicialização imediata
+        resizeCanvas();
+        updateScroll();
+        requestAnimationFrame(renderLightning);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCentralLightning);
+      } else {
+        initCentralLightning();
       }
 
       // 6. Canvas de Partículas Elétricas (Hero e Certificações)
@@ -2998,7 +4668,6 @@
         tick();
       }
 
-      initParticlesCanvas('hero-canvas');
       initParticlesCanvas('cert-canvas');
 
       // 7. Controle dos Dropdowns Customizados

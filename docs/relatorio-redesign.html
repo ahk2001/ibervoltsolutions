@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IberVolt Solutions — Relatório Executivo de Redesign</title>
+  
+  <!-- Google Fonts Preconnect & Load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══════════════════════════════════════
+       CONFIGURAÇÃO DE IMPRESSÃO & PÁGINA A4
+       ═══════════════════════════════════════ */
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      --obsidian: #050505;
+      --card-bg: rgba(13, 13, 15, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --yellow: #FFE600;
+      --yellow-hover: #ECD500;
+      --yellow-subtle: rgba(255, 230, 0, 0.08);
+      --border-yellow: rgba(255, 230, 0, 0.3);
+      --muted: #8E8E93;
+      --muted-light: #A1A1AA;
+      --white: #FFFFFF;
+      --red-accent: #FF5A5A;
+      --red-bg: rgba(255, 90, 90, 0.08);
+      --red-border: rgba(255, 90, 90, 0.25);
+    }
+
+    body {
+      background: #000000;
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTAINER DA PÁGINA (A4 EXATO)
+       ═══════════════════════════════════════ */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      margin: 20px auto;
+      padding: 44px 50px 38px 50px;
+      background: var(--obsidian);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      page-break-inside: avoid;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 230, 0, 0.045) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.015) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media print {
+      body {
+        background: var(--obsidian) !important;
+      }
+      .page {
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+      }
+      .page:last-of-type {
+        page-break-after: avoid !important;
+      }
+      .print-btn {
+        display: none !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       TIPOGRAFIA
+       ═══════════════════════════════════════ */
+    .font-syne { font-family: 'Syne', sans-serif; }
+    .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .yellow { color: var(--yellow); }
+    .italic { font-weight: 300; font-style: italic; color: rgba(255, 255, 255, 0.92); }
+
+    /* ═══════════════════════════════════════
+       BADGES & TÍTULOS DE SEÇÃO
+       ═══════════════════════════════════════ */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .section-badge .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 8px rgba(255, 230, 0, 0.8);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 27px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--muted-light);
+      max-width: 580px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* ═══════════════════════════════════════
+       RODAPÉ DE PÁGINA (PADRÃO REUTILIZÁVEL)
+       ═══════════════════════════════════════ */
+    .page-footer {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+
+    .page-footer .page-num {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════
+       PÁGINA 1: CAPA EXECUTIVA
+       ═══════════════════════════════════════ */
+    .cover-layout {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover-header-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .cover-logo-img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 230, 0, 0.25));
+    }
+
+    .cover-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .cover-main-content {
+      margin: auto 0;
+      padding: 20px 0;
+    }
+
+    .cover-main-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--white);
+      margin: 18px 0;
+    }
+
+    .cover-lead {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--muted-light);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .cover-highlight-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .cover-mini-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+    }
+
+    .cover-mini-card .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cover-mini-card .val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--white);
+    }
+
+    .cover-mini-card .val.yellow {
+      color: var(--yellow);
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .cover-meta-item .meta-k {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cover-meta-item .meta-v {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .cover-meta-item .meta-v.yellow {
+      color: var(--yellow);
+    }
+
+    /* ═══════════════════════════════════════
+       CARDS COMPARATIVOS (ANTES VS DEPOIS)
+       ═══════════════════════════════════════ */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .comp-card {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comp-card.old {
+      border-color: var(--red-border);
+      background: linear-gradient(180deg, rgba(255, 90, 90, 0.03) 0%, rgba(13, 13, 15, 0.8) 100%);
+    }
+
+    .comp-card.new {
+      border-color: var(--border-yellow);
+      background: linear-gradient(180deg, rgba(255, 230, 0, 0.03) 0%, rgba(13, 13, 15, 0.8) 100%);
+    }
+
+    .comp-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .comp-card.old .comp-badge {
+      background: var(--red-bg);
+      border: 1px solid var(--red-border);
+      color: var(--red-accent);
+    }
+
+    .comp-card.new .comp-badge {
+      background: var(--yellow-subtle);
+      border: 1px solid var(--border-yellow);
+      color: var(--yellow);
+    }
+
+    .comp-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .comp-card p {
+      font-size: 11px;
+      color: var(--muted-light);
+      line-height: 1.55;
+    }
+
+    .comp-card ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .comp-card ul li {
+      font-size: 10.5px;
+      color: var(--muted-light);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.45;
+    }
+
+    /* ═══════════════════════════════════════
+       LINHA DE MÉTRICAS (STATS ROW)
+       ═══════════════════════════════════════ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      padding: 14px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      text-align: center;
+    }
+
+    .stat-card .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .stat-card .stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════
+       CAIXA DE DESTAQUE / IMPACTO
+       ═══════════════════════════════════════ */
+    .highlight-card {
+      padding: 16px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border-yellow);
+      background: linear-gradient(135deg, rgba(255, 230, 0, 0.04) 0%, rgba(255, 230, 0, 0.01) 100%);
+      margin-top: auto;
+      margin-bottom: 8px;
+    }
+
+    .highlight-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--yellow);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .highlight-card p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.55;
+    }
+
+    /* ═══════════════════════════════════════
+       PALETA DE CORES & TIPOGRAFIA (PÁG 3)
+       ═══════════════════════════════════════ */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .palette-swatch {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .palette-swatch .swatch-color {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .palette-swatch .swatch-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .palette-swatch .swatch-info {
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .palette-swatch .swatch-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 9.5px;
+      color: var(--white);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .palette-swatch .swatch-hex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: var(--muted);
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .type-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+    }
+
+    .type-card .type-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: var(--yellow);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .type-card .type-sample {
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .type-card .type-desc {
+      font-size: 9.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ═══════════════════════════════════════
+       TABELA COMPARATIVA TÉCNICA (PÁG 4)
+       ═══════════════════════════════════════ */
+    .feature-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      font-size: 10.5px;
+    }
+
+    .feature-table thead th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .feature-table thead th:nth-child(2) {
+      color: var(--red-accent);
+      width: 32%;
+    }
+
+    .feature-table thead th:nth-child(3) {
+      color: var(--yellow);
+      width: 38%;
+    }
+
+    .feature-table tbody td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+      vertical-align: middle;
+    }
+
+    .feature-table tbody td:first-child {
+      font-weight: 500;
+      color: var(--white);
+      font-size: 10.5px;
+    }
+
+    .feature-table tbody td:nth-child(2) {
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 10px;
+    }
+
+    .feature-table tbody td:nth-child(3) {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .mark-cross {
+      color: var(--red-accent);
+      font-weight: 700;
+      margin-right: 5px;
+    }
+
+    .mark-check {
+      color: var(--yellow);
+      font-weight: 700;
+      margin-right: 5px;
+    }
+
+    /* ═══════════════════════════════════════
+       GRID DE SEÇÕES & ARQUITETURA (PÁG 5)
+       ═══════════════════════════════════════ */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-bottom: 12px;
+    }
+
+    .arch-card {
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      position: relative;
+    }
+
+    .arch-card.wide {
+      grid-column: span 2;
+      background: linear-gradient(90deg, rgba(255, 230, 0, 0.03) 0%, rgba(13, 13, 15, 0.8) 100%);
+      border-color: rgba(255, 230, 0, 0.2);
+    }
+
+    .arch-card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .arch-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--yellow-subtle);
+      border: 1px solid var(--border-yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    .arch-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11.5px;
+      color: var(--white);
+    }
+
+    .arch-card p {
+      font-size: 9.8px;
+      color: var(--muted-light);
+      line-height: 1.45;
+    }
+
+    /* ═══════════════════════════════════════
+       STACK TECNOLÓGICO & CONCLUSÃO (PÁG 6)
+       ═══════════════════════════════════════ */
+    .tech-badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .tech-pill .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .roi-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      text-align: left;
+    }
+
+    .roi-card .roi-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--white);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .roi-card p {
+      font-size: 10px;
+      color: var(--muted-light);
+      line-height: 1.5;
+    }
+
+    .creator-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(13, 13, 15, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      margin-top: auto;
+      margin-bottom: 8px;
+    }
+
+    .creator-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .criaweb-logo {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.12));
+    }
+
+    .creator-divider {
+      width: 1px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .creator-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .creator-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .creator-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .creator-seal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: right;
+    }
+
+    .creator-seal .bolt {
+      color: var(--yellow);
+      font-size: 16px;
+    }
+
+    .creator-seal .seal-top {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 0.12em;
+      display: block;
+    }
+
+    .creator-seal .seal-bot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════
+       BOTÃO DE IMPRESSÃO FLUTUANTE
+       ═══════════════════════════════════════ */
+    .print-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: #050505;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 12.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 25px rgba(255, 230, 0, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 35px rgba(255, 230, 0, 0.55);
+      background: var(--yellow-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÃO FLUTUANTE NA TELA (OCULTO AO IMPRIMIR) -->
+  <button class="print-btn" onclick="window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9V2h12v7"></path>
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+      <rect x="6" y="14" width="12" height="8"></rect>
+    </svg>
+    Exportar / Salvar como PDF
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 1: CAPA EXECUTIVA
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content cover-layout">
+      
+      <!-- Top Brand Header -->
+      <div class="cover-header-brand">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="../assets/images/logo.png" alt="IberVolt Solutions" class="cover-logo-img">
+          <div>
+            <div class="font-syne" style="font-weight: 800; font-size: 16px; letter-spacing: -0.02em;">IBERVOLT SOLUTIONS</div>
+            <div class="font-mono" style="font-size: 8.5px; color: var(--yellow); letter-spacing: 0.18em;">HIGH-PERFORMANCE ELECTRICAL ENGINEERING</div>
+          </div>
+        </div>
+        <div class="cover-tagline">
+          Valencia // España<br>
+          <span style="color: var(--yellow);">Relatório Oficial 2026</span>
+        </div>
+      </div>
+
+      <!-- Main Headline Body -->
+      <div class="cover-main-content">
+        <div class="section-badge">
+          <span class="dot"></span>
+          Relatório Executivo & Técnico de Redesign
+        </div>
+
+        <h1 class="cover-main-title">
+          Análise <span class="yellow">Comparativa</span><br>
+          do <span class="italic">Redesign Digital</span><br>
+          <span class="yellow">IberVolt</span> Solutions.
+        </h1>
+
+        <p class="cover-lead">
+          Auditoria comparativa entre a estrutura digital anterior (WordPress legada) e a nova plataforma 
+          institucional proprietária de alta conversão, evidenciando o salto em autoridade técnica, 
+          estética Architectural Luxury, conformidade normativa e performance comercial.
+        </p>
+
+        <!-- Mini Highlights -->
+        <div class="cover-highlight-strip">
+          <div class="cover-mini-card">
+            <span class="label">Origem Digital</span>
+            <div class="val">Template WordPress</div>
+          </div>
+          <div class="cover-mini-card">
+            <span class="label">Nova Plataforma</span>
+            <div class="val yellow">Bespoke Architectural</div>
+          </div>
+          <div class="cover-mini-card">
+            <span class="label">Foco Comercial</span>
+            <div class="val yellow">Conversão WhatsApp Direta</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Metadata Grid -->
+      <div>
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="meta-k">Cliente</span>
+            <span class="meta-v">IberVolt Solutions</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="meta-k">Domínio</span>
+            <span class="meta-v">ibervoltsolutions.com</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="meta-k">Criador / Agência</span>
+            <span class="meta-v yellow">Andrey Kreuch // CriaWeb</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="meta-k">Data da Emissão</span>
+            <span class="meta-v">Setembro 2026</span>
+          </div>
+        </div>
+
+        <div class="page-footer" style="margin-top: 18px;">
+          <span>IBERVOLT SOLUTIONS // ENGENHARIA DIGITAL & PERFORMANCE</span>
+          <span class="page-num">01 / 06</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 2: VISÃO GERAL DA TRANSFORMAÇÃO
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content">
+      
+      <div class="section-badge">
+        <span class="dot"></span>
+        01 // Visão Geral da Transformação Estratégica
+      </div>
+
+      <h2 class="section-title">
+        De um Site <span class="italic">Genérico</span><br>
+        para uma Plataforma <span class="yellow">High-End</span>.
+      </h2>
+
+      <p class="section-subtitle">
+        A presença digital anterior utilizava um tema genérico sem capacidade de transmitir o real gabarito técnico da IberVolt. A nova plataforma foi construída sob medida para atrair contratos de alto valor em Valência e províncias vizinhas.
+      </p>
+
+      <!-- Comparativo Inicial -->
+      <div class="comparison-grid">
+        <div class="comp-card old">
+          <div class="comp-badge">✕ Estrutura Legada</div>
+          <h4>ibervoltsolutions.com (Antigo)</h4>
+          <p>
+            Construído sobre WordPress com tema básico <em>Extendable</em> e plugins de terceiros. Layout engessado, cores padrão descontextualizadas e falta de hierarquia comercial.
+          </p>
+          <ul>
+            <li><span class="mark-cross">✕</span> Ausência de identidade visual própria e memorável</li>
+            <li><span class="mark-cross">✕</span> Idiomas misturados e sem suporte multi-idiomas real</li>
+            <li><span class="mark-cross">✕</span> Sem funil de qualificação de leads técnicos</li>
+            <li><span class="mark-cross">✕</span> Falta de destaque para certificações e normas REBT</li>
+          </ul>
+        </div>
+
+        <div class="comp-card new">
+          <div class="comp-badge">⚡ Nova Plataforma</div>
+          <h4>IberVolt Solutions (Novo)</h4>
+          <p>
+            Engenharia digital com conceito <em>Architectural Luxury / Industrial Tech</em>. Código proprietário ultra-otimizado, navegação fluida e foco incisivo em conversão qualificada.
+          </p>
+          <ul>
+            <li><span class="mark-check">✓</span> Design System exclusivo (Dark Obsidian + Electric Gold)</li>
+            <li><span class="mark-check">✓</span> Sistema trilíngue instantâneo (PT / ES / EN) com 134 chaves</li>
+            <li><span class="mark-check">✓</span> Formulário inteligente que monta briefings automáticos para WhatsApp</li>
+            <li><span class="mark-check">✓</span> Cards técnicos dedicados para NR-10, NR-10 SEP e NR-35</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Linha de Estatísticas -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Código Proprietário</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">3</div>
+          <div class="stat-lbl">Idiomas Integrados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">6+</div>
+          <div class="stat-lbl">Módulos Interativos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">&lt; 1s</div>
+          <div class="stat-lbl">Tempo de Resposta</div>
+        </div>
+      </div>
+
+      <!-- Destaque de Impacto -->
+      <div class="highlight-card">
+        <h4>⚡ Reposicionamento Estratégico de Valor</h4>
+        <p>
+          Clientes corporativos, diretores de hotéis e gestores prediais exigem garantias explícitas antes de contratar serviços elétricos. O novo site posiciona a IberVolt não como um prestador autônomo comum, mas como uma empresa de engenharia consolidada e tecnicamente infalível.
+        </p>
+      </div>
+
+      <div class="page-footer">
+        <span>IBERVOLT SOLUTIONS // RELATÓRIO DE REDESIGN</span>
+        <span class="page-num">02 / 06</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 3: IDENTIDADE VISUAL & DESIGN SYSTEM
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content">
+      
+      <div class="section-badge">
+        <span class="dot"></span>
+        02 // Identidade Visual & Design System
+      </div>
+
+      <h2 class="section-title">
+        Paleta <span class="yellow">Cromática</span> &<br>
+        <span class="italic">Tipografia</span> de Alta Precisão.
+      </h2>
+
+      <p class="section-subtitle">
+        Criação de um ecossistema estético imersivo. A união entre superfícies escuras translúcidas e o amarelo elétrico cria contraste cirúrgico, elevando a percepção de modernidade e disciplina técnica.
+      </p>
+
+      <!-- Paleta Oficial -->
+      <span class="font-mono" style="font-size: 9px; letter-spacing: 0.18em; color: var(--yellow); text-transform: uppercase; display: block; margin-bottom: 8px;">
+        Paleta Oficial de Cores (Design Tokens)
+      </span>
+      <div class="palette-grid">
+        <div class="palette-swatch">
+          <div class="swatch-color" style="background: #050505; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span class="swatch-tag" style="background: rgba(255,255,255,0.08); color: #fff;">BG</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Dark Obsidian</span>
+            <span class="swatch-hex">#050505</span>
+          </div>
+        </div>
+
+        <div class="palette-swatch">
+          <div class="swatch-color" style="background: #0c0c0e; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span class="swatch-tag" style="background: rgba(255,255,255,0.08); color: #fff;">CARD</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Graphite Glass</span>
+            <span class="swatch-hex">#0C0C0E</span>
+          </div>
+        </div>
+
+        <div class="palette-swatch">
+          <div class="swatch-color" style="background: #FFE600;">
+            <span class="swatch-tag" style="background: rgba(0,0,0,0.15); color: #000;">CTA / VIP</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Electric Gold</span>
+            <span class="swatch-hex">#FFE600</span>
+          </div>
+        </div>
+
+        <div class="palette-swatch">
+          <div class="swatch-color" style="background: #FFFFFF;">
+            <span class="swatch-tag" style="background: rgba(0,0,0,0.1); color: #000;">TITLES</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Pure White</span>
+            <span class="swatch-hex">#FFFFFF</span>
+          </div>
+        </div>
+
+        <div class="palette-swatch">
+          <div class="swatch-color" style="background: #8E8E93;">
+            <span class="swatch-tag" style="background: rgba(0,0,0,0.2); color: #fff;">BODY</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Muted Platinum</span>
+            <span class="swatch-hex">#8E8E93</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tipografia -->
+      <span class="font-mono" style="font-size: 9px; letter-spacing: 0.18em; color: var(--yellow); text-transform: uppercase; display: block; margin-bottom: 8px;">
+        Arquitetura Tipográfica Selecionada
+      </span>
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="type-role">Display // Headlines</div>
+          <div class="type-sample font-syne" style="font-weight: 700;">Syne Bold</div>
+          <div class="type-desc">
+            Geométrica e marcante. Empregada em chamadas principais e seções de grande autoridade.
+          </div>
+        </div>
+
+        <div class="type-card">
+          <div class="type-role">Interface // Leitura</div>
+          <div class="type-sample font-jakarta" style="font-weight: 500;">Jakarta Sans</div>
+          <div class="type-desc">
+            Equilibrada e neutra. Garante leitura fluida e conforto ótico em parágrafos e menus.
+          </div>
+        </div>
+
+        <div class="type-card">
+          <div class="type-role">Engenharia // Normas</div>
+          <div class="type-sample font-mono" style="font-weight: 500;">JetBrains</div>
+          <div class="type-desc">
+            Estilo terminal de dados. Aplicada em certificações, códigos normativos e parâmetros técnicos.
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparativo Estético -->
+      <div class="comparison-grid" style="margin-top: 4px; margin-bottom: 0;">
+        <div class="comp-card old" style="padding: 14px 16px;">
+          <div class="comp-badge">✕ Estilo Passado</div>
+          <h4 style="font-size: 12.5px;">Cores e Fontes de Sistema</h4>
+          <p style="font-size: 10px;">
+            Utilização de fontes convencionais de sistema operacional (Arial) e paleta azulada comum a templates gratuitos, sem qualquer conexão com engenharia de alto padrão.
+          </p>
+        </div>
+
+        <div class="comp-card new" style="padding: 14px 16px;">
+          <div class="comp-badge">⚡ Estilo Presente</div>
+          <h4 style="font-size: 12.5px;">Architectural Luxury Custom</h4>
+          <p style="font-size: 10px;">
+            Identidade visual proprietária com Dark Mode nativo, desfoques de vidro (blur), micro-bordas translúcidas e acentos que remetem à energia elétrica de precisão.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>IBERVOLT SOLUTIONS // RELATÓRIO DE REDESIGN</span>
+        <span class="page-num">03 / 06</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 4: COMPARAÇÃO TÉCNICA DETALHADA (MATRIZ)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content">
+      
+      <div class="section-badge">
+        <span class="dot"></span>
+        03 // Comparação Técnica Detalhada
+      </div>
+
+      <h2 class="section-title">
+        Matriz de Funcionalidades: <span class="yellow">Antes</span><br>
+        <span class="italic">vs.</span> Depois.
+      </h2>
+
+      <p class="section-subtitle">
+        Comparativo funcional item a item comprovando a evolução das capacidades técnicas, de segurança e de conversão implementadas no novo projeto.
+      </p>
+
+      <!-- Matriz de Funcionalidades -->
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>FUNCIONALIDADE / CRITÉRIO</th>
+            <th>SITE ANTERIOR (LEGADO)</th>
+            <th>NOVA PLATAFORMA (ATUAL)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arquitetura de Código</td>
+            <td><span class="mark-cross">✕</span> WordPress + Tema Extendable</td>
+            <td><span class="mark-check">✓</span> HTML5 / JS Nativo Ultra-Leve</td>
+          </tr>
+          <tr>
+            <td>Design Responsivo (Mobile-First)</td>
+            <td><span class="mark-cross">✕</span> Quebras visuais em smartphones</td>
+            <td><span class="mark-check">✓</span> 100% Mobile-First fluido</td>
+          </tr>
+          <tr>
+            <td>Identidade Visual Proprietária</td>
+            <td><span class="mark-cross">✕</span> Template padrão sem branding</td>
+            <td><span class="mark-check">✓</span> Architectural Luxury exclusivo</td>
+          </tr>
+          <tr>
+            <td>Suporte Multi-Idiomas</td>
+            <td><span class="mark-cross">✕</span> Inexistente (textos misturados)</td>
+            <td><span class="mark-check">✓</span> Trilíngue nativo (PT / ES / EN)</td>
+          </tr>
+          <tr>
+            <td>Integração com WhatsApp</td>
+            <td><span class="mark-cross">✕</span> Link estático simples</td>
+            <td><span class="mark-check">✓</span> Mensagem auto-formatada com briefing</td>
+          </tr>
+          <tr>
+            <td>Formulário de Pré-Avaliação</td>
+            <td><span class="mark-cross">✕</span> Plugin de contato básico</td>
+            <td><span class="mark-check">✓</span> Form customizado com validação ativa</td>
+          </tr>
+          <tr>
+            <td>Certificações (NR-10, NR-35, REBT)</td>
+            <td><span class="mark-cross">✕</span> Menção vaga em parágrafos</td>
+            <td><span class="mark-check">✓</span> Cards dedicados e selos de rigor técnico</td>
+          </tr>
+          <tr>
+            <td>Console Interativo de Serviços</td>
+            <td><span class="mark-cross">✕</span> Lista estática corrida</td>
+            <td><span class="mark-check">✓</span> Tabs interativas com fotos e chips</td>
+          </tr>
+          <tr>
+            <td>Mapa de Cobertura Regional</td>
+            <td><span class="mark-cross">✕</span> Sem mapa (apenas texto)</td>
+            <td><span class="mark-check">✓</span> Mapa com parallax e detalhamento por zonas</td>
+          </tr>
+          <tr>
+            <td>Preloader & Micro-Animações</td>
+            <td><span class="mark-cross">✕</span> Nenhum efeito visual</td>
+            <td><span class="mark-check">✓</span> Preloader dinâmico + Scroll Reveal</td>
+          </tr>
+          <tr>
+            <td>SEO Estruturado & Metadados</td>
+            <td><span class="mark-cross">✕</span> Metatags genéricas ausentes</td>
+            <td><span class="mark-check">✓</span> Schema.org, OpenGraph e Twitter Cards</td>
+          </tr>
+          <tr>
+            <td>Proteção Anti-Spam</td>
+            <td><span class="mark-cross">✕</span> Formulário vulnerável</td>
+            <td><span class="mark-check">✓</span> Sistema Honeypot invisível</td>
+          </tr>
+          <tr>
+            <td>Acessibilidade Web (a11y)</td>
+            <td><span class="mark-cross">✕</span> Sem atributos ARIA</td>
+            <td><span class="mark-check">✓</span> Diretrizes WCAG 2.1 AA implementadas</td>
+          </tr>
+          <tr>
+            <td>Tempo de Carregamento</td>
+            <td><span class="mark-cross">✕</span> &gt; 3.5 segundos (pesado)</td>
+            <td><span class="mark-check">✓</span> Carregamento sub-segundo instantâneo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Nota de Engenharia -->
+      <div class="highlight-card" style="margin-top: 4px;">
+        <h4>⚡ Conclusão da Análise Comparativa</h4>
+        <p>
+          A transição representou a eliminação completa de gargalos operacionais e de segurança. A ausência de banco de dados e plugins pesados garante estabilidade contínua sem risco de invasões ou incompatibilidades pós-atualização.
+        </p>
+      </div>
+
+      <div class="page-footer">
+        <span>IBERVOLT SOLUTIONS // RELATÓRIO DE REDESIGN</span>
+        <span class="page-num">04 / 06</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 5: ARQUITETURA MODULAR & SEÇÕES DO NOVO SITE
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content">
+      
+      <div class="section-badge">
+        <span class="dot"></span>
+        04 // Arquitetura Modular & Seções
+      </div>
+
+      <h2 class="section-title">
+        Estrutura <span class="yellow">Modular</span> em<br>
+        <span class="italic">6 Seções</span> de Alta Conversão.
+      </h2>
+
+      <p class="section-subtitle">
+        Cada módulo foi planejado segundo a psicologia de tomada de decisão em compras B2B e contratos de alto padrão, conduzindo o usuário da autoridade à ação comercial imediata.
+      </p>
+
+      <!-- Grid das 7 Estruturas Arquiteturais -->
+      <div class="arch-grid">
+        
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">01</span>
+            <h4>Header & Barra Flutuante</h4>
+          </div>
+          <p>
+            Vidro translúcido com desfoque de fundo (backdrop-filter), logo oficial, menu numerado (01–04), alternador dinâmico de idiomas (PT/ES/EN) e botão de emergência WhatsApp.
+          </p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">02</span>
+            <h4>Hero Section de Alto Impacto</h4>
+          </div>
+          <p>
+            Headline tipográfica marcante com Syne Bold, badge de certificação técnica, partículas elétricas em Canvas, fotografia industrial e card flutuante de conformidade normativa.
+          </p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">03</span>
+            <h4>Console de Especialidades</h4>
+          </div>
+          <p>
+            4 pilares técnicos operados por abas: Manutenção Preventiva, Retrofit Elétrico, Montagem de Painéis e Projetos Sob Encomenda. Apresenta imagens reais e chips setoriais.
+          </p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">04</span>
+            <h4>Rigor Normativo & Certificações</h4>
+          </div>
+          <p>
+            Cards glassmorphism com especificações das diretrizes NR-10, NR-10 SEP e NR-35 (trabalho em altura). Reforço de segurança indispensável para contratações corporativas.
+          </p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">05</span>
+            <h4>Marquee Tipográfico Infinito</h4>
+          </div>
+          <p>
+            Fita dinâmica em movimento contínuo evidenciando os setores atendidos: Residencial & Airbnb de Alto Padrão, Redes Hoteleiras, Colégios, Comércio e Setor Industrial.
+          </p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-top">
+            <span class="arch-num">06</span>
+            <h4>Cobertura & Pré-Avaliação</h4>
+          </div>
+          <p>
+            Mapa de Valência e cidades vizinhas com efeito parallax + formulário intuitivo que valida dados em tempo real e compõe uma mensagem estruturada pronta para envio via WhatsApp.
+          </p>
+        </div>
+
+        <div class="arch-card wide">
+          <div class="arch-card-top">
+            <span class="arch-num">07</span>
+            <h4>Footer Arquitetônico & Selos Regulatórios</h4>
+          </div>
+          <p>
+            Grid institucional com identidade completa da empresa, atalhos de navegação técnica rápida, selos de conformidade REBT, canal direto de suporte e atalho de retorno ao topo.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Resumo Estrutural -->
+      <div class="highlight-card" style="margin-top: auto; margin-bottom: 8px;">
+        <h4>⚡ Integração Tecnológica em Tempo Real</h4>
+        <p>
+          O sistema não depende de integrações lentas ou complexas: ao clicar em qualquer CTA, os dados selecionados pelo cliente são pré-formatados e entregues diretamente no WhatsApp do responsável técnico.
+        </p>
+      </div>
+
+      <div class="page-footer">
+        <span>IBERVOLT SOLUTIONS // RELATÓRIO DE REDESIGN</span>
+        <span class="page-num">05 / 06</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA 6: STACK TECNOLÓGICO, RETORNO & CONCLUSÃO
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="page-content">
+      
+      <div class="section-badge">
+        <span class="dot"></span>
+        05 // Stack Tecnológico & Conclusão
+      </div>
+
+      <h2 class="section-title">
+        Tecnologias <span class="yellow">Aplicadas</span> &<br>
+        <span class="italic">Resultados</span> de Negócio.
+      </h2>
+
+      <p class="section-subtitle">
+        Adoção de padrões web de vanguarda que eliminam custos com manutenção de CMS e garantem durabilidade, velocidade e taxa de conversão incomparável.
+      </p>
+
+      <!-- Stack de Tecnologias -->
+      <span class="font-mono" style="font-size: 9px; letter-spacing: 0.18em; color: var(--yellow); text-transform: uppercase; display: block; margin-bottom: 8px;">
+        Ecossistema Tecnológico Utilizado
+      </span>
+      <div class="tech-badges-wrap">
+        <div class="tech-pill"><span class="dot"></span> HTML5 Semântico</div>
+        <div class="tech-pill"><span class="dot"></span> Tailwind CSS Engine</div>
+        <div class="tech-pill"><span class="dot"></span> JavaScript ES6+ Nativo</div>
+        <div class="tech-pill"><span class="dot"></span> Lucide Vector Icons</div>
+        <div class="tech-pill"><span class="dot"></span> Canvas API (Partículas)</div>
+        <div class="tech-pill"><span class="dot"></span> WhatsApp Business API</div>
+        <div class="tech-pill"><span class="dot"></span> IntersectionObserver</div>
+        <div class="tech-pill"><span class="dot"></span> Glassmorphism CSS</div>
+        <div class="tech-pill"><span class="dot"></span> i18n Nativo (3 Idiomas)</div>
+        <div class="tech-pill"><span class="dot"></span> Proteção Honeypot</div>
+        <div class="tech-pill"><span class="dot"></span> Otimização WebP/AVIF</div>
+        <div class="tech-pill"><span class="dot"></span> Deploy Serverless</div>
+      </div>
+
+      <!-- ROI e Retorno de Negócio -->
+      <span class="font-mono" style="font-size: 9px; letter-spacing: 0.18em; color: var(--yellow); text-transform: uppercase; display: block; margin-bottom: 8px;">
+        Retorno de Investimento Estratégico (ROI)
+      </span>
+      <div class="roi-grid">
+        <div class="roi-card">
+          <div class="roi-title">
+            <span class="yellow">⚡</span> Autoridade
+          </div>
+          <p>
+            Posicionamento imediato como engenharia de elite, permitindo a apresentação de propostas comerciais de maior valor agregado.
+          </p>
+        </div>
+
+        <div class="roi-card">
+          <div class="roi-title">
+            <span class="yellow">⚡</span> Conversão
+          </div>
+          <p>
+            O formulário com filtros reduz curiosos e entrega contatos comerciais com escopo e zona geográfica já pré-definidos.
+          </p>
+        </div>
+
+        <div class="roi-card">
+          <div class="roi-title">
+            <span class="yellow">⚡</span> Segurança
+          </div>
+          <p>
+            Código imune a falhas comuns de plugins desatualizados, garantindo estabilidade ininterrupta 24 horas por dia.
+          </p>
+        </div>
+      </div>
+
+      <!-- Conclusão Executiva -->
+      <div class="highlight-card" style="margin-top: 0; margin-bottom: 12px;">
+        <h4>⚡ Veredito Final</h4>
+        <p>
+          O redesign do ecossistema digital da <strong>IberVolt Solutions</strong> concretizou uma transformação que ultrapassa o campo estético: instituiu uma ferramenta comercial de alta precisão. A marca passa a comunicar com exatidão a excelência da sua engenharia, fortalecendo sua liderança e competitividade em Valência e em toda a Espanha.
+        </p>
+      </div>
+
+      <!-- Bloco de Autoria & Criação (CriaWeb // Andrey Kreuch) -->
+      <div class="creator-strip">
+        <div class="creator-left">
+          <img src="../assets/images/logo-criaweb.png" alt="CriaWeb" class="criaweb-logo">
+          <div class="creator-divider"></div>
+          <div class="creator-text">
+            <span class="creator-role">Projeto, Design & Desenvolvimento</span>
+            <span class="creator-name">Andrey Kreuch <span style="font-weight: 400; color: var(--muted); font-size: 11px;">// CriaWeb</span></span>
+          </div>
+        </div>
+        <div class="creator-seal">
+          <span class="bolt">⚡</span>
+          <div>
+            <span class="seal-top">PROJETO HOMOLOGADO</span>
+            <span class="seal-bot">CRIAWEB DIGITAL ARCHITECTURE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>IBERVOLT SOLUTIONS // PROJETO POR CRIAWEB — ANDREY KREUCH</span>
+        <span class="page-num">06 / 06</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
