@@ -674,16 +674,19 @@
     }
 
     /* =========================================================
-       Luminous Electric Dot Cursor (Substitui a seta padrão por ponto de luz)
+       Luminous Electric Dot Cursor (Apenas Desktop com mouse)
        ========================================================= */
-    body.custom-cursor-active,
-    body.custom-cursor-active * {
-      cursor: none !important;
+    @media (hover: hover) and (pointer: fine) {
+      body.custom-cursor-active,
+      body.custom-cursor-active * {
+        cursor: none !important;
+      }
     }
 
+    /* Mobile / Touch: Deixar cursor nativo normal e ocultar ponto de luz */
     @media (max-width: 1024px), (hover: none), (pointer: coarse) {
-      *, *::before, *::after {
-        cursor: none !important;
+      #luminous-cursor {
+        display: none !important;
       }
     }
 
@@ -5622,14 +5625,27 @@
       }
 
       // ==========================================
-      // PONTO DE LUZ (Cursor Luminoso Elétrico Mobile & Desktop)
-      // Substitui a seta padrão do sistema por uma partícula de luz de alta voltagem
+      // PONTO DE LUZ (Cursor Luminoso Elétrico Desktop Apenas)
+      // No mobile e telas touch, o cursor e o toque permanecem 100% nativos/normais
       // ==========================================
       function initLuminousCursor() {
         const cursorEl = document.getElementById('luminous-cursor');
         if (!cursorEl) return;
 
-        // Ativa classe global no body para suprimir a seta nativa do navegador
+        function isMobileOrTouch() {
+          return window.innerWidth <= 1024 ||
+                 window.matchMedia('(hover: none), (pointer: coarse)').matches ||
+                 ('ontouchstart' in window && !window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+        }
+
+        // Se for mobile ou tela touch, garante cursor normal e não executa o ponto de luz
+        if (isMobileOrTouch()) {
+          cursorEl.style.display = 'none';
+          document.body.classList.remove('custom-cursor-active');
+          return;
+        }
+
+        // Ativa classe no body apenas para desktop com mouse tradicional
         document.body.classList.add('custom-cursor-active');
 
         let targetX = -100;
@@ -5637,7 +5653,6 @@
         let currentX = -100;
         let currentY = -100;
         let isVisible = false;
-        let isTouchMode = false;
         let fadeTimer = null;
         let isLoopActive = false;
 
@@ -5667,7 +5682,7 @@
           targetY = y;
           show();
 
-          if (snap || isTouchMode) {
+          if (snap) {
             currentX = x;
             currentY = y;
             cursorEl.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
@@ -5685,8 +5700,8 @@
             return;
           }
 
-          // Interpolação de movimento: imediata e precisa no touch, lerp fluido no desktop
-          const factor = isTouchMode ? 0.92 : 0.45;
+          // Interpolação suave e precisa para movimento fluido do mouse no desktop
+          const factor = 0.45;
           currentX += (targetX - currentX) * factor;
           currentY += (targetY - currentY) * factor;
 
@@ -5695,64 +5710,50 @@
           requestAnimationFrame(cursorRenderLoop);
         }
 
-        // 1. Suporte universal Pointer Events (cobre mouse, caneta touch e emulação mobile do Chrome DevTools)
+        // 1. Suporte exclusivo a eventos de ponteiro de mouse (desktop)
         window.addEventListener('pointermove', (e) => {
-          isTouchMode = (e.pointerType === 'touch');
+          if (e.pointerType === 'touch' || isMobileOrTouch()) return;
           setCoords(e.clientX, e.clientY);
         }, { passive: true });
 
         window.addEventListener('pointerdown', (e) => {
-          isTouchMode = (e.pointerType === 'touch');
+          if (e.pointerType === 'touch' || isMobileOrTouch()) return;
           setCoords(e.clientX, e.clientY, true);
           cursorEl.classList.add('cursor-pressed');
         }, { passive: true });
 
-        window.addEventListener('pointerup', () => {
+        window.addEventListener('pointerup', (e) => {
+          if (e.pointerType === 'touch' || isMobileOrTouch()) return;
           cursorEl.classList.remove('cursor-pressed');
-          if (isTouchMode) {
-            hideDelayed(450);
-          }
         }, { passive: true });
 
-        window.addEventListener('pointercancel', () => {
+        window.addEventListener('pointercancel', (e) => {
+          if (e.pointerType === 'touch' || isMobileOrTouch()) return;
           cursorEl.classList.remove('cursor-pressed');
-          if (isTouchMode) {
-            hideDelayed(150);
+        }, { passive: true });
+
+        // Ajuste dinâmico em caso de redimensionamento da janela
+        window.addEventListener('resize', () => {
+          if (isMobileOrTouch()) {
+            cursorEl.style.display = 'none';
+            document.body.classList.remove('custom-cursor-active');
+          } else {
+            cursorEl.style.display = '';
+            document.body.classList.add('custom-cursor-active');
           }
         }, { passive: true });
 
-        // 2. Touch Events nativos para suporte irrestrito em telas touch reais (iOS/Android)
-        window.addEventListener('touchstart', (e) => {
-          isTouchMode = true;
-          if (e.touches && e.touches.length > 0) {
-            const t = e.touches[0];
-            setCoords(t.clientX, t.clientY, true);
-            cursorEl.classList.add('cursor-pressed');
-          }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-          isTouchMode = true;
-          if (e.touches && e.touches.length > 0) {
-            const t = e.touches[0];
-            setCoords(t.clientX, t.clientY);
-          }
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
-          cursorEl.classList.remove('cursor-pressed');
-          hideDelayed(400);
-        }, { passive: true });
-
-        // 3. Efeito Hover Dinâmico: amplia a aura do ponto de luz sobre elementos interativos
+        // 2. Efeito Hover Dinâmico sobre elementos interativos no desktop
         const interactiveQuery = 'a, button, input, select, textarea, [role="button"], .cursor-pointer, .bento-interactive, .service-card, .cta-button';
         document.addEventListener('mouseover', (e) => {
+          if (isMobileOrTouch()) return;
           if (e.target && e.target.closest && e.target.closest(interactiveQuery)) {
             cursorEl.classList.add('cursor-hover');
           }
         }, { passive: true });
 
         document.addEventListener('mouseout', (e) => {
+          if (isMobileOrTouch()) return;
           if (e.target && e.target.closest && e.target.closest(interactiveQuery)) {
             cursorEl.classList.remove('cursor-hover');
           }
