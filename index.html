@@ -441,7 +441,305 @@
       box-shadow: 0 0 20px rgba(255, 230, 0, 0.2);
     }
 
-    /* Header & Minimalist Blurred Navigation */
+    /* =========================================================
+       Animação Arquitetônica de Entrada do Rodapé (Footer)
+       Suave, lenta, fluida e cinematográfica
+       ========================================================= */
+    .footer-top-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .footer-electric-beam {
+      position: absolute;
+      top: 0;
+      left: -35%;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 230, 0, 0.8), #FFFFFF, rgba(255, 230, 0, 0.8), transparent);
+      box-shadow: 0 0 16px rgba(255, 230, 0, 0.7);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    footer.is-in-view .footer-electric-beam {
+      opacity: 1;
+      animation: footerBeamSweep 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes footerBeamSweep {
+      0% {
+        left: -35%;
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        left: 105%;
+        opacity: 0;
+      }
+    }
+
+    /* Módulos do Grid do Footer: Entrada Lenta, Suave e Sedosa */
+    .footer-col {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.25s cubic-bezier(0.22, 1, 0.36, 1), transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .footer-col.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger progressivo suave e cadenciado para Desktop */
+    @media (min-width: 768px) {
+      .footer-col:nth-child(1) { transition-delay: 0ms; }
+      .footer-col:nth-child(2) { transition-delay: 140ms; }
+      .footer-col:nth-child(3) { transition-delay: 280ms; }
+      .footer-col:nth-child(4) { transition-delay: 420ms; }
+    }
+
+    /* Barra Inferior (Copyright e Voltar ao Topo) */
+    .footer-bottom-bar {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .footer-bottom-bar.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Divisor */
+    .footer-divider-anim {
+      opacity: 0;
+      transform: scaleX(0.88);
+      transition: opacity 1.3s ease, transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .footer-divider-anim.is-visible {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* Marca d'água de fundo */
+    .footer-watermark-anim {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 2.0s cubic-bezier(0.22, 1, 0.36, 1), transform 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    footer.is-in-view .footer-watermark-anim,
+    .footer-watermark-anim.is-visible {
+      opacity: 0.035;
+      transform: translateY(0);
+    }
+
+    /* Glow de topo */
+    .footer-glow-anim {
+      opacity: 0;
+      transition: opacity 2.2s ease;
+      will-change: opacity;
+    }
+
+    footer.is-in-view .footer-glow-anim,
+    .footer-glow-anim.is-visible {
+      opacity: 1;
+    }
+
+    /* Cards de Conformidade: Hover refinado */
+    .compliance-card {
+      transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+    .compliance-card:hover {
+      border-color: rgba(255, 230, 0, 0.35);
+      background-color: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .footer-col,
+      .footer-bottom-bar,
+      .footer-divider-anim,
+      .footer-watermark-anim,
+      .footer-glow-anim,
+      .footer-electric-beam,
+      .compliance-card,
+      .card-border-beam,
+      .card-border-beam-glow {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* =========================================================
+       Glowing Border Beam Animation (Luz Percorrendo os Cards)
+       ========================================================= */
+    @property --beam-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes borderBeamSpin {
+      0% {
+        --beam-angle: 0deg;
+      }
+      100% {
+        --beam-angle: 360deg;
+      }
+    }
+
+    .card-border-light-container {
+      position: relative;
+    }
+
+    /* Feixe de Luz Nítido (Filamento Incandescente de Alta Tensão) */
+    .card-border-beam {
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      padding: 1.5px;
+      pointer-events: none;
+      z-index: 15;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      background: conic-gradient(
+        from var(--beam-angle, 0deg),
+        transparent 0deg,
+        transparent 45deg,
+        rgba(255, 230, 0, 0.15) 60deg,
+        rgba(255, 230, 0, 0.75) 75deg,
+        #FFE600 85deg,
+        #FFFFFF 90deg,
+        transparent 90.8deg,
+        transparent 360deg
+      );
+      animation: borderBeamSpin 6s linear infinite;
+      will-change: --beam-angle;
+    }
+
+    /* Aura Eletromagnética Incandescente (Glow suave ao redor) */
+    .card-border-beam-glow {
+      position: absolute;
+      inset: -3px;
+      border-radius: inherit;
+      padding: 3.5px;
+      pointer-events: none;
+      z-index: 14;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      background: conic-gradient(
+        from var(--beam-angle, 0deg),
+        transparent 0deg,
+        transparent 35deg,
+        rgba(255, 230, 0, 0.25) 55deg,
+        rgba(255, 230, 0, 0.85) 80deg,
+        #FFFFFF 90deg,
+        transparent 91.5deg,
+        transparent 360deg
+      );
+      filter: blur(8px);
+      opacity: 0.95;
+      animation: borderBeamSpin 6s linear infinite;
+      will-change: --beam-angle;
+    }
+
+    /* Variação com offset de tempo para o Card 2 criar harmonia alternada */
+    .beam-delay-offset {
+      animation-delay: -3s;
+    }
+
+    /* =========================================================
+       Luminous Electric Dot Cursor (Substitui a seta padrão por ponto de luz)
+       ========================================================= */
+    body.custom-cursor-active,
+    body.custom-cursor-active * {
+      cursor: none !important;
+    }
+
+    @media (max-width: 1024px), (hover: none), (pointer: coarse) {
+      *, *::before, *::after {
+        cursor: none !important;
+      }
+    }
+
+    #luminous-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none !important;
+      z-index: 9999999;
+      will-change: transform;
+      transform: translate3d(-100px, -100px, 0);
+      user-select: none;
+    }
+
+    #luminous-cursor * {
+      pointer-events: none !important;
+    }
+
+    #cursor-glow {
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+    }
+
+    #cursor-dot {
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+    }
+
+    #cursor-pulse {
+      transform: translate(-50%, -50%) scale(0.6);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease-out, border-color 0.35s ease;
+    }
+
+    /* Estado Hover sobre elementos interativos */
+    #luminous-cursor.cursor-hover #cursor-glow {
+      transform: translate(-50%, -50%) scale(1.6);
+      background-color: rgba(255, 230, 0, 0.45);
+      filter: blur(14px);
+    }
+
+    #luminous-cursor.cursor-hover #cursor-dot {
+      transform: translate(-50%, -50%) scale(1.3);
+      box-shadow: 0 0 16px #FFFFFF, 0 0 30px #FFE600, 0 0 50px #FFE600;
+    }
+
+    /* Estado Pressionado / Clique / Toque */
+    #luminous-cursor.cursor-pressed #cursor-dot {
+      transform: translate(-50%, -50%) scale(0.75);
+    }
+
+    #luminous-cursor.cursor-pressed #cursor-pulse {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(2.2);
+      border-color: rgba(255, 255, 255, 0.95);
+    }
+
     #site-header {
       background: rgba(5, 5, 5, 0.45);
       backdrop-filter: blur(16px);
@@ -641,6 +939,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
     /* Fim do estilo sticky */
     #scroll-video-canvas {
       position: absolute;
@@ -657,6 +956,19 @@
   </style>
 </head>
 <body class="bg-brand-obsidian text-white min-h-screen selection:bg-brand-yellow selection:text-black">
+
+  <!-- ==========================================
+       PONTO DE LUZ - CURSOR LUMINOSO ELÉTRICO
+       Substitui a seta padrão por uma partícula de luz de alta voltagem
+       ========================================== -->
+  <div id="luminous-cursor" class="pointer-events-none fixed top-0 left-0 z-[9999999] opacity-0 transition-opacity duration-300" aria-hidden="true">
+    <!-- Halo difuso elétrico externo -->
+    <div id="cursor-glow" class="absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-brand-yellow/35 blur-md pointer-events-none"></div>
+    <!-- Pulso / Onda de choque no clique ou toque -->
+    <div id="cursor-pulse" class="absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-brand-yellow/70 opacity-0 pointer-events-none"></div>
+    <!-- Núcleo incandescente de plasma elétrico -->
+    <div id="cursor-dot" class="absolute -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_10px_#FFFFFF,0_0_22px_#FFE600,0_0_40px_#FFE600] pointer-events-none"></div>
+  </div>
 
   <!-- ==========================================
        PRELOADER HIGH-END (Barra Inferior & Contador)
@@ -943,18 +1255,18 @@
         <!-- Tag de Seção Monospaçada -->
         <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-          <span data-i18n="esp_badge">02 // Pilares de Atuação Técnica</span>
+          <span data-i18n="esp_badge">02 // Nossos Serviços</span>
         </div>
 
         <!-- Título H2 com Syne -->
         <h2 data-i18n-html="esp_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white mb-4">
-          Engenharia Aplicada com <br>
-          <span class="font-light italic text-white/90">Rigor Normativo</span> e Precisão.
+          Nossos Serviços: <br>
+          <span class="font-light italic text-brand-yellow">Engenharia Elétrica</span> com Rigor e Precisão.
         </h2>
 
         <!-- Subtítulo Enxuto -->
         <p data-i18n="esp_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed">
-          Selecione uma especialidade abaixo para visualizar o escopo técnico e aplicações na região de Valência.
+          Conheça nossas soluções completas em engenharia elétrica. Clique em qualquer serviço abaixo para ver os detalhes técnicos e aplicações.
         </p>
 
       </div>
@@ -1025,7 +1337,9 @@
             <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-termografia.jpg" 
                    alt="Manutenção Preventiva & Corretiva" 
-                   class="parallax-card-img">
+                   class="parallax-card-img"
+                   loading="lazy"
+                   decoding="async">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
               
               <!-- Mira Óptica e Tag Técnica Limpa -->
@@ -1105,7 +1419,9 @@
             <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-residencial.jpg" 
                    alt="Reforma de Instalações Elétricas" 
-                   class="parallax-card-img">
+                   class="parallax-card-img"
+                   loading="lazy"
+                   decoding="async">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
               
               <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
@@ -1181,7 +1497,9 @@
             <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-painel.jpg" 
                    alt="Montagem & Reforma de Painéis" 
-                   class="parallax-card-img">
+                   class="parallax-card-img"
+                   loading="lazy"
+                   decoding="async">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
               
               <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
@@ -1257,7 +1575,9 @@
             <div class="parallax-card-container relative aspect-[16/9] sm:aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-fabricacao.jpg" 
                    alt="Venda de Painéis Sob Encomenda" 
-                   class="parallax-card-img">
+                   class="parallax-card-img"
+                   loading="lazy"
+                   decoding="async">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
               
               <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-wider text-brand-yellow uppercase font-semibold pointer-events-none flex items-center gap-1.5">
@@ -1361,7 +1681,7 @@
 
           <h2 data-i18n-html="cert_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
             Engenharia Certificada. <br>
-            <span class="font-light italic text-white/90">Segurança Absoluta</span> em Cada Obra.
+            <span class="font-light italic text-brand-yellow">Segurança Absoluta</span> em Cada Obra.
           </h2>
         </div>
 
@@ -1548,8 +1868,8 @@
       <span data-i18n="setores_badge" class="font-mono text-[10px] tracking-[0.25em] text-brand-yellow uppercase mb-1.5">
         SETORES ATENDIDOS
       </span>
-      <h3 data-i18n="setores_title" class="font-syne font-medium text-xs sm:text-sm text-white/70 tracking-widest uppercase">
-        Engenharia Elétrica Especializada em Valência
+      <h3 data-i18n-html="setores_title" class="font-syne font-medium text-xs sm:text-sm text-white/70 tracking-widest uppercase">
+        Engenharia Elétrica Especializada em <span class="text-brand-yellow font-semibold">Valência</span>
       </h3>
     </div>
 
@@ -1655,7 +1975,7 @@
 
           <h2 data-i18n-html="cob_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
             Atendimento Técnico em <br>
-            <span class="font-light italic text-white/90">Valência e Arredores</span>.
+            <span class="font-light italic text-brand-yellow">Valência e Arredores</span>.
           </h2>
         </div>
 
@@ -1670,8 +1990,12 @@
         <!-- ========================================================
              COLUNA 1: CONSOLE GEOGRÁFICO & MAPA REAL DARK (7 Colunas)
              ======================================================== -->
-        <div class="reveal-on-scroll lg:col-span-7 flex flex-col justify-between card-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden group border border-white/10">
+        <div class="reveal-on-scroll lg:col-span-7 flex flex-col justify-between card-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden group border border-white/10 card-border-light-container">
           
+          <!-- Feixes de Luz Percorrendo o Contorno do Card (Border Light Beam) -->
+          <div class="card-border-beam-glow" aria-hidden="true"></div>
+          <div class="card-border-beam" aria-hidden="true"></div>
+
           <!-- Topo do Console: Status Operacional & Indicador em Tempo Real -->
           <div class="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-white/[0.08]">
             <div class="flex items-center gap-3">
@@ -1707,7 +2031,9 @@
               <img id="cob-map-img"
                    src="./assets/images/mapa-valencia.jpg" 
                    alt="Mapa de Valência e Cobertura Geográfica - IberVolt Solutions" 
-                   class="parallax-map-img">
+                   class="parallax-map-img"
+                   loading="lazy"
+                   decoding="async">
               
               <!-- Gradiente escuro sutil nas bordas para integração com o tema obsidian -->
               <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30 pointer-events-none z-[1]"></div>
@@ -1778,8 +2104,12 @@
         <!-- ========================================================
              COLUNA 2: FORMULÁRIO DE PRÉ-AVALIAÇÃO & CONVERSÃO (5 Colunas)
              ======================================================== -->
-        <div id="orcamento" class="reveal-on-scroll lg:col-span-5 card-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-all duration-500">
+        <div id="orcamento" class="reveal-on-scroll lg:col-span-5 card-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-all duration-500 relative card-border-light-container">
           
+          <!-- Feixes de Luz Percorrendo o Contorno do Card (Border Light Beam com offset harmônico) -->
+          <div class="card-border-beam-glow beam-delay-offset" aria-hidden="true"></div>
+          <div class="card-border-beam beam-delay-offset" aria-hidden="true"></div>
+
           <div>
             <!-- Header do Formulário -->
             <div class="flex items-center justify-between mb-4">
@@ -1789,8 +2119,8 @@
               <span data-i18n="form_step" class="text-xs font-mono text-brand-muted/70">ETAPA ÚNICA</span>
             </div>
 
-            <h3 data-i18n="form_h3" class="font-syne font-bold text-xl sm:text-2xl text-white tracking-tight mb-2">
-              Solicitar Orçamento Técnico
+            <h3 data-i18n-html="form_h3" class="font-syne font-bold text-xl sm:text-2xl text-white tracking-tight mb-2">
+              Solicitar <span class="text-brand-yellow font-light italic">Orçamento Técnico</span>
             </h3>
             <p data-i18n="form_desc" class="font-jakarta font-light text-xs text-brand-muted leading-relaxed mb-6">
               Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.
@@ -1974,11 +2304,16 @@
        ========================================== -->
   <footer class="relative bg-[#030304] text-white pt-20 pb-10 border-t border-white/[0.08] overflow-hidden" role="contentinfo">
     
+    <!-- Linha de Laser Elétrico no Topo do Footer (Efeito de Alta Voltagem) -->
+    <div class="footer-top-border">
+      <div class="footer-electric-beam"></div>
+    </div>
+
     <!-- Efeito de Luz Superior Suave de Alta Voltagem -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-44 bg-brand-yellow/[0.03] rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="footer-glow-anim absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-44 bg-brand-yellow/[0.03] rounded-full blur-[140px] pointer-events-none"></div>
 
     <!-- Tipografia Monumental de Fundo (Marca d'Água Arquitetônica) -->
-    <div class="absolute -bottom-2 sm:-bottom-4 md:-bottom-6 lg:-bottom-8 left-0 right-0 overflow-hidden pointer-events-none select-none opacity-[0.035] flex justify-center">
+    <div class="footer-watermark-anim absolute -bottom-2 sm:-bottom-4 md:-bottom-6 lg:-bottom-8 left-0 right-0 overflow-hidden pointer-events-none select-none opacity-[0.035] flex justify-center">
       <span class="font-syne font-black text-[12vw] sm:text-[13vw] md:text-[14vw] lg:text-[15vw] tracking-[-0.04em] leading-none whitespace-nowrap text-white">
         IBERVOLT
       </span>
@@ -1992,9 +2327,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-16">
         
         <!-- Módulo 1: Identidade Corporativa & Engenharia (4 Colunas) -->
-        <div class="lg:col-span-4 space-y-4">
+        <div class="footer-col lg:col-span-4 space-y-4">
           <a href="#inicio" class="inline-flex items-center gap-3.5 mb-2 group" aria-label="IberVolt Solutions">
-            <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 w-auto object-contain transition-opacity group-hover:opacity-90">
+            <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 w-auto object-contain transition-opacity group-hover:opacity-90" width="160" height="40" loading="lazy" decoding="async">
             <div class="flex flex-col">
               <span class="font-syne font-bold text-base tracking-tight text-white leading-none">
                 IBERVOLT <span class="font-light text-brand-muted text-xs font-mono tracking-wider ml-1">SOLUTIONS</span>
@@ -2011,7 +2346,7 @@
         </div>
 
         <!-- Módulo 2: Links Rápidos de Navegação Técnica (3 Colunas) -->
-        <div class="lg:col-span-3">
+        <div class="footer-col lg:col-span-3">
           <span data-i18n="footer_nav_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
             // NAVEGAÇÃO &amp; PROJETOS
           </span>
@@ -2063,7 +2398,7 @@
         </div>
 
         <!-- Módulo 3: Selo de Rigor Normativo & Conformidade (3 Colunas) -->
-        <div class="lg:col-span-3">
+        <div class="footer-col lg:col-span-3">
           <span data-i18n="footer_comp_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
             // CONFORMIDADE TÉCNICA
           </span>
@@ -2071,7 +2406,7 @@
           <div class="space-y-2.5">
             
             <!-- Item 1: REBT -->
-            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+            <div class="compliance-card p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
                 <span data-i18n="footer_rebt_h" class="font-mono text-xs font-semibold text-white">REBT — RD 842/2002</span>
@@ -2082,7 +2417,7 @@
             </div>
 
             <!-- Item 2: NR-10 e SEP -->
-            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+            <div class="compliance-card p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
                 <span data-i18n="footer_nr10_h" class="font-mono text-xs font-semibold text-white">NR-10 &amp; NR-10 SEP</span>
@@ -2093,7 +2428,7 @@
             </div>
 
             <!-- Item 3: NR-35 -->
-            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
+            <div class="compliance-card p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <i data-lucide="award" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
                 <span data-i18n="footer_nr35_h" class="font-mono text-xs font-semibold text-white">NR-35 &amp; UNE-EN 61439</span>
@@ -2107,7 +2442,7 @@
         </div>
 
         <!-- Módulo 4: Contato Direto & Atendimento (2 Colunas) -->
-        <div class="lg:col-span-2 flex flex-col justify-between">
+        <div class="footer-col lg:col-span-2 flex flex-col justify-between">
           <div>
             <span data-i18n="footer_dir_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
               // CANAL DIRETO
@@ -2148,7 +2483,8 @@
       <!-- ==========================================
            BARRA INFERIOR DE FECHAMENTO: COPYRIGHT & BOTÃO VOLTAR AO TOPO
            ========================================== -->
-      <div class="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-jakarta text-xs text-brand-muted">
+      <div class="footer-divider-anim border-t border-white/[0.08] mb-8"></div>
+      <div class="footer-bottom-bar flex flex-col sm:flex-row items-center justify-between gap-4 font-jakarta text-xs text-brand-muted">
         
         <!-- Copyright & Nota de Conformidade -->
         <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
@@ -2265,7 +2601,9 @@
             <img id="modal-service-image" 
                  src="./assets/images/projeto-termografia.jpg" 
                  alt="Foto Técnica do Serviço" 
-                 class="w-full h-full object-cover">
+                 class="w-full h-full object-cover"
+                 loading="lazy"
+                 decoding="async">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-obsidian/90 via-transparent to-transparent"></div>
             
             <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
@@ -2346,9 +2684,9 @@
         hero_cta_services: "Conhecer Nossos Serviços",
 
         // Especialidades & Serviços
-        esp_badge: "02 // Pilares de Atuação Técnica",
-        esp_h2: "Engenharia Aplicada com <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> e Precisão.",
-        esp_sub: "Conheça nossas soluções especializadas em engenharia elétrica. Clique em qualquer serviço para visualizar as especificações técnicas completas.",
+        esp_badge: "02 // Nossos Serviços",
+        esp_h2: "Nossos Serviços: <br> <span class=\"font-light italic text-brand-yellow\">Engenharia Elétrica</span> com Rigor e Precisão.",
+        esp_sub: "Conheça nossas soluções completas em engenharia elétrica. Clique em qualquer serviço abaixo para ver os detalhes técnicos e aplicações.",
         service_view_details: "Ver Especificações",
         modal_prev_btn: "Anterior",
         modal_next_btn: "Próximo",
@@ -2359,7 +2697,7 @@
 
         // Certificações
         cert_badge: "03 // Rigidez Técnica & Normas Oficiais",
-        cert_h2: "Engenharia Certificada. <br> <span class=\"font-light italic text-white/90\">Segurança Absoluta</span> em Cada Obra.",
+        cert_h2: "Engenharia Certificada. <br> <span class=\"font-light italic text-brand-yellow\">Segurança Absoluta</span> em Cada Obra.",
         cert_sub: "Atuação pautada pelo cumprimento irrestrito das normas de segurança NR-10, NR-10 SEP, NR-35 e do regulamento REBT espanhol, assegurando risco zero a vidas e patrimônios.",
         cert_nr10_badge: "NORMA OFICIAL",
         cert_nr10_title: "Segurança em Instalações e Serviços em Eletricidade",
@@ -2390,7 +2728,7 @@
 
         // Setores
         setores_badge: "SETORES ATENDIDOS",
-        setores_title: "Engenharia Elétrica Especializada em Valência",
+        setores_title: "Engenharia Elétrica Especializada em <span class=\"text-brand-yellow font-semibold\">Valência</span>",
         setores_item1: "Residencial <span class=\"font-light italic text-white/60\">&</span> Airbnb",
         setores_item2: "Redes Hoteleiras <span class=\"font-light italic text-white/60\">&</span> Colégios",
         setores_item3: "Comércio <span class=\"font-light italic text-white/60\">&</span> PMEs",
@@ -2398,7 +2736,7 @@
 
         // Cobertura
         cob_badge: "04 // Atendimento & Cobertura Geográfica",
-        cob_h2: "Atendimento Técnico em <br> <span class=\"font-light italic text-white/90\">Valência e Arredores</span>.",
+        cob_h2: "Atendimento Técnico em <br> <span class=\"font-light italic text-brand-yellow\">Valência e Arredores</span>.",
         cob_sub: "Atendimento presencial focado na capital valenciana e análise prévia de viabilidade para cidades vizinhas com máximo custo-benefício de deslocamento.",
         cob_status_h: "VALÈNCIA & COMUNIDADE VALENCIANA",
         cob_status_sub: "Logística Operacional // Prontidão Técnica",
@@ -2421,7 +2759,7 @@
         // Formulário
         form_badge: "PRÉ-AVALIAÇÃO DIRETA",
         form_step: "ETAPA ÚNICA",
-        form_h3: "Solicitar Orçamento Técnico",
+        form_h3: "Solicitar <span class=\"text-brand-yellow font-light italic\">Orçamento Técnico</span>",
         form_desc: "Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.",
         form_label_name: "Seu Nome ou Razão Social",
         form_req: "Obrigatório",
@@ -2501,9 +2839,9 @@
         hero_cta_services: "Conocer Nuestros Servicios",
 
         // Especialidades & Serviços
-        esp_badge: "02 // Pilares de Actuación Técnica",
-        esp_h2: "Ingeniería Aplicada con <br> <span class=\"font-light italic text-white/90\">Rigor Normativo</span> y Precisión.",
-        esp_sub: "Conozca nuestras soluciones especializadas en ingeniería eléctrica. Haga clic en cualquier servicio para ver las especificaciones técnicas completas.",
+        esp_badge: "02 // Nuestros Servicios",
+        esp_h2: "Nuestros Servicios: <br> <span class=\"font-light italic text-brand-yellow\">Ingeniería Eléctrica</span> con Rigor y Precisión.",
+        esp_sub: "Conozca nuestras soluciones completas en ingeniería eléctrica. Haga clic en cualquier servicio a continuación para ver los detalles técnicos y aplicaciones.",
         service_view_details: "Ver Especificaciones",
         modal_prev_btn: "Anterior",
         modal_next_btn: "Siguiente",
@@ -2514,7 +2852,7 @@
 
         // Certificações
         cert_badge: "03 // Rigor Técnico & Normativa Oficial",
-        cert_h2: "Ingeniería Certificada. <br> <span class=\"font-light italic text-white/90\">Seguridad Absoluta</span> en Cada Obra.",
+        cert_h2: "Ingeniería Certificada. <br> <span class=\"font-light italic text-brand-yellow\">Seguridad Absoluta</span> en Cada Obra.",
         cert_sub: "Actuación basada en el estricto cumplimiento del Reglamento Electrotécnico de Baja Tensión (REBT) español y estándares internacionales de seguridad, asegurando riesgo cero a vidas e instalaciones.",
         cert_nr10_badge: "NORMA OFICIAL",
         cert_nr10_title: "Seguridad en Instalaciones y Trabajos Eléctricos",
@@ -2545,7 +2883,7 @@
 
         // Setores
         setores_badge: "SECTORES ATENDIDOS",
-        setores_title: "Ingeniería Eléctrica Especializada en Valencia",
+        setores_title: "Ingeniería Eléctrica Especializada en <span class=\"text-brand-yellow font-semibold\">Valencia</span>",
         setores_item1: "Residencial <span class=\"font-light italic text-white/60\">&</span> Airbnb",
         setores_item2: "Cadenas Hoteleras <span class=\"font-light italic text-white/60\">&</span> Colegios",
         setores_item3: "Comercio <span class=\"font-light italic text-white/60\">&</span> Pymes",
@@ -2553,7 +2891,7 @@
 
         // Cobertura
         cob_badge: "04 // Atención & Cobertura Geográfica",
-        cob_h2: "Atención Técnica en <br> <span class=\"font-light italic text-white/90\">Valencia y Alrededores</span>.",
+        cob_h2: "Atención Técnica en <br> <span class=\"font-light italic text-brand-yellow\">Valencia y Alrededores</span>.",
         cob_sub: "Atención presencial enfocada en la capital valenciana y análisis previo de viabilidad para localidades limítrofes con máxima eficiencia logística.",
         cob_status_h: "VALÈNCIA & COMUNITAT VALENCIANA",
         cob_status_sub: "Logística Operativa // Disponibilidad Técnica",
@@ -2576,7 +2914,7 @@
         // Formulário
         form_badge: "PRE-EVALUACIÓN DIRECTA",
         form_step: "PASO ÚNICO",
-        form_h3: "Solicitar Presupuesto Técnico",
+        form_h3: "Solicitar <span class=\"text-brand-yellow font-light italic\">Presupuesto Técnico</span>",
         form_desc: "Seleccione el perfil de su inmueble y servicio para generar un mensaje técnico preparado directamente para el WhatsApp del ingeniero.",
         form_label_name: "Su Nombre o Razón Social",
         form_req: "Obligatorio",
@@ -2656,9 +2994,9 @@
         hero_cta_services: "Explore Our Services",
 
         // Especialidades & Serviços
-        esp_badge: "02 // Technical Pillars",
-        esp_h2: "Applied Engineering with <br> <span class=\"font-light italic text-white/90\">Regulatory Rigor</span> and Precision.",
-        esp_sub: "Explore our specialized electrical engineering solutions. Click on any service to view complete technical specifications.",
+        esp_badge: "02 // Our Services",
+        esp_h2: "Our Services: <br> <span class=\"font-light italic text-brand-yellow\">Electrical Engineering</span> with Rigor and Precision.",
+        esp_sub: "Explore our complete electrical engineering solutions. Click on any service below to view technical specifications and applications.",
         service_view_details: "View Specifications",
         modal_prev_btn: "Previous",
         modal_next_btn: "Next",
@@ -2669,7 +3007,7 @@
 
         // Certificações
         cert_badge: "03 // Technical Rigor & Official Regulations",
-        cert_h2: "Certified Engineering. <br> <span class=\"font-light italic text-white/90\">Absolute Safety</span> in Every Project.",
+        cert_h2: "Certified Engineering. <br> <span class=\"font-light italic text-brand-yellow\">Absolute Safety</span> in Every Project.",
         cert_sub: "Operations guided by strict compliance with Spanish Low Voltage Electrotechnical Regulations (REBT) and international safety standards, ensuring zero risk to lives and assets.",
         cert_nr10_badge: "OFFICIAL STANDARD",
         cert_nr10_title: "Electrical Safety in Installations and Services",
@@ -2700,7 +3038,7 @@
 
         // Setores
         setores_badge: "SECTORS SERVED",
-        setores_title: "Specialized Electrical Engineering in Valencia",
+        setores_title: "Specialized Electrical Engineering in <span class=\"text-brand-yellow font-semibold\">Valencia</span>",
         setores_item1: "Residential <span class=\"font-light italic text-white/60\">&</span> Airbnb",
         setores_item2: "Hotel Chains <span class=\"font-light italic text-white/60\">&</span> Schools",
         setores_item3: "Retail <span class=\"font-light italic text-white/60\">&</span> SMEs",
@@ -2708,7 +3046,7 @@
 
         // Cobertura
         cob_badge: "04 // Technical Services & Coverage",
-        cob_h2: "Technical Service in <br> <span class=\"font-light italic text-white/90\">Valencia & Surroundings</span>.",
+        cob_h2: "Technical Service in <br> <span class=\"font-light italic text-brand-yellow\">Valencia & Surroundings</span>.",
         cob_sub: "On-site response centered in the city of Valencia with prior feasibility assessment for adjacent metropolitan areas with maximum logistics efficiency.",
         cob_status_h: "VALÈNCIA & VALENCIAN COMMUNITY",
         cob_status_sub: "Operational Logistics // Technical Readiness",
@@ -2731,7 +3069,7 @@
         // Formulário
         form_badge: "DIRECT PRE-EVALUATION",
         form_step: "SINGLE STEP",
-        form_h3: "Request a Technical Quote",
+        form_h3: "Request a <span class=\"text-brand-yellow font-light italic\">Technical Quote</span>",
         form_desc: "Select your property type and service to generate a technical message directly addressed to our electrical engineer on WhatsApp.",
         form_label_name: "Your Name or Company Name",
         form_req: "Required",
@@ -3305,16 +3643,32 @@
       let targetFrameIndex = 0;
       let isRenderingLoopActive = false;
 
+      // Recuperar frame mais próximo já carregado (evita que a tela volte ao frame 0 ou pisque durante a rolagem)
+      function getNearestLoadedFrame(index, targetArray) {
+        if (!targetArray) return null;
+        if (targetArray[index] && targetArray[index].complete && targetArray[index].naturalWidth > 0) {
+          return targetArray[index];
+        }
+        for (let i = index - 1; i >= 0; i--) {
+          if (targetArray[i] && targetArray[i].complete && targetArray[i].naturalWidth > 0) {
+            return targetArray[i];
+          }
+        }
+        for (let i = index + 1; i < TOTAL_FRAMES; i++) {
+          if (targetArray[i] && targetArray[i].complete && targetArray[i].naturalWidth > 0) {
+            return targetArray[i];
+          }
+        }
+        return null;
+      }
+
       // Desenhar frame com preenchimento total e proporção preservada (object-fit: cover)
       function drawFrame(index) {
         const clampedIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
         const activeImages = isCurrentMobile ? mobileFrames : desktopFrames;
         const fallbackImages = isCurrentMobile ? desktopFrames : mobileFrames;
 
-        let img = activeImages[clampedIndex] || activeImages[0];
-        if (!img || !img.complete || img.naturalWidth === 0) {
-          img = fallbackImages[clampedIndex] || fallbackImages[0];
-        }
+        let img = getNearestLoadedFrame(clampedIndex, activeImages) || getNearestLoadedFrame(clampedIndex, fallbackImages);
         if (!img || !img.complete || img.naturalWidth === 0) return;
 
         const cw = canvas.width;
@@ -3341,9 +3695,10 @@
         ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
       }
 
-      // Redimensionamento de Alta Resolução (Retina / OLED) e troca dinâmica Mobile/Desktop
+      // Redimensionamento de Alta Performance adaptativo (Retina no Desktop, DPR calibrado no Mobile)
       function resizeCanvas() {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const isMob = checkIsMobile();
+        const dpr = isMob ? 1 : Math.min(window.devicePixelRatio || 1, 2);
         const w = window.innerWidth;
         const h = window.innerHeight;
         const targetW = Math.round(w * dpr);
@@ -3354,7 +3709,7 @@
           canvas.height = targetH;
         }
 
-        const newIsMobile = checkIsMobile();
+        const newIsMobile = isMob;
         if (newIsMobile !== isCurrentMobile) {
           isCurrentMobile = newIsMobile;
           loadFrameSet(isCurrentMobile);
@@ -3548,8 +3903,8 @@
       window.getHomeEnergizedScrollTop = getHomeEnergizedScrollTop;
       window.scrollToHomeEnergized = scrollToHomeEnergized;
 
-      // Carregador assíncrono com suporte a progresso para o conjunto ativo (Mobile ou Desktop)
-      function loadFrameSet(forMobile, onProgress) {
+      // Carregador otimizado em dois estágios: Prioridade Instantânea + Fila Progressiva em Segundo Plano
+      function loadFrameSet(forMobile, onPriorityBatchProgress) {
         if (forMobile && isMobileLoadingStarted) return;
         if (!forMobile && isDesktopLoadingStarted) return;
 
@@ -3557,29 +3912,75 @@
         else isDesktopLoadingStarted = true;
 
         const targetArray = forMobile ? mobileFrames : desktopFrames;
-        let count = 0;
+        const step = forMobile ? 2 : 1;
 
-        for (let i = 0; i < TOTAL_FRAMES; i++) {
+        // Índices de frames necessários para este dispositivo
+        const indicesToLoad = [0];
+        for (let i = step; i < TOTAL_FRAMES - 1; i += step) {
+          if (i !== 0 && i !== TOTAL_FRAMES - 1) indicesToLoad.push(i);
+        }
+        if (!indicesToLoad.includes(TOTAL_FRAMES - 1)) {
+          indicesToLoad.push(TOTAL_FRAMES - 1);
+        }
+
+        // Lote 1: Frames prioritários para exibição imediata e liberação veloz do preloader
+        const priorityIndices = [0, TOTAL_FRAMES - 1];
+        for (let i = 1; i <= Math.min(8, TOTAL_FRAMES - 2); i++) {
+          if (!priorityIndices.includes(i)) priorityIndices.push(i);
+        }
+
+        function fetchImage(idx, cb) {
+          if (targetArray[idx] && targetArray[idx].complete) {
+            if (cb) cb();
+            return;
+          }
           const img = new Image();
-          img.src = getFrameSrc(i, forMobile);
-
           img.onload = () => {
-            targetArray[i] = img;
-            count++;
-            if (onProgress) onProgress(count, TOTAL_FRAMES);
-
-            if (isCurrentMobile === forMobile) {
-              const currIdx = Math.round(currentFrameIndex);
-              if (i === currIdx || (i === 0 && (!targetArray[currIdx] || !targetArray[currIdx].complete))) {
-                drawFrame(currIdx);
-              }
-            }
+            targetArray[idx] = img;
+            if (idx === 0) drawFrame(0);
+            if (cb) cb();
           };
-
           img.onerror = () => {
-            count++;
-            if (onProgress) onProgress(count, TOTAL_FRAMES);
+            if (cb) cb();
           };
+          img.src = getFrameSrc(idx, forMobile);
+        }
+
+        // 1. Carregar lote prioritário
+        let priorityLoaded = 0;
+        const totalPriority = priorityIndices.length;
+
+        priorityIndices.forEach(idx => {
+          fetchImage(idx, () => {
+            priorityLoaded++;
+            if (onPriorityBatchProgress) {
+              onPriorityBatchProgress(priorityLoaded, totalPriority);
+            }
+            if (priorityLoaded === totalPriority) {
+              // Lote prioritário concluído: inicia carregamento suave em segundo plano
+              startBackgroundQueue();
+            }
+          });
+        });
+
+        // 2. Fila assíncrona controlada para não sobrecarregar a rede nem travar o carregamento do restante do site
+        function startBackgroundQueue() {
+          const remaining = indicesToLoad.filter(idx => !priorityIndices.includes(idx));
+          let activeConnections = 0;
+          let queuePos = 0;
+          const MAX_CONCURRENT = forMobile ? 3 : 5;
+
+          function processQueue() {
+            while (activeConnections < MAX_CONCURRENT && queuePos < remaining.length) {
+              const frameIdx = remaining[queuePos++];
+              activeConnections++;
+              fetchImage(frameIdx, () => {
+                activeConnections--;
+                processQueue();
+              });
+            }
+          }
+          processQueue();
         }
       }
 
@@ -3599,7 +4000,7 @@
       function updatePreloaderEngine() {
         if (currentProgress < targetProgress) {
           const diff = targetProgress - currentProgress;
-          const step = Math.min(3.8, Math.max(0.4, diff * 0.14));
+          const step = Math.min(4.5, Math.max(0.6, diff * 0.16));
           currentProgress = Math.min(targetProgress, currentProgress + step);
 
           if (counterEl) counterEl.textContent = Math.floor(currentProgress);
@@ -3642,10 +4043,10 @@
 
       requestAnimationFrame(updatePreloaderEngine);
 
-      // Fallback de segurança: assegurar abertura do preloader em no máximo 2.8s
+      // Fallback de segurança: assegurar abertura do preloader em no máximo 1.8s
       setTimeout(() => {
         targetProgress = 100;
-      }, 2800);
+      }, 1800);
     })();
 
     window.addEventListener('beforeunload', () => {
@@ -3697,9 +4098,65 @@
 
           certSlideCards.forEach(card => certSlideObserver.observe(card));
         }
+
+        // 2.2. Animação de Entrada Arquitetônica do Footer
+        const footerElement = document.querySelector('footer');
+        if (footerElement) {
+          // 1. Observer do Footer Geral (Aciona laser elétrico, marca d'água e glow no horizonte)
+          const footerGeneralObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                footerElement.classList.add('is-in-view');
+                footerGeneralObserver.unobserve(footerElement);
+              }
+            });
+          }, {
+            threshold: 0.02,
+            rootMargin: '0px 0px -10px 0px'
+          });
+          footerGeneralObserver.observe(footerElement);
+
+          // 2. Observer Modular: Colunas do Grid, Linha Divisora e Barra Inferior
+          // No mobile: cada módulo sobe suavemente no instante em que entra na tela do usuário
+          // No desktop: entram alinhados com o stagger de 80ms configurado no CSS
+          const footerAnimTargets = footerElement.querySelectorAll('.footer-col, .footer-divider-anim, .footer-bottom-bar');
+          const isMobile = window.innerWidth < 768;
+
+          const footerModularObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                footerModularObserver.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: isMobile ? 0.08 : 0.05,
+            rootMargin: isMobile ? '0px 0px -15px 0px' : '0px 0px -10px 0px'
+          });
+
+          footerAnimTargets.forEach(target => footerModularObserver.observe(target));
+
+          // Verificação imediata se os elementos já estiverem no campo visual (ex: recarregamento ancorado)
+          const windowH = window.innerHeight;
+          const fRect = footerElement.getBoundingClientRect();
+          if (fRect.top < windowH) {
+            footerElement.classList.add('is-in-view');
+          }
+          footerAnimTargets.forEach(target => {
+            const tr = target.getBoundingClientRect();
+            if (tr.top < windowH - 20) {
+              target.classList.add('is-visible');
+            }
+          });
+        }
       } else {
         revealElements.forEach(el => el.classList.add('is-visible'));
         document.querySelectorAll('.cert-card-slide').forEach(c => c.classList.add('is-in-view'));
+        const f = document.querySelector('footer');
+        if (f) {
+          f.classList.add('is-in-view');
+          f.querySelectorAll('.footer-col, .footer-divider-anim, .footer-bottom-bar').forEach(el => el.classList.add('is-visible'));
+        }
       }
 
       // 3. Controles do Modal de Serviços (Anterior, Próximo e Teclado)
@@ -4052,7 +4509,6 @@
         }
 
         window.addEventListener('scroll', requestServiceParallax, { passive: true });
-        window.addEventListener('touchmove', requestServiceParallax, { passive: true });
         window.addEventListener('resize', requestServiceParallax);
         window.addEventListener('orientationchange', requestServiceParallax);
         window.addEventListener('load', updateServiceThumbnailsParallax);
@@ -4066,7 +4522,7 @@
         updateServiceThumbnailsParallax();
       }
 
-      // 5.4. Raio Elétrico Fractal Realista de Alta Tensão (Scroll-Driven Organic Lightning: Zigzag Mobile & Canal Central Desktop)
+      // 5.4. Raio Elétrico Fractal Realista de Alta Tensão (Scroll-Driven Ultra-Fluid Lightning: Zigzag Mobile & Canal Central Desktop)
       function initCentralLightning() {
         const wrapper = document.getElementById('services-wrapper');
         const sparkHead = document.getElementById('lightning-spark-head');
@@ -4078,72 +4534,96 @@
         let scrollProgress = 0;
         let targetProgress = 0;
         let sparks = [];
+        let cachedZigzagData = null;
+        let activeElectrifiedIndex = -1;
+        let isSectionInView = false;
+        let animLoopId = null;
+
+        sparkHead.style.left = '0px';
+        sparkHead.style.top = '0px';
+        sparkHead.style.willChange = 'transform, opacity';
+        sparkHead.style.transition = 'opacity 0.25s ease';
+        sparkHead.style.opacity = '0';
 
         function isMobileView() {
           return window.innerWidth < 768;
         }
 
+        // Calibração do Canvas de Alta Resolução e DPR Adaptativo
         function resizeCanvas() {
           const mobile = isMobileView();
           const guide = document.getElementById('services-lightning-guide');
           let displayW, displayH;
           if (mobile) {
             displayW = Math.round(wrapper.clientWidth || wrapper.offsetWidth || window.innerWidth);
-            displayH = Math.round(wrapper.clientHeight || wrapper.offsetHeight || 1200);
+            displayH = Math.round(Math.max(wrapper.offsetHeight || 0, wrapper.scrollHeight || 0, wrapper.clientHeight || 0, 1200));
           } else {
             displayW = guide ? Math.round(guide.clientWidth || guide.offsetWidth || 192) : 192;
             displayH = guide ? Math.round(guide.clientHeight || guide.offsetHeight || 600) : 600;
           }
           
-          const dpr = Math.min(window.devicePixelRatio || 1, 2);
-          canvas.width = displayW * dpr;
-          canvas.height = displayH * dpr;
+          // No mobile, DPR 1 reduz em até 88% a quantidade de pixels a limpar e rasterizar
+          const dpr = mobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.round(displayW * dpr);
+          canvas.height = Math.round(displayH * dpr);
+          canvas.style.width = displayW + 'px';
+          canvas.style.height = displayH + 'px';
           ctx.setTransform(1, 0, 0, 1, 0, 0);
-          ctx.scale(dpr, dpr);
+          if (dpr !== 1) ctx.scale(dpr, dpr);
           W = displayW;
           H = displayH;
+
+          // Recalcular waypoints em cache com a geometria real dos cards
+          recomputeWaypoints();
+          updateScroll();
+          if (isSectionInView) {
+            checkStartLoop();
+          }
         }
 
         function updateScroll() {
+          if (!wrapper) return;
           const rect = wrapper.getBoundingClientRect();
           const windowH = window.innerHeight || document.documentElement.clientHeight;
           
-          // Inicia quando o topo da seção entra a ~72% da viewport
-          // Completa quando a base da seção passa por ~28% da viewport
+          // Mede o término real dos cards de serviço para o raio não avançar além dos cards
+          const grid = document.getElementById('services-grid');
+          const effectiveHeight = grid ? (grid.offsetTop + grid.offsetHeight) : rect.height;
+          
           const startThreshold = windowH * 0.72;
-          const endThreshold = windowH * 0.28;
-          const totalTravel = rect.height + (startThreshold - endThreshold);
+          const endThreshold = windowH * 0.35;
+          const totalTravel = effectiveHeight + (startThreshold - endThreshold);
           const currentPos = startThreshold - rect.top;
           
           let p = currentPos / totalTravel;
           targetProgress = Math.max(0, Math.min(1, p));
         }
 
-        // Fagulhas e centelhas incandescentes na ponta do arco
+        // Fagulhas incandescentes na ponta do raio (cap de partículas para alta fluidez)
         function spawnSparks(x, y) {
-          if (sparks.length > 50) return;
-          const count = Math.floor(Math.random() * 3) + 2;
+          if (sparks.length > 24) return;
+          const count = Math.floor(Math.random() * 2) + 1;
           for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const speed = 1.5 + Math.random() * 4.5;
+            const speed = 1.2 + Math.random() * 3.8;
             sparks.push({
-              x: x + (Math.random() - 0.5) * 6,
-              y: y + (Math.random() - 0.5) * 6,
+              x: x + (Math.random() - 0.5) * 4,
+              y: y + (Math.random() - 0.5) * 4,
               vx: Math.cos(angle) * speed,
-              vy: Math.sin(angle) * speed + 0.8,
+              vy: Math.sin(angle) * speed + 0.6,
               life: 1.0,
-              decay: 0.03 + Math.random() * 0.045,
-              size: 1.2 + Math.random() * 1.8,
+              decay: 0.04 + Math.random() * 0.045,
+              size: 1.2 + Math.random() * 1.5,
               color: Math.random() > 0.35 ? '#FFE600' : '#FFFFFF'
             });
           }
         }
 
-        // Gerador de Caminho Fractal Realista para o Raio Central no Desktop
+        // Gerador de Caminho Fractal Realista para o Desktop
         function generateFractalPath(x1, y1, x2, y2, roughness, maxDisplace) {
           let points = [{ x: x1, y: y1 }, { x: x2, y: y2 }];
           let displace = maxDisplace;
-          for (let iter = 0; iter < 5; iter++) {
+          for (let iter = 0; iter < 4; iter++) {
             let next = [points[0]];
             for (let i = 0; i < points.length - 1; i++) {
               const p1 = points[i];
@@ -4159,7 +4639,7 @@
           return points;
         }
 
-        // Gerador de Polilinha Fractal Orgânica para o Zigzag Mobile
+        // Polilinha Fractal Orgânica no Zigzag Mobile
         function generateFractalPolyline(points, maxDisplacement) {
           if (!points || points.length < 2) return points;
           const result = [points[0]];
@@ -4171,8 +4651,8 @@
             const segLen = Math.hypot(dx, dy);
             if (segLen === 0) continue;
 
-            const isVerticalEdge = Math.abs(dx) < 2; // Rente ao extremo do card
-            const segMaxDisp = isVerticalEdge ? Math.min(1.5, maxDisplacement * 0.15) : maxDisplacement;
+            const isVerticalEdge = Math.abs(dx) < 2;
+            const segMaxDisp = isVerticalEdge ? Math.min(1.2, maxDisplacement * 0.15) : maxDisplacement;
 
             const perpX = -dy / segLen;
             const perpY = dx / segLen;
@@ -4199,37 +4679,71 @@
           return result;
         }
 
-        // Waypoints do Zigzag Mobile contornando cada card EXATAMENTE no seu extremo
-        function getMobileZigzagWaypoints() {
+        // Medição precisa da geometria do card em relação ao container wrapper
+        // Prioriza offsetTop/offsetHeight da árvore de layout (imune a scroll, viewport e CSS translateY transforms)
+        function getCardGeometry(card, parent) {
+          let top = 0;
+          let left = 0;
+          let curr = card;
+          let foundParent = false;
+          while (curr && curr !== document.body) {
+            if (curr === parent) {
+              foundParent = true;
+              break;
+            }
+            top += curr.offsetTop || 0;
+            left += curr.offsetLeft || 0;
+            curr = curr.offsetParent;
+          }
+
+          if (foundParent && card.offsetHeight > 0) {
+            return {
+              top: top,
+              bottom: top + card.offsetHeight,
+              left: left,
+              right: left + card.offsetWidth,
+              width: card.offsetWidth,
+              height: card.offsetHeight
+            };
+          }
+
+          const cRect = card.getBoundingClientRect();
+          const pRect = parent.getBoundingClientRect();
+          return {
+            top: cRect.top - pRect.top,
+            bottom: cRect.bottom - pRect.top,
+            left: cRect.left - pRect.left,
+            right: cRect.right - pRect.left,
+            width: cRect.width,
+            height: cRect.height
+          };
+        }
+
+        // Cálculo Pré-armazenado (Cache) dos Waypoints do Zigzag Mobile
+        // O raio percorre estritamente as bordas externas dos cards e cruza apenas nos vãos entre eles!
+        function computeMobileZigzagWaypoints() {
           const cards = wrapper.querySelectorAll('.service-card');
           if (!cards || cards.length === 0) return null;
 
-          const wRect = wrapper.getBoundingClientRect();
           const waypoints = [];
-
-          // Coletar métricas exatas de cada card relativas ao wrapper
           const cardData = [];
+
           for (let i = 0; i < cards.length; i++) {
             const card = cards[i];
-            const cRect = card.getBoundingClientRect();
-            const cTop = cRect.top - wRect.top;
-            const cBottom = cRect.bottom - wRect.top;
-            const cLeft = cRect.left - wRect.left;
-            const cRight = cRect.right - wRect.left;
+            const geom = getCardGeometry(card, wrapper);
             const isLeft = (i % 2 === 0);
 
-            // Coordenada do extremo do card:
-            // Extremo esquerdo: cLeft - 2
-            // Extremo direito: cRight + 2
-            const edgeX = isLeft ? Math.max(3, cLeft - 2) : Math.min(W - 3, cRight + 2);
+            // Borda externa: 4px fora do card para nunca sobrepor texto, botões ou conteúdo
+            const edgeX = isLeft ? Math.max(3, geom.left - 4) : Math.min(W - 3, geom.right + 4);
 
             cardData.push({
               card,
-              top: cTop,
-              bottom: cBottom,
-              left: cLeft,
-              right: cRight,
-              height: cBottom - cTop,
+              top: geom.top,
+              bottom: geom.bottom,
+              left: geom.left,
+              right: geom.right,
+              height: geom.height,
+              width: geom.width,
               isLeft,
               edgeX
             });
@@ -4237,42 +4751,56 @@
 
           if (cardData.length === 0) return null;
 
-          // 1. Entrada no topo do wrapper alinhada com o extremo do Card 0
+          // Garantir que a altura H do canvas cubra com folga até a base do último card
+          const lastCard = cardData[cardData.length - 1];
+          if (lastCard && lastCard.bottom + 30 > H) {
+            H = lastCard.bottom + 30;
+            const dpr = 1;
+            canvas.height = Math.round(H * dpr);
+            canvas.style.height = H + 'px';
+          }
+
+          // 1. Entrada no topo (conduzindo do centro da seção anterior até a borda esquerda do Card 0)
           const first = cardData[0];
-          waypoints.push({ x: first.edgeX, y: 0 });
+          waypoints.push({ x: W / 2, y: 0 });
+          if (first.top > 20) {
+            waypoints.push({
+              x: W / 2 + (first.edgeX - W / 2) * 0.5,
+              y: first.top * 0.4
+            });
+          }
           waypoints.push({ x: first.edgeX, y: Math.max(0, first.top - 6) });
 
-          // 2. Percorrer cada card estritamente pelo seu extremo exterior
+          // 2. Trajetória pelas bordas externas de cada card e transição nos vãos
           for (let i = 0; i < cardData.length; i++) {
             const curr = cardData[i];
 
-            // Trecho vertical que desce rente ao extremo do card
-            // x permanece estritamente curr.edgeX sem desviar para dentro do card
+            // Ao longo do card: desce estritamente na borda externa (edgeX) de fora a fora
             waypoints.push({ x: curr.edgeX, y: curr.top });
-            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.33 });
-            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.67 });
+            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.25 });
+            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.50 });
+            waypoints.push({ x: curr.edgeX, y: curr.top + curr.height * 0.75 });
+            // O card termina estritamente em curr.bottom
             waypoints.push({ x: curr.edgeX, y: curr.bottom });
-            waypoints.push({ x: curr.edgeX, y: curr.bottom + 6 });
 
-            // Transição em ZIGZAG para o próximo card (EXCLUSIVAMENTE NO VÃO ENTRE OS CARDS)
+            // Transição para o próximo card: executada EXCLUSIVAMENTE no vão vazio entre os dois cards
             if (i < cardData.length - 1) {
               const next = cardData[i + 1];
               const gapStart = curr.bottom + 6;
               const gapEnd = next.top - 6;
-              const gapH = Math.max(10, gapEnd - gapStart);
+              const gapH = Math.max(16, gapEnd - gapStart);
 
-              // Transição em "S" orgânica no vão escuro entre os dois cards
               waypoints.push({
-                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.18,
-                y: gapStart + gapH * 0.25
+                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.15,
+                y: gapStart + gapH * 0.22
               });
               waypoints.push({
-                x: (curr.edgeX + next.edgeX) / 2,
+                x: (curr.edgeX + next.edgeX) * 0.50,
                 y: gapStart + gapH * 0.50
               });
               waypoints.push({
-                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.82,
-                y: gapStart + gapH * 0.75
+                x: curr.edgeX + (next.edgeX - curr.edgeX) * 0.85,
+                y: gapStart + gapH * 0.78
               });
               waypoints.push({
                 x: next.edgeX,
@@ -4281,19 +4809,9 @@
             }
           }
 
-          // 3. Saída inferior após o último card
-          const last = cardData[cardData.length - 1];
-          waypoints.push({ x: last.edgeX, y: Math.min(H, last.bottom + 25) });
-          waypoints.push({ x: W / 2, y: H });
+          // 3. O raio termina rigorosamente no último card (NÃO avança para o vazio abaixo do card)
 
-          return { waypoints, cardData };
-        }
-
-        // Interpolação ao longo da polilinha no progresso atual
-        function getPathAtProgress(waypoints, progress) {
-          if (!waypoints || waypoints.length === 0) return { path: [], head: { x: W / 2, y: 0 } };
-          if (progress <= 0) return { path: [waypoints[0]], head: waypoints[0] };
-
+          // Precalcular distâncias dos segmentos
           const segLengths = [];
           let totalLen = 0;
           for (let i = 0; i < waypoints.length - 1; i++) {
@@ -4303,6 +4821,25 @@
             segLengths.push(len);
             totalLen += len;
           }
+
+          return { waypoints, cardData, segLengths, totalLen };
+        }
+
+        function recomputeWaypoints() {
+          if (isMobileView()) {
+            cachedZigzagData = computeMobileZigzagWaypoints();
+          } else {
+            cachedZigzagData = null;
+          }
+        }
+
+        // Interpolação O(1) de alta performance utilizando os comprimentos em cache
+        function getPathAtProgress(cached, progress) {
+          if (!cached || !cached.waypoints || cached.waypoints.length === 0) {
+            return { path: [], head: { x: W / 2, y: 0 } };
+          }
+          const { waypoints, segLengths, totalLen } = cached;
+          if (progress <= 0) return { path: [waypoints[0]], head: waypoints[0] };
 
           const targetDist = progress * totalLen;
           let traveled = 0;
@@ -4332,13 +4869,35 @@
           return { path: activePoints, head };
         }
 
-        // Gerador de Ramificações (Branches) que bifurcam para os lados
+        // Atualização de classe eletrizada com diff de estado (elimina recalcs de estilo em todo frame)
+        function updateElectrifiedCard(headY, cardData, p) {
+          let targetIndex = -1;
+          if (p > 0.02 && cardData) {
+            for (let i = 0; i < cardData.length; i++) {
+              const cd = cardData[i];
+              if (headY >= cd.top - 12 && headY <= cd.bottom + 12) {
+                targetIndex = i;
+                break;
+              }
+            }
+          }
+          if (targetIndex !== activeElectrifiedIndex) {
+            if (activeElectrifiedIndex >= 0 && cardData && cardData[activeElectrifiedIndex]) {
+              cardData[activeElectrifiedIndex].card.classList.remove('card-electrified');
+            }
+            if (targetIndex >= 0 && cardData && cardData[targetIndex]) {
+              cardData[targetIndex].card.classList.add('card-electrified');
+            }
+            activeElectrifiedIndex = targetIndex;
+          }
+        }
+
         function generateBranch(originX, originY, angle, length, maxDisplace) {
           const targetX = originX + Math.cos(angle) * length;
           const targetY = originY + Math.sin(angle) * length;
           let points = [{ x: originX, y: originY }, { x: targetX, y: targetY }];
           let displace = maxDisplace;
-          for (let iter = 0; iter < 4; iter++) {
+          for (let iter = 0; iter < 3; iter++) {
             let next = [points[0]];
             for (let i = 0; i < points.length - 1; i++) {
               const p1 = points[i];
@@ -4374,26 +4933,88 @@
           ctx.stroke();
         }
 
+        // Renderização multi-camada de altíssima fidelidade e performance extrema (sem filtros de blur pesados no mobile)
+        function drawFastLightning(points, isMobile) {
+          if (!points || points.length < 2) return;
+
+          // Camada 1: Aura eletromagnética exterior
+          ctx.beginPath();
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+          ctx.strokeStyle = 'rgba(255, 230, 0, 0.22)';
+          ctx.lineWidth = isMobile ? 8 : 14;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          if (!isMobile) {
+            ctx.shadowColor = '#FFE600';
+            ctx.shadowBlur = 24;
+          } else {
+            ctx.shadowColor = '#FFE600';
+            ctx.shadowBlur = 4;
+          }
+          ctx.stroke();
+
+          // Camada 2: Conduíte de plasma brilhante
+          ctx.beginPath();
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+          ctx.strokeStyle = 'rgba(255, 235, 50, 0.70)';
+          ctx.lineWidth = isMobile ? 3.6 : 5.0;
+          if (!isMobile) {
+            ctx.shadowColor = '#FFE600';
+            ctx.shadowBlur = 12;
+          } else {
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+
+          // Camada 3: Arco dourado de alta tensão
+          ctx.beginPath();
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+          ctx.strokeStyle = '#FFF880';
+          ctx.lineWidth = isMobile ? 1.8 : 2.6;
+          if (!isMobile) {
+            ctx.shadowColor = '#FFFFFF';
+            ctx.shadowBlur = 6;
+          } else {
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+
+          // Camada 4: Núcleo incandescente de plasma puro (branco 10.000K)
+          ctx.beginPath();
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = isMobile ? 0.9 : 1.2;
+          ctx.shadowBlur = 0;
+          ctx.stroke();
+        }
+
         function renderLightning() {
-          scrollProgress += (targetProgress - scrollProgress) * 0.12;
+          if (!isSectionInView) {
+            animLoopId = null;
+            return;
+          }
+
+          scrollProgress += (targetProgress - scrollProgress) * 0.14;
           if (Math.abs(targetProgress - scrollProgress) < 0.0005) {
             scrollProgress = targetProgress;
           }
 
-          const percent = scrollProgress * 100;
           const isMobile = isMobileView();
-
-          // Limpar canvas
           ctx.clearRect(0, 0, W, H);
 
           if (isMobile) {
-            // === MODO MOBILE: CONTORNO DOS CARDS EM ZIGZAG EXATAMENTE NOS EXTREMOS ===
-            const zigzagResult = getMobileZigzagWaypoints();
-            if (zigzagResult && zigzagResult.waypoints.length > 2) {
-              const waypoints = zigzagResult.waypoints;
-              const cardData = zigzagResult.cardData;
+            if (!cachedZigzagData) {
+              cachedZigzagData = computeMobileZigzagWaypoints();
+            }
+            if (cachedZigzagData && cachedZigzagData.waypoints.length > 2) {
+              const waypoints = cachedZigzagData.waypoints;
+              const cardData = cachedZigzagData.cardData;
 
-              // 1. Linha guia sutil translúcida de fundo em zigzag (conduíte de energia)
+              // Linha guia pontilhada discreta de condução
               ctx.save();
               ctx.beginPath();
               ctx.moveTo(waypoints[0].x, waypoints[0].y);
@@ -4407,56 +5028,41 @@
               ctx.restore();
 
               if (scrollProgress > 0.01 && H > 0) {
-                const { path: activeWaypoints, head } = getPathAtProgress(waypoints, scrollProgress);
+                const { path: activeWaypoints, head } = getPathAtProgress(cachedZigzagData, scrollProgress);
 
-                // Posicionar a cabeça incandescente na coordenada exata
-                sparkHead.style.left = `${head.x.toFixed(1)}px`;
-                sparkHead.style.top = `${head.y.toFixed(1)}px`;
-                sparkHead.style.transform = 'translate(-50%, -50%)';
+                // Posicionamento acelerado por hardware via translate3d
+                sparkHead.style.transform = `translate3d(${head.x.toFixed(1)}px, ${head.y.toFixed(1)}px, 0) translate(-50%, -50%)`;
 
-                // Fagulhas na cabeça
-                spawnSparks(head.x, head.y);
+                // Apaga a centelha se atingir o final do último card ou passar da seção (não desce além do card)
+                const lastCd = cardData[cardData.length - 1];
+                const isAtEndOfCards = (lastCd && head.y >= lastCd.bottom - 2) || scrollProgress >= 0.98;
+                if (isAtEndOfCards) {
+                  sparkHead.style.opacity = '0';
+                } else {
+                  sparkHead.style.opacity = '1';
+                }
 
-                // Destacar com halo elétrico o card cujo extremo o raio está percorrendo
-                cardData.forEach((cd) => {
-                  if (head.y >= cd.top - 12 && head.y <= cd.bottom + 12 && scrollProgress > 0.02) {
-                    cd.card.classList.add('card-electrified');
-                  } else {
-                    cd.card.classList.remove('card-electrified');
-                  }
-                });
+                if (!isAtEndOfCards && (Math.abs(targetProgress - scrollProgress) > 0.001 || sparks.length > 0)) {
+                  spawnSparks(head.x, head.y);
+                }
+
+                updateElectrifiedCard(head.y, cardData, scrollProgress);
 
                 ctx.save();
+                const mainFractal = generateFractalPolyline(activeWaypoints, 8);
+                drawFastLightning(mainFractal, true);
 
-                // Gerar o arco fractal ao longo da polilinha em zigzag
-                const mainFractal = generateFractalPolyline(activeWaypoints, 10);
-
-                // 4 Passes de Plasma de Alta Voltagem
-                drawPath(mainFractal, 12, 'rgba(255, 215, 0, 0.22)', 22, '#FFE600');
-                drawPath(mainFractal, 4.5, 'rgba(255, 230, 0, 0.70)', 12, '#FFE600');
-                drawPath(mainFractal, 2.5, '#FFF770', 7, '#FFFFFF');
-                drawPath(mainFractal, 1.2, '#FFFFFF', 3.5, '#FFFFFF');
-
-                // Micro-arcos na ponta de impacto (strike discharge)
-                for (let a = 0; a < 3; a++) {
-                  const strikeAngle = Math.random() * Math.PI * 2;
-                  const strikeLen = 6 + Math.random() * 8;
-                  const strikePts = generateBranch(head.x, head.y, strikeAngle, strikeLen, 4);
-                  drawPath(strikePts, 1.0, '#FFFFFF', 4, '#FFE600');
+                // Micro-arcos no ponto de impacto (apenas enquanto a centelha estiver ativa no card)
+                if (!isAtEndOfCards) {
+                  for (let a = 0; a < 2; a++) {
+                    const strikeAngle = Math.random() * Math.PI * 2;
+                    const strikeLen = 5 + Math.random() * 7;
+                    const strikePts = generateBranch(head.x, head.y, strikeAngle, strikeLen, 3);
+                    drawPath(strikePts, 1.0, '#FFFFFF', 0);
+                  }
                 }
 
-                // Ramificação sutil no mobile direcionada para a margem externa (sem invadir os cards)
-                if (Math.random() > 0.65 && activeWaypoints.length > 2) {
-                  const randIdx = Math.floor(Math.random() * (activeWaypoints.length - 1));
-                  const p = activeWaypoints[randIdx];
-                  const branchAngle = (p.x < W / 2 ? Math.PI : 0) + (Math.random() - 0.5) * 0.8;
-                  const branchLen = 8 + Math.random() * 12;
-                  const bPts = generateBranch(p.x, p.y, branchAngle, branchLen, 3);
-                  drawPath(bPts, 2.0, 'rgba(255, 230, 0, 0.40)', 6, '#FFE600');
-                  drawPath(bPts, 1.0, '#FFFFFF', 3, '#FFFFFF');
-                }
-
-                // Partículas e fagulhas
+                // Partículas na ponta
                 for (let i = sparks.length - 1; i >= 0; i--) {
                   const s = sparks[i];
                   s.x += s.vx;
@@ -4471,44 +5077,52 @@
                   ctx.beginPath();
                   ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
                   ctx.fillStyle = s.color;
-                  ctx.shadowColor = '#FFE600';
-                  ctx.shadowBlur = 8;
                   ctx.fill();
                 }
 
                 ctx.restore();
+              } else {
+                updateElectrifiedCard(-999, cardData, 0);
+                sparkHead.style.opacity = '0';
               }
             }
           } else {
             // === MODO DESKTOP: CANAL CENTRAL FRACTAL ===
-            sparkHead.style.left = '50%';
-            sparkHead.style.top = `${percent.toFixed(2)}%`;
-            sparkHead.style.transform = 'translate(-50%, -50%)';
+            const grid = document.getElementById('services-grid');
+            const maxDesktopY = grid ? Math.round(grid.offsetTop + grid.offsetHeight) : H;
+            const currentDesktopY = Math.min(maxDesktopY, H * scrollProgress);
 
-            // Remover classes de mobile em cards se houver
-            const cards = wrapper.querySelectorAll('.service-card');
-            cards.forEach(card => card.classList.remove('card-electrified'));
+            sparkHead.style.transform = `translate3d(${(W / 2).toFixed(1)}px, ${currentDesktopY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+
+            const isAtEndOfCards = (currentDesktopY >= maxDesktopY - 4) || scrollProgress >= 0.98;
+            if (scrollProgress > 0.01 && !isAtEndOfCards) {
+              sparkHead.style.opacity = '1';
+            } else {
+              sparkHead.style.opacity = '0';
+            }
+
+            if (activeElectrifiedIndex !== -1) {
+              wrapper.querySelectorAll('.service-card').forEach(card => card.classList.remove('card-electrified'));
+              activeElectrifiedIndex = -1;
+            }
 
             if (scrollProgress > 0.01 && H > 0) {
               const startX = W / 2;
               const startY = 0;
               const endX = W / 2;
-              const endY = H * scrollProgress;
+              const endY = currentDesktopY;
 
-              spawnSparks(endX, endY);
+              if (!isAtEndOfCards && (Math.abs(targetProgress - scrollProgress) > 0.001 || sparks.length > 0)) {
+                spawnSparks(endX, endY);
+              }
 
               ctx.save();
+              const mainPath = generateFractalPath(startX, startY, endX, endY, 0.54, 20);
+              drawFastLightning(mainPath, false);
 
-              const mainPath = generateFractalPath(startX, startY, endX, endY, 0.54, 22);
-
-              drawPath(mainPath, 14, 'rgba(255, 215, 0, 0.22)', 28, '#FFE600');
-              drawPath(mainPath, 5.0, 'rgba(255, 230, 0, 0.70)', 14, '#FFE600');
-              drawPath(mainPath, 2.8, '#FFF770', 8, '#FFFFFF');
-              drawPath(mainPath, 1.2, '#FFFFFF', 4, '#FFFFFF');
-
-              if (mainPath.length > 8 && Math.random() > 0.25) {
+              if (mainPath.length > 8 && Math.random() > 0.3) {
                 const twinStartIdx = Math.floor(Math.random() * (mainPath.length - 8));
-                const twinLength = Math.floor(Math.random() * 6) + 3;
+                const twinLength = Math.floor(Math.random() * 5) + 3;
                 const twinPoints = [];
                 for (let i = twinStartIdx; i < twinStartIdx + twinLength && i < mainPath.length; i++) {
                   twinPoints.push({
@@ -4519,25 +5133,24 @@
                 drawPath(twinPoints, 1.0, '#FFFFFF', 6, '#FFE600');
               }
 
-              const branchCount = Math.floor(Math.random() * 2) + 2;
+              const branchCount = Math.floor(Math.random() * 2) + 1;
               for (let b = 0; b < branchCount; b++) {
-                const nodeIdx = Math.floor((b + 0.3 + Math.random() * 0.4) / branchCount * (mainPath.length - 1));
+                const nodeIdx = Math.floor((b + 0.3 + Math.random() * 0.4) / (branchCount + 1) * (mainPath.length - 1));
                 const node = mainPath[nodeIdx] || mainPath[Math.floor(mainPath.length / 2)];
                 const side = (b % 2 === 0) ? 1 : -1;
                 const branchAngle = (side > 0 ? 0.3 : Math.PI - 0.3) + (Math.random() - 0.5) * 0.4;
-                const branchLength = 25 + Math.random() * 40;
-                const branchPts = generateBranch(node.x, node.y, branchAngle, branchLength, 12);
-
-                drawPath(branchPts, 3.2, 'rgba(255, 230, 0, 0.45)', 10, '#FFE600');
-                drawPath(branchPts, 1.2, '#FFFFFF', 4, '#FFFFFF');
+                const branchLength = 20 + Math.random() * 30;
+                const branchPts = generateBranch(node.x, node.y, branchAngle, branchLength, 10);
+                drawPath(branchPts, 2.8, 'rgba(255, 230, 0, 0.45)', 8, '#FFE600');
+                drawPath(branchPts, 1.0, '#FFFFFF', 3, '#FFFFFF');
               }
 
-              const strikeArcCount = 4;
+              const strikeArcCount = 3;
               for (let a = 0; a < strikeArcCount; a++) {
                 const strikeAngle = Math.random() * Math.PI * 2;
-                const strikeLen = 8 + Math.random() * 14;
-                const strikePts = generateBranch(endX, endY, strikeAngle, strikeLen, 6);
-                drawPath(strikePts, 1.0, '#FFFFFF', 6, '#FFE600');
+                const strikeLen = 7 + Math.random() * 12;
+                const strikePts = generateBranch(endX, endY, strikeAngle, strikeLen, 5);
+                drawPath(strikePts, 1.0, '#FFFFFF', 4, '#FFE600');
               }
 
               for (let i = sparks.length - 1; i >= 0; i--) {
@@ -4555,7 +5168,7 @@
                 ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
                 ctx.fillStyle = s.color;
                 ctx.shadowColor = '#FFE600';
-                ctx.shadowBlur = 8;
+                ctx.shadowBlur = 6;
                 ctx.fill();
               }
 
@@ -4563,39 +5176,115 @@
             }
           }
 
-          requestAnimationFrame(renderLightning);
+          // Quando convergir e não houver fagulhas ativas, pausa o loop para 0% de uso de CPU
+          if (Math.abs(targetProgress - scrollProgress) < 0.0005 && sparks.length === 0) {
+            animLoopId = null;
+            return;
+          }
+
+          animLoopId = requestAnimationFrame(renderLightning);
         }
 
-        window.addEventListener('scroll', updateScroll, { passive: true });
-        window.addEventListener('resize', () => {
-          resizeCanvas();
-          updateScroll();
+        function checkStartLoop() {
+          if (!animLoopId && isSectionInView) {
+            animLoopId = requestAnimationFrame(renderLightning);
+          }
+        }
+
+        function checkStopLoop() {
+          if (animLoopId) {
+            cancelAnimationFrame(animLoopId);
+            animLoopId = null;
+          }
+        }
+
+        // Observador de Visibilidade: executa animação do raio APENAS quando a seção estiver na tela
+        if ('IntersectionObserver' in window) {
+          const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              isSectionInView = entry.isIntersecting;
+              if (isSectionInView) {
+                recomputeWaypoints();
+                updateScroll();
+                checkStartLoop();
+              } else {
+                checkStopLoop();
+              }
+            });
+          }, {
+            rootMargin: '120px 0px 120px 0px',
+            threshold: 0
+          });
+          sectionObserver.observe(wrapper);
+        } else {
+          isSectionInView = true;
+          checkStartLoop();
+        }
+
+        // Listener de rolagem otimizado com flag requestAnimationFrame
+        let scrollScheduled = false;
+        function handleScroll() {
+          if (!scrollScheduled) {
+            scrollScheduled = true;
+            requestAnimationFrame(() => {
+              if (isSectionInView) {
+                updateScroll();
+                checkStartLoop();
+              }
+              scrollScheduled = false;
+            });
+          }
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        let resizeTimer = null;
+        function debouncedResize() {
+          if (resizeTimer) cancelAnimationFrame(resizeTimer);
+          resizeTimer = requestAnimationFrame(() => {
+            resizeCanvas();
+          });
+        }
+
+        window.addEventListener('resize', debouncedResize);
+        window.addEventListener('orientationchange', () => {
+          setTimeout(resizeCanvas, 150);
         });
 
-        // ResizeObserver para recalibrar o canvas quando o wrapper ou imagens alterarem dimensões
+        // Observa wrapper E todos os service-cards para recalibrar instantaneamente se qualquer card mudar de altura
         if (window.ResizeObserver && wrapper) {
           const ro = new ResizeObserver(() => {
-            resizeCanvas();
-            updateScroll();
+            debouncedResize();
           });
           ro.observe(wrapper);
+          wrapper.querySelectorAll('.service-card').forEach(card => {
+            ro.observe(card);
+          });
         }
 
-        // Calibrar assim que imagens dos cards carregarem
+        // Recalibra assim que o Google Fonts (Syne / Plus Jakarta Sans) terminar o layout das fontes
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(() => {
+            resizeCanvas();
+          });
+        }
+
+        // Recalibra quando qualquer imagem completar o carregamento
         const cardImgs = wrapper.querySelectorAll('img');
         cardImgs.forEach(img => {
           if (!img.complete) {
             img.addEventListener('load', () => {
-              resizeCanvas();
-              updateScroll();
+              debouncedResize();
             }, { once: true });
           }
         });
 
-        // Inicialização imediata
+        window.addEventListener('load', () => {
+          resizeCanvas();
+        });
+
+        // Inicialização
         resizeCanvas();
-        updateScroll();
-        requestAnimationFrame(renderLightning);
       }
 
       if (document.readyState === 'loading') {
@@ -4604,12 +5293,18 @@
         initCentralLightning();
       }
 
-      // 6. Canvas de Partículas Elétricas (Hero e Certificações)
+      // 6. Canvas de Partículas Elétricas (Otimizado com IntersectionObserver)
       function initParticlesCanvas(canvasId) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let W, H;
+        let W = 0, H = 0;
+        let isRunning = false;
+        let pAnimId = null;
+
+        const isMobile = window.innerWidth < 768;
+        const COUNT = isMobile ? 18 : 38;
+        const MAX_DIST = isMobile ? 140 : 190;
 
         function resize() {
           W = canvas.width  = canvas.offsetWidth;
@@ -4618,8 +5313,6 @@
         resize();
         window.addEventListener('resize', resize);
 
-        const COUNT = 42;
-        const MAX_DIST = 190;
         const pts = Array.from({ length: COUNT }, () => ({
           x:  Math.random() * (W || 800),
           y:  Math.random() * (H || 600),
@@ -4628,6 +5321,7 @@
         }));
 
         function tick() {
+          if (!isRunning) return;
           ctx.clearRect(0, 0, W, H);
 
           pts.forEach(p => {
@@ -4643,13 +5337,12 @@
               const dy = pts[i].y - pts[j].y;
               const dist = Math.sqrt(dx * dx + dy * dy);
               if (dist < MAX_DIST) {
-                const alpha = (1 - dist / MAX_DIST) * 0.42;
+                const alpha = (1 - dist / MAX_DIST) * 0.38;
                 ctx.beginPath();
                 ctx.moveTo(pts[i].x, pts[i].y);
                 ctx.lineTo(pts[j].x, pts[j].y);
                 ctx.strokeStyle = `rgba(255, 210, 0, ${alpha})`;
                 ctx.lineWidth   = 0.6;
-                ctx.shadowBlur  = 0;
                 ctx.stroke();
               }
             }
@@ -4662,10 +5355,32 @@
             ctx.fill();
           });
 
-          requestAnimationFrame(tick);
+          pAnimId = requestAnimationFrame(tick);
         }
 
-        tick();
+        const certSection = document.getElementById('certificacoes') || canvas;
+        if ('IntersectionObserver' in window) {
+          const pObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                if (!isRunning) {
+                  isRunning = true;
+                  pAnimId = requestAnimationFrame(tick);
+                }
+              } else {
+                isRunning = false;
+                if (pAnimId) {
+                  cancelAnimationFrame(pAnimId);
+                  pAnimId = null;
+                }
+              }
+            });
+          }, { rootMargin: '100px 0px 100px 0px' });
+          pObserver.observe(certSection);
+        } else {
+          isRunning = true;
+          tick();
+        }
       }
 
       initParticlesCanvas('cert-canvas');
@@ -4905,6 +5620,153 @@
           }
         });
       }
+
+      // ==========================================
+      // PONTO DE LUZ (Cursor Luminoso Elétrico Mobile & Desktop)
+      // Substitui a seta padrão do sistema por uma partícula de luz de alta voltagem
+      // ==========================================
+      function initLuminousCursor() {
+        const cursorEl = document.getElementById('luminous-cursor');
+        if (!cursorEl) return;
+
+        // Ativa classe global no body para suprimir a seta nativa do navegador
+        document.body.classList.add('custom-cursor-active');
+
+        let targetX = -100;
+        let targetY = -100;
+        let currentX = -100;
+        let currentY = -100;
+        let isVisible = false;
+        let isTouchMode = false;
+        let fadeTimer = null;
+        let isLoopActive = false;
+
+        function show() {
+          if (!isVisible) {
+            cursorEl.classList.remove('opacity-0');
+            cursorEl.classList.add('opacity-100');
+            isVisible = true;
+          }
+          if (fadeTimer) {
+            clearTimeout(fadeTimer);
+            fadeTimer = null;
+          }
+        }
+
+        function hideDelayed(ms = 600) {
+          if (fadeTimer) clearTimeout(fadeTimer);
+          fadeTimer = setTimeout(() => {
+            cursorEl.classList.remove('opacity-100');
+            cursorEl.classList.add('opacity-0');
+            isVisible = false;
+          }, ms);
+        }
+
+        function setCoords(x, y, snap = false) {
+          targetX = x;
+          targetY = y;
+          show();
+
+          if (snap || isTouchMode) {
+            currentX = x;
+            currentY = y;
+            cursorEl.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+          }
+
+          if (!isLoopActive) {
+            isLoopActive = true;
+            requestAnimationFrame(cursorRenderLoop);
+          }
+        }
+
+        function cursorRenderLoop() {
+          if (!isVisible && Math.abs(currentX - targetX) < 0.1 && Math.abs(currentY - targetY) < 0.1) {
+            isLoopActive = false;
+            return;
+          }
+
+          // Interpolação de movimento: imediata e precisa no touch, lerp fluido no desktop
+          const factor = isTouchMode ? 0.92 : 0.45;
+          currentX += (targetX - currentX) * factor;
+          currentY += (targetY - currentY) * factor;
+
+          cursorEl.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0)`;
+
+          requestAnimationFrame(cursorRenderLoop);
+        }
+
+        // 1. Suporte universal Pointer Events (cobre mouse, caneta touch e emulação mobile do Chrome DevTools)
+        window.addEventListener('pointermove', (e) => {
+          isTouchMode = (e.pointerType === 'touch');
+          setCoords(e.clientX, e.clientY);
+        }, { passive: true });
+
+        window.addEventListener('pointerdown', (e) => {
+          isTouchMode = (e.pointerType === 'touch');
+          setCoords(e.clientX, e.clientY, true);
+          cursorEl.classList.add('cursor-pressed');
+        }, { passive: true });
+
+        window.addEventListener('pointerup', () => {
+          cursorEl.classList.remove('cursor-pressed');
+          if (isTouchMode) {
+            hideDelayed(450);
+          }
+        }, { passive: true });
+
+        window.addEventListener('pointercancel', () => {
+          cursorEl.classList.remove('cursor-pressed');
+          if (isTouchMode) {
+            hideDelayed(150);
+          }
+        }, { passive: true });
+
+        // 2. Touch Events nativos para suporte irrestrito em telas touch reais (iOS/Android)
+        window.addEventListener('touchstart', (e) => {
+          isTouchMode = true;
+          if (e.touches && e.touches.length > 0) {
+            const t = e.touches[0];
+            setCoords(t.clientX, t.clientY, true);
+            cursorEl.classList.add('cursor-pressed');
+          }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+          isTouchMode = true;
+          if (e.touches && e.touches.length > 0) {
+            const t = e.touches[0];
+            setCoords(t.clientX, t.clientY);
+          }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+          cursorEl.classList.remove('cursor-pressed');
+          hideDelayed(400);
+        }, { passive: true });
+
+        // 3. Efeito Hover Dinâmico: amplia a aura do ponto de luz sobre elementos interativos
+        const interactiveQuery = 'a, button, input, select, textarea, [role="button"], .cursor-pointer, .bento-interactive, .service-card, .cta-button';
+        document.addEventListener('mouseover', (e) => {
+          if (e.target && e.target.closest && e.target.closest(interactiveQuery)) {
+            cursorEl.classList.add('cursor-hover');
+          }
+        }, { passive: true });
+
+        document.addEventListener('mouseout', (e) => {
+          if (e.target && e.target.closest && e.target.closest(interactiveQuery)) {
+            cursorEl.classList.remove('cursor-hover');
+          }
+        }, { passive: true });
+
+        // Esconder quando sair da janela (desktop)
+        document.addEventListener('mouseleave', () => {
+          cursorEl.classList.remove('opacity-100');
+          cursorEl.classList.add('opacity-0');
+          isVisible = false;
+        });
+      }
+
+      initLuminousCursor();
 
       // 9. Aplicar o idioma salvo no carregamento
       switchLanguage(currentLang);
