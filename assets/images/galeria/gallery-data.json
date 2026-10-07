@@ -1,0 +1,287 @@
+[
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.41 (3).jpeg",
+    "dest": "real-01-robotica-kuka.jpg",
+    "category": {
+      "pt": "Robótica Industrial",
+      "es": "Robótica Industrial",
+      "en": "Industrial Robotics"
+    },
+    "title": {
+      "pt": "Programação de Robô KUKA KRC 04",
+      "es": "Programación de Robot KUKA KRC 04",
+      "en": "KUKA KRC 04 Robot Programming"
+    },
+    "desc": {
+      "pt": "Backup, parametrização e programação com terminal KCP.",
+      "es": "Backup, parametrización y programación con terminal KCP.",
+      "en": "Backup, parameterization, and programming via KCP."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.28 (2).jpeg",
+    "dest": "real-02-quadro-comercial-hager.jpg",
+    "category": {
+      "pt": "Quadros Comerciais",
+      "es": "Cuadros Comerciales",
+      "en": "Commercial Panels"
+    },
+    "title": {
+      "pt": "Quadro Geral de Distribuição Hager",
+      "es": "Cuadro General de Distribución Hager",
+      "en": "Hager General Distribution Panel"
+    },
+    "desc": {
+      "pt": "Identificação por setores: climatização, iluminação e postos de trabalho.",
+      "es": "Identificación por sectores: climatización, alumbrado y puestos de trabajo.",
+      "en": "Sectorized labeling: HVAC, lighting, and workstations."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.42 (2).jpeg",
+    "dest": "real-03-automacao-inversores-weg.jpg",
+    "category": {
+      "pt": "Automação & Motores",
+      "es": "Automatización & Motores",
+      "en": "Automation & Drives"
+    },
+    "title": {
+      "pt": "Quadro com Inversores WEG CFW 08",
+      "es": "Cuadro con Variadores WEG CFW 08",
+      "en": "Control Panel with WEG CFW 08 Inverters"
+    },
+    "desc": {
+      "pt": "Comando estruturado com canaletas e contatores Schneider Electric.",
+      "es": "Mando estructurado con canaletas y contactores Schneider Electric.",
+      "en": "Structured routing with Schneider Electric contactors."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.42 (3).jpeg",
+    "dest": "real-04-painel-clp-weg.jpg",
+    "category": {
+      "pt": "Comandos & CLP",
+      "es": "Mandos & Autómata",
+      "en": "Control & PLC"
+    },
+    "title": {
+      "pt": "Painel com CLP WEG Clic-02 & CFW 10",
+      "es": "Panel con Autómata WEG Clic-02 & CFW 10",
+      "en": "Panel with WEG Clic-02 PLC & CFW 10"
+    },
+    "desc": {
+      "pt": "Automação programável, fonte estabilizada e bornes de interligação.",
+      "es": "Automatización programable, fuente estabilizada y bornes de conexión.",
+      "en": "Programmable logic controller with DIN rail power supply."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.30 (7).jpeg",
+    "dest": "real-05-iluminacao-comercial-design.jpg",
+    "category": {
+      "pt": "Iluminação & Design",
+      "es": "Iluminación & Diseño",
+      "en": "Lighting & Design"
+    },
+    "title": {
+      "pt": "Iluminação Técnica em Cafeteria",
+      "es": "Iluminación Técnica en Cafetería",
+      "en": "Technical Commercial Lighting"
+    },
+    "desc": {
+      "pt": "Luminárias de design, spots embutidos e conforto visual.",
+      "es": "Luminarias de diseño, focos empotrados y confort visual.",
+      "en": "Designer pendants, recessed spots, and ambient lighting."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.36 (5).jpeg",
+    "dest": "real-06-energia-solar-fotovoltaica.jpg",
+    "category": {
+      "pt": "Energia Solar",
+      "es": "Energía Solar",
+      "en": "Solar Energy"
+    },
+    "title": {
+      "pt": "Módulos Fotovoltaicos em Cobertura",
+      "es": "Módulos Fotovoltaicos en Cubierta",
+      "en": "Rooftop Photovoltaic Modules"
+    },
+    "desc": {
+      "pt": "Instalação de placas solares com suportes angulares em Valência.",
+      "es": "Instalación de paneles solares con soportes angulares en Valencia.",
+      "en": "Solar panel installation on rooftop mounts in Valencia."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.26.jpeg",
+    "dest": "real-07-montagem-quadro-modular.jpg",
+    "category": {
+      "pt": "Quadros Elétricos",
+      "es": "Cuadros Eléctricos",
+      "en": "Electrical Panels"
+    },
+    "title": {
+      "pt": "Montagem de Quadro Modular",
+      "es": "Montaje de Cuadro Modular",
+      "en": "Modular Panel Assembly"
+    },
+    "desc": {
+      "pt": "Barramentos protegidos, trilho DIN e diferenciais ATMOSS.",
+      "es": "Embarrados protegidos, carril DIN y diferenciales ATMOSS.",
+      "en": "Protected busbars, DIN rails, and ATMOSS circuit breakers."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.27 (1).jpeg",
+    "dest": "real-08-disjuntor-geral-160a.jpg",
+    "category": {
+      "pt": "Força & Potência",
+      "es": "Fuerza & Potencia",
+      "en": "Power Distribution"
+    },
+    "title": {
+      "pt": "Disjuntor Geral Trifásico 160A",
+      "es": "Interruptor General Trifásico 160A",
+      "en": "Main 160A Three-Phase Breaker"
+    },
+    "desc": {
+      "pt": "Disjuntor de caixa moldada CHNT com certificação CE e temporizadores.",
+      "es": "Caja moldeada CHNT con certificación CE y temporizadores.",
+      "en": "Molded-case CHNT circuit breaker with CE certification."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.28 (7).jpeg",
+    "dest": "real-09-quadro-distribuicao-espanha.jpg",
+    "category": {
+      "pt": "Instalações Comerciais",
+      "es": "Instalaciones Comerciales",
+      "en": "Commercial Wiring"
+    },
+    "title": {
+      "pt": "Quadro de 4 Linhas com Linha SAI",
+      "es": "Cuadro de 4 Filas con Línea SAI",
+      "en": "4-Row Distribution Board with UPS"
+    },
+    "desc": {
+      "pt": "Normativa REBT com circuitos protegidos para equipamentos críticos.",
+      "es": "Normativa REBT con circuitos protegidos para equipos críticos.",
+      "en": "REBT compliant board with dedicated UPS lines."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.27 (5).jpeg",
+    "dest": "real-10-quadro-estanque-noark.jpg",
+    "category": {
+      "pt": "Proteção Especial",
+      "es": "Protección Estanca",
+      "en": "Weatherproof Panels"
+    },
+    "title": {
+      "pt": "Quadro Estanque Noark IP65",
+      "es": "Cuadro Estanco Noark IP65",
+      "en": "Noark IP65 Weatherproof Enclosure"
+    },
+    "desc": {
+      "pt": "Proteção contra poeira e água com disjuntores e tomadas industriais.",
+      "es": "Protección contra polvo y agua con automáticos y bases de enchufe.",
+      "en": "Dust and water-sealed box with breakers and sockets."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.32 (4).jpeg",
+    "dest": "real-11-climatizacao-vrf-aerotermia.jpg",
+    "category": {
+      "pt": "Climatização & VRF",
+      "es": "Climatización & VRF",
+      "en": "HVAC & VRF Systems"
+    },
+    "title": {
+      "pt": "Centrais de Climatização VRF Haier",
+      "es": "Centrales de Climatización VRF Haier",
+      "en": "Haier VRF Air Conditioning Central"
+    },
+    "desc": {
+      "pt": "Interligação de tubulações, vácuo e infraestrutura de alta potência.",
+      "es": "Interconexión de tuberías, vacío e infraestructura de potencia.",
+      "en": "Refrigeration piping, vacuum testing, and electrical feeds."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.31 (5).jpeg",
+    "dest": "real-12-aerotermia-mundoclima-inverter.jpg",
+    "category": {
+      "pt": "Aerotermia & Inverter",
+      "es": "Aerotermia & Inverter",
+      "en": "Inverter Heat Pumps"
+    },
+    "title": {
+      "pt": "Unidade Mundoclima Super Inverter",
+      "es": "Unidad Mundoclima Super Inverter",
+      "en": "Mundoclima Super Inverter Unit"
+    },
+    "desc": {
+      "pt": "Instalação de bombas de calor e eletrônica de potência inverter.",
+      "es": "Instalación de bombas de calor y electrónica de potencia inverter.",
+      "en": "Heat pump installation and inverter power electronics."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.27 (7).jpeg",
+    "dest": "real-13-automacao-gerador-himoinsa.jpg",
+    "category": {
+      "pt": "Grupos Geradores",
+      "es": "Grupos Electrógenos",
+      "en": "Generator Systems"
+    },
+    "title": {
+      "pt": "Quadro de Transferência HIMOINSA CEC7",
+      "es": "Cuadro de Transferencia HIMOINSA CEC7",
+      "en": "HIMOINSA CEC7 Transfer Panel"
+    },
+    "desc": {
+      "pt": "Comutação automática de rede/gerador com botão de emergência.",
+      "es": "Conmutación automática red/generador con paro de emergencia.",
+      "en": "Automatic mains failure ATS panel with emergency stop."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.28 (6).jpeg",
+    "dest": "real-14-acometida-contadores-cgp.jpg",
+    "category": {
+      "pt": "Acometidas & CGP",
+      "es": "Acometidas & CGP",
+      "en": "Service Connections"
+    },
+    "title": {
+      "pt": "Centralização e Caixa de Proteção Geral",
+      "es": "Centralización y Caja General de Protección",
+      "en": "Service Connection & Metering Board"
+    },
+    "desc": {
+      "pt": "Fusíveis tipo faca NH, barramentos de cobre e policarbonato estanque.",
+      "es": "Fusibles de cuchilla NH, embarrado de cobre y envolvente estanca.",
+      "en": "NH knife fuses, copper busbars, and sealed polycarbonate."
+    }
+  },
+  {
+    "src": "WhatsApp Image 2026-09-25 at 20.28.38 (5).jpeg",
+    "dest": "real-15-painel-comando-operacao.jpg",
+    "category": {
+      "pt": "Painéis Industriais",
+      "es": "Cuadros Industriales",
+      "en": "Industrial Panels"
+    },
+    "title": {
+      "pt": "Painel de Comando com Inversores Ativos",
+      "es": "Cuadro de Mando con Variadores Activos",
+      "en": "Control Panel with Active Inverters"
+    },
+    "desc": {
+      "pt": "Operação com inversores WEG, bornes identificados e botoeiras de porta.",
+      "es": "Operación con variadores WEG, bornas identificadas y pulsadores de puerta.",
+      "en": "WEG drive operation, numbered terminals, and door switches."
+    }
+  }
+]
