@@ -405,6 +405,29 @@
       height: 32px;
       box-shadow: 0 0 12px rgba(255, 230, 0, 0.85);
     }
+    .why-mobile-pill {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .why-mobile-pill:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+    }
+    .why-mobile-pill.is-active {
+      background: #FFE600 !important;
+      border-color: #FFE600 !important;
+      color: #050505 !important;
+      box-shadow: 0 0 16px rgba(255, 230, 0, 0.35);
+    }
+    .why-mobile-pill.is-active .why-mob-num {
+      color: #050505 !important;
+    }
+    .why-mobile-pill:not(.is-active) .why-mob-num {
+      color: #FFE600 !important;
+    }
 
     .why-stage-panel {
       transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1101,7 +1124,7 @@
       position: relative;
       height: 100vh;
       height: 100dvh;
-      min-height: 650px;
+      min-height: 520px;
       background-color: #050505;
       overflow: hidden;
     }
@@ -1115,7 +1138,6 @@
       align-items: center;
       justify-content: center;
     }
-    /* Fim do estilo sticky */
     #scroll-video-canvas {
       position: absolute;
       inset: 0;
@@ -1137,14 +1159,14 @@
   <!-- ==========================================
        PRELOADER HIGH-END (Barra Inferior & Contador)
        ========================================== -->
-  <aside id="site-preloader" aria-label="Carregando..." class="z-[99999]">
+  <aside id="site-preloader" aria-label="Cargando..." class="z-[99999]">
     <div class="preloader-content max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pb-6 sm:pb-8 flex flex-col items-start select-none">
       <div class="flex items-baseline">
         <span id="preloader-counter" class="font-syne font-extrabold text-5xl sm:text-6xl md:text-7xl tracking-tighter text-white tabular-nums leading-none">0</span>
         <span class="text-brand-yellow font-syne font-bold text-2xl sm:text-3xl ml-1 leading-none">%</span>
       </div>
-      <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/50 mt-2">
-        ENGENHARIA ELÉTRICA DE ALTA PERFORMANCE
+      <span data-i18n="preloader_tag" class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/50 mt-2">
+        INGENIERÍA ELÉCTRICA DE ALTO RENDIMIENTO
       </span>
     </div>
     <div class="preloader-bar-bg">
@@ -1157,18 +1179,18 @@
        ========================================== -->
   <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-hidden" id="site-header">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="flex items-center justify-between h-20 sm:h-24 transition-all duration-300" id="header-inner">
+      <div class="flex items-center justify-between h-16 sm:h-24 transition-all duration-300" id="header-inner">
         
         <!-- Identidade IberVolt (Proporção elegante com margem nobre de respiro) -->
         <a href="#inicio" class="anim-in delay-1 flex items-center group shrink-0 py-1 mr-6 sm:mr-8 lg:mr-10" aria-label="IberVolt Solutions">
-          <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-all duration-200 group-hover:opacity-95 group-hover:scale-102 drop-shadow-[0_2px_12px_rgba(255,230,0,0.15)]">
+          <img src="./assets/images/logo.png" alt="IberVolt Solutions" class="h-9 sm:h-12 lg:h-14 w-auto object-contain transition-all duration-200 group-hover:opacity-95 group-hover:scale-102 drop-shadow-[0_2px_12px_rgba(255,230,0,0.15)]">
         </a>
 
         <!-- Navegação Desktop Minimalista (Com numeração editorial 01 a 06) -->
-        <nav class="anim-in delay-2 hidden md:flex items-center gap-5 lg:gap-7 text-[12.5px] lg:text-[13px] font-jakarta tracking-wide" aria-label="Menu Principal" id="desktop-nav">
+        <nav class="anim-in delay-2 hidden md:flex items-center gap-5 lg:gap-7 text-[12.5px] lg:text-[13px] font-jakarta tracking-wide" aria-label="Menú Principal" id="desktop-nav">
           <a href="#inicio" data-nav-target="inicio" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1 is-active">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">01.</span>
-            <span data-i18n="nav_home">Home</span>
+            <span data-i18n="nav_home">Inicio</span>
           </a>
           <a href="#especialidades" data-nav-target="especialidades" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">02.</span>
@@ -1176,19 +1198,19 @@
           </a>
           <a href="#certificacoes" data-nav-target="certificacoes" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">03.</span>
-            <span data-i18n="nav_cert">Certificações &amp; Normas</span>
+            <span data-i18n="nav_cert">Certificaciones & Normas</span>
           </a>
           <a href="#diferenciais" data-nav-target="diferenciais" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">04.</span>
-            <span data-i18n="nav_diferenciais">Diferenciais</span>
+            <span data-i18n="nav_diferenciais">Diferenciales</span>
           </a>
           <a href="#galeria" data-nav-target="galeria" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">05.</span>
-            <span data-i18n="nav_galeria">Projetos</span>
+            <span data-i18n="nav_galeria">Proyectos</span>
           </a>
           <a href="#cobertura" data-nav-target="cobertura" class="nav-desktop-item text-white/75 hover:text-white transition-colors duration-200 py-1">
             <span class="nav-num font-mono text-[11px] text-brand-yellow font-semibold mr-1.5 opacity-90">06.</span>
-            <span data-i18n="nav_cobertura">Atendimento</span>
+            <span data-i18n="nav_cobertura">Atención</span>
           </a>
         </nav>
 
@@ -1247,7 +1269,7 @@
           <button id="mobile-menu-btn" 
                   type="button" 
                   aria-expanded="false" 
-                  aria-label="Abrir Menu Principal"
+                  aria-label="Abrir Menú Principal"
                   class="p-2 text-white/80 hover:text-white transition-colors">
             <i data-lucide="menu" id="menu-icon-open" class="w-5 h-5"></i>
             <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 hidden"></i>
@@ -1262,7 +1284,7 @@
       <nav class="flex flex-col space-y-2.5 font-jakarta text-sm">
         <a href="#inicio" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">01.</span>
-          <span data-i18n="nav_home">Home</span>
+          <span data-i18n="nav_home">Inicio</span>
         </a>
         <a href="#especialidades" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">02.</span>
@@ -1270,19 +1292,19 @@
         </a>
         <a href="#certificacoes" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">03.</span>
-          <span data-i18n="nav_cert">Certificações &amp; Normas</span>
+          <span data-i18n="nav_cert">Certificaciones & Normas</span>
         </a>
         <a href="#diferenciais" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">04.</span>
-          <span data-i18n="nav_diferenciais">Diferenciais</span>
+          <span data-i18n="nav_diferenciais">Diferenciales</span>
         </a>
         <a href="#galeria" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">05.</span>
-          <span data-i18n="nav_galeria">Projetos</span>
+          <span data-i18n="nav_galeria">Proyectos</span>
         </a>
         <a href="#cobertura" class="mobile-link text-white/85 hover:text-white py-1.5 transition-colors flex items-center">
           <span class="font-mono text-xs text-brand-yellow font-semibold mr-2.5">06.</span>
-          <span data-i18n="nav_cobertura">Atendimento</span>
+          <span data-i18n="nav_cobertura">Atención</span>
         </a>
       </nav>
 
@@ -1312,7 +1334,7 @@
   <!-- ==========================================
        SEÇÃO: HERO CINEMATOGRÁFICO (VÍDEO DA CASA ENERGIZANDO & PARALLAX)
        ========================================== -->
-  <section id="inicio" class="scroll-sequence-section" aria-label="Apresentação e Energização IberVolt">
+  <section id="inicio" class="scroll-sequence-section" aria-label="Presentación y Energización IberVolt">
     
     <div class="scroll-sequence-sticky">
       <!-- Canvas de Alta Performance: Renderiza os 200 frames da casa energizando com play automático -->
@@ -1322,30 +1344,28 @@
       <div id="video-overlay" class="absolute inset-0 pointer-events-none z-10 transition-opacity duration-1000 bg-gradient-to-t from-brand-obsidian via-brand-obsidian/45 to-brand-obsidian/85 opacity-30"></div>
       <div class="absolute top-0 left-0 right-0 h-44 bg-gradient-to-b from-brand-obsidian via-brand-obsidian/80 to-transparent pointer-events-none z-10"></div>
 
-      <!-- Conteúdo Oficial do Hero: Surge com Parallax Escalonado APENAS após a casa energizar -->
-      <div id="hero-content" class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full h-full flex flex-col justify-center relative z-20 pointer-events-none">
+      <!-- Conteúdo Oficial do Hero: Estruturado para deixar a casa limpa no centro durante o vídeo -->
+      <div id="hero-content" class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full h-full flex flex-col justify-between pt-24 sm:pt-0 pb-6 sm:pb-0 sm:justify-center relative z-20 pointer-events-none">
         
-        <div class="max-w-xl sm:max-w-2xl flex flex-col items-start pointer-events-auto">
+        <!-- Bloco Superior: Textos ancorados no céu estrelado (Para Cima com respiro elegante) -->
+        <div class="max-w-xl sm:max-w-2xl flex flex-col items-start pt-1.5 sm:pt-0 pointer-events-auto">
           
           <!-- Elemento 1: Badge Oficial -->
-          <div id="hero-el-badge" class="hero-reveal-element inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/15 mb-3 sm:mb-4 text-brand-muted font-mono text-[10px] sm:text-xs tracking-wider uppercase shadow-xl opacity-0 translate-y-6 will-change-transform">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-            <span data-i18n="hero_badge">Valencia y alrededores // Atención personalizada</span>
+          <div id="hero-el-badge" class="hero-reveal-element inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brand-obsidian/85 backdrop-blur-md border border-white/15 mb-2 sm:mb-4 text-brand-muted font-mono text-[9px] sm:text-xs tracking-wider uppercase shadow-xl opacity-0 translate-y-6 will-change-transform max-w-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse shrink-0"></span>
+            <span data-i18n="hero_badge" class="leading-none">Valencia y alrededores // Atención personalizada</span>
           </div>
 
-          <!-- Elemento 2: Título H1 Oficial -->
-          <h1 id="hero-el-title" data-i18n-html="hero_h1" class="hero-reveal-element hero-title-shadow font-syne font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-snug sm:leading-[1.15] tracking-[-0.02em] text-white mb-3 sm:mb-4 opacity-0 translate-y-8 will-change-transform max-w-2xl">
-            Instalaciones eléctricas con calidad, seguridad y confianza. <br class="hidden sm:inline">
-            <span class="font-light italic text-brand-yellow">Su casa o negocio merece una instalación bien hecha.</span>
-          </h1>
+          <!-- Elemento 2: Título H1 Oficial (Compacto no mobile para encaixar no céu sem cobrir a casa) -->
+          <h1 id="hero-el-title" data-i18n-html="hero_h1" class="hero-reveal-element hero-title-shadow font-syne font-bold text-[1.2rem] sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-[1.22] sm:leading-[1.15] tracking-[-0.02em] text-white mb-2 sm:mb-4 opacity-0 translate-y-8 will-change-transform max-w-2xl">Instalaciones eléctricas con calidad, seguridad y confianza. <br class="hidden sm:inline"> <span class="font-light italic text-brand-yellow">Su casa o negocio merece una instalación bien hecha.</span></h1>
 
-          <!-- Elemento 3: Subtítulo Oficial -->
-          <p id="hero-el-sub" data-i18n-html="hero_sub" class="hero-reveal-element hero-title-shadow font-jakarta font-light text-xs sm:text-base text-white/90 leading-relaxed max-w-xl mb-4 sm:mb-5 opacity-0 translate-y-8 will-change-transform">
-            Soluciones eléctricas residenciales, comerciales e industriales en Valencia y alrededores. Realizamos instalaciones, reformas, iluminación, modernización de cuadros eléctricos y mantenimiento, siempre con atención al detalle y a las necesidades de cada cliente.
+          <!-- Elemento 3: Subtítulo Oficial (Conciso e nítido no topo) -->
+          <p id="hero-el-sub" data-i18n-html="hero_sub" class="hero-reveal-element hero-title-shadow font-jakarta font-light text-[11px] sm:text-base text-white/80 leading-snug sm:leading-relaxed max-w-xl mb-0 sm:mb-5 opacity-0 translate-y-8 will-change-transform">
+            Soluciones eléctricas residenciales, comerciales e industriales en Valencia y alrededores.<span class="hidden sm:inline"> Realizamos instalaciones, reformas, iluminación, modernización de cuadros eléctricos y mantenimiento, siempre con atención al detalle y a las necesidades de cada cliente.</span>
           </p>
 
-          <!-- Badges de Confiança / Destaques -->
-          <div id="hero-el-tags" class="hero-reveal-element flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-mono text-white/70 mb-6 opacity-0 translate-y-6">
+          <!-- Badges de Confiança / Destaques (Ocultos no mobile para eliminar poluição e repetição) -->
+          <div id="hero-el-tags" class="hero-reveal-element hidden sm:flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-mono text-white/70 mb-6 opacity-0 translate-y-6">
             <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-white/80" data-i18n="hero_tag1">Valencia y alrededores</span>
             <span class="text-brand-yellow">•</span>
             <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-white/80" data-i18n="hero_tag2">Atención personalizada</span>
@@ -1353,24 +1373,30 @@
             <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-white/80" data-i18n="hero_tag3">Calidad y profesionalismo</span>
           </div>
 
-          <!-- Elemento 4: CTAs de Ação -->
-          <div id="hero-el-ctas" class="hero-reveal-element flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto opacity-0 translate-y-6 pointer-events-none">
+        </div>
+
+        <!-- Espaço Central Livre: Área onde a Casa Iluminada fica 100% visível e desimpedida durante o vídeo -->
+        <div class="flex-1 min-h-[140px] sm:min-h-0 sm:hidden pointer-events-none" aria-hidden="true"></div>
+
+        <!-- Bloco Inferior: Botões de Ação na Base (Com folga segura acima da zona inferior) -->
+        <div class="w-full sm:w-auto flex flex-col items-start pb-20 sm:pb-0 sm:mt-6">
+          <div id="hero-el-ctas" class="hero-reveal-element flex flex-row items-center gap-2 sm:gap-3 w-full sm:w-auto opacity-0 translate-y-6 pointer-events-none">
             <button type="button"
                     id="hero-cta-whatsapp"
                     onclick="openQuoteModal()"
-                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.02] shadow-[0_0_25px_rgba(255,230,0,0.35)] shrink-0 cursor-pointer pointer-events-auto">
-              <span data-i18n="hero_cta_wa">Solicitar Presupuesto</span>
-              <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
+                    class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-2.5 sm:py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.02] shadow-[0_0_20px_rgba(255,230,0,0.3)] shrink-0 cursor-pointer pointer-events-auto text-center">
+              <span class="sm:hidden" data-i18n="hero_cta_wa_mobile">Pedir Presupuesto</span>
+              <span class="hidden sm:inline" data-i18n="hero_cta_wa">Solicitar Presupuesto</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]"></i>
             </button>
 
             <a href="#especialidades" 
                id="hero-cta-services"
-               class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-white/90 font-jakarta text-xs font-medium tracking-wider transition-all duration-200 hover:text-white bg-white/[0.08] hover:bg-white/[0.15] border border-white/10 backdrop-blur-md shadow-lg shrink-0 pointer-events-auto">
-              <span data-i18n="hero_cta_services">Conocer Nuestros Servicios</span>
-              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+               class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3.5 rounded-full text-white/90 font-jakarta text-xs font-medium tracking-wider transition-all duration-200 hover:text-white bg-white/[0.08] hover:bg-white/[0.15] border border-white/10 backdrop-blur-md shadow-lg shrink-0 pointer-events-auto text-center">
+              <span data-i18n="hero_cta_services">Nuestros Servicios</span>
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </a>
           </div>
-
         </div>
 
       </div>
@@ -1383,7 +1409,7 @@
        SEÇÃO: PROBLEMAS QUE RESOLVEMOS (DIAGNÓSTICO COMERCIAL & SOLUÇÕES RÁPIDAS)
        Etapa 3 do Plano de Reformulação Oficial IberVolt
        ========================================== -->
-  <section id="problemas" class="relative py-20 sm:py-24 md:py-28 bg-brand-obsidian border-t border-brand-border overflow-hidden" aria-label="Problemas Eléctricos Frequentes">
+  <section id="problemas" class="relative py-20 sm:py-24 md:py-28 bg-brand-obsidian border-t border-brand-border overflow-hidden" aria-label="Problemas Eléctricos Frecuentes">
     
     <!-- Vinheta de profundidade idêntica à Hero e Seção Rigor Técnico -->
     <div class="hero-vignette absolute inset-0 pointer-events-none z-0"></div>
@@ -1402,14 +1428,11 @@
         <!-- Tag Monospaçada -->
         <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 mb-4 sm:mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-          <span data-i18n="prob_badge">// DIAGNÓSTICO RÁPIDO &amp; SEGURIDAD</span>
+          <span data-i18n="prob_badge">// DIAGNÓSTICO RÁPIDO & SEGURIDAD</span>
         </div>
 
         <!-- Título H2 de Impacto e Empatia -->
-        <h2 data-i18n-html="prob_h2" class="reveal-on-scroll font-syne font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-[1.18] tracking-[-0.03em] text-white mb-4">
-          ¿Está enfrentando alguno de <br class="hidden sm:inline">
-          <span class="font-light italic text-brand-yellow">estos problemas eléctricos?</span>
-        </h2>
+        <h2 data-i18n-html="prob_h2" class="reveal-on-scroll font-syne font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-[1.18] tracking-[-0.03em] text-white mb-4">¿Está enfrentando alguno de <br class="hidden sm:inline"> <span class="font-light italic text-brand-yellow">estos problemas eléctricos?</span></h2>
 
         <!-- Subtítulo Explicativo -->
         <p data-i18n="prob_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed">
@@ -1438,9 +1461,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
-              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[10px] tracking-wide" data-i18n="prob_c1_tag">
-                Sobrecarga &amp; Fuga
-              </span>
+              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[10px] tracking-wide" data-i18n="prob_c1_tag">Sobrecarga & Fuga</span>
               <div class="problem-faq-chevron w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white/70 group-hover:border-brand-yellow/40 group-hover:text-brand-yellow transition-all">
                 <i data-lucide="chevron-down" class="w-4 h-4"></i>
               </div>
@@ -1484,9 +1505,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
-              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-[10px] tracking-wide" data-i18n="prob_c2_tag">
-                Falso Contacto &amp; Chispa
-              </span>
+              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-[10px] tracking-wide" data-i18n="prob_c2_tag">Falso Contacto & Chispa</span>
               <div class="problem-faq-chevron w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white/70 group-hover:border-brand-yellow/40 group-hover:text-brand-yellow transition-all">
                 <i data-lucide="chevron-down" class="w-4 h-4"></i>
               </div>
@@ -1714,9 +1733,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
-              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-yellow/15 border border-brand-yellow/30 text-brand-yellow font-mono text-[10px] tracking-wide" data-i18n="prob_c7_tag">
-                Iluminación &amp; Eficiencia
-              </span>
+              <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-yellow/15 border border-brand-yellow/30 text-brand-yellow font-mono text-[10px] tracking-wide" data-i18n="prob_c7_tag">Iluminación & Eficiencia</span>
               <div class="problem-faq-chevron w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white/70 group-hover:border-brand-yellow/40 group-hover:text-brand-yellow transition-all">
                 <i data-lucide="chevron-down" class="w-4 h-4"></i>
               </div>
@@ -1782,19 +1799,14 @@
         <!-- Tag de Seção Monospaçada -->
         <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-          <span data-i18n="esp_badge">02 // Nossos Serviços</span>
+          <span data-i18n="esp_badge">02 // Nuestros Servicios</span>
         </div>
 
         <!-- Título H2 com Syne -->
-        <h2 data-i18n-html="esp_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white mb-4">
-          Nossos Serviços: <br>
-          <span class="font-light italic text-brand-yellow">Engenharia Elétrica</span> com Rigor e Precisão.
-        </h2>
+        <h2 data-i18n-html="esp_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white mb-4">Nuestros Servicios: <br> <span class="font-light italic text-brand-yellow">Ingeniería Eléctrica</span> con Rigor y Precisión.</h2>
 
         <!-- Subtítulo Enxuto -->
-        <p data-i18n="esp_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed">
-          Conheça nossas soluções completas em engenharia elétrica. Clique em qualquer serviço abaixo para ver os detalhes técnicos e aplicações.
-        </p>
+        <p data-i18n="esp_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted leading-relaxed">Conozca nuestras soluciones completas en ingeniería eléctrica. Haga clic en cualquier servicio a continuación para ver los detalles técnicos y aplicaciones.</p>
 
       </div>
 
@@ -1883,7 +1895,7 @@
           <!-- Rodapé Executivo do Card -->
           <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
             <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
-              <span data-i18n="service_view_details">Especificaciones Técnicas</span>
+              <span data-i18n="service_view_details">Ver Especificaciones</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
             </span>
             <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
@@ -1961,7 +1973,7 @@
 
           <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
             <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
-              <span data-i18n="service_view_details">Especificaciones Técnicas</span>
+              <span data-i18n="service_view_details">Ver Especificaciones</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
             </span>
             <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
@@ -2039,7 +2051,7 @@
 
           <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
             <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
-              <span data-i18n="service_view_details">Especificações Técnicas</span>
+              <span data-i18n="service_view_details">Ver Especificaciones</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
             </span>
             <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
@@ -2117,7 +2129,7 @@
 
           <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
             <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
-              <span data-i18n="service_view_details">Especificaciones Técnicas</span>
+              <span data-i18n="service_view_details">Ver Especificaciones</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
             </span>
             <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
@@ -2195,7 +2207,7 @@
 
           <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
             <span class="inline-flex items-center gap-1.5 text-brand-yellow font-semibold tracking-wide group-hover:text-white transition-colors">
-              <span data-i18n="service_view_details">Especificaciones Técnicas</span>
+              <span data-i18n="service_view_details">Ver Especificaciones</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[2.2]"></i>
             </span>
             <span class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-[10px] tracking-wider text-brand-yellow uppercase font-bold">
@@ -2252,13 +2264,10 @@
         <div class="max-w-2xl">
           <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-            <span data-i18n="cert_badge">03 // Rigor Técnico &amp; Normativa Oficial</span>
+            <span data-i18n="cert_badge">03 // Rigor Técnico & Normativa Oficial</span>
           </div>
 
-          <h2 data-i18n-html="cert_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
-            Rigor Técnico &amp; Normativa. <br>
-            <span class="font-light italic text-brand-yellow">Seguridad y Conformidad</span> en Cada Instalación.
-          </h2>
+          <h2 data-i18n-html="cert_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">Rigor Técnico & Normativa. <br> <span class="font-light italic text-brand-yellow">Seguridad y Conformidad</span> en Cada Instalación.</h2>
         </div>
 
         <p data-i18n="cert_sub" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted max-w-md leading-relaxed">
@@ -2342,9 +2351,7 @@
               <span class="font-syne font-extrabold text-3xl sm:text-4xl tracking-tight text-white group-hover:text-brand-yellow transition-colors block mb-1">
                 NORMAS UNE
               </span>
-              <h3 data-i18n="cert_sep_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">
-                Montaje de Cuadros &amp; Ensayos UNE-EN 61439
-              </h3>
+              <h3 data-i18n="cert_sep_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">Montaje de Cuadros & Ensayos UNE-EN 61439</h3>
             </div>
 
             <p data-i18n="cert_sep_desc" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
@@ -2395,9 +2402,7 @@
               <span class="font-syne font-extrabold text-3xl sm:text-4xl tracking-tight text-white group-hover:text-brand-yellow transition-colors block mb-1">
                 MARCADO CE
               </span>
-              <h3 data-i18n="cert_nr35_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">
-                Directiva 2014/35/UE &amp; Seguridad Laboral (RD 614/2001)
-              </h3>
+              <h3 data-i18n="cert_nr35_title" class="font-syne font-semibold text-lg text-white/90 tracking-tight">Directiva 2014/35/UE & Seguridad Laboral (RD 614/2001)</h3>
             </div>
 
             <p data-i18n="cert_nr35_desc" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
@@ -2424,7 +2429,7 @@
           <!-- Rodapé do Card com Parâmetro Técnico -->
           <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px]">
             <span data-i18n="cert_nr35_footer_label" class="text-brand-muted/70">GARANTÍA EUROPEA</span>
-            <span data-i18n="cert_nr35_footer_val" class="text-brand-yellow">SEGURIDAD &amp; CALIDAD CE</span>
+            <span data-i18n="cert_nr35_footer_val" class="text-brand-yellow">SEGURIDAD & CALIDAD CE</span>
           </div>
         </div>
 
@@ -2437,7 +2442,7 @@
   <!-- ==========================================
        SEÇÃO 4: DIFERENCIAIS TÉCNICOS & FRENTES DE ATUAÇÃO (ETAPA 5)
        ========================================== -->
-  <section id="diferenciais" class="relative py-24 md:py-32 bg-brand-obsidian overflow-hidden border-t border-brand-border" aria-label="Por Que Escolher a IberVolt Solutions e Frentes de Atuação">
+  <section id="diferenciais" class="relative py-24 md:py-32 bg-brand-obsidian overflow-hidden border-t border-brand-border" aria-label="Por Qué Elegir IberVolt Solutions y Áreas de Actuación">
     
     <!-- Anchors para compatibilidade e navegação interna -->
     <div id="setores" class="scroll-mt-28"></div>
@@ -2454,22 +2459,97 @@
            ======================================================== -->
       
       <!-- Cabeçalho Principal da Seção -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-16">
         <div class="max-w-2xl">
           <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-5 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-            <span data-i18n="why_badge">04 // EXCELENCIA &amp; VALOR TÉCNICO</span>
+            <span data-i18n="why_badge">04 // EXCELENCIA & VALOR TÉCNICO</span>
           </div>
 
-          <h2 data-i18n-html="why_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.14] tracking-[-0.03em] text-white">
-            ¿Por Qué Elegir IberVolt Solutions? <br>
-            <span class="font-light italic text-brand-yellow">Atención a los Detalles y Rigor Técnico</span> en Cada Proyecto.
-          </h2>
+          <h2 data-i18n-html="why_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.14] tracking-[-0.03em] text-white">¿Por Qué Elegir IberVolt Solutions? <br><span class="font-light italic text-brand-yellow">Atención a los Detalles y Rigor Técnico</span> en Cada Proyecto.</h2>
         </div>
 
         <p data-i18n="why_intro" class="reveal-on-scroll font-jakarta font-light text-sm sm:text-base text-brand-muted max-w-md leading-relaxed border-l-2 border-brand-yellow/30 pl-4 py-1">
           Su proyecto merece atención a los detalles. Creemos firmemente que un buen servicio comienza con una evaluación correcta y termina con un trabajo bien ejecutado.
         </p>
+      </div>
+
+      <!-- Seletor Horizontal Exclusivo Mobile (< lg): Compacto, Dinâmico e Sempre Visível Junto com o Card -->
+      <div class="flex lg:hidden items-center justify-between gap-2.5 mb-4 px-1" id="why-mobile-selector-container">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 snap-x flex-1" id="why-mobile-pills-bar" role="tablist" aria-label="Navegación de los 5 Pilares">
+          
+          <!-- Pill 01 -->
+          <button type="button" 
+                  role="tab"
+                  id="why-mob-pill-0"
+                  aria-selected="true"
+                  onclick="selectWhyPillar(0)"
+                  class="why-mobile-pill is-active shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-mono font-medium border flex items-center gap-2 cursor-pointer select-none">
+            <span class="why-mob-num font-bold font-mono">01.</span>
+            <span data-i18n="why_p1_title" class="font-syne font-bold text-xs whitespace-nowrap">Experiencia Técnica</span>
+          </button>
+
+          <!-- Pill 02 -->
+          <button type="button" 
+                  role="tab"
+                  id="why-mob-pill-1"
+                  aria-selected="false"
+                  onclick="selectWhyPillar(1)"
+                  class="why-mobile-pill shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-mono font-medium border flex items-center gap-2 cursor-pointer select-none">
+            <span class="why-mob-num font-bold font-mono">02.</span>
+            <span data-i18n="why_p2_title" class="font-syne font-bold text-xs whitespace-nowrap">Seguridad en Primer Lugar</span>
+          </button>
+
+          <!-- Pill 03 -->
+          <button type="button" 
+                  role="tab"
+                  id="why-mob-pill-2"
+                  aria-selected="false"
+                  onclick="selectWhyPillar(2)"
+                  class="why-mobile-pill shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-mono font-medium border flex items-center gap-2 cursor-pointer select-none">
+            <span class="why-mob-num font-bold font-mono">03.</span>
+            <span data-i18n="why_p3_title" class="font-syne font-bold text-xs whitespace-nowrap">Atención Personalizada</span>
+          </button>
+
+          <!-- Pill 04 -->
+          <button type="button" 
+                  role="tab"
+                  id="why-mob-pill-3"
+                  aria-selected="false"
+                  onclick="selectWhyPillar(3)"
+                  class="why-mobile-pill shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-mono font-medium border flex items-center gap-2 cursor-pointer select-none">
+            <span class="why-mob-num font-bold font-mono">04.</span>
+            <span data-i18n="why_p4_title" class="font-syne font-bold text-xs whitespace-nowrap">Compromiso con la Calidad</span>
+          </button>
+
+          <!-- Pill 05 -->
+          <button type="button" 
+                  role="tab"
+                  id="why-mob-pill-4"
+                  aria-selected="false"
+                  onclick="selectWhyPillar(4)"
+                  class="why-mobile-pill shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-mono font-medium border flex items-center gap-2 cursor-pointer select-none">
+            <span class="why-mob-num font-bold font-mono">05.</span>
+            <span data-i18n="why_p5_title" class="font-syne font-bold text-xs whitespace-nowrap">Soluciones Inteligentes</span>
+          </button>
+
+        </div>
+
+        <!-- Botões de Navegação Rápida < > no Mobile -->
+        <div class="flex items-center gap-1 shrink-0 pl-1 border-l border-white/10">
+          <button type="button" 
+                  onclick="navigateWhyPillar(-1)" 
+                  aria-label="Pilar Anterior"
+                  class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/70 hover:text-brand-yellow hover:border-brand-yellow/30 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button type="button" 
+                  onclick="navigateWhyPillar(1)" 
+                  aria-label="Siguiente Pilar"
+                  class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/70 hover:text-brand-yellow hover:border-brand-yellow/30 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
 
       <!-- ==========================================
@@ -2478,8 +2558,8 @@
            ========================================== -->
       <div id="why-interactive-showcase" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-24 items-stretch">
         
-        <!-- Coluna Esquerda (lg:col-span-5): Lista Seletora Minimalista de Engenharia (Sem Cards!) -->
-        <div class="lg:col-span-5 flex flex-col justify-between space-y-2.5 sm:space-y-3">
+        <!-- Coluna Esquerda (lg:col-span-5): Lista Seletora Minimalista de Engenharia (Visível Apenas no Desktop) -->
+        <div class="hidden lg:flex lg:col-span-5 flex-col justify-between space-y-2.5 sm:space-y-3">
           
           <div class="space-y-2 sm:space-y-2.5" role="tablist" aria-label="Motivos para elegir IberVolt">
             
@@ -2619,7 +2699,7 @@
         </div>
 
         <!-- Coluna Direita (lg:col-span-7): Palco de Demonstração Técnica (Showcase Blueprint Unificado) -->
-        <div class="lg:col-span-7 relative bg-gradient-to-br from-[#0c0c10] to-[#070709] border border-white/[0.09] rounded-3xl p-6 sm:p-9 lg:p-11 flex flex-col justify-between overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] min-h-[460px]">
+        <div class="lg:col-span-7 relative bg-gradient-to-br from-[#0c0c10] to-[#070709] border border-white/[0.09] rounded-3xl p-5 sm:p-9 lg:p-11 flex flex-col justify-between overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] min-h-0 sm:min-h-[460px]">
           
           <!-- Brilho Ambiente Amarelo Sutil no Canto do Palco -->
           <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-yellow/[0.06] rounded-full blur-[100px] pointer-events-none"></div>
@@ -2701,9 +2781,7 @@
                 <h3 data-i18n="why_p2_title" class="font-syne font-bold text-2xl sm:text-3xl lg:text-[2.1rem] text-white tracking-tight leading-tight mb-4">
                   Seguridad en Primer Lugar
                 </h3>
-                <p data-i18n="why_p2_desc" class="font-jakarta font-light text-sm sm:text-base text-white/80 leading-relaxed mb-8 max-w-xl">
-                  Procedimientos rigurosos de desenergización, uso exclusivo de materiales homologados de primeras marcas y total cumplimiento del marco regulatorio REBT y normas UNE.
-                </p>
+                <p data-i18n="why_p2_desc" class="font-jakarta font-light text-sm sm:text-base text-white/80 leading-relaxed mb-8 max-w-xl">Procedimientos rigurosos de desenergización, uso exclusivo de materiales homologados de primeras marcas y total conformidad con el reglamento REBT y normas UNE.</p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-white/[0.08]">
                   <div class="p-3.5 rounded-xl bg-white/[0.025] border border-white/[0.06]">
@@ -2921,7 +2999,7 @@
               <span id="why-current-counter" class="font-mono text-xs text-white/50 px-1">01 / 05</span>
               <button type="button" 
                       onclick="navigateWhyPillar(1)" 
-                      aria-label="Próximo Pilar"
+                      aria-label="Siguiente Pilar"
                       class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow/30 transition-colors cursor-pointer">
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -2964,7 +3042,7 @@
             <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.06] text-[11px] font-mono">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
-                <span data-i18n="frente1_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 01 // RESIDENCIAL &amp; COMERCIO</span>
+                <span data-i18n="frente1_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 01 // RESIDENCIAL & COMERCIO</span>
               </div>
               <span data-i18n="frente1_status" class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-white/60 text-[10px] tracking-wider uppercase">
                 ALTA DEMANDA
@@ -2974,7 +3052,7 @@
             <!-- Imagem Panorâmica da Frente com Zoom Hover -->
             <div class="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-residencial.jpg" 
-                   alt="Frente Comercial Inicial - Residencial e Comércio" 
+                   alt="Frente Comercial Inicial - Residencial y Comercio" 
                    class="frente-img w-full h-full object-cover" 
                    loading="lazy" 
                    decoding="async">
@@ -3028,12 +3106,8 @@
               <span data-i18n="frente1_badge1" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
                 Viviendas
               </span>
-              <span data-i18n="frente1_badge2" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
-                Pisos &amp; Airbnb
-              </span>
-              <span data-i18n="frente1_badge3" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
-                Comercios &amp; Oficinas
-              </span>
+              <span data-i18n="frente1_badge2" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">Pisos & Airbnb</span>
+              <span data-i18n="frente1_badge3" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">Comercios & Oficinas</span>
             </div>
           </div>
 
@@ -3055,11 +3129,9 @@
             <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.06] text-[11px] font-mono">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
-                <span data-i18n="frente2_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 02 // CUADROS &amp; AUTOMATIZACIÓN</span>
+                <span data-i18n="frente2_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 02 // CUADROS & AUTOMATIZACIÓN</span>
               </div>
-              <span data-i18n="frente2_status" class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-brand-yellow text-[10px] tracking-wider uppercase font-semibold">
-                ESPECIALIZACIÓN
-              </span>
+              <span data-i18n="frente2_status" class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-brand-yellow text-[10px] tracking-wider uppercase font-semibold">ESPECIALIZACIÓN TÉCNICA</span>
             </div>
 
             <!-- Imagem Panorâmica da Frente com Zoom Hover -->
@@ -3110,7 +3182,7 @@
               </div>
               <div class="flex items-start gap-2.5 text-xs text-white/85 font-jakarta">
                 <i data-lucide="check" class="w-3.5 h-3.5 text-brand-yellow shrink-0 mt-0.5"></i>
-                <span data-i18n="frente2_item4">Sistemas de automatización, contactores y control inteligente</span>
+                <span data-i18n="frente2_item4">Sistemas de automatización, contactores y control inteligente de circuitos</span>
               </div>
             </div>
 
@@ -3119,9 +3191,7 @@
               <span data-i18n="frente2_badge1" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
                 Cuadros de Distribución
               </span>
-              <span data-i18n="frente2_badge2" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
-                Comunidades &amp; Fincas
-              </span>
+              <span data-i18n="frente2_badge2" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">Comunidades & Fincas</span>
               <span data-i18n="frente2_badge3" class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-white/70">
                 Mantenimiento Técnico
               </span>
@@ -3146,7 +3216,7 @@
             <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.06] text-[11px] font-mono">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
-                <span data-i18n="frente3_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 03 // INDUSTRIA &amp; ROBÓTICA</span>
+                <span data-i18n="frente3_tag" class="font-bold text-brand-yellow tracking-wider">FRENTE 03 // INDUSTRIA & ROBÓTICA</span>
               </div>
               <span data-i18n="frente3_status" class="px-2 py-0.5 rounded bg-brand-yellow/10 border border-brand-yellow/20 text-brand-yellow text-[10px] tracking-wider uppercase font-semibold">
                 KUKA KRC 04
@@ -3156,7 +3226,7 @@
             <!-- Imagem Panorâmica da Frente com Zoom Hover -->
             <div class="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-white/10 group-hover:border-brand-yellow/40 transition-colors">
               <img src="./assets/images/projeto-kuka.jpg" 
-                   alt="Frente de Expansão - Indústria e Robótica KUKA" 
+                   alt="Frente de Expansión - Industria y Robótica KUKA" 
                    class="frente-img w-full h-full object-cover" 
                    loading="lazy" 
                    decoding="async">
@@ -3245,58 +3315,50 @@
       <div class="animate-marquee flex items-center gap-10 sm:gap-14 select-none">
         
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Residencial <span class="font-light italic text-white/50">&amp;</span> Chalets
+          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Residencial <span class="font-light italic text-white/50">&</span> Chalets</span> Chalets
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Cuadros Eléctricos <span class="font-light italic text-white/50">&amp;</span> Carril DIN
+          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Cuadros Eléctricos <span class="font-light italic text-white/50">&</span> Carril DIN</span> Carril DIN
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Comercio <span class="font-light italic text-white/50">&amp;</span> Pymes
+          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Comercio <span class="font-light italic text-white/50">&</span> Pymes</span> Pymes
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Naves Industriales <span class="font-light italic text-white/50">&amp;</span> Robótica KUKA
+          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Naves Industriales <span class="font-light italic text-white/50">&</span> Robótica KUKA</span> Robótica KUKA
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <!-- ── CLONE PARA O LOOP INFINITO PERFEITO ── -->
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Residencial <span class="font-light italic text-white/50">&amp;</span> Chalets
+          <span data-i18n-html="setores_item1" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Residencial <span class="font-light italic text-white/50">&</span> Chalets</span> Chalets
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Cuadros Eléctricos <span class="font-light italic text-white/50">&amp;</span> Carril DIN
+          <span data-i18n-html="setores_item2" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Cuadros Eléctricos <span class="font-light italic text-white/50">&</span> Carril DIN</span> Carril DIN
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Comercio <span class="font-light italic text-white/50">&amp;</span> Pymes
+          <span data-i18n-html="setores_item3" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Comercio <span class="font-light italic text-white/50">&</span> Pymes</span> Pymes
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
 
         <div class="flex items-center gap-10 sm:gap-14 shrink-0">
-          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">
-            Naves Industriales <span class="font-light italic text-white/50">&amp;</span> Robótica KUKA
+          <span data-i18n-html="setores_item4" class="font-syne font-semibold text-lg sm:text-2xl text-white/85 hover:text-brand-yellow transition-colors whitespace-nowrap cursor-default">Naves Industriales <span class="font-light italic text-white/50">&</span> Robótica KUKA</span> Robótica KUKA
           </span>
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/70"></span>
         </div>
@@ -3311,7 +3373,7 @@
   <!-- ==========================================
        ETAPA 6 (6.1): GALERIA DE TRABALHOS REAIS (CARROSSEL INFINITO // 15 OBRAS)
        ========================================== -->
-  <section id="galeria" class="relative py-24 md:py-32 bg-brand-obsidian overflow-hidden border-t border-brand-border" aria-label="Galeria de Trabalhos Reais em Valência">
+  <section id="galeria" class="relative py-24 md:py-32 bg-brand-obsidian overflow-hidden border-t border-brand-border" aria-label="Galería de Trabajos Reales en Valencia">
     
     <!-- Luz ambiente suave e discreta -->
     <div class="absolute top-1/4 left-1/3 w-[600px] h-[350px] bg-brand-yellow/[0.025] rounded-full blur-[150px] pointer-events-none"></div>
@@ -3323,17 +3385,12 @@
         <div class="max-w-3xl">
           <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-4 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-            <span data-i18n="gal_badge">05 // PROVA SOCIAL & OBRAS REAIS</span>
+            <span data-i18n="gal_badge">05 // PRUEBA SOCIAL & OBRAS REALES</span>
           </div>
 
-          <h2 data-i18n-html="gal_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
-            Projetos Reais, <br>
-            <span class="font-light italic text-brand-yellow">Engenharia Confiável</span> em Valência.
-          </h2>
+          <h2 data-i18n-html="gal_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">Proyectos Reales, <br><span class="font-light italic text-brand-yellow">Ingeniería Confiable</span> en Valencia.</h2>
 
-          <p data-i18n="gal_sub" class="reveal-on-scroll font-jakarta font-light text-brand-muted text-sm sm:text-base leading-relaxed mt-4 max-w-2xl">
-            Sem fotos de banco de imagem. Registros autênticos das nossas montagens de quadros elétricos, automação, iluminação técnica, energia solar e robótica industrial.
-          </p>
+          <p data-i18n="gal_sub" class="reveal-on-scroll font-jakarta font-light text-brand-muted text-sm sm:text-base leading-relaxed mt-4 max-w-2xl">Sin fotos de stock. Registros auténticos de nuestros montajes de cuadros eléctricos, automatización, iluminación técnica, energía solar y robótica industrial.</p>
         </div>
 
         <!-- Badges & Controles Interativos do Carrossel -->
@@ -3341,7 +3398,7 @@
           <!-- Selo de Autenticidade -->
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.02] border border-white/10 text-xs font-mono text-white/70">
             <svg class="w-4 h-4 text-brand-yellow shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span data-i18n="gal_stat_count">15 Registros Fotográficos Selecionados</span>
+            <span data-i18n="gal_stat_count">15 Registros Fotográficos Seleccionados</span>
           </div>
 
           <!-- Botões de Controle (Pausar / Retomar & Setas de Apoio) -->
@@ -3349,7 +3406,7 @@
             <button type="button" 
                     id="gallery-toggle-btn"
                     onclick="toggleGalleryAutoplay()" 
-                    aria-label="Pausar ou Retomar Carrossel"
+                    aria-label="Pausar o Reanudar Carrusel"
                     class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-white/75 hover:text-white hover:bg-white/[0.08] transition-colors">
               <svg id="gallery-toggle-icon-pause" class="w-3.5 h-3.5 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
               <svg id="gallery-toggle-icon-play" class="w-3.5 h-3.5 text-brand-yellow hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -3358,13 +3415,13 @@
             <div class="w-px h-4 bg-white/10"></div>
             <button type="button" 
                     onclick="nudgeGalleryCarousel(-1)" 
-                    aria-label="Rolar para esquerda"
+                    aria-label="Desplazar a la izquierda"
                     class="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/[0.08] transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </button>
             <button type="button" 
                     onclick="nudgeGalleryCarousel(1)" 
-                    aria-label="Rolar para direita"
+                    aria-label="Desplazar a la derecha"
                     class="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/[0.08] transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </button>
@@ -3380,7 +3437,7 @@
       <div class="gallery-carousel-track" id="gallery-carousel-track">
         
             <!-- Card 1 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(0)" data-gallery-index="0" role="button" tabindex="0" aria-label="Ver detalhes de: Programação de Robô KUKA KRC 04">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(0)" data-gallery-index="0" role="button" tabindex="0" aria-label="Ver detalles de: Programação de Robô KUKA KRC 04">
               <img src="./assets/images/galeria/real-01-robotica-kuka.jpg" 
                    alt="Programación de Robot KUKA KRC 04" 
                    loading="lazy" 
@@ -3420,7 +3477,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(1)" data-gallery-index="1" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro Geral de Distribuição Hager">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(1)" data-gallery-index="1" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Geral de Distribuição Hager">
               <img src="./assets/images/galeria/real-02-quadro-comercial-hager.jpg" 
                    alt="Cuadro General de Distribución Hager" 
                    loading="lazy" 
@@ -3460,7 +3517,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(2)" data-gallery-index="2" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro com Inversores WEG CFW 08">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(2)" data-gallery-index="2" role="button" tabindex="0" aria-label="Ver detalles de: Quadro com Inversores WEG CFW 08">
               <img src="./assets/images/galeria/real-03-automacao-inversores-weg.jpg" 
                    alt="Cuadro con Variadores WEG CFW 08" 
                    loading="lazy" 
@@ -3500,7 +3557,7 @@
             </div>
 
             <!-- Card 4 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(3)" data-gallery-index="3" role="button" tabindex="0" aria-label="Ver detalhes de: Painel com CLP WEG Clic-02 & CFW 10">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(3)" data-gallery-index="3" role="button" tabindex="0" aria-label="Ver detalles de: Painel com CLP WEG Clic-02 & CFW 10">
               <img src="./assets/images/galeria/real-04-painel-clp-weg.jpg" 
                    alt="Panel con Autómata WEG Clic-02 & CFW 10" 
                    loading="lazy" 
@@ -3540,7 +3597,7 @@
             </div>
 
             <!-- Card 5 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(4)" data-gallery-index="4" role="button" tabindex="0" aria-label="Ver detalhes de: Iluminação Técnica em Cafeteria">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(4)" data-gallery-index="4" role="button" tabindex="0" aria-label="Ver detalles de: Iluminação Técnica em Cafeteria">
               <img src="./assets/images/galeria/real-05-iluminacao-comercial-design.jpg" 
                    alt="Iluminación Técnica en Cafetería" 
                    loading="lazy" 
@@ -3580,7 +3637,7 @@
             </div>
 
             <!-- Card 6 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(5)" data-gallery-index="5" role="button" tabindex="0" aria-label="Ver detalhes de: Módulos Fotovoltaicos em Cobertura">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(5)" data-gallery-index="5" role="button" tabindex="0" aria-label="Ver detalles de: Módulos Fotovoltaicos em Cobertura">
               <img src="./assets/images/galeria/real-06-energia-solar-fotovoltaica.jpg" 
                    alt="Módulos Fotovoltaicos en Cubierta" 
                    loading="lazy" 
@@ -3620,7 +3677,7 @@
             </div>
 
             <!-- Card 7 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(6)" data-gallery-index="6" role="button" tabindex="0" aria-label="Ver detalhes de: Montagem de Quadro Modular">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(6)" data-gallery-index="6" role="button" tabindex="0" aria-label="Ver detalles de: Montagem de Quadro Modular">
               <img src="./assets/images/galeria/real-07-montagem-quadro-modular.jpg" 
                    alt="Montaje de Cuadro Modular" 
                    loading="lazy" 
@@ -3660,7 +3717,7 @@
             </div>
 
             <!-- Card 8 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(7)" data-gallery-index="7" role="button" tabindex="0" aria-label="Ver detalhes de: Disjuntor Geral Trifásico 160A">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(7)" data-gallery-index="7" role="button" tabindex="0" aria-label="Ver detalles de: Disjuntor Geral Trifásico 160A">
               <img src="./assets/images/galeria/real-08-disjuntor-geral-160a.jpg" 
                    alt="Interruptor General Trifásico 160A" 
                    loading="lazy" 
@@ -3700,7 +3757,7 @@
             </div>
 
             <!-- Card 9 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(8)" data-gallery-index="8" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro de 4 Linhas com Linha SAI">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(8)" data-gallery-index="8" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de 4 Linhas com Linha SAI">
               <img src="./assets/images/galeria/real-09-quadro-distribuicao-espanha.jpg" 
                    alt="Cuadro de 4 Filas con Línea SAI" 
                    loading="lazy" 
@@ -3740,7 +3797,7 @@
             </div>
 
             <!-- Card 10 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(9)" data-gallery-index="9" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro Estanque Noark IP65">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(9)" data-gallery-index="9" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Estanque Noark IP65">
               <img src="./assets/images/galeria/real-10-quadro-estanque-noark.jpg" 
                    alt="Cuadro Estanco Noark IP65" 
                    loading="lazy" 
@@ -3780,7 +3837,7 @@
             </div>
 
             <!-- Card 11 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(10)" data-gallery-index="10" role="button" tabindex="0" aria-label="Ver detalhes de: Centrais de Climatização VRF Haier">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(10)" data-gallery-index="10" role="button" tabindex="0" aria-label="Ver detalles de: Centrais de Climatização VRF Haier">
               <img src="./assets/images/galeria/real-11-climatizacao-vrf-aerotermia.jpg" 
                    alt="Centrales de Climatización VRF Haier" 
                    loading="lazy" 
@@ -3820,7 +3877,7 @@
             </div>
 
             <!-- Card 12 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(11)" data-gallery-index="11" role="button" tabindex="0" aria-label="Ver detalhes de: Unidade Mundoclima Super Inverter">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(11)" data-gallery-index="11" role="button" tabindex="0" aria-label="Ver detalles de: Unidade Mundoclima Super Inverter">
               <img src="./assets/images/galeria/real-12-aerotermia-mundoclima-inverter.jpg" 
                    alt="Unidad Mundoclima Super Inverter" 
                    loading="lazy" 
@@ -3860,7 +3917,7 @@
             </div>
 
             <!-- Card 13 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(12)" data-gallery-index="12" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro de Transferência HIMOINSA CEC7">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(12)" data-gallery-index="12" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de Transferência HIMOINSA CEC7">
               <img src="./assets/images/galeria/real-13-automacao-gerador-himoinsa.jpg" 
                    alt="Cuadro de Transferencia HIMOINSA CEC7" 
                    loading="lazy" 
@@ -3900,7 +3957,7 @@
             </div>
 
             <!-- Card 14 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(13)" data-gallery-index="13" role="button" tabindex="0" aria-label="Ver detalhes de: Centralização e Caixa de Proteção Geral">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(13)" data-gallery-index="13" role="button" tabindex="0" aria-label="Ver detalles de: Centralização e Caixa de Proteção Geral">
               <img src="./assets/images/galeria/real-14-acometida-contadores-cgp.jpg" 
                    alt="Centralización y Caja General de Protección" 
                    loading="lazy" 
@@ -3940,7 +3997,7 @@
             </div>
 
             <!-- Card 15 -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(14)" data-gallery-index="14" role="button" tabindex="0" aria-label="Ver detalhes de: Painel de Comando com Inversores Ativos">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(14)" data-gallery-index="14" role="button" tabindex="0" aria-label="Ver detalles de: Painel de Comando com Inversores Ativos">
               <img src="./assets/images/galeria/real-15-painel-comando-operacao.jpg" 
                    alt="Cuadro de Mando con Variadores Activos" 
                    loading="lazy" 
@@ -3980,7 +4037,7 @@
             </div>
 
             <!-- Card 1 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(0)" data-gallery-index="0" role="button" tabindex="0" aria-label="Ver detalhes de: Programação de Robô KUKA KRC 04">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(0)" data-gallery-index="0" role="button" tabindex="0" aria-label="Ver detalles de: Programação de Robô KUKA KRC 04">
               <img src="./assets/images/galeria/real-01-robotica-kuka.jpg" 
                    alt="Programación de Robot KUKA KRC 04" 
                    loading="lazy" 
@@ -4020,7 +4077,7 @@
             </div>
 
             <!-- Card 2 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(1)" data-gallery-index="1" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro Geral de Distribuição Hager">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(1)" data-gallery-index="1" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Geral de Distribuição Hager">
               <img src="./assets/images/galeria/real-02-quadro-comercial-hager.jpg" 
                    alt="Cuadro General de Distribución Hager" 
                    loading="lazy" 
@@ -4060,7 +4117,7 @@
             </div>
 
             <!-- Card 3 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(2)" data-gallery-index="2" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro com Inversores WEG CFW 08">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(2)" data-gallery-index="2" role="button" tabindex="0" aria-label="Ver detalles de: Quadro com Inversores WEG CFW 08">
               <img src="./assets/images/galeria/real-03-automacao-inversores-weg.jpg" 
                    alt="Cuadro con Variadores WEG CFW 08" 
                    loading="lazy" 
@@ -4100,7 +4157,7 @@
             </div>
 
             <!-- Card 4 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(3)" data-gallery-index="3" role="button" tabindex="0" aria-label="Ver detalhes de: Painel com CLP WEG Clic-02 & CFW 10">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(3)" data-gallery-index="3" role="button" tabindex="0" aria-label="Ver detalles de: Painel com CLP WEG Clic-02 & CFW 10">
               <img src="./assets/images/galeria/real-04-painel-clp-weg.jpg" 
                    alt="Panel con Autómata WEG Clic-02 & CFW 10" 
                    loading="lazy" 
@@ -4140,7 +4197,7 @@
             </div>
 
             <!-- Card 5 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(4)" data-gallery-index="4" role="button" tabindex="0" aria-label="Ver detalhes de: Iluminação Técnica em Cafeteria">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(4)" data-gallery-index="4" role="button" tabindex="0" aria-label="Ver detalles de: Iluminação Técnica em Cafeteria">
               <img src="./assets/images/galeria/real-05-iluminacao-comercial-design.jpg" 
                    alt="Iluminación Técnica en Cafetería" 
                    loading="lazy" 
@@ -4180,7 +4237,7 @@
             </div>
 
             <!-- Card 6 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(5)" data-gallery-index="5" role="button" tabindex="0" aria-label="Ver detalhes de: Módulos Fotovoltaicos em Cobertura">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(5)" data-gallery-index="5" role="button" tabindex="0" aria-label="Ver detalles de: Módulos Fotovoltaicos em Cobertura">
               <img src="./assets/images/galeria/real-06-energia-solar-fotovoltaica.jpg" 
                    alt="Módulos Fotovoltaicos en Cubierta" 
                    loading="lazy" 
@@ -4220,7 +4277,7 @@
             </div>
 
             <!-- Card 7 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(6)" data-gallery-index="6" role="button" tabindex="0" aria-label="Ver detalhes de: Montagem de Quadro Modular">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(6)" data-gallery-index="6" role="button" tabindex="0" aria-label="Ver detalles de: Montagem de Quadro Modular">
               <img src="./assets/images/galeria/real-07-montagem-quadro-modular.jpg" 
                    alt="Montaje de Cuadro Modular" 
                    loading="lazy" 
@@ -4260,7 +4317,7 @@
             </div>
 
             <!-- Card 8 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(7)" data-gallery-index="7" role="button" tabindex="0" aria-label="Ver detalhes de: Disjuntor Geral Trifásico 160A">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(7)" data-gallery-index="7" role="button" tabindex="0" aria-label="Ver detalles de: Disjuntor Geral Trifásico 160A">
               <img src="./assets/images/galeria/real-08-disjuntor-geral-160a.jpg" 
                    alt="Interruptor General Trifásico 160A" 
                    loading="lazy" 
@@ -4300,7 +4357,7 @@
             </div>
 
             <!-- Card 9 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(8)" data-gallery-index="8" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro de 4 Linhas com Linha SAI">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(8)" data-gallery-index="8" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de 4 Linhas com Linha SAI">
               <img src="./assets/images/galeria/real-09-quadro-distribuicao-espanha.jpg" 
                    alt="Cuadro de 4 Filas con Línea SAI" 
                    loading="lazy" 
@@ -4340,7 +4397,7 @@
             </div>
 
             <!-- Card 10 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(9)" data-gallery-index="9" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro Estanque Noark IP65">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(9)" data-gallery-index="9" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Estanque Noark IP65">
               <img src="./assets/images/galeria/real-10-quadro-estanque-noark.jpg" 
                    alt="Cuadro Estanco Noark IP65" 
                    loading="lazy" 
@@ -4380,7 +4437,7 @@
             </div>
 
             <!-- Card 11 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(10)" data-gallery-index="10" role="button" tabindex="0" aria-label="Ver detalhes de: Centrais de Climatização VRF Haier">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(10)" data-gallery-index="10" role="button" tabindex="0" aria-label="Ver detalles de: Centrais de Climatização VRF Haier">
               <img src="./assets/images/galeria/real-11-climatizacao-vrf-aerotermia.jpg" 
                    alt="Centrales de Climatización VRF Haier" 
                    loading="lazy" 
@@ -4420,7 +4477,7 @@
             </div>
 
             <!-- Card 12 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(11)" data-gallery-index="11" role="button" tabindex="0" aria-label="Ver detalhes de: Unidade Mundoclima Super Inverter">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(11)" data-gallery-index="11" role="button" tabindex="0" aria-label="Ver detalles de: Unidade Mundoclima Super Inverter">
               <img src="./assets/images/galeria/real-12-aerotermia-mundoclima-inverter.jpg" 
                    alt="Unidad Mundoclima Super Inverter" 
                    loading="lazy" 
@@ -4460,7 +4517,7 @@
             </div>
 
             <!-- Card 13 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(12)" data-gallery-index="12" role="button" tabindex="0" aria-label="Ver detalhes de: Quadro de Transferência HIMOINSA CEC7">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(12)" data-gallery-index="12" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de Transferência HIMOINSA CEC7">
               <img src="./assets/images/galeria/real-13-automacao-gerador-himoinsa.jpg" 
                    alt="Cuadro de Transferencia HIMOINSA CEC7" 
                    loading="lazy" 
@@ -4500,7 +4557,7 @@
             </div>
 
             <!-- Card 14 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(13)" data-gallery-index="13" role="button" tabindex="0" aria-label="Ver detalhes de: Centralização e Caixa de Proteção Geral">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(13)" data-gallery-index="13" role="button" tabindex="0" aria-label="Ver detalles de: Centralização e Caixa de Proteção Geral">
               <img src="./assets/images/galeria/real-14-acometida-contadores-cgp.jpg" 
                    alt="Centralización y Caja General de Protección" 
                    loading="lazy" 
@@ -4540,7 +4597,7 @@
             </div>
 
             <!-- Card 15 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(14)" data-gallery-index="14" role="button" tabindex="0" aria-label="Ver detalhes de: Painel de Comando com Inversores Ativos">
+            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(14)" data-gallery-index="14" role="button" tabindex="0" aria-label="Ver detalles de: Painel de Comando com Inversores Ativos">
               <img src="./assets/images/galeria/real-15-painel-comando-operacao.jpg" 
                    alt="Cuadro de Mando con Variadores Activos" 
                    loading="lazy" 
@@ -4587,15 +4644,15 @@
         <div class="flex items-center gap-3">
           <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
           <span class="font-jakarta text-xs sm:text-sm text-white/70">
-            <span class="text-white font-medium" data-i18n="gal_stat_auth">100% Autênticos // Obras em Valência</span> &bull; 
-            <span class="text-white/50" data-i18n="gal_bottom_note">Passe o mouse sobre os cards para pausar o carrossel ou clique para inspecionar os detalhes técnicos.</span>
+            <span class="text-white font-medium" data-i18n="gal_stat_auth">100% Auténticos // Obras en Valencia</span> &bull; 
+            <span class="text-white/50" data-i18n="gal_bottom_note">Pase el ratón sobre las tarjetas para pausar el carrusel o haga clic para inspeccionar los detalles técnicos.</span>
           </span>
         </div>
 
         <button type="button"
                 onclick="openQuoteModal()"
                 class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.06] hover:bg-brand-yellow hover:text-black text-white text-xs font-jakarta font-semibold border border-white/10 hover:border-brand-yellow transition-all duration-200 shrink-0">
-          <span data-i18n="gal_btn_quote_quick">Solicitar Orçamento</span>
+          <span data-i18n="gal_btn_quote_quick">Solicitar Presupuesto</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </div>
@@ -4607,7 +4664,7 @@
   <!-- ==========================================
        ETAPA 6 (6.2): SEÇÃO DE DEPOIMENTOS EXCLUSIVOS (ESTILO CINEMATOGRÁFICO ENXUTO // AUTOPLAY)
        ========================================== -->
-  <section id="testimonios" class="relative py-20 sm:py-28 md:py-36 bg-[#050505] overflow-hidden border-t border-brand-border" aria-label="Avaliações e Depoimentos Exclusivos em Valência">
+  <section id="testimonios" class="relative py-20 sm:py-28 md:py-36 bg-[#050505] overflow-hidden border-t border-brand-border" aria-label="Opiniones y Testimonios Exclusivos en Valencia">
     
     <!-- Efeito de Luz & Halo Dourado Central Cinematográfico (Padrão Dark Luxury / Estética Krypton) -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[920px] h-[400px] sm:h-[500px] bg-brand-yellow/[0.045] rounded-full blur-[140px] sm:blur-[180px] pointer-events-none"></div>
@@ -4640,7 +4697,7 @@
         <!-- Seta Anterior -->
         <button type="button" 
                 onclick="prevTestimonial()" 
-                aria-label="Depoimento Anterior"
+                aria-label="Testimonio Anterior"
                 class="absolute -left-2 sm:-left-8 lg:-left-12 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-full text-white/30 hover:text-brand-yellow hover:bg-white/[0.05] transition-all z-20">
           <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -4648,7 +4705,7 @@
         <!-- Seta Próximo -->
         <button type="button" 
                 onclick="nextTestimonial()" 
-                aria-label="Próximo Depoimento"
+                aria-label="Siguiente Testimonio"
                 class="absolute -right-2 sm:-right-8 lg:-right-12 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-full text-white/30 hover:text-brand-yellow hover:bg-white/[0.05] transition-all z-20">
           <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -4662,9 +4719,7 @@
             </blockquote>
             
             <div class="author-block">
-              <div class="font-syne font-bold text-white text-base sm:text-lg tracking-tight" data-i18n="test_1_name">
-                Carlos Martorell &amp; Sofía R.
-              </div>
+              <div class="font-syne font-bold text-white text-base sm:text-lg tracking-tight" data-i18n="test_1_name">Carlos Martorell & Sofía R.</div>
               <div class="font-mono text-[11px] sm:text-xs text-brand-yellow/85 tracking-[0.16em] uppercase mt-1">
                 <span data-i18n="test_1_loc">Ruzafa, Valencia</span> &mdash; <span data-i18n="test_1_service">Reforma Integral de Cuadro y Cableado</span>
               </div>
@@ -4742,9 +4797,7 @@
             </blockquote>
             
             <div class="author-block">
-              <div class="font-syne font-bold text-white text-base sm:text-lg tracking-tight" data-i18n="test_6_name">
-                Beatriz &amp; Mateo Llorens
-              </div>
+              <div class="font-syne font-bold text-white text-base sm:text-lg tracking-tight" data-i18n="test_6_name">Beatriz & Mateo Llorens</div>
               <div class="font-mono text-[11px] sm:text-xs text-brand-yellow/85 tracking-[0.16em] uppercase mt-1">
                 <span data-i18n="test_6_loc">Benimaclet, Valencia</span> &mdash; <span data-i18n="test_6_service">Sustitución de Cuadro Antiguo y Nuevos Enchufes</span>
               </div>
@@ -4802,18 +4855,13 @@
         <div class="max-w-2xl">
           <div class="reveal-on-scroll inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 mb-4 text-brand-muted font-mono text-[11px] tracking-wider uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-            <span data-i18n="cob_badge">06 // Atendimento & Cobertura Geográfica</span>
+            <span data-i18n="cob_badge">06 // Atención & Cobertura Geográfica</span>
           </div>
 
-          <h2 data-i18n-html="cob_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">
-            Atendimento Técnico em <br>
-            <span class="font-light italic text-brand-yellow">Valência e Arredores</span>.
-          </h2>
+          <h2 data-i18n-html="cob_h2" class="reveal-on-scroll font-syne font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.03em] text-white">Atención Técnica en <br> <span class="font-light italic text-brand-yellow">Valencia y Alrededores</span>.</h2>
         </div>
 
-        <p data-i18n="cob_sub" class="reveal-on-scroll font-jakarta font-light text-xs sm:text-sm text-brand-muted max-w-md leading-relaxed">
-          Atendimento presencial focado na capital valenciana e análise prévia de viabilidade para cidades vizinhas com máximo custo-benefício de deslocamento.
-        </p>
+        <p data-i18n="cob_sub" class="reveal-on-scroll font-jakarta font-light text-xs sm:text-sm text-brand-muted max-w-md leading-relaxed">Atención presencial enfocada en la capital valenciana y análisis previo de viabilidad para localidades limítrofes con máxima eficiencia logística.</p>
       </div>
 
       <!-- Grid Principal: Coluna do Mapa Estilizado + Coluna do Formulário de Pré-Avaliação -->
@@ -4836,19 +4884,15 @@
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-yellow"></span>
               </span>
               <div>
-                <span data-i18n="cob_status_h" class="font-mono text-xs text-white font-semibold tracking-wider block">
-                  VALÈNCIA &amp; COMUNIDADE VALENCIANA
-                </span>
-                <span data-i18n="cob_status_sub" class="font-mono text-[10px] text-brand-muted/70 tracking-widest uppercase">
-                  Logística Operacional // Prontidão Técnica
-                </span>
+                <span data-i18n="cob_status_h" class="font-mono text-xs text-white font-semibold tracking-wider block">VALÈNCIA & COMUNITAT VALENCIANA</span>
+                <span data-i18n="cob_status_sub" class="font-mono text-[10px] text-brand-muted/70 tracking-widest uppercase">Logística Operativa // Disponibilidad Técnica</span>
               </div>
             </div>
 
             <!-- Badge de Base Fixa -->
             <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 font-mono text-[10px] text-brand-muted">
               <i data-lucide="map-pin" class="w-3 h-3 text-brand-yellow"></i>
-              <span data-i18n="cob_hub_badge">Hub Central: Ciutat de València</span>
+              <span data-i18n="cob_hub_badge">Hub Central: Ciudad de Valencia</span>
             </div>
           </div>
 
@@ -4859,10 +4903,10 @@
                target="_blank" 
                rel="noopener noreferrer" 
                class="parallax-map-container block relative w-full h-[380px] sm:h-[440px] overflow-hidden"
-               title="Clique para abrir o mapa de Valência no Google Maps">
+               title="Haga clic para abrir el mapa de Valencia en Google Maps">
               <img id="cob-map-img"
                    src="./assets/images/mapa-valencia.jpg" 
-                   alt="Mapa de Valência e Cobertura Geográfica - IberVolt Solutions" 
+                   alt="Mapa de Valencia y Cobertura Geográfica - IberVolt Solutions" 
                    class="parallax-map-img"
                    loading="lazy"
                    decoding="async">
@@ -4878,7 +4922,7 @@
                  rel="noopener noreferrer" 
                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-yellow text-black font-jakarta font-semibold text-xs uppercase tracking-wider hover:bg-brand-yellowHover shadow-[0_4px_24px_rgba(255,230,0,0.4)] transition-all duration-200 group/btn">
                 <i data-lucide="map-pin" class="w-4 h-4 stroke-[2.2] text-black"></i>
-                <span data-i18n="cob_maps_btn">Ver no Google Maps</span>
+                <span data-i18n="cob_maps_btn">Ver en Google Maps</span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 stroke-[2.5] text-black transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"></i>
               </a>
             </div>
@@ -4890,43 +4934,35 @@
             <!-- Zona 01: Capital -->
             <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
               <div class="flex items-center justify-between mb-1.5">
-                <span data-i18n="cob_z1_title" class="font-syne font-bold text-xs text-white">Valência Urbana</span>
-                <span data-i18n="cob_z1_tag" class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">DIRETO</span>
+                <span data-i18n="cob_z1_title" class="font-syne font-bold text-xs text-white">Valencia Urbana</span>
+                <span data-i18n="cob_z1_tag" class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">DIRECTO</span>
               </div>
               <p data-i18n="cob_z1_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
                 Ciutat Vella, Eixample, Ruzafa, Campanar, Poblats Marítims.
               </p>
-              <span data-i18n="cob_z1_time" class="font-mono text-[10px] text-white/70 block">
-                Atendimento Rápido
-              </span>
+              <span data-i18n="cob_z1_time" class="font-mono text-[10px] text-white/70 block">Atención Inmediata</span>
             </div>
 
             <!-- Zona 02: Área Metropolitana -->
             <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
               <div class="flex items-center justify-between mb-1.5">
-                <span data-i18n="cob_z2_title" class="font-syne font-bold text-xs text-white">Grande Valência</span>
+                <span data-i18n="cob_z2_title" class="font-syne font-bold text-xs text-white">Gran Valencia</span>
                 <span data-i18n="cob_z2_tag" class="font-mono text-[9px] text-white/80 px-1.5 py-0.5 rounded bg-white/[0.06]">POLÍGONOS</span>
               </div>
               <p data-i18n="cob_z2_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
                 Paterna, Torrent, Manises, Burjassot, Sagunto, Alzira.
               </p>
-              <span data-i18n="cob_z2_time" class="font-mono text-[10px] text-white/70 block">
-                Indústrias &amp; Parques
-              </span>
+              <span data-i18n="cob_z2_time" class="font-mono text-[10px] text-white/70 block">Industrias & Parques</span>
             </div>
 
             <!-- Zona 03: Província Vizinha -->
             <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-all duration-300">
               <div class="flex items-center justify-between mb-1.5">
-                <span data-i18n="cob_z3_title" class="font-syne font-bold text-xs text-white">Cidades Vizinhas</span>
+                <span data-i18n="cob_z3_title" class="font-syne font-bold text-xs text-white">Localidades Cercanas</span>
                 <span data-i18n="cob_z3_tag" class="font-mono text-[9px] text-brand-muted px-1.5 py-0.5 rounded bg-white/[0.04]">CONSULTA</span>
               </div>
-              <p data-i18n="cob_z3_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">
-                Castellón Sul, Gandia, Cullera e municípios limítrofes.
-              </p>
-              <span data-i18n="cob_z3_time" class="font-mono text-[10px] text-brand-yellow/80 block">
-                Sob Análise Prévia
-              </span>
+              <p data-i18n="cob_z3_desc" class="font-jakarta text-[11px] text-brand-muted leading-tight mb-2">Castellón Sur, Gandia, Cullera y municipios limítrofes.</p>
+              <span data-i18n="cob_z3_time" class="font-mono text-[10px] text-brand-yellow/80 block">Bajo Valoración Previa</span>
             </div>
 
           </div>
@@ -4945,18 +4981,12 @@
           <div>
             <!-- Header do Formulário -->
             <div class="flex items-center justify-between mb-4">
-              <span data-i18n="form_badge" class="font-mono text-[10px] tracking-widest text-brand-yellow uppercase px-2.5 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 font-medium">
-                PRÉ-AVALIAÇÃO DIRETA
-              </span>
-              <span data-i18n="form_step" class="text-xs font-mono text-brand-muted/70">ETAPA ÚNICA</span>
+              <span data-i18n="form_badge" class="font-mono text-[10px] tracking-widest text-brand-yellow uppercase px-2.5 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 font-medium">PRE-EVALUACIÓN DIRECTA</span>
+              <span data-i18n="form_step" class="text-xs font-mono text-brand-muted/70">PASO ÚNICO</span>
             </div>
 
-            <h3 data-i18n-html="form_h3" class="font-syne font-bold text-xl sm:text-2xl text-white tracking-tight mb-2">
-              Solicitar <span class="text-brand-yellow font-light italic">Orçamento Técnico</span>
-            </h3>
-            <p data-i18n="form_desc" class="font-jakarta font-light text-xs text-brand-muted leading-relaxed mb-6">
-              Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.
-            </p>
+            <h3 data-i18n-html="form_h3" class="font-syne font-bold text-xl sm:text-2xl text-white tracking-tight mb-2">Solicitar <span class="text-brand-yellow font-light italic">Presupuesto Técnico</span></h3>
+            <p data-i18n="form_desc" class="font-jakarta font-light text-xs text-brand-muted leading-relaxed mb-6">Seleccione el perfil de su inmueble y servicio para generar un mensaje técnico preparado directamente para el WhatsApp del ingeniero.</p>
 
             <!-- Chamada Comercial Direta para Valência (Etapa 7.1) -->
             <div class="mb-5 p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-brand-yellow/30 relative overflow-hidden group">
@@ -4981,15 +5011,15 @@
               <!-- Campo 1: Nome (Obrigatório) -->
               <div>
                 <label for="form-name" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
-                  <span><span data-i18n="form_label_name">Seu Nome ou Razão Social</span> <strong class="text-brand-yellow">*</strong></span>
-                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obrigatório</span>
+                  <span><span data-i18n="form_label_name">Su Nombre o Razón Social</span> <strong class="text-brand-yellow">*</strong></span>
+                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obligatorio</span>
                 </label>
                 <input type="text" 
                        id="form-name" 
                        maxlength="80"
                        autocomplete="name"
                        data-i18n-placeholder="form_ph_name"
-                       placeholder="Ex: Carlos Mendes / Hotel Sol"
+                       placeholder="Ej: Carlos Martínez / Hotel Sol"
                        class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
               </div>
 
@@ -4999,7 +5029,7 @@
                 <!-- Seletor Customizado: Tipo de Imóvel -->
                 <div class="relative custom-dropdown" id="dropdown-property" data-input-id="form-property">
                   <label class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
-                    <span><span data-i18n="form_label_prop">Tipo de Imóvel</span> <strong class="text-brand-yellow">*</strong></span>
+                    <span><span data-i18n="form_label_prop">Tipo de Inmueble</span> <strong class="text-brand-yellow">*</strong></span>
                   </label>
                   
                   <input type="hidden" id="form-property" data-current-key="form_prop_opt1" value="Residencial (Piso/Casa)">
@@ -5024,15 +5054,15 @@
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
                     <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt3" data-value="Hotel ou Colégio">
-                      <span data-i18n="form_prop_opt3">Hotel ou Colégio</span>
+                      <span data-i18n="form_prop_opt3">Hotel o Colegio</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
                     <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt4" data-value="Comércio ou Restaurante">
-                      <span data-i18n="form_prop_opt4">Comércio / PME</span>
+                      <span data-i18n="form_prop_opt4">Comercio / Pyme</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
                     <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_prop_opt5" data-value="Planta Industrial">
-                      <span data-i18n="form_prop_opt5">Planta Industrial</span>
+                      <span data-i18n="form_prop_opt5">Nave Industrial</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
                   </div>
@@ -5041,7 +5071,7 @@
                 <!-- Seletor Customizado: Serviço Desejado -->
                 <div class="relative custom-dropdown" id="dropdown-service" data-input-id="form-service">
                   <label class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
-                    <span><span data-i18n="form_label_serv">Serviço Desejado</span> <strong class="text-brand-yellow">*</strong></span>
+                    <span><span data-i18n="form_label_serv">Servicio Deseado</span> <strong class="text-brand-yellow">*</strong></span>
                   </label>
                   
                   <input type="hidden" id="form-service" data-current-key="form_serv_opt1" value="Instalaciones Eléctricas / Reformas">
@@ -5085,22 +5115,22 @@
               <!-- Campo: Cidade / Localização (Obrigatório) -->
               <div>
                 <label for="form-location" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
-                  <span><span data-i18n="form_label_loc">Localização da Instalação</span> <strong class="text-brand-yellow">*</strong></span>
-                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obrigatório</span>
+                  <span><span data-i18n="form_label_loc">Ubicación de la Instalación</span> <strong class="text-brand-yellow">*</strong></span>
+                  <span data-i18n="form_req" class="text-[9px] text-brand-muted/50 font-normal">Obligatorio</span>
                 </label>
                 <input type="text" 
                        id="form-location" 
                        maxlength="80"
                        autocomplete="address-level2"
                        data-i18n-placeholder="form_ph_loc"
-                       placeholder="Ex: València Centro, Ruzafa, Paterna..."
+                       placeholder="Ej: Valencia Centro, Ruzafa, Paterna..."
                        class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
               </div>
 
               <!-- Campo Opcional: Detalhes Breves -->
               <div>
                 <label for="form-details" class="block font-mono text-[10px] uppercase text-brand-muted/80 tracking-wider mb-1.5 flex items-center justify-between">
-                  <span data-i18n="form_label_details">Observações ou Prazo</span>
+                  <span data-i18n="form_label_details">Observaciones o Plazo</span>
                   <span data-i18n="form_opt" class="text-[9px] text-brand-muted/50 font-normal">Opcional</span>
                 </label>
                 <input type="text" 
@@ -5108,7 +5138,7 @@
                        maxlength="250"
                        autocomplete="off"
                        data-i18n-placeholder="form_ph_details"
-                       placeholder="Ex: Queda frequente de disjuntor, urgência..."
+                       placeholder="Ej: Caídas frecuentes de diferencial, urgencia..."
                        class="w-full px-4 py-3 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
               </div>
 
@@ -5121,7 +5151,7 @@
               <!-- Mensagem de Validação de Erro -->
               <div id="form-validation-msg" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-jakarta flex items-center gap-2">
                 <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 text-red-400"></i>
-                <span id="form-validation-text" data-i18n="form_val_err">Por favor, preencha os campos obrigatórios assinalados com (*).</span>
+                <span id="form-validation-text" data-i18n="form_val_err">Por favor, complete los campos obligatorios indicados con (*).</span>
               </div>
 
             </form>
@@ -5132,12 +5162,10 @@
             <button type="button" 
                     id="submit-whatsapp-btn"
                     class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.01] shadow-[0_0_25px_rgba(255,230,0,0.15)]">
-              <span data-i18n="form_btn_submit">Iniciar Atendimento no WhatsApp</span>
+              <span data-i18n="form_btn_submit">Iniciar Consulta en WhatsApp</span>
               <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.2]"></i>
             </button>
-            <span data-i18n="form_sec_note" class="block text-center font-mono text-[10px] text-brand-muted/60 mt-2.5">
-              Conexão criptografada direta via WhatsApp Oficial
-            </span>
+            <span data-i18n="form_sec_note" class="block text-center font-mono text-[10px] text-brand-muted/60 mt-2.5">Conexión cifrada directa vía WhatsApp Oficial</span>
           </div>
 
         </div>
@@ -5182,7 +5210,7 @@
           <div class="max-w-2xl">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/25 mb-3 text-brand-yellow font-mono text-[10px] tracking-widest uppercase font-medium">
               <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-              <span data-i18n="footer_val_badge">VALÈNCIA &amp; ALREDEDORES // ATENCIÓN DIRECTA</span>
+              <span data-i18n="footer_val_badge">VALÈNCIA & ALREDEDORES // ATENCIÓN DIRECTA</span>
             </div>
             
             <h3 class="font-syne font-bold text-2xl sm:text-3xl text-white tracking-tight mb-3" data-i18n="footer_val_h3">
@@ -5243,16 +5271,14 @@
 
         <!-- Módulo 2: Links Rápidos de Navegação Técnica (3 Colunas) -->
         <div class="footer-col lg:col-span-3">
-          <span data-i18n="footer_nav_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
-            // NAVEGAÇÃO &amp; PROJETOS
-          </span>
+          <span data-i18n="footer_nav_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">// NAVEGACIÓN & PROYECTOS</span>
 
           <ul class="space-y-2.5 font-jakarta text-xs sm:text-sm">
             <li>
               <a href="#inicio" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-[10px] text-brand-yellow font-medium">01.</span>
-                  <span data-i18n="footer_nav_home">Home // Visão Geral</span>
+                  <span data-i18n="footer_nav_home">Inicio // Visión General</span>
                 </div>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-muted/40 group-hover:text-brand-yellow group-hover:translate-x-1 transition-all"></i>
               </a>
@@ -5270,7 +5296,7 @@
               <a href="#certificacoes" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-[10px] text-brand-yellow font-medium">03.</span>
-                  <span data-i18n="footer_nav_cert">Certificações &amp; Normas</span>
+                  <span data-i18n="footer_nav_cert">Certificaciones & Normas</span>
                 </div>
                 <span class="font-mono text-[9px] text-white/70 px-1.5 py-0.5 rounded bg-white/[0.05]">REBT / UNE</span>
               </a>
@@ -5279,7 +5305,7 @@
               <a href="#diferenciais" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-[10px] text-brand-yellow font-medium">04.</span>
-                  <span data-i18n="footer_nav_why">Por Que a IberVolt // 5 Pilares</span>
+                  <span data-i18n="footer_nav_why">¿Por Qué IberVolt? // 5 Pilares</span>
                 </div>
                 <span class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">3 FRENTES</span>
               </a>
@@ -5288,7 +5314,7 @@
               <a href="#galeria" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-[10px] text-brand-yellow font-medium">05.</span>
-                  <span data-i18n="footer_nav_gal">Projetos Reais // 15 Obras</span>
+                  <span data-i18n="footer_nav_gal">Proyectos Reales // 15 Obras</span>
                 </div>
                 <span class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">15 FOTOS</span>
               </a>
@@ -5306,14 +5332,14 @@
               <a href="#cobertura" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1 border-b border-white/[0.04]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-[10px] text-brand-yellow font-medium">06.</span>
-                  <span data-i18n="footer_nav_cob">Atendimento (Valência)</span>
+                  <span data-i18n="footer_nav_cob">Atención (Valencia)</span>
                 </div>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-muted/40 group-hover:text-brand-yellow group-hover:translate-x-1 transition-all"></i>
               </a>
             </li>
             <li>
               <a href="#cobertura" class="text-brand-muted hover:text-white transition-colors duration-200 flex items-center justify-between group py-1">
-                <span data-i18n="footer_nav_form">Solicitar Pré-Avaliação</span>
+                <span data-i18n="footer_nav_form">Solicitar Pre-Evaluación</span>
                 <span class="font-mono text-[9px] text-brand-yellow px-1.5 py-0.5 rounded bg-brand-yellow/10">WhatsApp</span>
               </a>
             </li>
@@ -5322,9 +5348,7 @@
 
         <!-- Módulo 3: Selo de Rigor Normativo & Conformidade (3 Colunas) -->
         <div class="footer-col lg:col-span-3">
-          <span data-i18n="footer_comp_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
-            // CONFORMIDADE TÉCNICA
-          </span>
+          <span data-i18n="footer_comp_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">// CONFORMIDAD TÉCNICA</span>
 
           <div class="space-y-2.5">
             
@@ -5343,7 +5367,7 @@
             <div class="compliance-card p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
-                <span data-i18n="footer_nr10_h" class="font-mono text-xs font-semibold text-white">Normas UNE &amp; UNE-EN 61439</span>
+                <span data-i18n="footer_nr10_h" class="font-mono text-xs font-semibold text-white">Normas UNE & UNE-EN 61439</span>
               </div>
               <p data-i18n="footer_nr10_p" class="font-jakarta text-[11px] text-brand-muted leading-snug">
                 Estándares europeos de montaje de cuadros, aparamenta y conductores LSHF.
@@ -5354,7 +5378,7 @@
             <div class="compliance-card p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-brand-yellow/30 transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <i data-lucide="award" class="w-3.5 h-3.5 text-brand-yellow shrink-0"></i>
-                <span data-i18n="footer_nr35_h" class="font-mono text-xs font-semibold text-white">Marcado CE &amp; Directiva 2014/35/UE</span>
+                <span data-i18n="footer_nr35_h" class="font-mono text-xs font-semibold text-white">Marcado CE & Directiva 2014/35/UE</span>
               </div>
               <p data-i18n="footer_nr35_p" class="font-jakarta text-[11px] text-brand-muted leading-snug">
                 Materiales homologados en la UE y cumplimiento estricto del RD 614/2001.
@@ -5367,26 +5391,24 @@
         <!-- Módulo 4: Contato Direto & Atendimento (2 Colunas) -->
         <div class="footer-col lg:col-span-2 flex flex-col justify-between">
           <div>
-            <span data-i18n="footer_dir_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">
-              // CANAL DIRETO
-            </span>
+            <span data-i18n="footer_dir_h" class="font-mono text-[10px] uppercase text-brand-yellow tracking-widest font-semibold block mb-5">// CANAL DIRECTO</span>
 
             <div class="space-y-3.5 font-jakarta text-xs">
               <div>
-                <span data-i18n="footer_dir_wa" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Plantão WhatsApp:</span>
+                <span data-i18n="footer_dir_wa" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Guardia WhatsApp:</span>
                 <a href="#orcamento" class="font-mono text-white hover:text-brand-yellow transition-colors font-medium text-xs sm:text-sm block">
                   +34 605 55 56 86
                 </a>
               </div>
 
               <div>
-                <span data-i18n="footer_dir_att" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Atendimento:</span>
-                <span data-i18n="footer_dir_loc" class="text-white/90 block">Valência — Espanha</span>
+                <span data-i18n="footer_dir_att" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Atención:</span>
+                <span data-i18n="footer_dir_loc" class="text-white/90 block">Valencia — España</span>
               </div>
 
               <div>
                 <span data-i18n="footer_dir_lang_label" class="font-mono text-[10px] text-brand-muted/70 block uppercase mb-1">Idiomas:</span>
-                <span data-i18n="footer_dir_langs" class="text-white/90 block">Espanhol, Português &amp; Inglês</span>
+                <span data-i18n="footer_dir_langs" class="text-white/90 block">Español, Portugués & Inglés</span>
               </div>
             </div>
           </div>
@@ -5411,17 +5433,17 @@
         
         <!-- Copyright & Nota de Conformidade -->
         <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-          <span data-i18n-html="footer_copy">&copy; 2026 <strong>IberVolt Solutions</strong>. Todos os direitos reservados.</span>
+          <span data-i18n-html="footer_copy">&copy; 2026 <strong>IberVolt Solutions</strong>. Todos los derechos reservados.</span>
           <span class="hidden sm:inline text-white/20">|</span>
-          <span data-i18n="footer_rebt_sub" class="font-mono text-[10px] text-brand-muted/80">Conformidade REBT &amp; Regulamentações Locais</span>
+          <span data-i18n="footer_rebt_sub" class="font-mono text-[10px] text-brand-muted/80">Conformidad REBT & Normativas Locales</span>
         </div>
 
         <!-- Botão Inovador: Voltar ao Topo (Leva para a Home Energizada) -->
         <button type="button" 
                 onclick="if(typeof window.scrollToHomeEnergized==='function'){window.scrollToHomeEnergized(true);}else{window.scrollTo({top:0,behavior:'smooth'});}" 
                 class="back-to-top-btn inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 hover:border-brand-yellow/40 hover:bg-white/[0.06] text-white hover:text-brand-yellow font-mono text-xs transition-all duration-300 cursor-pointer group"
-                title="Voltar ao início da página">
-          <span data-i18n="footer_back_top">Voltar ao Topo</span>
+                title="Volver al inicio de la página">
+          <span data-i18n="footer_back_top">Volver Arriba</span>
           <div class="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-black transition-colors">
             <i data-lucide="arrow-up" class="w-3.5 h-3.5 stroke-[2.5]"></i>
           </div>
@@ -5455,7 +5477,7 @@
       <button type="button" 
               id="service-modal-close" 
               onclick="closeServiceModal()"
-              aria-label="Fechar detalhes" 
+              aria-label="Cerrar detalles" 
               class="absolute top-5 right-5 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-brand-yellow hover:text-black text-white/80 border border-white/10 hover:border-brand-yellow transition-all duration-200 flex items-center justify-center z-20 cursor-pointer">
         <i data-lucide="x" class="w-5 h-5 stroke-[2.2]"></i>
       </button>
@@ -5485,9 +5507,7 @@
 
             <!-- Aplicações Principais -->
             <div class="mb-6">
-              <span data-i18n="modal_sectors_label" class="font-mono text-[10px] tracking-wider text-brand-muted/70 uppercase block mb-2.5 font-medium">
-                Aplicações Principais:
-              </span>
+              <span data-i18n="modal_sectors_label" class="font-mono text-[10px] tracking-wider text-brand-muted/70 uppercase block mb-2.5 font-medium">Aplicaciones Principales:</span>
               <div id="modal-service-sectors" class="flex flex-wrap gap-2">
                 <!-- Injetado dinamicamente -->
               </div>
@@ -5523,7 +5543,7 @@
           <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-brand-card border border-white/10">
             <img id="modal-service-image" 
                  src="./assets/images/projeto-residencial.jpg" 
-                 alt="Foto Técnica do Serviço" 
+                 alt="Foto Técnica del Servicio" 
                  class="w-full h-full object-cover"
                  loading="lazy"
                  decoding="async">
@@ -5558,7 +5578,7 @@
         <button type="button" 
                 id="modal-next-service" 
                 class="hover:text-brand-yellow transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-brand-yellow/30 cursor-pointer">
-          <span data-i18n="modal_next_btn">Próximo</span>
+          <span data-i18n="modal_next_btn">Siguiente</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
@@ -5595,7 +5615,7 @@
       <!-- Botão Fechar -->
       <button type="button"
               onclick="closeGalleryModal()"
-              aria-label="Fechar galeria"
+              aria-label="Cerrar galería"
               class="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white/[0.08] hover:bg-brand-yellow hover:text-black text-white/80 border border-white/10 hover:border-brand-yellow transition-all duration-200 flex items-center justify-center z-20 cursor-pointer">
         <svg class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
@@ -5614,7 +5634,7 @@
           <div class="absolute inset-x-3 bottom-3 flex items-center justify-between pointer-events-none">
             <button type="button" 
                     onclick="navigateGallery(-1)"
-                    aria-label="Imagem anterior"
+                    aria-label="Imagen anterior"
                     class="pointer-events-auto p-2.5 rounded-full bg-black/70 hover:bg-brand-yellow hover:text-black text-white border border-white/15 backdrop-blur-md transition-all">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
             </button>
@@ -5623,7 +5643,7 @@
             </span>
             <button type="button" 
                     onclick="navigateGallery(1)"
-                    aria-label="Próxima imagem"
+                    aria-label="Siguiente imagen"
                     class="pointer-events-auto p-2.5 rounded-full bg-black/70 hover:bg-brand-yellow hover:text-black text-white border border-white/15 backdrop-blur-md transition-all">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>
@@ -5670,7 +5690,7 @@
                     onclick="handleGalleryQuoteClick()"
                     class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-yellow text-black font-jakarta font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-brand-yellowHover hover:scale-[1.02] shadow-[0_0_25px_rgba(255,230,0,0.3)] cursor-pointer">
               <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/></svg>
-              <span id="gallery-modal-cta-text" data-i18n="gal_modal_btn_quote">Solicitar Orçamento para Projeto Semelhante</span>
+              <span id="gallery-modal-cta-text" data-i18n="gal_modal_btn_quote">Solicitar Presupuesto para Proyecto Similar</span>
               <svg class="w-4 h-4 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </button>
           </div>
@@ -5705,7 +5725,7 @@
       <button type="button" 
               id="quote-modal-close" 
               onclick="closeQuoteModal()"
-              aria-label="Fechar orçamento" 
+              aria-label="Cerrar presupuesto" 
               class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-white/[0.06] hover:bg-brand-yellow hover:text-black text-white/80 border border-white/10 hover:border-brand-yellow transition-all duration-200 flex items-center justify-center z-20 cursor-pointer">
         <i data-lucide="x" class="w-4 h-4 stroke-[2.2]"></i>
       </button>
@@ -5713,18 +5733,12 @@
       <!-- Cabeçalho do Formulário Popup -->
       <div class="pr-10 mb-3.5">
         <div class="flex items-center gap-2 mb-1.5">
-          <span class="font-mono text-[9px] tracking-widest text-brand-yellow uppercase px-2 py-0.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 font-medium" data-i18n="form_badge">
-            PRÉ-AVALIAÇÃO DIRETA
-          </span>
-          <span class="text-[10px] font-mono text-brand-muted/70" data-i18n="form_step">ETAPA ÚNICA</span>
+          <span class="font-mono text-[9px] tracking-widest text-brand-yellow uppercase px-2 py-0.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 font-medium" data-i18n="form_badge">PRE-EVALUACIÓN DIRECTA</span>
+          <span class="text-[10px] font-mono text-brand-muted/70" data-i18n="form_step">PASO ÚNICO</span>
         </div>
 
-        <h3 id="modal-quote-h3" data-i18n-html="form_h3" class="font-syne font-bold text-lg sm:text-xl text-white tracking-tight">
-          Solicitar <span class="text-brand-yellow font-light italic">Orçamento Técnico</span>
-        </h3>
-        <p data-i18n="form_desc" class="font-jakarta font-light text-[11px] sm:text-xs text-brand-muted leading-snug mt-1">
-          Selecione o perfil do seu imóvel e serviço para gerar uma mensagem técnica pronta diretamente no WhatsApp do engenheiro.
-        </p>
+        <h3 id="modal-quote-h3" data-i18n-html="form_h3" class="font-syne font-bold text-lg sm:text-xl text-white tracking-tight">Solicitar <span class="text-brand-yellow font-light italic">Presupuesto Técnico</span></h3>
+        <p data-i18n="form_desc" class="font-jakarta font-light text-[11px] sm:text-xs text-brand-muted leading-snug mt-1">Seleccione el perfil de su inmueble y servicio para generar un mensaje técnico preparado directamente para el WhatsApp del ingeniero.</p>
       </div>
 
       <!-- Formulário Idêntico e Otimizado -->
@@ -5733,15 +5747,15 @@
         <!-- Campo 1: Nome ou Razão Social -->
         <div>
           <label for="modal-form-name" class="block font-mono text-[9px] uppercase text-brand-muted/80 tracking-wider mb-1 flex items-center justify-between">
-            <span><span data-i18n="form_label_name">Seu Nome ou Razão Social</span> <strong class="text-brand-yellow">*</strong></span>
-            <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obrigatório</span>
+            <span><span data-i18n="form_label_name">Su Nombre o Razón Social</span> <strong class="text-brand-yellow">*</strong></span>
+            <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obligatorio</span>
           </label>
           <input type="text" 
                  id="modal-form-name" 
                  maxlength="80"
                  autocomplete="name"
                  data-i18n-placeholder="form_ph_name"
-                 placeholder="Ex: Carlos Mendes / Hotel Sol"
+                 placeholder="Ej: Carlos Martínez / Hotel Sol"
                  class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
         </div>
 
@@ -5751,8 +5765,8 @@
           <!-- Dropdown 1: Tipo de Imóvel -->
           <div class="relative custom-dropdown" id="modal-dropdown-property" data-input-id="modal-form-property">
             <label class="block font-mono text-[9px] uppercase text-brand-muted/80 tracking-wider mb-1 flex items-center justify-between">
-              <span><span data-i18n="form_label_prop">Tipo de Imóvel</span> <strong class="text-brand-yellow">*</strong></span>
-              <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obrigatório</span>
+              <span><span data-i18n="form_label_prop">Tipo de Inmueble</span> <strong class="text-brand-yellow">*</strong></span>
+              <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obligatorio</span>
             </label>
             <input type="hidden" id="modal-form-property" name="property_type" value="Residencial (Piso/Casa)" data-current-key="form_prop_opt1">
             <button type="button" 
@@ -5770,19 +5784,19 @@
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
               <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_prop_opt2" data-value="Airbnb / Imóvel Turístico">
-                <span data-i18n="form_prop_opt2">Airbnb / Imóvel Turístico</span>
+                <span data-i18n="form_prop_opt2">Airbnb / Turístico</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
               <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_prop_opt3" data-value="Hotel ou Colégio">
-                <span data-i18n="form_prop_opt3">Hotel ou Colégio</span>
+                <span data-i18n="form_prop_opt3">Hotel o Colegio</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
               <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_prop_opt4" data-value="Comércio ou Restaurante">
-                <span data-i18n="form_prop_opt4">Comércio ou Restaurante</span>
+                <span data-i18n="form_prop_opt4">Comercio / Pyme</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
               <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_prop_opt5" data-value="Planta Industrial">
-                <span data-i18n="form_prop_opt5">Planta Industrial</span>
+                <span data-i18n="form_prop_opt5">Nave Industrial</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
             </div>
@@ -5791,8 +5805,8 @@
           <!-- Dropdown 2: Serviço Desejado -->
           <div class="relative custom-dropdown" id="modal-dropdown-service" data-input-id="modal-form-service">
             <label class="block font-mono text-[9px] uppercase text-brand-muted/80 tracking-wider mb-1 flex items-center justify-between">
-              <span><span data-i18n="form_label_serv">Serviço Desejado</span> <strong class="text-brand-yellow">*</strong></span>
-              <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obrigatório</span>
+              <span><span data-i18n="form_label_serv">Servicio Deseado</span> <strong class="text-brand-yellow">*</strong></span>
+              <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obligatorio</span>
             </label>
             <input type="hidden" id="modal-form-service" name="service_type" value="Instalaciones Eléctricas / Reformas" data-current-key="form_serv_opt1">
             <button type="button" 
@@ -5833,28 +5847,28 @@
         <!-- Campo 3: Localização do Imóvel -->
         <div>
           <label for="modal-form-location" class="block font-mono text-[9px] uppercase text-brand-muted/80 tracking-wider mb-1 flex items-center justify-between">
-            <span><span data-i18n="form_label_loc">Localização da Instalação</span> <strong class="text-brand-yellow">*</strong></span>
-            <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obrigatório</span>
+            <span><span data-i18n="form_label_loc">Ubicación de la Instalación</span> <strong class="text-brand-yellow">*</strong></span>
+            <span data-i18n="form_req" class="text-[8px] text-brand-muted/50 font-normal">Obligatorio</span>
           </label>
           <input type="text" 
                  id="modal-form-location" 
                  maxlength="80"
                  data-i18n-placeholder="form_ph_loc"
-                 placeholder="Ex: València Centro, Ruzafa, Paterna, Torrent..."
+                 placeholder="Ej: Valencia Centro, Ruzafa, Paterna, Torrent..."
                  class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
         </div>
 
         <!-- Campo 4: Observações Técnicas (Compacto) -->
         <div>
           <label for="modal-form-details" class="block font-mono text-[9px] uppercase text-brand-muted/80 tracking-wider mb-1 flex items-center justify-between">
-            <span data-i18n="form_label_details">Observações do Projeto</span>
+            <span data-i18n="form_label_details">Observaciones o Plazo</span>
             <span data-i18n="form_opt" class="text-[8px] text-brand-muted/50">Opcional</span>
           </label>
           <input type="text" 
                  id="modal-form-details" 
                  maxlength="200"
                  data-i18n-placeholder="form_ph_details"
-                 placeholder="Ex: Queda frequente de disjuntor, reforma, urgência..."
+                 placeholder="Ej: Caídas frecuentes de diferencial, reforma, urgencia..."
                  class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl input-luxury font-jakarta text-xs sm:text-sm text-white placeholder-brand-muted/40">
         </div>
 
@@ -5866,7 +5880,7 @@
         <!-- Mensagem de Validação de Erro -->
         <div id="modal-form-validation-msg" class="hidden p-2 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-jakarta flex items-center gap-2">
           <i data-lucide="alert-circle" class="w-3.5 h-3.5 shrink-0 text-red-400"></i>
-          <span id="modal-form-validation-text" data-i18n="form_val_err">Por favor, preencha os campos obrigatórios assinalados com (*).</span>
+          <span id="modal-form-validation-text" data-i18n="form_val_err">Por favor, complete los campos obligatorios indicados con (*).</span>
         </div>
 
         <!-- Botão de Envio Direto para WhatsApp -->
@@ -5877,12 +5891,12 @@
             <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.46 3.475 1.332 4.992L2 22l5.161-1.353A9.957 9.957 0 0 0 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.25c-1.579 0-3.118-.42-4.469-1.217l-.32-.19-3.322.871.887-3.237-.208-.332A8.204 8.204 0 0 1 3.781 12c0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25zm4.52-6.177c-.248-.124-1.465-.723-1.692-.806-.228-.083-.394-.124-.56.124-.166.248-.642.806-.787.972-.145.166-.29.186-.538.062a6.793 6.793 0 0 1-1.996-1.231 7.502 7.502 0 0 1-1.381-1.721c-.145-.248-.016-.382.108-.506.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.02-.435-.063-.124-.56-1.349-.768-1.848-.202-.486-.407-.42-.56-.428l-.478-.008c-.166 0-.435.062-.663.311-.228.249-.871.851-.871 2.074 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76 2.497 1.078 2.497.719 2.953.678.456-.041 1.465-.599 1.672-1.178.207-.579.207-1.075.145-1.178-.062-.103-.228-.166-.477-.29z"/>
             </svg>
-            <span data-i18n="form_btn_submit">Iniciar Atendimento no WhatsApp</span>
+            <span data-i18n="form_btn_submit">Iniciar Consulta en WhatsApp</span>
           </button>
           
           <div class="mt-2 flex items-center justify-center gap-1.5 text-[10px] font-mono text-brand-muted/60">
             <i data-lucide="lock" class="w-3 h-3 text-brand-yellow/80"></i>
-            <span data-i18n="form_sec_note">Conexão criptografada direta via WhatsApp Oficial</span>
+            <span data-i18n="form_sec_note">Conexión cifrada directa vía WhatsApp Oficial</span>
           </div>
         </div>
 
@@ -5895,7 +5909,7 @@
        BOTÃO FLUTUANTE PERMANENTE: WHATSAPP DIRETO
        Design Discreto, Sóbrio e Elegante (Sem Animações Excessivas)
        ========================================== -->
-  <div id="floating-whatsapp-container" class="fixed bottom-6 right-6 z-50 flex items-center group">
+  <div id="floating-whatsapp-container" class="fixed bottom-6 right-6 z-50 flex items-center group transition-all duration-300 opacity-0 pointer-events-none translate-y-3 sm:opacity-100 sm:pointer-events-auto sm:translate-y-0">
     
     <!-- Tooltip Discreto ao Passar o Mouse em Desktop -->
     <div class="hidden md:flex items-center gap-2 px-3 py-1.5 mr-2 rounded-full bg-brand-obsidian/95 backdrop-blur-md border border-white/10 text-white font-mono text-[11px] shadow-xl opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
@@ -5934,6 +5948,7 @@
         page_title: "IberVolt Solutions // Engenharia Elétrica de Alta Performance",
         meta_desc: "Engenharia elétrica de alta performance em Valência e região. Instalações elétricas, quadros DIN, iluminação LED, manutenção industrial e robótica KUKA KRC 04 com conformidade REBT e normas UNE.",
         header_sub: "Engenharia Eletrotécnica // Valência",
+        preloader_tag: "ENGENHARIA ELÉTRICA DE ALTA PERFORMANCE",
         nav_home: "Home",
         nav_esp: "Especialidades",
         nav_cert: "Certificações & Normas",
@@ -5953,15 +5968,15 @@
         scroll_energize: "Role a página",
         hero_badge: "Valência e arredores // Atendimento personalizado",
         hero_h1: "Instalações elétricas com qualidade, segurança e confiança. <br class=\"hidden sm:inline\"> <span class=\"font-light italic text-brand-yellow\">Sua casa ou negócio merece uma instalação bem feita.</span>",
-        hero_sub: "Soluções elétricas residenciais, comerciais e industriais em Valência e arredores. Realizamos instalações, reformas, iluminação, modernização de quadros elétricos e manutenção, sempre com atenção aos detalhes e às necessidades de cada cliente.",
+        hero_sub: "Soluções elétricas residenciais, comerciais e industriais em Valência e arredores.<span class=\"hidden sm:inline\"> Realizamos instalações, reformas, iluminação, modernização de quadros elétricos e manutenção, sempre com atenção aos detalhes e às necessidades de cada cliente.</span>",
         hero_cta_wa: "Solicitar Orçamento",
-        hero_cta_wa_mobile: "Solicitar Orçamento",
+        hero_cta_wa_mobile: "Pedir Orçamento",
         hero_cta_wa_direct: "WhatsApp Direto",
         float_wa_tooltip: "Orçamento WhatsApp",
         hero_tag1: "Valência e arredores",
         hero_tag2: "Atendimento personalizado",
         hero_tag3: "Qualidade e profissionalismo",
-        hero_cta_services: "Conhecer Nossos Serviços",
+        hero_cta_services: "Nossos Serviços",
 
         // Seção Problemas que Resolvemos (Etapa 3)
         prob_badge: "// DIAGNÓSTICO RÁPIDO & SEGURANÇA",
@@ -6403,6 +6418,7 @@
         page_title: "IberVolt Solutions // Ingeniería Eléctrica de Alto Rendimiento",
         meta_desc: "Ingeniería eléctrica de alto rendimiento en Valencia y región. Mantenimiento preventivo, reformas eléctricas y cuadros por encargo bajo normativa REBT y estándares técnicos.",
         header_sub: "Ingeniería Electrotécnica // Valencia",
+        preloader_tag: "INGENIERÍA ELÉCTRICA DE ALTO RENDIMIENTO",
         nav_home: "Inicio",
         nav_esp: "Especialidades",
         nav_cert: "Certificaciones & Normas",
@@ -6422,15 +6438,15 @@
         scroll_energize: "Deslice la página",
         hero_badge: "Valencia y alrededores // Atención personalizada",
         hero_h1: "Instalaciones eléctricas con calidad, seguridad y confianza. <br class=\"hidden sm:inline\"> <span class=\"font-light italic text-brand-yellow\">Su casa o negocio merece una instalación bien hecha.</span>",
-        hero_sub: "Soluciones eléctricas residenciales, comerciales e industriales en Valencia y alrededores. Realizamos instalaciones, reformas, iluminación, modernización de cuadros eléctricos y mantenimiento, siempre con atención al detalle y a las necesidades de cada cliente.",
+        hero_sub: "Soluciones eléctricas residenciales, comerciales e industriales en Valencia y alrededores.<span class=\"hidden sm:inline\"> Realizamos instalaciones, reformas, iluminación, modernización de cuadros eléctricos y mantenimiento, siempre con atención al detalle y a las necesidades de cada cliente.</span>",
         hero_cta_wa: "Solicitar Presupuesto",
-        hero_cta_wa_mobile: "Solicitar Presupuesto",
+        hero_cta_wa_mobile: "Pedir Presupuesto",
         hero_cta_wa_direct: "WhatsApp Directo",
         float_wa_tooltip: "Presupuesto WhatsApp",
         hero_tag1: "Valencia y alrededores",
         hero_tag2: "Atención personalizada",
         hero_tag3: "Calidad y profesionalismo",
-        hero_cta_services: "Conocer Nuestros Servicios",
+        hero_cta_services: "Nuestros Servicios",
 
         // Seção Problemas que Resolvemos (Etapa 3)
         prob_badge: "// DIAGNÓSTICO RÁPIDO & SEGURIDAD",
@@ -6838,6 +6854,7 @@
         page_title: "IberVolt Solutions // High-Performance Electrical Engineering",
         meta_desc: "High-performance electrical engineering in Valencia and surrounding region. Preventive maintenance, electrical rewiring, and custom distribution panels compliant with REBT and technical safety standards.",
         header_sub: "Electrical Engineering // Valencia",
+        preloader_tag: "HIGH PERFORMANCE ELECTRICAL ENGINEERING",
         nav_home: "Home",
         nav_esp: "Specialties",
         nav_cert: "Certifications & Norms",
@@ -6857,15 +6874,15 @@
         scroll_energize: "Scroll the page",
         hero_badge: "Valencia & surroundings // Tailored service",
         hero_h1: "Electrical installations with quality, safety, and reliability. <br class=\"hidden sm:inline\"> <span class=\"font-light italic text-brand-yellow\">Your home or business deserves a well-crafted installation.</span>",
-        hero_sub: "Residential, commercial, and industrial electrical solutions in Valencia and surrounding areas. We perform installations, renovations, lighting, electrical panel modernization, and maintenance, always tailored to each client's needs.",
+        hero_sub: "Residential, commercial, and industrial electrical solutions in Valencia and surrounding areas.<span class=\"hidden sm:inline\"> We perform installations, renovations, lighting, electrical panel modernization, and maintenance, always tailored to each client's needs.</span>",
         hero_cta_wa: "Request a Quote",
-        hero_cta_wa_mobile: "Request a Quote",
+        hero_cta_wa_mobile: "Get a Quote",
         hero_cta_wa_direct: "Direct WhatsApp",
         float_wa_tooltip: "WhatsApp Quote",
         hero_tag1: "Valencia & surroundings",
         hero_tag2: "Personalized service",
         hero_tag3: "Quality and professionalism",
-        hero_cta_services: "Explore Our Services",
+        hero_cta_services: "Our Services",
 
         // Seção Problemas que Resolvemos (Etapa 3)
         prob_badge: "// QUICK DIAGNOSIS & SAFETY",
@@ -7552,14 +7569,17 @@
     };
 
     // Estado global de idioma e índice de especialidade
-    let currentLang = localStorage.getItem('ibervolt_lang') || 'es';
+    // Idioma nativo padrão: Espanhol ('es') para Valência
+    // Chave versionada 'ibervolt_lang_v3' garante que clientes anteriores não fiquem presos no cache 'pt' antigo
+    let currentLang = localStorage.getItem('ibervolt_lang_v3') || 'es';
     let currentServiceIndex = 0;
+    let isServiceModalOpen = false;
 
     // ── Função Central de Alternância de Idiomas ──────────────────────────
     function switchLanguage(lang) {
       if (!translations[lang]) return;
       currentLang = lang;
-      localStorage.setItem('ibervolt_lang', lang);
+      try { localStorage.setItem('ibervolt_lang_v3', lang); } catch (e) {}
 
       // 1. Atualizar atributo HTML lang
       document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'pt' ? 'pt-BR' : 'es'));
@@ -7688,6 +7708,9 @@
       });
 
       // 10. Atualizar lightbox da galeria se estiver aberto
+      if (typeof updateServicesCards === 'function') {
+        updateServicesCards();
+      }
       if (typeof updateGalleryModalContent === 'function') {
         const galModal = document.getElementById('gallery-lightbox-modal');
         if (galModal && galModal.classList.contains('opacity-100')) {
@@ -7701,11 +7724,12 @@
       }
     }
 
-    // ── Controle dos Cards de Serviços & Popup Modal ──────────────────────
-    let isServiceModalOpen = false;
+    // Aplicar tradução imediatamente no carregamento inicial sem esperar eventos tardios
+    switchLanguage(currentLang);
 
+    // ── Controle dos Cards de Serviços & Popup Modal ──────────────────────
     function updateServicesCards() {
-      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.pt;
+      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.es;
       dataList.forEach((item, i) => {
         const tagEl = document.getElementById(`service-card-tag-${i}`);
         const titleEl = document.getElementById(`service-card-title-${i}`);
@@ -7718,7 +7742,7 @@
 
     function renderServiceModal(index) {
       currentServiceIndex = index;
-      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.pt;
+      const dataList = servicesDataByLang[currentLang] || servicesDataByLang.es;
       const item = dataList[index];
       if (!item) return;
 
@@ -8472,6 +8496,18 @@
             item.classList.remove('is-active');
           }
         });
+
+        // Visibilidade inteligente do Botão Flutuante do WhatsApp (oculto no topo mobile para não sobrepor os botões do Hero)
+        const floatWa = document.getElementById('floating-whatsapp-container');
+        if (floatWa) {
+          if (scrollY > 80 || window.innerWidth >= 640) {
+            floatWa.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+            floatWa.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          } else {
+            floatWa.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+            floatWa.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          }
+        }
       }
 
       window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
@@ -9505,6 +9541,21 @@
         }
       });
 
+      // Atualizar pílulas de navegação mobile
+      const mobilePills = document.querySelectorAll('.why-mobile-pill');
+      mobilePills.forEach((pill, i) => {
+        if (i === currentWhyPillarIndex) {
+          pill.classList.add('is-active');
+          pill.setAttribute('aria-selected', 'true');
+          try {
+            pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } catch (e) {}
+        } else {
+          pill.classList.remove('is-active');
+          pill.setAttribute('aria-selected', 'false');
+        }
+      });
+
       if (counter) {
         counter.textContent = String(currentWhyPillarIndex + 1).padStart(2, '0') + ' / 05';
       }
@@ -9520,6 +9571,33 @@
 
     window.selectWhyPillar = selectWhyPillar;
     window.navigateWhyPillar = navigateWhyPillar;
+
+    // Gesto de Swipe no Mobile para alternar entre os 5 Pilares
+    (function initWhyPillarSwipe() {
+      const stage = document.querySelector('.lg\\:col-span-7');
+      if (!stage) return;
+      let startX = 0;
+      let startY = 0;
+      stage.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+      stage.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) {
+          const diffX = e.changedTouches[0].clientX - startX;
+          const diffY = e.changedTouches[0].clientY - startY;
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+            if (diffX < 0) {
+              navigateWhyPillar(1);
+            } else {
+              navigateWhyPillar(-1);
+            }
+          }
+        }
+      }, { passive: true });
+    })();
 
 
     // ── Slider de Depoimentos Exclusivos com Autoplay Suave e Altura Travada (Zero Layout Shift) ──
