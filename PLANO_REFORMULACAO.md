@@ -128,7 +128,7 @@ Ao analisar integralmente as 4 capturas de mensagens do WhatsApp, foram identifi
 *Objetivo: Demonstrar autoridade técnica, seriedade e versatilidade comercial.*
 
 - [x] **5.1. Seção "Por Que Escolher a IberVolt Solutions" (Showcase Técnico Interativo // Sem Cards Repetitivos):**
-  - **Quebra do "Card Fatigue":** Os 5 cartões verticais repetitivos foram substituídos por um layout *Split de Engenharia* de alta fidelidade:
+  - **Quebra do "Card Fatigue":** Os 5 cartões verticais repetitivos foram substituídos por um layout *Split Técnico* de alta fidelidade:
     - *Coluna da Esquerda:* Lista seletora minimalista aberta (sem molduras de cards), com numeração monospaçada (`01.` a `05.`), indicador luminoso ativo dourado e transição por clique ou hover.
     - *Coluna da Direita:* Palco de demonstração técnica unificado (Blueprint) com número monumental vazado no fundo (`01` a `05`), ícone técnico, título, descrição ampliada e 3 especificações técnicas comprovando a autoridade de cada pilar.
   - **Texto de Introdução:** *"Seu projeto merece atenção aos detalhes. Acreditamos que um bom serviço começa com uma avaliação correta e termina com um trabalho bem executado."*
@@ -185,7 +185,7 @@ Ao analisar integralmente as 4 capturas de mensagens do WhatsApp, foram identifi
   - **Estética Enxuta Dark Luxury (Referência Visual de Alto Padrão):**
     - Seção minimalista e imersiva (`#testimonios`), centralizada em fundo negro profundo com halo dourado radiante (`bg-brand-yellow/[0.045]`) e vinheta radial suave.
     - Tag superior editorial: `// OPINIONES EXCLUSIVAS EN VALENCIA` (`// DEPOIMENTOS EXCLUSIVOS EM VALÊNCIA` em PT / `// EXCLUSIVE REVIEWS IN VALENCIA` em EN) acompanhada de 5 estrelas douradas com brilho elétrico suave.
-  - **Citação Centralizada em Itálico & Assinatura de Engenharia:**
+  - **Citação Centralizada em Itálico & Assinatura Técnica:**
     - Citação de alto impacto visual em itálico (`font-jakarta text-lg sm:text-xl lg:text-[1.32rem]`), com conforto de leitura e foco total na transformação do cliente.
     - Bloco de autor com nome em destaque (`font-syne font-bold text-white`) e metadados técnicos padronizados em caixa alta (`[LOCALIDADE] — [SERVIÇO]`).
   - **Mecanismo de Autoplay Suave (Troca Automática):**
@@ -240,7 +240,7 @@ Todas as demandas identificadas nas conversas com o cliente **Rafael Br** foram 
 
 - ✅ **ETAPA 1:** Identidade, Idioma & Limpeza Visual (Logo com maior presença, Espanhol nativo, remoção de pontos de luz e slogan antigo).
 - ✅ **ETAPA 2:** Hero & Abertura da Casa Energizada (Tela limpa, vídeo automático com velocidade suave, parallax escalonado e cópia oficial).
-- ✅ **ETAPA 3:** Seção "Problemas que Resolvemos" (7 dores reais do cliente e bloco de engenharia resolutiva).
+- ✅ **ETAPA 3:** Seção "Problemas que Resolvemos" (7 dores reais do cliente e solução técnica resolutiva).
 - ✅ **ETAPA 4:** Serviços Estruturados, REBT & Robótica KUKA (5 categorias técnicas, destaque KUKA KRC 04, conformidade REBT e modal).
 - ✅ **ETAPA 5:** "Por Que Escolher a IberVolt" & Frentes de Atuação (5 pilares de autoridade e 3 frentes comerciais).
 - ✅ **ETAPA 6:** Galeria Real de Obras & Depoimentos Cinematográficos (Carrossel contínuo de 15 obras reais com Lightbox e depoimentos 5★ com autoplay e abas).

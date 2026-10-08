@@ -1,6 +1,6 @@
 # ⚡ IberVolt Solutions — Website Institucional & Landing Page
 
-Website institucional e comercial de alto padrão da **IberVolt Solutions** (Engenharia Elétrica de Alta Performance em Valência, Espanha). Projeto desenvolvido com foco em estética *Architectural Luxury / Industrial Tech*, conformidade técnica (REBT, NR-10, NR-35) e suporte multilíngue dinâmico (Português, Espanhol e Inglês).
+Website institucional e comercial de alto padrão da **IberVolt Solutions** (Instalações e Soluções Elétricas de Alta Performance em Valência, Espanha). Projeto desenvolvido com foco em estética *Architectural Luxury / Industrial Tech*, conformidade técnica (REBT RD 842/2002, normas UNE, marcação CE) e suporte multilíngue dinâmico (Espanhol, Português e Inglês).
 
 ---
 
@@ -10,10 +10,10 @@ Website institucional e comercial de alto padrão da **IberVolt Solutions** (Eng
 ibervolt-solutions/
 │
 ├── assets/                     # Recursos estáticos otimizados
-│   └── images/                 # Identidade visual, fotos de engenharia e mapas
+│   └── images/                 # Identidade visual, fotos de projetos técnicos e mapas
 │       ├── favicon.png         # Ícone de favoritos da aba do navegador
 │       ├── logo.png            # Logo oficial transparente de alta resolução
-│       ├── hero-engenharia.jpg # Imagem de cabeçalho / Hero
+│       ├── hero-ibervolt.jpg   # Imagem de cabeçalho / Hero
 │       ├── mapa-valencia.jpg   # Mapa de cobertura de atendimento em Valência
 │       ├── projeto-termografia.jpg # Pilar 01: Manutenção & Inspeção Térmica
 │       ├── projeto-residencial.jpg # Pilar 02: Retrofit & Reforma Elétrica
