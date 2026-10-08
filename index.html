@@ -14,6 +14,16 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
+  <script>
+    // Garantir que qualquer visita ou recarregamento sempre abra em espanhol
+    try {
+      localStorage.removeItem('ibervolt_lang');
+      localStorage.removeItem('ibervolt_lang_v2');
+      localStorage.removeItem('ibervolt_lang_v3');
+      sessionStorage.removeItem('ibervolt_lang');
+    } catch (e) {}
+  </script>
+
   <!-- Open Graph / Redes Sociais & Compartilhamento -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IberVolt Solutions">
@@ -7535,17 +7545,23 @@
     };
 
     // Estado global de idioma e índice de especialidade
-    // Idioma nativo padrão: Espanhol ('es') para Valência
-    // Chave versionada 'ibervolt_lang_v3' garante que clientes anteriores não fiquem presos no cache 'pt' antigo
-    let currentLang = localStorage.getItem('ibervolt_lang_v3') || 'es';
+    // Idioma padrão: SEMPRE Espanhol ('es') para Valência em qualquer acesso ou recarregamento (F5)
+    let currentLang = 'es';
     let currentServiceIndex = 0;
     let isServiceModalOpen = false;
+
+    // Limpar imediatamente qualquer cache de idioma persistido
+    try {
+      localStorage.removeItem('ibervolt_lang');
+      localStorage.removeItem('ibervolt_lang_v2');
+      localStorage.removeItem('ibervolt_lang_v3');
+      sessionStorage.removeItem('ibervolt_lang');
+    } catch (e) {}
 
     // ── Função Central de Alternância de Idiomas ──────────────────────────
     function switchLanguage(lang) {
       if (!translations[lang]) return;
       currentLang = lang;
-      try { localStorage.setItem('ibervolt_lang_v3', lang); } catch (e) {}
 
       // 1. Atualizar atributo HTML lang
       document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'pt' ? 'pt-BR' : 'es'));
@@ -9926,8 +9942,8 @@
       });
     }
 
-      // 9. Aplicar o idioma salvo no carregamento
-      switchLanguage(currentLang);
+      // 9. Aplicar o idioma no carregamento (Sempre Espanhol 'es')
+      switchLanguage('es');
 
       // 10. Inicializar slider de depoimentos com altura travada e autoplay
       startTestimonialsAuto();
