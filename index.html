@@ -514,25 +514,20 @@
       mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
       padding: 1.5rem 0;
+      touch-action: pan-y;
+      user-select: none;
+      cursor: grab;
+    }
+    .gallery-carousel-viewport:active {
+      cursor: grabbing;
     }
     .gallery-carousel-track {
       display: flex;
       width: max-content;
       gap: 1.5rem;
       will-change: transform;
-      animation: galleryInfiniteScroll 55s linear infinite;
-    }
-    .gallery-carousel-track:hover,
-    .gallery-carousel-track.is-paused {
-      animation-play-state: paused;
-    }
-    @keyframes galleryInfiniteScroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      transform: translate3d(0, 0, 0);
+      user-select: none;
     }
     /* Transição Cinematográfica de Depoimentos & Fixação de Altura (Zero Layout Shift) */
     .testimonial-slides-track {
@@ -2085,10 +2080,10 @@
             <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.06] text-[11px] font-mono">
               <div class="flex items-center gap-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                <span class="font-bold text-brand-yellow tracking-wider">SYS.04 // INDUSTRIAL & KUKA</span>
+                <span class="font-bold text-brand-yellow tracking-wider">SYS.04 // INDUSTRIAL</span>
               </div>
               <span class="text-white/40 text-[10px] tracking-wider uppercase font-medium">
-                INDUSTRIA // KUKA KRC 04
+                INDUSTRIA // ROBÓTICA
               </span>
             </div>
 
@@ -2192,17 +2187,17 @@
               Otros Servicios y Soluciones Complementarias
             </h3>
             <p id="service-card-desc-4" class="font-jakarta font-light text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              Montaje y fijación segura de soportes de TV, montaje y reparación de muebles, instalación de accesorios y pequeñas reformas técnicas.
+              Instalación y reparaciones en pladur (tabiques y techos), montaje y fijación segura de soportes de TV, montaje de muebles y reformas técnicas.
             </p>
 
             <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-4 text-[11px] font-mono text-white/75">
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
-                <span class="truncate">Soportes de TV Nivelados</span>
+                <span class="truncate">Pladur & Falsos Techos</span>
               </div>
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
-                <span class="truncate">Ocultación de Cables</span>
+                <span class="truncate">Soportes de TV Nivelados</span>
               </div>
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
@@ -2210,7 +2205,7 @@
               </div>
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow/80 shrink-0"></span>
-                <span class="truncate">Pequeñas Reparaciones</span>
+                <span class="truncate">Ocultación de Cables</span>
               </div>
             </div>
           </div>
@@ -4045,606 +4040,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Card 1 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(0)" data-gallery-index="0" role="button" tabindex="0" aria-label="Ver detalles de: Programação de Robô KUKA KRC 04">
-              <img src="./assets/images/galeria/real-01-robotica-kuka.jpg" 
-                   alt="Programación de Robot KUKA KRC 04" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_1_cat">
-                      Robótica Industrial
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_1_title">
-                    Programación de Robot KUKA KRC 04
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_1_desc">
-                    Backup, parametrización y programación con terminal KCP.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">01/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(1)" data-gallery-index="1" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Geral de Distribuição Hager">
-              <img src="./assets/images/galeria/real-02-quadro-comercial-hager.jpg" 
-                   alt="Cuadro General de Distribución Hager" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_2_cat">
-                      Cuadros Comerciales
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_2_title">
-                    Cuadro General de Distribución Hager
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_2_desc">
-                    Identificación por sectores: climatización, alumbrado y puestos de trabajo.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">02/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(2)" data-gallery-index="2" role="button" tabindex="0" aria-label="Ver detalles de: Quadro com Inversores WEG CFW 08">
-              <img src="./assets/images/galeria/real-03-automacao-inversores-weg.jpg" 
-                   alt="Cuadro con Variadores WEG CFW 08" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_3_cat">
-                      Automatización & Motores
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_3_title">
-                    Cuadro con Variadores WEG CFW 08
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_3_desc">
-                    Mando estructurado con canaletas y contactores Schneider Electric.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">03/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(3)" data-gallery-index="3" role="button" tabindex="0" aria-label="Ver detalles de: Painel com CLP WEG Clic-02 & CFW 10">
-              <img src="./assets/images/galeria/real-04-painel-clp-weg.jpg" 
-                   alt="Panel con Autómata WEG Clic-02 & CFW 10" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_4_cat">
-                      Mandos & Autómata
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_4_title">
-                    Panel con Autómata WEG Clic-02 & CFW 10
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_4_desc">
-                    Automatización programable, fuente estabilizada y bornes de conexión.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">04/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(4)" data-gallery-index="4" role="button" tabindex="0" aria-label="Ver detalles de: Iluminação Técnica em Cafeteria">
-              <img src="./assets/images/galeria/real-05-iluminacao-comercial-design.jpg" 
-                   alt="Iluminación Técnica en Cafetería" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_5_cat">
-                      Iluminación & Diseño
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_5_title">
-                    Iluminación Técnica en Cafetería
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_5_desc">
-                    Luminarias de diseño, focos empotrados y confort visual.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">05/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 6 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(5)" data-gallery-index="5" role="button" tabindex="0" aria-label="Ver detalles de: Módulos Fotovoltaicos em Cobertura">
-              <img src="./assets/images/galeria/real-06-energia-solar-fotovoltaica.jpg" 
-                   alt="Módulos Fotovoltaicos en Cubierta" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_6_cat">
-                      Energía Solar
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_6_title">
-                    Módulos Fotovoltaicos en Cubierta
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_6_desc">
-                    Instalación de paneles solares con soportes angulares en Valencia.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">06/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 7 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(6)" data-gallery-index="6" role="button" tabindex="0" aria-label="Ver detalles de: Montagem de Quadro Modular">
-              <img src="./assets/images/galeria/real-07-montagem-quadro-modular.jpg" 
-                   alt="Montaje de Cuadro Modular" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_7_cat">
-                      Cuadros Eléctricos
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_7_title">
-                    Montaje de Cuadro Modular
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_7_desc">
-                    Embarrados protegidos, carril DIN y diferenciales ATMOSS.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">07/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 8 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(7)" data-gallery-index="7" role="button" tabindex="0" aria-label="Ver detalles de: Disjuntor Geral Trifásico 160A">
-              <img src="./assets/images/galeria/real-08-disjuntor-geral-160a.jpg" 
-                   alt="Interruptor General Trifásico 160A" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_8_cat">
-                      Fuerza & Potencia
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_8_title">
-                    Interruptor General Trifásico 160A
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_8_desc">
-                    Caja moldeada CHNT con certificación CE y temporizadores.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">08/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 9 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(8)" data-gallery-index="8" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de 4 Linhas com Linha SAI">
-              <img src="./assets/images/galeria/real-09-quadro-distribuicao-espanha.jpg" 
-                   alt="Cuadro de 4 Filas con Línea SAI" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_9_cat">
-                      Instalaciones Comerciales
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_9_title">
-                    Cuadro de 4 Filas con Línea SAI
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_9_desc">
-                    Normativa REBT con circuitos protegidos para equipos críticos.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">09/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 10 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(9)" data-gallery-index="9" role="button" tabindex="0" aria-label="Ver detalles de: Quadro Estanque Noark IP65">
-              <img src="./assets/images/galeria/real-10-quadro-estanque-noark.jpg" 
-                   alt="Cuadro Estanco Noark IP65" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_10_cat">
-                      Protección Estanca
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_10_title">
-                    Cuadro Estanco Noark IP65
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_10_desc">
-                    Protección contra polvo y agua con automáticos y bases de enchufe.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">10/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 11 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(10)" data-gallery-index="10" role="button" tabindex="0" aria-label="Ver detalles de: Centrais de Climatização VRF Haier">
-              <img src="./assets/images/galeria/real-11-climatizacao-vrf-aerotermia.jpg" 
-                   alt="Centrales de Climatización VRF Haier" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_11_cat">
-                      Climatización & VRF
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_11_title">
-                    Centrales de Climatización VRF Haier
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_11_desc">
-                    Interconexión de tuberías, vacío e infraestructura de potencia.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">11/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 12 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(11)" data-gallery-index="11" role="button" tabindex="0" aria-label="Ver detalles de: Unidade Mundoclima Super Inverter">
-              <img src="./assets/images/galeria/real-12-aerotermia-mundoclima-inverter.jpg" 
-                   alt="Unidad Mundoclima Super Inverter" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_12_cat">
-                      Aerotermia & Inverter
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_12_title">
-                    Unidad Mundoclima Super Inverter
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_12_desc">
-                    Instalación de bombas de calor y electrónica de potencia inverter.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">12/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 13 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(12)" data-gallery-index="12" role="button" tabindex="0" aria-label="Ver detalles de: Quadro de Transferência HIMOINSA CEC7">
-              <img src="./assets/images/galeria/real-13-automacao-gerador-himoinsa.jpg" 
-                   alt="Cuadro de Transferencia HIMOINSA CEC7" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_13_cat">
-                      Grupos Electrógenos
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_13_title">
-                    Cuadro de Transferencia HIMOINSA CEC7
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_13_desc">
-                    Conmutación automática red/generador con paro de emergencia.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">13/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 14 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(13)" data-gallery-index="13" role="button" tabindex="0" aria-label="Ver detalles de: Centralização e Caixa de Proteção Geral">
-              <img src="./assets/images/galeria/real-14-acometida-contadores-cgp.jpg" 
-                   alt="Centralización y Caja General de Protección" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_14_cat">
-                      Acometidas & CGP
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_14_title">
-                    Centralización y Caja General de Protección
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_14_desc">
-                    Fusibles de cuchilla NH, embarrado de cobre y envolvente estanca.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">14/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 15 (Duplicado Loop) -->
-            <div class="gallery-card group shrink-0 relative" onclick="openGalleryModal(14)" data-gallery-index="14" role="button" tabindex="0" aria-label="Ver detalles de: Painel de Comando com Inversores Ativos">
-              <img src="./assets/images/galeria/real-15-painel-comando-operacao.jpg" 
-                   alt="Cuadro de Mando con Variadores Activos" 
-                   loading="lazy" 
-                   class="gallery-card-img w-full h-full object-cover">
-              
-              <!-- Gradiente escurecedor e vinheta -->
-              <div class="gallery-card-overlay">
-                <div class="space-y-2">
-                  <!-- Tag de Categoria com Ponto Pulsante -->
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse"></span>
-                    <span class="font-mono text-[10px] tracking-wider text-brand-yellow uppercase font-medium" data-i18n="gal_item_15_cat">
-                      Cuadros Industriales
-                    </span>
-                  </div>
-
-                  <!-- Título da Obra -->
-                  <h3 class="font-syne font-bold text-base sm:text-lg text-white leading-snug group-hover:text-brand-yellow transition-colors duration-200" data-i18n="gal_item_15_title">
-                    Cuadro de Mando con Variadores Activos
-                  </h3>
-
-                  <!-- Descrição Rápida -->
-                  <p class="font-jakarta text-xs text-white/75 line-clamp-2 leading-relaxed" data-i18n="gal_item_15_desc">
-                    Operación con variadores WEG, bornas identificadas y pulsadores de puerta.
-                  </p>
-
-                  <!-- Ação de Clique / Lupa -->
-                  <div class="pt-1 flex items-center justify-between text-brand-yellow/80 group-hover:text-brand-yellow text-[11px] font-mono">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span data-i18n="gal_card_zoom">Ampliar Registro</span>
-                      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                    <span class="text-white/40 font-mono text-[10px]">15/15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
       </div>
     </div>
 
@@ -5109,12 +4504,12 @@
                       <span data-i18n="form_serv_opt3">Iluminación LED y Automatización</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
-                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt4" data-value="Instalaciones Industriales & Robótica KUKA">
-                      <span data-i18n="form_serv_opt4">Instalaciones Industriales & Robótica KUKA</span>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt4" data-value="Instalaciones Industriales & Robótica">
+                      <span data-i18n="form_serv_opt4">Instalaciones Industriales & Robótica</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
-                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt5" data-value="Otros Servicios / Soluciones Complementarias">
-                      <span data-i18n="form_serv_opt5">Otros Servicios / Soluciones Complementarias</span>
+                    <div class="custom-dropdown-item px-3.5 py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between" data-key="form_serv_opt5" data-value="Otros Servicios (Pladur, Montajes y Reformas)">
+                      <span data-i18n="form_serv_opt5">Otros Servicios (Pladur, Montajes y Reformas)</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     </div>
                   </div>
@@ -5841,12 +5236,12 @@
                 <span data-i18n="form_serv_opt3">Iluminación LED y Automatización</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
-              <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_serv_opt4" data-value="Instalaciones Industriales & Robótica KUKA">
-                <span data-i18n="form_serv_opt4">Instalaciones Industriales & Robótica KUKA</span>
+              <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_serv_opt4" data-value="Instalaciones Industriales & Robótica">
+                <span data-i18n="form_serv_opt4">Instalaciones Industriales & Robótica</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
-              <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_serv_opt5" data-value="Otros Servicios / Soluciones Complementarias">
-                <span data-i18n="form_serv_opt5">Otros Servicios / Soluciones Complementarias</span>
+              <div class="custom-dropdown-item px-3 py-2 text-xs cursor-pointer flex items-center justify-between" data-key="form_serv_opt5" data-value="Otros Servicios (Pladur, Montajes y Reformas)">
+                <span data-i18n="form_serv_opt5">Otros Servicios (Pladur, Montajes y Reformas)</span>
                 <i data-lucide="check" class="check-icon w-3 h-3 text-brand-yellow"></i>
               </div>
             </div>
@@ -6352,8 +5747,8 @@
         form_serv_opt1: "Instalações Elétricas / Reformas",
         form_serv_opt2: "Quadros Elétricos e Proteção",
         form_serv_opt3: "Iluminação LED e Automação",
-        form_serv_opt4: "Instalações Industriais & Robótica KUKA",
-        form_serv_opt5: "Outros Serviços / Soluções Complementares",
+        form_serv_opt4: "Instalações Industriais & Robótica",
+        form_serv_opt5: "Outros Serviços (Pladur, Montagens e Reformas)",
         form_label_loc: "Localização da Instalação",
         form_ph_loc: "Ex: València Centro, Ruzafa, Paterna...",
         form_label_details: "Observações ou Prazo",
@@ -6788,8 +6183,8 @@
         form_serv_opt1: "Instalaciones Eléctricas / Reformas",
         form_serv_opt2: "Cuadros Eléctricos y Protección",
         form_serv_opt3: "Iluminación LED y Automatización",
-        form_serv_opt4: "Instalaciones Industriales & Robótica KUKA",
-        form_serv_opt5: "Otros Servicios / Soluciones Complementarias",
+        form_serv_opt4: "Instalaciones Industriales & Robótica",
+        form_serv_opt5: "Otros Servicios (Pladur, Montajes y Reformas)",
         form_label_loc: "Ubicación de la Instalación",
         form_ph_loc: "Ej: Valencia Centro, Ruzafa, Paterna...",
         form_label_details: "Observaciones o Plazo",
@@ -7224,8 +6619,8 @@
         form_serv_opt1: "Electrical Installations / Rewiring",
         form_serv_opt2: "Distribution Boards & Protection",
         form_serv_opt3: "LED Lighting & Automation",
-        form_serv_opt4: "Industrial Installations & KUKA Robotics",
-        form_serv_opt5: "Other Services / Handyman Solutions",
+        form_serv_opt4: "Industrial Installations & Robotics",
+        form_serv_opt5: "Other Services (Pladur/Drywall, Assembly & Repairs)",
         form_label_loc: "Installation Location",
         form_ph_loc: "E.g.: Valencia Center, Ruzafa, Paterna...",
         form_label_details: "Project Notes or Timeline",
@@ -7323,7 +6718,7 @@
         },
         {
           cardTag: "04 // INDÚSTRIA & ROBÓTICA",
-          tag: "PILAR 04 // INDUSTRIAL & KUKA KRC 04",
+          tag: "PILAR 04 // INDUSTRIAL & ROBÓTICA",
           title: "Instalações Comerciais, Industriais & Robótica",
           shortDesc: "Infraestrutura para naves e locais comerciais, manutenção preventiva/corretiva e robótica industrial especializada KUKA KRC 04.",
           desc: "Suporte elétrico e assistência de campo para galpões, naves industriais e comércios. Infraestrutura pesada com eletrocalhas e alimentação trifásica, rotinas de manutenção corretiva e preventiva, e assistência técnica especializada em backups e recuperação de programação para robôs industriais KUKA modelo KRC 04.",
@@ -7343,18 +6738,18 @@
           cardTag: "05 // SOLUÇÕES TÉCNICAS",
           tag: "PILAR 05 // MULTISERVIÇOS TÉCNICOS",
           title: "Outros Serviços e Soluções Complementares",
-          shortDesc: "Montagem e fixação segura de suportes de TV, montagem e reparação de móveis, acessórios e pequenos reparos técnicos.",
-          desc: "Serviços complementares de montagem técnica e acabamento para ambientes residenciais e comerciais. Fixação de suportes de televisão para telas grandes com alinhamento a laser e ocultação de cabos, montagem e reparo minucioso de móveis modulares, fixação de suportes e execução de pequenas reparações com ferramentas de precisão.",
+          shortDesc: "Instalação e reparos em pladur (divisórias e tetos), montagem de suportes de TV, montagem de móveis e reformas técnicas.",
+          desc: "Serviços complementares de montagem técnica e acabamento para ambientes residenciais e comerciais. Instalação e reparação de paredes e tetos de pladur (gesso acartonado/drywall), fechamento e acabamento fino de rasgos de fiação elétrica, fixação de suportes de televisão para telas grandes com alinhamento a laser e buchas especiais para pladur, montagem e reparo minucioso de móveis modulares e reformas técnicas com máxima limpeza.",
           ctaText: "Solicitar Orçamento",
           ctaUrl: "#orcamento",
           image: "./assets/images/projeto-complementares.jpg",
           imageTag: "Fixação Técnica de TV & Montagem // Precisão",
           sectors: ["Casas e Apartamentos", "Escritórios Corporativos", "Salas de Reunião", "Consultórios"],
           specs: [
-            { title: "Suportes de TV Nivelados", text: "Ancoragem estrutural segura e nível a laser." },
-            { title: "Ocultação de Cabos", text: "Passagem embutida limpa sem fiação pendurada." },
+            { title: "Pladur & Tetos Falsos", text: "Divisórias, tetos contínuos, fechamento de rasgos e acabamento liso." },
+            { title: "Suportes de TV Nivelados", text: "Ancoragem segura para pladur e alvenaria com nível a laser." },
             { title: "Montagem de Móveis", text: "Esquadrejamento firme e regulagem de dobradiças." },
-            { title: "Pequenos Reparos", text: "Agilidade e capricho na finalização do imóvel." }
+            { title: "Ocultação de Cabos", text: "Passagem embutida limpa sem fiação pendurada." }
           ]
         }
       ],
@@ -7415,7 +6810,7 @@
         },
         {
           cardTag: "04 // INDUSTRIA & ROBÓTICA",
-          tag: "PILAR 04 // INDUSTRIAL & KUKA KRC 04",
+          tag: "PILAR 04 // INDUSTRIAL & ROBÓTICA",
           title: "Instalaciones Comerciales, Industriales & Robótica",
           shortDesc: "Infraestructura para naves y locales comerciales, mantenimiento preventivo/correctivo y servicio técnico especializado en robots KUKA modelo KRC 04.",
           desc: "Soporte eléctrico y asistencia técnica en planta para naves industriales, talleres y locales comerciales. Bandejas portacables metálicas, acometidas trifásicas de potencia, mantenimiento electromecánico y servicio especializado en backups de seguridad y recuperación de programación en robots industriales KUKA modelo KRC 04.",
@@ -7435,18 +6830,18 @@
           cardTag: "05 // SOLUCIONES TÉCNICAS",
           tag: "PILAR 05 // MULTISERVICIOS TÉCNICOS",
           title: "Otros Servicios y Soluciones Complementarias",
-          shortDesc: "Montaje y fijación segura de soportes de TV, montaje y reparación de muebles, instalación de accesorios y pequeñas reformas técnicas.",
-          desc: "Servicios técnicos complementarios de montaje y soporte para el hogar y la empresa. Fijación profesional de soportes para televisores de gran formato con nivel láser y canalización oculta de cables, ensamblaje firme de mobiliario modular, instalación de accesorios y pequeñas reparaciones técnicas con pulcritud absoluta.",
+          shortDesc: "Instalación y reparaciones en pladur (tabiques y techos), montaje y fijación segura de soportes de TV, montaje de muebles y reformas técnicas.",
+          desc: "Servicios técnicos complementarios de montaje y soporte para el hogar y la empresa. Instalación y reparación de tabiquería y techos de pladur (placas de yeso laminado), apertura y cierre de rozas con acabado fino, fijación profesional de soportes para televisores de gran formato con nivel láser y anclajes especiales para pladur, ensamblaje firme de mobiliario modular, instalación de accesorios y pequeñas reparaciones técnicas con pulcritud absoluta.",
           ctaText: "Solicitar Presupuesto",
           ctaUrl: "#orcamento",
           image: "./assets/images/projeto-complementares.jpg",
           imageTag: "Fijación Técnica & Montaje // Precisión",
           sectors: ["Hogares y Pisos", "Oficinas Corporativas", "Salas de Reuniones", "Consultorios"],
           specs: [
-            { title: "Soportes TV Nivelados", text: "Anclaje químico/mecánico y nivelación exacta con láser." },
-            { title: "Cables Ocultos", text: "Enrutamiento empotrado sin cables colgando a la vista." },
+            { title: "Pladur & Falsos Techos", text: "Tabiquería, techos continuos, cierre de rozas y remates lisos." },
+            { title: "Soportes TV Nivelados", text: "Anclaje químico/mecánico específico para pladur con nivel láser." },
             { title: "Montaje de Muebles", text: "Ensamblaje firme y ajuste milimétrico de herrajes." },
-            { title: "Pequeñas Reparaciones", text: "Solución rápida de desperfectos y ajustes mecánicos." }
+            { title: "Cables Ocultos", text: "Enrutamiento empotrado sin cables colgando a la vista." }
           ]
         }
       ],
@@ -7507,7 +6902,7 @@
         },
         {
           cardTag: "04 // INDUSTRY & ROBOTICS",
-          tag: "PILLAR 04 // INDUSTRIAL & KUKA KRC 04",
+          tag: "PILLAR 04 // INDUSTRIAL & ROBOTICS",
           title: "Commercial, Industrial & Robotics",
           shortDesc: "Infrastructure for industrial warehouses and commercial facilities, preventative/corrective maintenance, and specialized KUKA KRC 04 robot servicing.",
           desc: "Specialized electrical support and technical field assistance for warehouses, workshops, and commercial premises. Industrial metallic cable trays, 3-phase high-power distribution, preventative/corrective electromechanical maintenance, and specialized technical support for backups and program recovery on KUKA KRC 04 industrial robots.",
@@ -7527,18 +6922,18 @@
           cardTag: "05 // HANDYMAN SOLUTIONS",
           tag: "PILLAR 05 // TECHNICAL MULTI-SERVICES",
           title: "Other Services & Complementary Solutions",
-          shortDesc: "Secure TV wall mounting, modular furniture assembly and repairs, hardware mounting, and precise small technical fixes.",
-          desc: "Complementary technical installation and maintenance support for homes and workplaces. Secure wall mounting of large-format TV displays with laser leveling and concealed in-wall cabling, professional modular furniture assembly, accessory mounting, and neat minor technical repairs executed with craftsman precision.",
+          shortDesc: "Pladur (drywall) installations and repairs, secure TV wall mounting, modular furniture assembly, and small technical renovations.",
+          desc: "Complementary technical installation and maintenance support for homes and workplaces. Installation and repairs of Pladur drywall partitions and drop ceilings, seamless patching of electrical cable chases, professional laser-aligned TV mounting with specialized plasterboard anchors, modular furniture assembly, and craftsman-level minor technical repairs.",
           ctaText: "Request a Quote",
           ctaUrl: "#orcamento",
           image: "./assets/images/projeto-complementares.jpg",
           imageTag: "Technical TV Mounting & Craftsmanship // Precision",
           sectors: ["Homes & Apartments", "Corporate Offices", "Meeting Rooms", "Clinics"],
           specs: [
-            { title: "Laser-Aligned TV Mounts", text: "Certified anchors and millimeter spirit/laser leveling." },
-            { title: "Concealed In-Wall Cords", text: "In-wall routing without unsightly hanging wires." },
+            { title: "Pladur & Drywall Work", text: "Partition walls, drop ceilings, chase patching, and smooth finish." },
+            { title: "Laser-Aligned TV Mounts", text: "Specific plasterboard & solid wall anchors with laser leveling." },
             { title: "Furniture Assembly", text: "Rigid squaring, solid joints, and hinge alignment." },
-            { title: "Minor Technical Fixes", text: "Rapid, clean resolution of interior hardware fittings." }
+            { title: "Concealed In-Wall Cords", text: "In-wall routing without unsightly hanging wires." }
           ]
         }
       ]
@@ -7719,6 +7114,17 @@
         if (tagEl && item.cardTag) tagEl.textContent = item.cardTag;
         if (titleEl && item.title) titleEl.textContent = item.title;
         if (descEl && item.shortDesc) descEl.textContent = item.shortDesc;
+
+        // Sincronizar os 4 bullet points do card no grid
+        const cardEl = document.querySelector(`[data-service-index="${i}"]`);
+        if (cardEl && item.specs) {
+          const specSpans = cardEl.querySelectorAll('.grid span.truncate');
+          item.specs.forEach((spec, sIdx) => {
+            if (specSpans[sIdx] && spec.title) {
+              specSpans[sIdx].textContent = spec.title;
+            }
+          });
+        }
       });
     }
 
@@ -9349,9 +8755,9 @@
   }
 ];
     let currentGalleryIndex = 0;
-    let isGalleryPaused = false;
 
     function openGalleryModal(index) {
+      if (typeof galleryHasDragged !== 'undefined' && galleryHasDragged) return;
       currentGalleryIndex = (index >= 0 && index < galleryItemsData.length) ? index : 0;
       updateGalleryModalContent();
 
@@ -9414,18 +8820,163 @@
       }
     }
 
-    function toggleGalleryAutoplay() {
+    // ==========================================
+    // CONTROLE INFINITO DA GALERIA (ETAPA 6.1) - ROBUSTO & BUTTERY-SMOOTH (RAF)
+    // ==========================================
+    let isGalleryPaused = false;
+    let isGalleryHovered = false;
+    let isGalleryDragging = false;
+    let galleryHasDragged = false;
+    let galleryCurrentX = 0;
+    let galleryTargetX = 0;
+    let gallerySingleSetWidth = 0;
+    let galleryRafId = null;
+    let galleryPointerStartX = 0;
+    let galleryPointerStartY = 0;
+    let galleryDragStartTargetX = 0;
+
+    function getGalleryCardStep() {
       const track = document.getElementById('gallery-carousel-track');
+      if (!track || track.children.length < 2) return 344;
+      const step = track.children[1].offsetLeft - track.children[0].offsetLeft;
+      return step > 0 ? step : 344;
+    }
+
+    function initGalleryCarousel() {
+      const viewport = document.getElementById('gallery-carousel-viewport');
+      const track = document.getElementById('gallery-carousel-track');
+      if (!viewport || !track) return;
+
+      // 1. Obter os 15 cards base do HTML
+      const baseCards = Array.from(track.querySelectorAll('.gallery-card')).slice(0, 15);
+      if (baseCards.length === 0) return;
+
+      // 2. Criar 3 conjuntos completos (Set A, Set B, Set C = 45 cards) para loop matematicamente perfeito
+      const baseHtml = baseCards.map(c => c.outerHTML).join('\n');
+      track.innerHTML = baseHtml + '\n' + baseHtml + '\n' + baseHtml;
+
+      // 3. Medir a largura exata de 1 conjunto (15 cards com gaps)
+      function measure() {
+        const c0 = track.children[0];
+        const c15 = track.children[15];
+        if (c0 && c15) {
+          gallerySingleSetWidth = c15.offsetLeft - c0.offsetLeft;
+        }
+        if (!gallerySingleSetWidth || gallerySingleSetWidth <= 0) {
+          gallerySingleSetWidth = 15 * getGalleryCardStep();
+        }
+      }
+      measure();
+
+      // 4. Posicionar o carrossel no meio exato (início do Conjunto B)
+      galleryCurrentX = gallerySingleSetWidth;
+      galleryTargetX = gallerySingleSetWidth;
+      track.style.transform = 'translate3d(-' + galleryCurrentX + 'px, 0, 0)';
+
+      // 5. Loop de animação contínua e suave (60/120fps)
+      const baseSpeed = 0.65; // Deslocamento elegante (~39px/s)
+
+      function render() {
+        // Bloquear deslocamento acidental do scrollLeft nativo
+        if (viewport.scrollLeft !== 0) {
+          viewport.scrollLeft = 0;
+        }
+
+        if (!isGalleryPaused && !isGalleryHovered && !isGalleryDragging) {
+          galleryTargetX += baseSpeed;
+        }
+
+        // Interpolação suave (lerp) com amortecimento de luxo
+        galleryCurrentX += (galleryTargetX - galleryCurrentX) * 0.12;
+
+        // Wrap transparente e invisível dentro do Conjunto B
+        if (gallerySingleSetWidth > 0) {
+          while (galleryCurrentX >= 2 * gallerySingleSetWidth) {
+            galleryCurrentX -= gallerySingleSetWidth;
+            galleryTargetX -= gallerySingleSetWidth;
+            if (isGalleryDragging) galleryDragStartTargetX -= gallerySingleSetWidth;
+          }
+          while (galleryCurrentX < gallerySingleSetWidth) {
+            galleryCurrentX += gallerySingleSetWidth;
+            galleryTargetX += gallerySingleSetWidth;
+            if (isGalleryDragging) galleryDragStartTargetX += gallerySingleSetWidth;
+          }
+        }
+
+        track.style.transform = 'translate3d(-' + galleryCurrentX.toFixed(2) + 'px, 0, 0)';
+        galleryRafId = requestAnimationFrame(render);
+      }
+
+      if (galleryRafId) cancelAnimationFrame(galleryRafId);
+      galleryRafId = requestAnimationFrame(render);
+
+      // 6. Hover-to-Pause
+      viewport.addEventListener('mouseenter', () => { isGalleryHovered = true; });
+      viewport.addEventListener('mouseleave', () => { isGalleryHovered = false; });
+
+      // 7. Suporte a Drag & Swipe com PointerEvents
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return;
+        isGalleryDragging = true;
+        galleryHasDragged = false;
+        galleryPointerStartX = e.clientX;
+        galleryPointerStartY = e.clientY;
+        galleryDragStartTargetX = galleryTargetX;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isGalleryDragging) return;
+        const dx = e.clientX - galleryPointerStartX;
+        const dy = e.clientY - galleryPointerStartY;
+        if (!galleryHasDragged && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+          galleryHasDragged = true;
+        }
+        if (galleryHasDragged) {
+          galleryTargetX = galleryDragStartTargetX - dx;
+        }
+      });
+
+      window.addEventListener('pointerup', (e) => {
+        if (isGalleryDragging) {
+          isGalleryDragging = false;
+          if (galleryHasDragged) {
+            const step = getGalleryCardStep();
+            const nearestCard = Math.round(galleryTargetX / step);
+            galleryTargetX = nearestCard * step;
+          }
+        }
+        setTimeout(() => { galleryHasDragged = false; }, 80);
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isGalleryDragging = false;
+        galleryHasDragged = false;
+      });
+
+      // 8. Foco por teclado (Tab) desliza para o card selecionado sem alterar scrollLeft
+      track.addEventListener('focusin', (e) => {
+        const card = e.target.closest('.gallery-card');
+        if (!card) return;
+        viewport.scrollLeft = 0;
+        const cardCenter = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
+        galleryTargetX = cardCenter;
+      });
+
+      // 9. Recálculo em redimensionamento de janela
+      window.addEventListener('resize', () => {
+        measure();
+      });
+    }
+
+    function toggleGalleryAutoplay() {
       const btnText = document.getElementById('gallery-toggle-btn-text');
       const iconPause = document.getElementById('gallery-toggle-icon-pause');
       const iconPlay = document.getElementById('gallery-toggle-icon-play');
-      if (!track) return;
 
       isGalleryPaused = !isGalleryPaused;
       const lang = (typeof currentLang !== 'undefined' ? currentLang : 'es');
 
       if (isGalleryPaused) {
-        track.classList.add('is-paused');
         if (iconPause) iconPause.classList.add('hidden');
         if (iconPlay) iconPlay.classList.remove('hidden');
         if (btnText) {
@@ -9435,7 +8986,6 @@
           }
         }
       } else {
-        track.classList.remove('is-paused');
         if (iconPlay) iconPlay.classList.add('hidden');
         if (iconPause) iconPause.classList.remove('hidden');
         if (btnText) {
@@ -9448,9 +8998,8 @@
     }
 
     function nudgeGalleryCarousel(direction) {
-      const viewport = document.getElementById('gallery-carousel-viewport');
-      if (!viewport) return;
-      viewport.scrollBy({ left: direction * 340, behavior: 'smooth' });
+      const step = getGalleryCardStep();
+      galleryTargetX += direction * step;
     }
 
     // Teclado para modal da galeria (ESC, Esquerda, Direita)
@@ -9473,9 +9022,9 @@
     window.handleGalleryQuoteClick = handleGalleryQuoteClick;
     window.toggleGalleryAutoplay = toggleGalleryAutoplay;
     window.nudgeGalleryCarousel = nudgeGalleryCarousel;
+    window.initGalleryCarousel = initGalleryCarousel;
 
-    
-    // ── Controle Interativo dos 5 Pilares (Showcase sem Cards) ──
+        // ── Controle Interativo dos 5 Pilares (Showcase sem Cards) ──
     let currentWhyPillarIndex = 0;
 
     function selectWhyPillar(index) {
@@ -9945,7 +9494,8 @@
       // 9. Aplicar o idioma no carregamento (Sempre Espanhol 'es')
       switchLanguage('es');
 
-      // 10. Inicializar slider de depoimentos com altura travada e autoplay
+      // 10. Inicializar galeria infinita (Etapa 6.1) e slider de depoimentos com altura travada e autoplay
+      initGalleryCarousel();
       startTestimonialsAuto();
       lockTestimonialsHeight();
       window.addEventListener('resize', lockTestimonialsHeight);
