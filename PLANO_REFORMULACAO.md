@@ -161,8 +161,8 @@ Ao analisar integralmente as 4 capturas de mensagens do WhatsApp, foram identifi
     8. *Disjuntor Caixa Moldada 160A:* Entrada de potência trifásica com barramento de cobre maciço para alta demanda.
     9. *Quadro 4 Linhas com SAI:* Quadro de distribuição com circuitos independentes e alimentação estabilizada por UPS.
     10. *Quadro Estanque Noark IP65:* Caixa estanque com porta fumê e tomadas industriais CEE para ambiente externo.
-    11. *Climatização VRF Haier:* Unidades condensadoras em cobertura durante teste frigorífico e vácuo técnico.
-    12. *Aerotermia Mundoclima Super Inverter:* Bomba de calor hidrônica com fluido R32 para climatização e AQS.
+    11. *Ligação Elétrica VRF Haier:* Alimentação elétrica dedicada, cabeamento de potência e proteção para centrais VRF.
+    12. *Instalação Elétrica Mundoclima Inverter:* Ligação do circuito elétrico de alimentação e proteção para unidade de bomba de calor inverter.
     13. *Gerador HIMOINSA CEC7:* Quadro de comutação automática rede/gerador com parada de emergência e supervisão digital.
     14. *Centralização de Contadores CGP:* Ponto de entrega com caixas de fusíveis NH e conexões homologadas em Valência.
     15. *Painel de Comando em Operação Ativa:* Quadro industrial com inversores parametrizados e intertravamentos.

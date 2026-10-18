@@ -193,38 +193,38 @@
     "src": "WhatsApp Image 2026-09-25 at 20.28.32 (4).jpeg",
     "dest": "real-11-climatizacao-vrf-aerotermia.jpg",
     "category": {
-      "pt": "Climatização & VRF",
-      "es": "Climatización & VRF",
-      "en": "HVAC & VRF Systems"
+      "pt": "Ligação Elétrica & VRF",
+      "es": "Conexión Eléctrica & VRF",
+      "en": "Electrical Feed & VRF"
     },
     "title": {
-      "pt": "Centrais de Climatização VRF Haier",
-      "es": "Centrales de Climatización VRF Haier",
-      "en": "Haier VRF Air Conditioning Central"
+      "pt": "Ligação Elétrica de Centrais VRF Haier",
+      "es": "Conexión Eléctrica de Centrales VRF Haier",
+      "en": "Electrical Feed for Haier VRF Units"
     },
     "desc": {
-      "pt": "Interligação de tubulações, vácuo e infraestrutura de alta potência.",
-      "es": "Interconexión de tuberías, vacío e infraestructura de potencia.",
-      "en": "Refrigeration piping, vacuum testing, and electrical feeds."
+      "pt": "Instalação elétrica dedicada, cabeamento de força e proteção para centrais VRF.",
+      "es": "Instalación eléctrica dedicada, cableado de potencia y protección para centrales VRF.",
+      "en": "Dedicated electrical installation, power cabling, and circuit protection for VRF units."
     }
   },
   {
     "src": "WhatsApp Image 2026-09-25 at 20.28.31 (5).jpeg",
     "dest": "real-12-aerotermia-mundoclima-inverter.jpg",
     "category": {
-      "pt": "Aerotermia & Inverter",
-      "es": "Aerotermia & Inverter",
-      "en": "Inverter Heat Pumps"
+      "pt": "Ligação Elétrica & Inverter",
+      "es": "Conexión Eléctrica & Inverter",
+      "en": "Electrical Supply & Inverter"
     },
     "title": {
-      "pt": "Unidade Mundoclima Super Inverter",
-      "es": "Unidad Mundoclima Super Inverter",
-      "en": "Mundoclima Super Inverter Unit"
+      "pt": "Ligação Elétrica Mundoclima Super Inverter",
+      "es": "Conexión Eléctrica Mundoclima Super Inverter",
+      "en": "Electrical Supply for Mundoclima Inverter"
     },
     "desc": {
-      "pt": "Instalação de bombas de calor e eletrônica de potência inverter.",
-      "es": "Instalación de bombas de calor y electrónica de potencia inverter.",
-      "en": "Heat pump installation and inverter power electronics."
+      "pt": "Ligação elétrica de alimentação, cabeamento técnico e proteção para bomba de calor inverter.",
+      "es": "Conexión eléctrica de alimentación, cableado técnico y protección para bomba de calor inverter.",
+      "en": "Power supply connection, technical cabling, and circuit protection for inverter unit."
     }
   },
   {
