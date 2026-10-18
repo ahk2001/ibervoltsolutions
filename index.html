@@ -5079,10 +5079,10 @@
             <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/08 space-y-2 text-xs font-jakarta text-white/80">
               <div class="flex items-center gap-2 text-brand-yellow font-mono text-[11px]">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span>Registro Fotográfico Real // Execução IberVolt Solutions</span>
+                <span data-i18n="gal_modal_badge">Registro Fotográfico Real // Ejecución IberVolt Solutions</span>
               </div>
-              <p class="text-white/60 text-[11px] leading-relaxed">
-                Cada serviço segue rigorosamente o REBT espanhol (RD 842/2002), normas técnicas UNE e critérios de segurança elétrica internacional.
+              <p class="text-white/60 text-[11px] leading-relaxed" data-i18n="gal_modal_compliance">
+                Cada trabajo cumple estrictamente el REBT español (RD 842/2002), normativas técnicas UNE y criterios de seguridad eléctrica internacional.
               </p>
             </div>
           </div>
@@ -5581,6 +5581,8 @@
         gal_card_zoom: "Ampliar Registro",
         gal_btn_quote_quick: "Solicitar Orçamento",
         gal_modal_btn_quote: "Solicitar Orçamento para Projeto Semelhante",
+        gal_modal_badge: "Registro Fotográfico Real // Execução IberVolt Solutions",
+        gal_modal_compliance: "Cada serviço segue rigorosamente o REBT espanhol (RD 842/2002), normas técnicas UNE e critérios de segurança elétrica internacional.",
         gal_item_1_cat: "Robótica Industrial",
         gal_item_1_title: "Programação de Robô KUKA KRC 04",
         gal_item_1_desc: "Backup, parametrização e programação com terminal KCP.",
@@ -6017,6 +6019,8 @@
         gal_card_zoom: "Ampliar Registro",
         gal_btn_quote_quick: "Solicitar Presupuesto",
         gal_modal_btn_quote: "Solicitar Presupuesto para Proyecto Similar",
+        gal_modal_badge: "Registro Fotográfico Real // Ejecución IberVolt Solutions",
+        gal_modal_compliance: "Cada trabajo cumple estrictamente el REBT español (RD 842/2002), normativas técnicas UNE y criterios de seguridad eléctrica internacional.",
         gal_item_1_cat: "Robótica Industrial",
         gal_item_1_title: "Programación de Robot KUKA KRC 04",
         gal_item_1_desc: "Backup, parametrización y programación con terminal KCP.",
@@ -6453,6 +6457,8 @@
         gal_card_zoom: "Enlarge Record",
         gal_btn_quote_quick: "Request Quote",
         gal_modal_btn_quote: "Request Quote for a Similar Project",
+        gal_modal_badge: "Authentic Photographic Record // IberVolt Solutions Project",
+        gal_modal_compliance: "Every project strictly complies with the Spanish REBT (RD 842/2002), UNE technical standards, and international electrical safety criteria.",
         gal_item_1_cat: "Industrial Robotics",
         gal_item_1_title: "KUKA KRC 04 Robot Programming",
         gal_item_1_desc: "Backup, parameterization, and programming via KCP.",
@@ -7049,6 +7055,9 @@
       updateServicesCards();
       if (typeof isServiceModalOpen !== 'undefined' && isServiceModalOpen) {
         renderServiceModal(currentServiceIndex);
+      }
+      if (typeof updateGalleryModalContent === 'function') {
+        updateGalleryModalContent();
       }
 
       // 9. Atualizar labels e inputs ocultos dos dropdowns conforme o idioma
@@ -9018,6 +9027,7 @@
     window.openGalleryModal = openGalleryModal;
     window.closeGalleryModal = closeGalleryModal;
     window.navigateGallery = navigateGallery;
+    window.updateGalleryModalContent = updateGalleryModalContent;
     window.handleGalleryQuoteClick = handleGalleryQuoteClick;
     window.toggleGalleryAutoplay = toggleGalleryAutoplay;
     window.nudgeGalleryCarousel = nudgeGalleryCarousel;
